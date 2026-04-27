@@ -4,7 +4,6 @@
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Instagram icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -20,37 +19,27 @@
       scroll-behavior: smooth;
     }
 
-    /* ===== PAGE SYSTEM ===== */
+    /* ================= PAGE SYSTEM ================= */
     .page {
-      display: none !important;
+      display: none;
       padding: 40px;
       min-height: 100vh;
     }
 
     .page.active {
-      display: block !important;
+      display: block;
     }
 
-    /* ===== HOME ===== */
-    .home {
-      min-height: 120vh;
-      padding: 80px 20px;
+    /* ================= ANIMATED TITLE (GLOBAL) ================= */
+    .animated-title {
+      position: relative;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* ===== TITLE ===== */
-    .title {
-      font-size: 70px;
-      letter-spacing: 8px;
-      display: flex;
-      gap: 15px;
-      color: silver;
-      margin-top: 100px;
       justify-content: center;
       width: 100%;
-      position: relative;
+      font-size: 70px;
+      letter-spacing: 8px;
+      color: silver;
+      margin-top: 100px;
     }
 
     .letter {
@@ -74,8 +63,7 @@
     .l7 { animation-delay: 1.4s; }
     .l8 { animation-delay: 1.6s; }
 
-    /* light sweep */
-    .title::after {
+    .animated-title::after {
       content: "";
       position: absolute;
       top: 0;
@@ -93,34 +81,34 @@
       100% { left: 150%; }
     }
 
+    /* ================= HOME ================= */
+    .home {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .content {
       margin-top: 200px;
       text-align: center;
       opacity: 0.7;
     }
 
-    /* ===== SOCIAL (FIXED CENTER) ===== */
     .social {
-      margin-top: 150px;
-      width: 100%;
+      margin-top: 120px;
       display: flex;
       justify-content: center;
-      align-items: center;
     }
 
     .social a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       transition: 0.3s;
-      text-decoration: none;
     }
 
     .social a:hover {
       transform: scale(1.2);
     }
 
-    /* ===== MENU ===== */
+    /* ================= MENU ================= */
     .hamburger {
       position: fixed;
       top: 20px;
@@ -145,6 +133,7 @@
       background: #111;
       padding-top: 80px;
       transition: 0.5s;
+      z-index: 999;
     }
 
     .sidepanel.open {
@@ -165,7 +154,7 @@
       background: #222;
     }
 
-    /* ===== PORTFOLIO ===== */
+    /* ================= PORTFOLIO ================= */
     .portfolio-wrapper {
       text-align: center;
     }
@@ -197,7 +186,6 @@
       display: block;
     }
 
-    /* ===== GALLERY ===== */
     .product-grid {
       display: flex;
       gap: 30px;
@@ -206,7 +194,7 @@
     }
 
     .product img {
-      width: 250px;
+      width: 260px;
       border-radius: 10px;
       transition: 0.4s;
     }
@@ -214,7 +202,6 @@
     .product img:hover {
       transform: scale(1.05);
     }
-
   </style>
 </head>
 
@@ -230,7 +217,7 @@
 <div id="menu" class="sidepanel">
   <button onclick="openPage('home')">Home</button>
   <button onclick="openPage('portfolio')">Portfolio</button>
-  <button onclick="openPage('about')">About me</button>
+  <button onclick="openPage('about')">About Me</button>
   <button onclick="openPage('contact')">Contact</button>
   <button onclick="openPage('payment')">Payment</button>
 </div>
@@ -238,7 +225,7 @@
 <!-- HOME -->
 <div id="home" class="page active home">
 
-  <div class="title">
+  <div class="animated-title">
     <span class="letter l1">M</span>
     <span class="letter l2">Y</span>
     <span class="letter l3">R</span>
@@ -254,7 +241,6 @@
     <p>Welcome to My Creative Space</p>
   </div>
 
-  <!-- CENTERED INSTAGRAM ICON -->
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
@@ -268,7 +254,7 @@
 
   <div class="portfolio-wrapper">
 
-    <div class="title">
+    <div class="animated-title">
       <span class="letter l1">P</span>
       <span class="letter l2">O</span>
       <span class="letter l3">R</span>
@@ -292,11 +278,11 @@
     <div id="paint" class="portfolio-content">
       <div class="product-grid">
         <div class="product">
-          <img src="images/art1.jpg">
+          <img src="images/art1.jpg" alt="Art 1">
         </div>
 
         <div class="product">
-          <img src="images/art2.jpg">
+          <img src="images/art2.jpg" alt="Art 2">
         </div>
       </div>
     </div>
@@ -304,9 +290,45 @@
   </div>
 </div>
 
-<!-- OTHER -->
-<div id="about" class="page"><h2>About Me</h2></div>
-<div id="contact" class="page"><h2>Contact</h2></div>
+<!-- ABOUT -->
+<div id="about" class="page">
+  <div class="animated-title">
+    <span class="letter l1">A</span>
+    <span class="letter l2">B</span>
+    <span class="letter l3">O</span>
+    <span class="letter l4">U</span>
+    <span class="letter l5">T</span>
+    <span style="width:20px;"></span>
+    <span class="letter l6">M</span>
+    <span class="letter l7">E</span>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="page">
+  <div class="animated-title">
+    <span class="letter l1">C</span>
+    <span class="letter l2">O</span>
+    <span class="letter l3">N</span>
+    <span class="letter l4">T</span>
+    <span class="letter l5">A</span>
+    <span class="letter l6">C</span>
+    <span class="letter l7">T</span>
+  </div>
+</div>
+
+<!-- PAYMENT -->
+<div id="payment" class="page">
+  <div class="animated-title">
+    <span class="letter l1">P</span>
+    <span class="letter l2">A</span>
+    <span class="letter l3">Y</span>
+    <span class="letter l4">M</span>
+    <span class="letter l5">E</span>
+    <span class="letter l6">N</span>
+    <span class="letter l7">T</span>
+  </div>
+</div>
 
 <script>
   function toggleMenu() {
@@ -317,7 +339,6 @@
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
     document.getElementById("menu").classList.remove("open");
-
     document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   }
 

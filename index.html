@@ -7,86 +7,148 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
       background: black;
       color: white;
       overflow-x: hidden;
+      font-family: Arial, sans-serif;
     }
 
     /* ================= HOME ================= */
+
     .home {
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      position: relative;
     }
 
     .title {
-      font-size: 60px;
-      letter-spacing: 5px;
+      font-size: 70px;
+      letter-spacing: 8px;
+      display: flex;
+      gap: 5px;
       color: silver;
-      border-right: 2px solid silver;
-      white-space: nowrap;
-      overflow: hidden;
+      text-shadow:
+        -2px 0px 5px rgba(255,255,255,0.4),
+        2px 0px 10px rgba(200,200,200,0.2);
     }
 
-    /* ================= SIDE PANEL ================= */
-    .panel {
+    .letter {
+      opacity: 0;
+      transform: translateY(-200px);
+      animation: drop 1s forwards;
+    }
+
+    @keyframes drop {
+      0% {
+        opacity: 0;
+        transform: translateY(-200px);
+      }
+      70% {
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* delay per letter */
+    .l1 { animation-delay: 0.2s; }
+    .l2 { animation-delay: 0.4s; }
+    .l3 { animation-delay: 0.6s; }
+    .l4 { animation-delay: 0.8s; }
+    .l5 { animation-delay: 1.0s; }
+    .l6 { animation-delay: 1.2s; }
+    .l7 { animation-delay: 1.4s; }
+    .l8 { animation-delay: 1.6s; }
+
+    /* ================= SIDE MENU ================= */
+
+    .menu {
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 100vh;
+      width: 200px;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      padding-top: 100px;
+      box-shadow: -5px 0 20px rgba(255,255,255,0.05);
+    }
+
+    .menu button {
+      background: none;
+      border: none;
+      color: white;
+      padding: 20px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .menu button:hover {
+      background: #222;
+    }
+
+    /* ================= PAGES (FLAP EFFECT) ================= */
+
+    .page {
       position: fixed;
       top: 0;
-      right: -300px;
-      width: 300px;
-      height: 100%;
-      background: #111;
-      padding: 20px;
-      transition: 0.4s ease;
+      right: -100%;
+      width: calc(100% - 200px);
+      height: 100vh;
+      background: #0d0d0d;
+      transition: 0.6s ease;
+      padding: 40px;
+      overflow-y: auto;
     }
 
-    .panel.open {
-      right: 0;
+    .page.active {
+      right: 200px;
     }
 
-    .menu-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: white;
-      color: black;
-      padding: 8px 12px;
-      cursor: pointer;
-      border: none;
+    h2 {
+      color: silver;
     }
 
-    .panel a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 20px 0;
-      font-size: 18px;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
 
-    section {
-      display: none;
-      padding: 20px;
-    }
-
-    section.active {
-      display: block;
+    .card {
+      background: #1a1a1a;
+      padding: 10px;
+      border-radius: 10px;
     }
 
     img {
       width: 100%;
       border-radius: 10px;
-      margin-bottom: 10px;
+    }
+
+    /* contact */
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: #111;
+      border: 1px solid #333;
+      color: white;
     }
 
     .btn {
-      display: inline-block;
-      padding: 10px;
-      background: white;
-      color: black;
-      text-decoration: none;
+      padding: 10px 15px;
+      background: silver;
+      border: none;
+      cursor: pointer;
       margin-top: 10px;
     }
 
@@ -97,78 +159,79 @@
 
 <!-- HOME -->
 <div class="home">
-  <div id="title" class="title"></div>
-  <p>Creative Art & Photography</p>
-</div>
 
-<!-- MENU BUTTON -->
-<button class="menu-btn" onclick="togglePanel()">Menu</button>
-
-<!-- SIDE PANEL -->
-<div class="panel" id="panel">
-
-  <a href="#" onclick="showSection('portfolio')">Portfolio</a>
-  <a href="#" onclick="showSection('about')">About</a>
-  <a href="#" onclick="showSection('contact')">Contact</a>
-  <a href="#" onclick="showSection('payment')">Payment</a>
-
-  <!-- SECTIONS -->
-  <section id="portfolio">
-    <h2>Portfolio</h2>
-    <h3>Paintings</h3>
-
-    <img src="art1.jpg">
-    <img src="art2.jpg">
-  </section>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Myra Arts is a creative visual expression.</p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-
-    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-      <input type="text" name="name" placeholder="Name"><br><br>
-      <input type="email" name="email" placeholder="Email"><br><br>
-      <textarea name="message" placeholder="Message"></textarea><br><br>
-      <button class="btn" type="submit">Send</button>
-    </form>
-  </section>
-
-  <section id="payment">
-    <h2>Payment</h2>
-    <a class="btn" href="YOUR_PAYPAL_LINK">Pay / Commission</a>
-  </section>
+  <div class="title">
+    <span class="letter l1">M</span>
+    <span class="letter l2">Y</span>
+    <span class="letter l3">R</span>
+    <span class="letter l4">A</span>
+    <span class="letter l5">A</span>
+    <span class="letter l6">R</span>
+    <span class="letter l7">T</span>
+    <span class="letter l8">S</span>
+  </div>
 
 </div>
 
-<!-- SCRIPT -->
+<!-- SIDE MENU -->
+<div class="menu">
+  <button onclick="openPage('portfolio')">Portfolio</button>
+  <button onclick="openPage('about')">About</button>
+  <button onclick="openPage('contact')">Contact</button>
+  <button onclick="openPage('payment')">Payment</button>
+</div>
+
+<!-- PORTFOLIO -->
+<div id="portfolio" class="page">
+  <h2>Portfolio</h2>
+
+  <h3>Photography</h3>
+  <div class="grid">
+    <div class="card">Coming soon</div>
+  </div>
+
+  <h3>Paintings</h3>
+  <div class="grid">
+    <div class="card">
+      <img src="art1.jpg">
+    </div>
+    <div class="card">
+      <img src="art2.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="page">
+  <h2>About Me</h2>
+  <p>Myra Arts is a creative visual expression of emotions.</p>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="page">
+  <h2>Contact</h2>
+
+  <form action="https://formspree.io/f/YOUR_ID" method="POST">
+    <input type="text" name="name" placeholder="Name">
+    <input type="email" name="email" placeholder="Email">
+    <textarea name="message" placeholder="Message"></textarea>
+    <button class="btn" type="submit">Send</button>
+  </form>
+</div>
+
+<!-- PAYMENT -->
+<div id="payment" class="page">
+  <h2>Payment</h2>
+  <p>Commission or purchase artwork</p>
+  <button class="btn">Pay Now</button>
+</div>
+
 <script>
-  // TYPEWRITER EFFECT (runs once)
-  const text = "MYRA ARTS";
-  let i = 0;
-  function typeWriter() {
-    if (i < text.length) {
-      document.getElementById("title").innerHTML += text.charAt(i);
-      i++;
-      setTimeout(typeWriter, 150);
-    } else {
-      document.getElementById("title").style.borderRight = "none";
-    }
-  }
-  typeWriter();
-
-  // SIDE PANEL
-  function togglePanel() {
-    document.getElementById("panel").classList.toggle("open");
-  }
-
-  // SHOW SECTION
-  function showSection(id) {
-    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
+  function openPage(id) {
+    document.querySelectorAll('.page').forEach(p => {
+      p.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
   }
 </script>
 

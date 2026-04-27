@@ -20,6 +20,18 @@
       scroll-behavior: smooth;
     }
 
+    /* ================= PAGE SYSTEM ================= */
+
+    .page {
+      display: none;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    .page.active {
+      display: block;
+    }
+
     /* ================= HOME ================= */
 
     .home {
@@ -55,7 +67,6 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* delays */
     .l1 { animation-delay: 0.2s; }
     .l2 { animation-delay: 0.4s; }
     .l3 { animation-delay: 0.6s; }
@@ -65,7 +76,6 @@
     .l7 { animation-delay: 1.4s; }
     .l8 { animation-delay: 1.6s; }
 
-    /* ===== LIGHT SWEEP EFFECT ===== */
     .title::after {
       content: "";
       position: absolute;
@@ -95,8 +105,6 @@
         8px 0px 20px rgba(255,255,255,0.05);
     }
 
-    /* ================= SCROLL CONTENT ================= */
-
     .content {
       margin-top: 200px;
       width: 80%;
@@ -104,8 +112,6 @@
       text-align: center;
       opacity: 0.7;
     }
-
-    /* ================= SOCIAL LINKS ================= */
 
     .social {
       margin-top: 150px;
@@ -122,7 +128,7 @@
       transform: scale(1.2);
     }
 
-    /* ================= HAMBURGER MENU ================= */
+    /* ================= HAMBURGER ================= */
 
     .hamburger {
       position: fixed;
@@ -137,7 +143,6 @@
       height: 4px;
       background: white;
       margin: 6px 0;
-      transition: 0.3s;
     }
 
     /* ================= SIDE PANEL ================= */
@@ -173,14 +178,46 @@
       background: #222;
     }
 
-    /* ================= PAGES ================= */
+    /* ================= PORTFOLIO ================= */
 
-    .page {
-      display: none;
-      padding: 40px;
+    .portfolio-wrapper {
+      text-align: center;
     }
 
-    .page.active {
+    .portfolio-options {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .portfolio-btn {
+      padding: 12px 25px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .portfolio-btn:hover {
+      background: white;
+      color: black;
+    }
+
+    .portfolio-content {
+      display: none;
+      margin-top: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      max-height: 60vh;
+      overflow-y: auto;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 20px;
+    }
+
+    .portfolio-content.active {
       display: block;
     }
 
@@ -198,14 +235,15 @@
 
 <!-- SIDE MENU -->
 <div id="menu" class="sidepanel">
+  <button onclick="openPage('home')">Home</button>
   <button onclick="openPage('portfolio')">Portfolio</button>
   <button onclick="openPage('about')">About</button>
   <button onclick="openPage('contact')">Contact</button>
   <button onclick="openPage('payment')">Payment</button>
 </div>
 
-<!-- HOME -->
-<div class="home">
+<!-- HOME (UNCHANGED) -->
+<div id="home" class="page active home">
 
   <div class="title">
     <span class="letter l1">M</span>
@@ -221,10 +259,8 @@
 
   <div class="content">
     <p>Welcome to My Creative Space</p>
-    <p>Scroll down to explore more</p>
   </div>
 
-  <!-- INSTAGRAM ICON -->
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
@@ -235,25 +271,36 @@
 
 <!-- PORTFOLIO -->
 <div id="portfolio" class="page">
-  <h2>Portfolio</h2>
-  <p>Coming soon...</p>
+
+  <div class="portfolio-wrapper">
+
+    <h2>Portfolio</h2>
+
+    <div class="portfolio-options">
+      <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
+      <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
+    </div>
+
+    <div id="photo" class="portfolio-content">
+      <h3>Photography</h3>
+      <p>Add photography content here...</p>
+      <p>Scroll enabled section...</p>
+    </div>
+
+    <div id="paint" class="portfolio-content">
+      <h3>Paintings</h3>
+      <p>Add paintings content here...</p>
+      <p>Scroll enabled section...</p>
+    </div>
+
+  </div>
+
 </div>
 
-<!-- ABOUT -->
-<div id="about" class="page">
-  <h2>About Me</h2>
-  <p>Myra Arts is a visual storytelling platform.</p>
-</div>
-
-<!-- CONTACT -->
-<div id="contact" class="page">
-  <h2>Contact</h2>
-</div>
-
-<!-- PAYMENT -->
-<div id="payment" class="page">
-  <h2>Payment</h2>
-</div>
+<!-- OTHER PAGES -->
+<div id="about" class="page"><h2>About Me</h2></div>
+<div id="contact" class="page"><h2>Contact</h2></div>
+<div id="payment" class="page"><h2>Payment</h2></div>
 
 <script>
   function toggleMenu() {
@@ -264,6 +311,13 @@
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
     document.getElementById("menu").classList.remove("open");
+  }
+
+  function showPortfolio(id) {
+    document.querySelectorAll(".portfolio-content").forEach(el => {
+      el.classList.remove("active");
+    });
+    document.getElementById(id).classList.add("active");
   }
 </script>
 

@@ -4,6 +4,9 @@
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Instagram icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     body {
       margin: 0;
@@ -61,7 +64,6 @@
     .l6 { animation-delay: 1.2s; }
     .l7 { animation-delay: 1.4s; }
     .l8 { animation-delay: 1.6s; }
-    .l9 { animation-delay: 1.8s; }
 
     /* ===== LIGHT SWEEP EFFECT ===== */
     .title::after {
@@ -87,7 +89,6 @@
       100% { left: 150%; }
     }
 
-    /* shadow glow after animation */
     .title {
       text-shadow:
         3px 0px 10px rgba(255,255,255,0.15),
@@ -112,14 +113,13 @@
     }
 
     .social a {
-      color: white;
-      margin: 0 15px;
       text-decoration: none;
-      opacity: 0.8;
+      display: inline-block;
+      transition: transform 0.3s ease;
     }
 
     .social a:hover {
-      opacity: 1;
+      transform: scale(1.2);
     }
 
     /* ================= HAMBURGER MENU ================= */
@@ -224,9 +224,11 @@
     <p>Scroll down to explore more</p>
   </div>
 
+  <!-- INSTAGRAM ICON -->
   <div class="social">
-    <a href="https://instagram.com/YOUR_USERNAME" target="_blank">Instagram</a>
-    <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/myraarts06/" target="_blank">
+      <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
+    </a>
   </div>
 
 </div>

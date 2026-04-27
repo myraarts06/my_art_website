@@ -13,94 +13,109 @@
       overflow-x: hidden;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* ================= HOME ================= */
 
     .home {
-      min-height: 200vh; /* makes homepage scrollable */
+      min-height: 120vh;
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       position: relative;
-      padding-top: 120px;
-      text-align: center;
     }
 
     /* ===== TITLE ===== */
     .title {
       font-size: 70px;
-      letter-spacing: 10px;
+      letter-spacing: 8px;
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      color: silver;
+      gap: 15px;
       position: relative;
-      perspective: 800px;
-      text-shadow:
-        -3px 0px 10px rgba(255,255,255,0.2),
-        8px 0px 15px rgba(0,0,0,0.8);
+      color: silver;
+      margin-top: 100px;
     }
 
-    /* falling letters */
     .letter {
       opacity: 0;
-      transform: translateY(-250px) rotateX(90deg);
-      animation: fall 1.2s forwards;
+      transform: translateY(-200px);
+      animation: drop 1s forwards;
+      position: relative;
     }
 
-    @keyframes fall {
-      0% {
-        opacity: 0;
-        transform: translateY(-250px) rotateX(90deg);
-      }
-      70% {
-        transform: translateY(20px) rotateX(0deg);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes drop {
+      0% { opacity: 0; transform: translateY(-200px); }
+      70% { transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* delay per letter */
-    .l1 { animation-delay: 0.1s; }
-    .l2 { animation-delay: 0.3s; }
-    .l3 { animation-delay: 0.5s; }
-    .l4 { animation-delay: 0.7s; }
-    .l5 { animation-delay: 0.9s; }
-    .l6 { animation-delay: 1.1s; }
-    .l7 { animation-delay: 1.3s; }
-    .l8 { animation-delay: 1.5s; }
+    /* delays */
+    .l1 { animation-delay: 0.2s; }
+    .l2 { animation-delay: 0.4s; }
+    .l3 { animation-delay: 0.6s; }
+    .l4 { animation-delay: 0.8s; }
+    .l5 { animation-delay: 1.0s; }
+    .l6 { animation-delay: 1.2s; }
+    .l7 { animation-delay: 1.4s; }
+    .l8 { animation-delay: 1.6s; }
+    .l9 { animation-delay: 1.8s; }
 
-    /* ===== LIGHT SHADOW EFFECT (RIGHT SIDE LIGHT) ===== */
+    /* ===== LIGHT SWEEP EFFECT ===== */
     .title::after {
       content: "";
       position: absolute;
       top: 0;
-      right: -100px;
-      width: 200px;
+      left: -100%;
+      width: 60%;
       height: 100%;
-      background: linear-gradient(to left,
-        rgba(255,255,255,0.25),
-        transparent);
-      filter: blur(8px);
-      animation: lightSweep 3s ease-in-out forwards;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.5),
+        transparent
+      );
+      transform: skewX(-25deg);
+      animation: lightSweep 2s ease forwards;
+      animation-delay: 2.2s;
     }
 
     @keyframes lightSweep {
-      0% { opacity: 0; transform: translateX(100px); }
-      50% { opacity: 1; }
-      100% { opacity: 0.3; transform: translateX(-50px); }
+      0% { left: -100%; }
+      100% { left: 150%; }
+    }
+
+    /* shadow glow after animation */
+    .title {
+      text-shadow:
+        3px 0px 10px rgba(255,255,255,0.15),
+        8px 0px 20px rgba(255,255,255,0.05);
+    }
+
+    /* ================= SCROLL CONTENT ================= */
+
+    .content {
+      margin-top: 200px;
+      width: 80%;
+      max-width: 900px;
+      text-align: center;
+      opacity: 0.7;
     }
 
     /* ================= SOCIAL LINKS ================= */
 
     .social {
-      margin-top: 400px;
-      padding-bottom: 100px;
+      margin-top: 150px;
+      text-align: center;
     }
 
     .social a {
       color: white;
       margin: 0 15px;
       text-decoration: none;
-      opacity: 0.7;
+      opacity: 0.8;
     }
 
     .social a:hover {
@@ -127,35 +142,34 @@
 
     /* ================= SIDE PANEL ================= */
 
-    .menu {
+    .sidepanel {
       position: fixed;
       top: 0;
       right: -300px;
       width: 250px;
       height: 100vh;
       background: #111;
-      display: flex;
-      flex-direction: column;
-      padding-top: 100px;
+      padding-top: 80px;
       transition: 0.5s;
       z-index: 999;
     }
 
-    .menu.active {
+    .sidepanel.open {
       right: 0;
     }
 
-    .menu button {
+    .sidepanel button {
+      display: block;
+      width: 100%;
+      padding: 20px;
       background: none;
       border: none;
       color: white;
-      padding: 20px;
       text-align: left;
-      font-size: 16px;
       cursor: pointer;
     }
 
-    .menu button:hover {
+    .sidepanel button:hover {
       background: #222;
     }
 
@@ -163,50 +177,11 @@
 
     .page {
       display: none;
-      padding: 60px;
-      background: #0d0d0d;
-      min-height: 100vh;
+      padding: 40px;
     }
 
     .page.active {
       display: block;
-    }
-
-    h2 {
-      color: silver;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: #1a1a1a;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      background: #111;
-      border: 1px solid #333;
-      color: white;
-    }
-
-    .btn {
-      padding: 10px 15px;
-      background: silver;
-      border: none;
-      cursor: pointer;
     }
 
   </style>
@@ -222,7 +197,7 @@
 </div>
 
 <!-- SIDE MENU -->
-<div class="menu" id="menu">
+<div id="menu" class="sidepanel">
   <button onclick="openPage('portfolio')">Portfolio</button>
   <button onclick="openPage('about')">About</button>
   <button onclick="openPage('contact')">Contact</button>
@@ -237,17 +212,18 @@
     <span class="letter l2">Y</span>
     <span class="letter l3">R</span>
     <span class="letter l4">A</span>
-    <span style="width:30px;"></span>
+    <span style="width:20px;"></span>
     <span class="letter l5">A</span>
     <span class="letter l6">R</span>
     <span class="letter l7">T</span>
     <span class="letter l8">S</span>
   </div>
 
-  <!-- scroll content placeholder -->
-  <div style="height:300px;"></div>
+  <div class="content">
+    <p>Welcome to My Creative Space</p>
+    <p>Scroll down to explore more</p>
+  </div>
 
-  <!-- SOCIAL LINKS -->
   <div class="social">
     <a href="https://instagram.com/YOUR_USERNAME" target="_blank">Instagram</a>
     <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank">LinkedIn</a>
@@ -255,44 +231,37 @@
 
 </div>
 
-<!-- PAGES -->
+<!-- PORTFOLIO -->
 <div id="portfolio" class="page">
   <h2>Portfolio</h2>
-  <div class="grid">
-    <div class="card"><img src="art1.jpg"></div>
-    <div class="card"><img src="art2.jpg"></div>
-  </div>
+  <p>Coming soon...</p>
 </div>
 
+<!-- ABOUT -->
 <div id="about" class="page">
   <h2>About Me</h2>
-  <p>Myra Arts - visual storytelling through art.</p>
+  <p>Myra Arts is a visual storytelling platform.</p>
 </div>
 
+<!-- CONTACT -->
 <div id="contact" class="page">
   <h2>Contact</h2>
-  <form action="https://formspree.io/f/YOUR_ID" method="POST">
-    <input type="text" name="name" placeholder="Name">
-    <input type="email" name="email" placeholder="Email">
-    <textarea name="message" placeholder="Message"></textarea>
-    <button class="btn" type="submit">Send</button>
-  </form>
 </div>
 
+<!-- PAYMENT -->
 <div id="payment" class="page">
   <h2>Payment</h2>
-  <button class="btn">Pay / Commission</button>
 </div>
 
 <script>
   function toggleMenu() {
-    document.getElementById("menu").classList.toggle("active");
+    document.getElementById("menu").classList.toggle("open");
   }
 
   function openPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    toggleMenu();
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.getElementById("menu").classList.remove("open");
   }
 </script>
 

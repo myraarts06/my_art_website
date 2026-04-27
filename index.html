@@ -43,7 +43,6 @@
       position: relative;
     }
 
-    /* ===== TITLE ===== */
     .title {
       font-size: 70px;
       letter-spacing: 8px;
@@ -80,35 +79,6 @@
     .l7 { animation-delay: 1.4s; }
     .l8 { animation-delay: 1.6s; }
 
-    .title::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.5),
-        transparent
-      );
-      transform: skewX(-25deg);
-      animation: lightSweep 2s ease forwards;
-      animation-delay: 2.2s;
-    }
-
-    @keyframes lightSweep {
-      0% { left: -100%; }
-      100% { left: 150%; }
-    }
-
-    .title {
-      text-shadow:
-        3px 0px 10px rgba(255,255,255,0.15),
-        8px 0px 20px rgba(255,255,255,0.05);
-    }
-
     .content {
       margin-top: 200px;
       width: 80%;
@@ -122,16 +92,6 @@
     .social {
       margin-top: 150px;
       text-align: center;
-    }
-
-    .social a {
-      text-decoration: none;
-      display: inline-block;
-      transition: transform 0.3s ease;
-    }
-
-    .social a:hover {
-      transform: scale(1.2);
     }
 
     /* ================= HAMBURGER ================= */
@@ -214,17 +174,91 @@
     .portfolio-content {
       display: none;
       margin-top: 40px;
-      max-width: 900px;
+      max-width: 1000px;
       margin-left: auto;
       margin-right: auto;
-      max-height: 60vh;
+      max-height: 70vh;
       overflow-y: auto;
-      border-top: 1px solid rgba(255,255,255,0.2);
-      padding-top: 20px;
     }
 
     .portfolio-content.active {
       display: block;
+    }
+
+    /* ================= MUSEUM GALLERY ================= */
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .artwork {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+      background: #111;
+    }
+
+    .artwork img {
+      width: 100%;
+      display: block;
+      transition: transform 0.6s ease, filter 0.6s ease;
+      filter: brightness(0.9);
+    }
+
+    .artwork:hover img {
+      transform: scale(1.08);
+      filter: brightness(1.1);
+    }
+
+    .label {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 14px;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .artwork:hover .label {
+      opacity: 1;
+    }
+
+    .artwork::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.4));
+      opacity: 0;
+      transition: 0.4s;
+    }
+
+    .artwork:hover::after {
+      opacity: 1;
+    }
+
+    /* ================= LIGHTBOX ================= */
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      box-shadow: 0 0 40px rgba(255,255,255,0.1);
     }
 
   </style>
@@ -289,16 +323,36 @@
 
     <div id="photo" class="portfolio-content">
       <h3>Photography</h3>
-      <p>Add photography content here...</p>
+      <p>Add photography here...</p>
     </div>
 
     <div id="paint" class="portfolio-content">
+
       <h3>Paintings</h3>
-      <p>Add paintings content here...</p>
+
+      <div class="gallery">
+
+        <div class="artwork" onclick="openLightbox('images/painting1.jpg')">
+          <img src="images/painting1.jpg">
+          <div class="label">Painting 1</div>
+        </div>
+
+        <div class="artwork" onclick="openLightbox('images/painting2.jpg')">
+          <img src="images/painting2.jpg">
+          <div class="label">Painting 2</div>
+        </div>
+
+      </div>
+
     </div>
 
   </div>
 
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
 </div>
 
 <!-- OTHER PAGES -->
@@ -316,12 +370,9 @@
     document.getElementById(id).classList.add("active");
     document.getElementById("menu").classList.remove("open");
 
-    // reset portfolio sections when leaving it
-    if (id !== "portfolio") {
-      document.querySelectorAll(".portfolio-content").forEach(el => {
-        el.classList.remove("active");
-      });
-    }
+    document.querySelectorAll(".portfolio-content").forEach(el => {
+      el.classList.remove("active");
+    });
   }
 
   function showPortfolio(id) {
@@ -329,6 +380,15 @@
       el.classList.remove("active");
     });
     document.getElementById(id).classList.add("active");
+  }
+
+  function openLightbox(src) {
+    document.getElementById("lightbox").style.display = "flex";
+    document.getElementById("lightbox-img").src = src;
+  }
+
+  function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
   }
 </script>
 

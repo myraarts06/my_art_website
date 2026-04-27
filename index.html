@@ -4,9 +4,6 @@
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Modern sans-serif font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
   <!-- Instagram icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -34,69 +31,31 @@
       position: relative;
     }
 
-    /* ================= TITLE ================= */
-
+    /* ===== TITLE ===== */
     .title {
-      font-size: 72px;
-      letter-spacing: 10px;
+      font-size: 70px;
+      letter-spacing: 8px;
       display: flex;
       gap: 15px;
       position: relative;
+      color: silver;
       margin-top: 100px;
-
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      color: #d9d9d9;
-      text-transform: uppercase;
-
-      text-shadow:
-        0 0 8px rgba(255,255,255,0.12),
-        0 0 20px rgba(255,255,255,0.06);
     }
-
-    /* 🌿 botanical glow swashes */
-    .title::before,
-    .title::after {
-      content: "";
-      position: absolute;
-      width: 140px;
-      height: 140px;
-      background: radial-gradient(circle,
-        rgba(144, 238, 144, 0.25),
-        transparent 70%
-      );
-      filter: blur(3px);
-      opacity: 0.6;
-      z-index: -1;
-    }
-
-    .title::before {
-      left: -90px;
-      top: -20px;
-      transform: rotate(-25deg);
-    }
-
-    .title::after {
-      right: -90px;
-      top: 20px;
-      transform: rotate(25deg);
-    }
-
-    /* ================= FALLING LETTER ANIMATION ================= */
 
     .letter {
       opacity: 0;
-      transform: translateY(-220px) rotate(-10deg);
-      animation: drop 1.2s forwards;
+      transform: translateY(-200px);
+      animation: drop 1s forwards;
       position: relative;
     }
 
     @keyframes drop {
-      0% { opacity: 0; transform: translateY(-220px) rotate(-10deg); }
-      70% { transform: translateY(15px) rotate(3deg); }
-      100% { opacity: 1; transform: translateY(0) rotate(0); }
+      0% { opacity: 0; transform: translateY(-200px); }
+      70% { transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
+    /* delays */
     .l1 { animation-delay: 0.2s; }
     .l2 { animation-delay: 0.4s; }
     .l3 { animation-delay: 0.6s; }
@@ -106,7 +65,37 @@
     .l7 { animation-delay: 1.4s; }
     .l8 { animation-delay: 1.6s; }
 
-    /* ================= CONTENT ================= */
+    /* ===== LIGHT SWEEP EFFECT ===== */
+    .title::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.5),
+        transparent
+      );
+      transform: skewX(-25deg);
+      animation: lightSweep 2s ease forwards;
+      animation-delay: 2.2s;
+    }
+
+    @keyframes lightSweep {
+      0% { left: -100%; }
+      100% { left: 150%; }
+    }
+
+    .title {
+      text-shadow:
+        3px 0px 10px rgba(255,255,255,0.15),
+        8px 0px 20px rgba(255,255,255,0.05);
+    }
+
+    /* ================= SCROLL CONTENT ================= */
 
     .content {
       margin-top: 200px;
@@ -116,7 +105,7 @@
       opacity: 0.7;
     }
 
-    /* ================= SOCIAL ================= */
+    /* ================= SOCIAL LINKS ================= */
 
     .social {
       margin-top: 150px;
@@ -133,7 +122,7 @@
       transform: scale(1.2);
     }
 
-    /* ================= HAMBURGER ================= */
+    /* ================= HAMBURGER MENU ================= */
 
     .hamburger {
       position: fixed;
@@ -235,7 +224,7 @@
     <p>Scroll down to explore more</p>
   </div>
 
-  <!-- INSTAGRAM -->
+  <!-- INSTAGRAM ICON -->
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
@@ -247,11 +236,13 @@
 <!-- PORTFOLIO -->
 <div id="portfolio" class="page">
   <h2>Portfolio</h2>
+  <p>Coming soon...</p>
 </div>
 
 <!-- ABOUT -->
 <div id="about" class="page">
   <h2>About Me</h2>
+  <p>Myra Arts is a visual storytelling platform.</p>
 </div>
 
 <!-- CONTACT -->

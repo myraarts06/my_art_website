@@ -15,11 +15,9 @@
       overflow-x: hidden;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
-    /* ================= PAGE SYSTEM ================= */
+    /* ========== PAGE SYSTEM ========== */
     .page {
       display: none;
       padding: 40px;
@@ -31,23 +29,25 @@
       display: block;
     }
 
-    /* ================= TITLE ANIMATION (GLOBAL) ================= */
+    /* ========== TITLE SYSTEM (FIXED) ========== */
     .title {
       font-size: 70px;
       letter-spacing: 8px;
       display: flex;
-      gap: 10px;
       justify-content: center;
-      align-items: center;
-      margin-top: 80px;
+      gap: 10px;
       color: silver;
+      margin-top: 80px;
       position: relative;
-      flex-wrap: wrap;
     }
 
     .letter {
       opacity: 0;
       transform: translateY(-200px);
+    }
+
+    /* animation only when page is active */
+    .page.active .letter {
       animation: drop 1s forwards;
     }
 
@@ -67,7 +67,7 @@
       background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
       transform: skewX(-25deg);
       animation: lightSweep 2s ease forwards;
-      animation-delay: 2s;
+      animation-delay: 1.8s;
     }
 
     @keyframes lightSweep {
@@ -85,7 +85,7 @@
     .l7 { animation-delay: 1.4s; }
     .l8 { animation-delay: 1.6s; }
 
-    /* ================= SOCIAL ================= */
+    /* SOCIAL CENTER FIX */
     .social {
       margin-top: 120px;
       display: flex;
@@ -100,7 +100,7 @@
       transform: scale(1.2);
     }
 
-    /* ================= MENU ================= */
+    /* MENU */
     .hamburger {
       position: fixed;
       top: 20px;
@@ -128,9 +128,7 @@
       z-index: 999;
     }
 
-    .sidepanel.open {
-      right: 0;
-    }
+    .sidepanel.open { right: 0; }
 
     .sidepanel button {
       width: 100%;
@@ -146,39 +144,13 @@
       background: #222;
     }
 
-    /* ================= PORTFOLIO ================= */
-    .portfolio-options {
-      margin-top: 40px;
-    }
-
-    .portfolio-btn {
-      padding: 10px 20px;
-      border: 1px solid white;
-      background: none;
-      color: white;
-      margin: 10px;
-      cursor: pointer;
-    }
-
-    .portfolio-btn:hover {
-      background: white;
-      color: black;
-    }
-
-    .portfolio-content {
-      display: none;
-      margin-top: 40px;
-    }
-
-    .portfolio-content.active {
-      display: block;
-    }
-
+    /* GALLERY */
     .product-grid {
       display: flex;
       gap: 30px;
       justify-content: center;
       flex-wrap: wrap;
+      margin-top: 30px;
     }
 
     .product img {
@@ -210,9 +182,8 @@
   <button onclick="openPage('payment')">Payment</button>
 </div>
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 <div id="home" class="page active">
-
   <div class="title">
     <span class="letter l1">M</span>
     <span class="letter l2">Y</span>
@@ -230,12 +201,10 @@
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
     </a>
   </div>
-
 </div>
 
-<!-- ================= PORTFOLIO ================= -->
+<!-- PORTFOLIO -->
 <div id="portfolio" class="page">
-
   <div class="title">
     <span class="letter l1">P</span>
     <span class="letter l2">O</span>
@@ -248,31 +217,18 @@
     <span class="letter l1">O</span>
   </div>
 
-  <div class="portfolio-options">
-    <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
-    <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
-  </div>
-
-  <div id="photo" class="portfolio-content">
-    <p>Photography coming soon...</p>
-  </div>
-
-  <div id="paint" class="portfolio-content">
-    <div class="product-grid">
-      <div class="product">
-        <img src="images/art1.jpg">
-      </div>
-      <div class="product">
-        <img src="images/art2.jpg">
-      </div>
+  <div class="product-grid">
+    <div class="product">
+      <img src="images/art1.jpg">
+    </div>
+    <div class="product">
+      <img src="images/art2.jpg">
     </div>
   </div>
-
 </div>
 
-<!-- ================= ABOUT ================= -->
+<!-- ABOUT -->
 <div id="about" class="page">
-
   <div class="title">
     <span class="letter l1">A</span>
     <span class="letter l2">B</span>
@@ -283,12 +239,10 @@
     <span class="letter l6">M</span>
     <span class="letter l7">E</span>
   </div>
-
 </div>
 
-<!-- ================= CONTACT ================= -->
+<!-- CONTACT -->
 <div id="contact" class="page">
-
   <div class="title">
     <span class="letter l1">C</span>
     <span class="letter l2">O</span>
@@ -298,12 +252,10 @@
     <span class="letter l6">C</span>
     <span class="letter l7">T</span>
   </div>
-
 </div>
 
-<!-- ================= PAYMENT ================= -->
+<!-- PAYMENT -->
 <div id="payment" class="page">
-
   <div class="title">
     <span class="letter l1">P</span>
     <span class="letter l2">A</span>
@@ -313,7 +265,6 @@
     <span class="letter l6">N</span>
     <span class="letter l7">T</span>
   </div>
-
 </div>
 
 <script>
@@ -325,13 +276,6 @@
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
     document.getElementById("menu").classList.remove("open");
-
-    document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
-  }
-
-  function showPortfolio(id) {
-    document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
   }
 </script>
 

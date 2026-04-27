@@ -4,7 +4,7 @@
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Instagram icon library -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -16,113 +16,88 @@
       overflow-x: hidden;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html { scroll-behavior: smooth; }
+
+    /* ================= PAGES SYSTEM ================= */
+
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding: 60px 30px;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* ================= TITLE ================= */
+
+    .title {
+      font-size: 72px;
+      letter-spacing: 10px;
+      display: flex;
+      gap: 15px;
+      position: relative;
+      margin-top: 100px;
+
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      color: #d9d9d9;
+      text-transform: uppercase;
     }
 
     /* ================= HOME ================= */
 
     .home {
-      min-height: 120vh;
-      padding: 80px 20px;
+      text-align: center;
+    }
+
+    /* ================= PORTFOLIO ================= */
+
+    .portfolio-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
+      gap: 40px;
     }
 
-    /* ===== TITLE ===== */
-    .title {
-      font-size: 70px;
-      letter-spacing: 8px;
+    .portfolio-buttons {
       display: flex;
-      gap: 15px;
-      position: relative;
-      color: silver;
-      margin-top: 100px;
+      gap: 30px;
+      margin-top: 40px;
     }
 
-    .letter {
-      opacity: 0;
-      transform: translateY(-200px);
-      animation: drop 1s forwards;
-      position: relative;
+    .btn {
+      padding: 15px 30px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 18px;
     }
 
-    @keyframes drop {
-      0% { opacity: 0; transform: translateY(-200px); }
-      70% { transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    .btn:hover {
+      background: white;
+      color: black;
     }
 
-    /* delays */
-    .l1 { animation-delay: 0.2s; }
-    .l2 { animation-delay: 0.4s; }
-    .l3 { animation-delay: 0.6s; }
-    .l4 { animation-delay: 0.8s; }
-    .l5 { animation-delay: 1.0s; }
-    .l6 { animation-delay: 1.2s; }
-    .l7 { animation-delay: 1.4s; }
-    .l8 { animation-delay: 1.6s; }
-
-    /* ===== LIGHT SWEEP EFFECT ===== */
-    .title::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.5),
-        transparent
-      );
-      transform: skewX(-25deg);
-      animation: lightSweep 2s ease forwards;
-      animation-delay: 2.2s;
-    }
-
-    @keyframes lightSweep {
-      0% { left: -100%; }
-      100% { left: 150%; }
-    }
-
-    .title {
-      text-shadow:
-        3px 0px 10px rgba(255,255,255,0.15),
-        8px 0px 20px rgba(255,255,255,0.05);
-    }
-
-    /* ================= SCROLL CONTENT ================= */
-
-    .content {
-      margin-top: 200px;
+    .content-box {
+      display: none;
+      margin-top: 40px;
       width: 80%;
       max-width: 900px;
-      text-align: center;
-      opacity: 0.7;
+      max-height: 60vh;
+      overflow-y: auto;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 20px;
     }
 
-    /* ================= SOCIAL LINKS ================= */
-
-    .social {
-      margin-top: 150px;
-      text-align: center;
+    .content-box.active {
+      display: block;
     }
 
-    .social a {
-      text-decoration: none;
-      display: inline-block;
-      transition: transform 0.3s ease;
-    }
-
-    .social a:hover {
-      transform: scale(1.2);
-    }
-
-    /* ================= HAMBURGER MENU ================= */
+    /* ================= HAMBURGER ================= */
 
     .hamburger {
       position: fixed;
@@ -137,7 +112,6 @@
       height: 4px;
       background: white;
       margin: 6px 0;
-      transition: 0.3s;
     }
 
     /* ================= SIDE PANEL ================= */
@@ -154,12 +128,9 @@
       z-index: 999;
     }
 
-    .sidepanel.open {
-      right: 0;
-    }
+    .sidepanel.open { right: 0; }
 
     .sidepanel button {
-      display: block;
       width: 100%;
       padding: 20px;
       background: none;
@@ -169,19 +140,12 @@
       cursor: pointer;
     }
 
-    .sidepanel button:hover {
-      background: #222;
-    }
+    .sidepanel button:hover { background: #222; }
 
-    /* ================= PAGES ================= */
+    /* ================= SOCIAL ================= */
 
-    .page {
-      display: none;
-      padding: 40px;
-    }
-
-    .page.active {
-      display: block;
+    .social {
+      margin-top: 120px;
     }
 
   </style>
@@ -198,33 +162,21 @@
 
 <!-- SIDE MENU -->
 <div id="menu" class="sidepanel">
-  <button onclick="openPage('portfolio')">Portfolio</button>
-  <button onclick="openPage('about')">About</button>
-  <button onclick="openPage('contact')">Contact</button>
-  <button onclick="openPage('payment')">Payment</button>
+  <button onclick="showPage('portfolio')">Portfolio</button>
+  <button onclick="showPage('about')">About</button>
+  <button onclick="showPage('contact')">Contact</button>
+  <button onclick="showPage('payment')">Payment</button>
 </div>
 
-<!-- HOME -->
-<div class="home">
+<!-- HOME PAGE -->
+<div id="home" class="page active home">
 
   <div class="title">
-    <span class="letter l1">M</span>
-    <span class="letter l2">Y</span>
-    <span class="letter l3">R</span>
-    <span class="letter l4">A</span>
-    <span style="width:20px;"></span>
-    <span class="letter l5">A</span>
-    <span class="letter l6">R</span>
-    <span class="letter l7">T</span>
-    <span class="letter l8">S</span>
+    MYRA ARTS
   </div>
 
-  <div class="content">
-    <p>Welcome to My Creative Space</p>
-    <p>Scroll down to explore more</p>
-  </div>
+  <p>Welcome to My Creative Space</p>
 
-  <!-- INSTAGRAM ICON -->
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
@@ -233,37 +185,57 @@
 
 </div>
 
-<!-- PORTFOLIO -->
+<!-- PORTFOLIO PAGE -->
 <div id="portfolio" class="page">
-  <h2>Portfolio</h2>
-  <p>Coming soon...</p>
+
+  <div class="portfolio-container">
+
+    <h1>Portfolio</h1>
+
+    <div class="portfolio-buttons">
+      <button class="btn" onclick="toggleContent('photos')">Photographs</button>
+      <button class="btn" onclick="toggleContent('paintings')">Paintings</button>
+    </div>
+
+    <!-- PHOTOS -->
+    <div id="photos" class="content-box">
+      <h2>Photographs</h2>
+      <p>Add your photography collection here...</p>
+      <p>Scroll content will go here...</p>
+      <p>More images...</p>
+    </div>
+
+    <!-- PAINTINGS -->
+    <div id="paintings" class="content-box">
+      <h2>Paintings</h2>
+      <p>Add your paintings collection here...</p>
+      <p>Scroll content will go here...</p>
+      <p>More artworks...</p>
+    </div>
+
+  </div>
+
 </div>
 
-<!-- ABOUT -->
-<div id="about" class="page">
-  <h2>About Me</h2>
-  <p>Myra Arts is a visual storytelling platform.</p>
-</div>
-
-<!-- CONTACT -->
-<div id="contact" class="page">
-  <h2>Contact</h2>
-</div>
-
-<!-- PAYMENT -->
-<div id="payment" class="page">
-  <h2>Payment</h2>
-</div>
+<!-- OTHER PAGES -->
+<div id="about" class="page"><h2>About Me</h2></div>
+<div id="contact" class="page"><h2>Contact</h2></div>
+<div id="payment" class="page"><h2>Payment</h2></div>
 
 <script>
   function toggleMenu() {
     document.getElementById("menu").classList.toggle("open");
   }
 
-  function openPage(id) {
+  function showPage(id) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
     document.getElementById("menu").classList.remove("open");
+  }
+
+  function toggleContent(id) {
+    document.querySelectorAll(".content-box").forEach(c => c.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
   }
 </script>
 

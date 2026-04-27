@@ -4,7 +4,7 @@
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Font Awesome -->
+  <!-- Instagram icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -16,7 +16,9 @@
       overflow-x: hidden;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     /* ================= PAGE SYSTEM ================= */
 
@@ -38,24 +40,29 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
     }
 
+    /* ===== TITLE ===== */
     .title {
       font-size: 70px;
       letter-spacing: 8px;
       display: flex;
       gap: 15px;
+      position: relative;
       color: silver;
       margin-top: 100px;
+
       justify-content: center;
+      align-items: center;
       width: 100%;
-      position: relative;
     }
 
     .letter {
       opacity: 0;
       transform: translateY(-200px);
       animation: drop 1s forwards;
+      position: relative;
     }
 
     @keyframes drop {
@@ -73,7 +80,6 @@
     .l7 { animation-delay: 1.4s; }
     .l8 { animation-delay: 1.6s; }
 
-    /* LIGHT SWEEP (RESTORED) */
     .title::after {
       content: "";
       position: absolute;
@@ -81,7 +87,12 @@
       left: -100%;
       width: 60%;
       height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.5),
+        transparent
+      );
       transform: skewX(-25deg);
       animation: lightSweep 2s ease forwards;
       animation-delay: 2.2s;
@@ -92,11 +103,35 @@
       100% { left: 150%; }
     }
 
+    .title {
+      text-shadow:
+        3px 0px 10px rgba(255,255,255,0.15),
+        8px 0px 20px rgba(255,255,255,0.05);
+    }
+
+    .content {
+      margin-top: 200px;
+      width: 80%;
+      max-width: 900px;
+      text-align: center;
+      opacity: 0.7;
+    }
+
     /* ================= SOCIAL ================= */
 
     .social {
       margin-top: 150px;
       text-align: center;
+    }
+
+    .social a {
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .social a:hover {
+      transform: scale(1.2);
     }
 
     /* ================= HAMBURGER ================= */
@@ -130,9 +165,12 @@
       z-index: 999;
     }
 
-    .sidepanel.open { right: 0; }
+    .sidepanel.open {
+      right: 0;
+    }
 
     .sidepanel button {
+      display: block;
       width: 100%;
       padding: 20px;
       background: none;
@@ -142,118 +180,51 @@
       cursor: pointer;
     }
 
-    .sidepanel button:hover { background: #222; }
+    .sidepanel button:hover {
+      background: #222;
+    }
 
     /* ================= PORTFOLIO ================= */
 
+    .portfolio-wrapper {
+      text-align: center;
+    }
+
+    .portfolio-options {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .portfolio-btn {
+      padding: 12px 25px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .portfolio-btn:hover {
+      background: white;
+      color: black;
+    }
+
     .portfolio-content {
       display: none;
-      margin-top: 30px;
+      margin-top: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      max-height: 60vh;
+      overflow-y: auto;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 20px;
     }
 
     .portfolio-content.active {
       display: block;
-    }
-
-    /* ================= GALLERY ================= */
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-
-    .artwork {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      background: #111;
-    }
-
-    .artwork img {
-      width: 100%;
-      transition: 0.5s;
-    }
-
-    .artwork:hover img {
-      transform: scale(1.08);
-    }
-
-    .label {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      opacity: 0;
-      transition: 0.3s;
-    }
-
-    .artwork:hover .label { opacity: 1; }
-
-    .artwork button {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      background: white;
-    }
-
-    /* ================= CART ================= */
-
-    .cart-icon {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: #111;
-      padding: 10px 15px;
-      cursor: pointer;
-      z-index: 2000;
-    }
-
-    .music-btn {
-      position: fixed;
-      top: 70px;
-      left: 20px;
-      background: #111;
-      padding: 10px 15px;
-      cursor: pointer;
-      z-index: 2000;
-    }
-
-    .cart-panel {
-      position: fixed;
-      right: -350px;
-      top: 0;
-      width: 300px;
-      height: 100%;
-      background: #111;
-      padding: 20px;
-      transition: 0.4s;
-      z-index: 3000;
-      overflow-y: auto;
-    }
-
-    .cart-panel.open {
-      right: 0;
-    }
-
-    /* ================= LIGHTBOX ================= */
-
-    .lightbox {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: none;
-      background: rgba(0,0,0,0.95);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
     }
 
   </style>
@@ -261,13 +232,12 @@
 
 <body>
 
-<!-- CART + MUSIC -->
-<div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
-<div class="music-btn" onclick="toggleMusic()">🎵</div>
-
-<audio id="music" loop>
-  <source src="music/classical.mp3" type="audio/mp3">
-</audio>
+<!-- HAMBURGER -->
+<div class="hamburger" onclick="toggleMenu()">
+  <div class="bar"></div>
+  <div class="bar"></div>
+  <div class="bar"></div>
+</div>
 
 <!-- SIDE MENU -->
 <div id="menu" class="sidepanel">
@@ -275,6 +245,7 @@
   <button onclick="openPage('portfolio')">Portfolio</button>
   <button onclick="openPage('about')">About</button>
   <button onclick="openPage('contact')">Contact</button>
+  <button onclick="openPage('payment')">Payment</button>
 </div>
 
 <!-- HOME -->
@@ -292,6 +263,10 @@
     <span class="letter l8">S</span>
   </div>
 
+  <div class="content">
+    <p>Welcome to My Creative Space</p>
+  </div>
+
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
@@ -303,102 +278,58 @@
 <!-- PORTFOLIO -->
 <div id="portfolio" class="page">
 
-  <h2>Portfolio</h2>
+  <div class="portfolio-wrapper">
 
-  <button onclick="show('paint')">Paintings</button>
-  <button onclick="show('photo')">Photography</button>
+    <h2>Portfolio</h2>
 
-  <div id="paint" class="portfolio-content">
+    <div class="portfolio-options">
+      <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
+      <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
+    </div>
 
-    <div class="gallery">
+    <div id="photo" class="portfolio-content">
+      <h3>Photography</h3>
+      <p>Add photography content here...</p>
+    </div>
 
-      <div class="artwork">
-        <img src="images/painting1.jpg">
-        <div class="label">Painting 1</div>
-        <button onclick="addToCart('Painting 1', 12000)">Add to Cart</button>
-      </div>
-
-      <div class="artwork">
-        <img src="images/painting2.jpg">
-        <div class="label">Painting 2</div>
-        <button onclick="addToCart('Painting 2', 15000)">Add to Cart</button>
-      </div>
-
+    <div id="paint" class="portfolio-content">
+      <h3>Paintings</h3>
+      <p>Add paintings content here...</p>
     </div>
 
   </div>
 
-  <div id="photo" class="portfolio-content">
-    Photography section coming soon...
-  </div>
-
 </div>
 
-<!-- CART -->
-<div id="cart" class="cart-panel">
-  <h3>Your Cart</h3>
-  <div id="items"></div>
-  <p id="total"></p>
-  <button onclick="clearCart()">Clear</button>
-</div>
-
-<!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-  <img id="lbimg">
-</div>
+<!-- OTHER PAGES -->
+<div id="about" class="page"><h2>About Me</h2></div>
+<div id="contact" class="page"><h2>Contact</h2></div>
+<div id="payment" class="page"><h2>Payment</h2></div>
 
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  function toggleMenu() {
+    document.getElementById("menu").classList.toggle("open");
+  }
 
-function addToCart(name, price){
-  cart.push({name, price});
-  localStorage.setItem("cart", JSON.stringify(cart));
-  update();
-}
+  function openPage(id) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.getElementById("menu").classList.remove("open");
 
-function update(){
-  document.getElementById("cart-count").innerText = cart.length;
-  let html = "";
-  let total = 0;
-  cart.forEach((c,i)=>{
-    html += `<div>${c.name} - ₹${c.price}</div>`;
-    total += c.price;
-  });
-  document.getElementById("items").innerHTML = html;
-  document.getElementById("total").innerText = "Total: ₹" + total;
-}
+    // reset portfolio sections when leaving it
+    if (id !== "portfolio") {
+      document.querySelectorAll(".portfolio-content").forEach(el => {
+        el.classList.remove("active");
+      });
+    }
+  }
 
-function toggleCart(){
-  document.getElementById("cart").classList.toggle("open");
-}
-
-function clearCart(){
-  cart = [];
-  localStorage.setItem("cart", JSON.stringify(cart));
-  update();
-}
-
-function toggleMusic(){
-  let m = document.getElementById("music");
-  m.paused ? m.play() : m.pause();
-}
-
-function openPage(id){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
-
-function show(id){
-  document.querySelectorAll(".portfolio-content").forEach(p=>p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
-
-function openLight(src){
-  document.getElementById("lightbox").style.display="flex";
-  document.getElementById("lbimg").src=src;
-}
-
-update();
+  function showPortfolio(id) {
+    document.querySelectorAll(".portfolio-content").forEach(el => {
+      el.classList.remove("active");
+    });
+    document.getElementById(id).classList.add("active");
+  }
 </script>
 
 </body>

@@ -4,8 +4,8 @@
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Instagram icon library -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Organic calligraphy font -->
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -31,31 +31,48 @@
       position: relative;
     }
 
-    /* ===== TITLE ===== */
+    /* ================= LIVING TITLE ================= */
+
     .title {
-      font-size: 70px;
-      letter-spacing: 8px;
+      font-size: 80px;
+      letter-spacing: 6px;
       display: flex;
       gap: 15px;
       position: relative;
-      color: silver;
       margin-top: 100px;
+
+      font-family: 'Parisienne', cursive;
+      color: #d8d8d8;
+
+      text-shadow:
+        0 0 8px rgba(255,255,255,0.15),
+        0 0 25px rgba(255,255,255,0.05);
+
+      animation: breathe 6s ease-in-out infinite;
+      animation-delay: 3s;
     }
+
+    /* 🌿 breathing life effect */
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    /* ================= FALLING LETTERS ================= */
 
     .letter {
       opacity: 0;
-      transform: translateY(-200px);
-      animation: drop 1s forwards;
+      transform: translateY(-220px) rotate(-10deg);
+      animation: drop 1.2s forwards;
       position: relative;
     }
 
     @keyframes drop {
-      0% { opacity: 0; transform: translateY(-200px); }
-      70% { transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; transform: translateY(-220px) rotate(-10deg); }
+      70% { transform: translateY(15px) rotate(3deg); }
+      100% { opacity: 1; transform: translateY(0) rotate(0); }
     }
 
-    /* delays */
     .l1 { animation-delay: 0.2s; }
     .l2 { animation-delay: 0.4s; }
     .l3 { animation-delay: 0.6s; }
@@ -65,37 +82,50 @@
     .l7 { animation-delay: 1.4s; }
     .l8 { animation-delay: 1.6s; }
 
-    /* ===== LIGHT SWEEP EFFECT ===== */
+    /* ================= CINEMATIC LIGHT SWEEP ================= */
+
     .title::after {
       content: "";
       position: absolute;
       top: 0;
-      left: -100%;
+      left: -120%;
       width: 60%;
       height: 100%;
       background: linear-gradient(
         120deg,
         transparent,
-        rgba(255,255,255,0.5),
+        rgba(255,255,255,0.6),
         transparent
       );
       transform: skewX(-25deg);
-      animation: lightSweep 2s ease forwards;
+      animation: lightSweep 2.5s ease forwards;
       animation-delay: 2.2s;
     }
 
     @keyframes lightSweep {
-      0% { left: -100%; }
+      0% { left: -120%; }
       100% { left: 150%; }
     }
 
-    .title {
-      text-shadow:
-        3px 0px 10px rgba(255,255,255,0.15),
-        8px 0px 20px rgba(255,255,255,0.05);
+    /* ================= FLOATING BOTANICAL PARTICLES ================= */
+
+    .leaf {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(144, 238, 144, 0.5);
+      border-radius: 50%;
+      filter: blur(1px);
+      animation: floatLeaf 8s infinite ease-in-out;
     }
 
-    /* ================= SCROLL CONTENT ================= */
+    @keyframes floatLeaf {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      30%  { opacity: 0.7; }
+      100% { transform: translateY(-160px) translateX(50px); opacity: 0; }
+    }
+
+    /* ================= HOME CONTENT ================= */
 
     .content {
       margin-top: 200px;
@@ -122,7 +152,7 @@
       transform: scale(1.2);
     }
 
-    /* ================= HAMBURGER MENU ================= */
+    /* ================= HAMBURGER ================= */
 
     .hamburger {
       position: fixed;
@@ -217,6 +247,12 @@
     <span class="letter l6">R</span>
     <span class="letter l7">T</span>
     <span class="letter l8">S</span>
+
+    <!-- botanical floating particles -->
+    <div class="leaf" style="left:10%; top:60px; animation-delay:0s;"></div>
+    <div class="leaf" style="left:30%; top:80px; animation-delay:1s;"></div>
+    <div class="leaf" style="left:60%; top:70px; animation-delay:2s;"></div>
+    <div class="leaf" style="left:80%; top:90px; animation-delay:3s;"></div>
   </div>
 
   <div class="content">
@@ -224,7 +260,6 @@
     <p>Scroll down to explore more</p>
   </div>
 
-  <!-- INSTAGRAM ICON -->
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
@@ -236,13 +271,11 @@
 <!-- PORTFOLIO -->
 <div id="portfolio" class="page">
   <h2>Portfolio</h2>
-  <p>Coming soon...</p>
 </div>
 
 <!-- ABOUT -->
 <div id="about" class="page">
   <h2>About Me</h2>
-  <p>Myra Arts is a visual storytelling platform.</p>
 </div>
 
 <!-- CONTACT -->

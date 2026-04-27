@@ -16,85 +16,101 @@
       overflow-x: hidden;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
-    /* ================= PAGES SYSTEM ================= */
+    /* ================= PAGE SYSTEM ================= */
 
     .page {
       display: none;
       min-height: 100vh;
-      padding: 60px 30px;
+      padding: 60px 20px;
     }
 
     .page.active {
       display: block;
     }
 
-    /* ================= TITLE ================= */
-
-    .title {
-      font-size: 72px;
-      letter-spacing: 10px;
-      display: flex;
-      gap: 15px;
-      position: relative;
-      margin-top: 100px;
-
-      font-family: 'Poppins', sans-serif;
-      font-weight: 300;
-      color: #d9d9d9;
-      text-transform: uppercase;
-    }
-
-    /* ================= HOME ================= */
+    /* ================= KEEP YOUR HOMEPAGE DESIGN ================= */
 
     .home {
-      text-align: center;
-    }
-
-    /* ================= PORTFOLIO ================= */
-
-    .portfolio-container {
+      min-height: 120vh;
+      padding: 80px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 40px;
+      position: relative;
     }
 
-    .portfolio-buttons {
+    .title {
+      font-size: 70px;
+      letter-spacing: 8px;
       display: flex;
-      gap: 30px;
-      margin-top: 40px;
+      gap: 15px;
+      position: relative;
+      color: silver;
+      margin-top: 100px;
     }
 
-    .btn {
-      padding: 15px 30px;
-      border: 1px solid white;
-      background: transparent;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-      font-size: 18px;
+    .letter {
+      opacity: 0;
+      transform: translateY(-200px);
+      animation: drop 1s forwards;
+      position: relative;
     }
 
-    .btn:hover {
-      background: white;
-      color: black;
+    @keyframes drop {
+      0% { opacity: 0; transform: translateY(-200px); }
+      70% { transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
-    .content-box {
-      display: none;
-      margin-top: 40px;
-      width: 80%;
-      max-width: 900px;
-      max-height: 60vh;
-      overflow-y: auto;
-      border-top: 1px solid rgba(255,255,255,0.2);
-      padding-top: 20px;
+    .l1 { animation-delay: 0.2s; }
+    .l2 { animation-delay: 0.4s; }
+    .l3 { animation-delay: 0.6s; }
+    .l4 { animation-delay: 0.8s; }
+    .l5 { animation-delay: 1.0s; }
+    .l6 { animation-delay: 1.2s; }
+    .l7 { animation-delay: 1.4s; }
+    .l8 { animation-delay: 1.6s; }
+
+    .title::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.5),
+        transparent
+      );
+      transform: skewX(-25deg);
+      animation: lightSweep 2s ease forwards;
+      animation-delay: 2.2s;
     }
 
-    .content-box.active {
-      display: block;
+    @keyframes lightSweep {
+      0% { left: -100%; }
+      100% { left: 150%; }
+    }
+
+    .content {
+      margin-top: 200px;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    .social {
+      margin-top: 150px;
+      text-align: center;
+    }
+
+    .social a {
+      text-decoration: none;
     }
 
     /* ================= HAMBURGER ================= */
@@ -128,7 +144,9 @@
       z-index: 999;
     }
 
-    .sidepanel.open { right: 0; }
+    .sidepanel.open {
+      right: 0;
+    }
 
     .sidepanel button {
       width: 100%;
@@ -140,12 +158,50 @@
       cursor: pointer;
     }
 
-    .sidepanel button:hover { background: #222; }
+    .sidepanel button:hover {
+      background: #222;
+    }
 
-    /* ================= SOCIAL ================= */
+    /* ================= PORTFOLIO ================= */
 
-    .social {
-      margin-top: 120px;
+    .portfolio-container {
+      text-align: center;
+    }
+
+    .portfolio-buttons {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: white;
+      color: black;
+    }
+
+    .content-box {
+      display: none;
+      margin-top: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      max-height: 60vh;
+      overflow-y: auto;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      padding-top: 20px;
+    }
+
+    .content-box.active {
+      display: block;
     }
 
   </style>
@@ -162,20 +218,31 @@
 
 <!-- SIDE MENU -->
 <div id="menu" class="sidepanel">
+  <button onclick="showPage('home')">Home</button>
   <button onclick="showPage('portfolio')">Portfolio</button>
   <button onclick="showPage('about')">About</button>
   <button onclick="showPage('contact')">Contact</button>
   <button onclick="showPage('payment')">Payment</button>
 </div>
 
-<!-- HOME PAGE -->
+<!-- HOME PAGE (UNCHANGED DESIGN) -->
 <div id="home" class="page active home">
 
   <div class="title">
-    MYRA ARTS
+    <span class="letter l1">M</span>
+    <span class="letter l2">Y</span>
+    <span class="letter l3">R</span>
+    <span class="letter l4">A</span>
+    <span style="width:20px;"></span>
+    <span class="letter l5">A</span>
+    <span class="letter l6">R</span>
+    <span class="letter l7">T</span>
+    <span class="letter l8">S</span>
   </div>
 
-  <p>Welcome to My Creative Space</p>
+  <div class="content">
+    <p>Welcome to My Creative Space</p>
+  </div>
 
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
@@ -189,7 +256,6 @@
 <div id="portfolio" class="page">
 
   <div class="portfolio-container">
-
     <h1>Portfolio</h1>
 
     <div class="portfolio-buttons">
@@ -197,20 +263,16 @@
       <button class="btn" onclick="toggleContent('paintings')">Paintings</button>
     </div>
 
-    <!-- PHOTOS -->
     <div id="photos" class="content-box">
       <h2>Photographs</h2>
-      <p>Add your photography collection here...</p>
-      <p>Scroll content will go here...</p>
-      <p>More images...</p>
+      <p>Add your photography here...</p>
+      <p>Scroll content area...</p>
     </div>
 
-    <!-- PAINTINGS -->
     <div id="paintings" class="content-box">
       <h2>Paintings</h2>
-      <p>Add your paintings collection here...</p>
-      <p>Scroll content will go here...</p>
-      <p>More artworks...</p>
+      <p>Add your paintings here...</p>
+      <p>Scroll content area...</p>
     </div>
 
   </div>

@@ -5,37 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
+      background: black;
+      color: white;
     }
 
+    /* ===== HEADER ===== */
     header {
-      background: white;
-      padding: 30px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
     }
 
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: black;
+    .title {
+      font-size: 60px;
+      letter-spacing: 5px;
       font-weight: bold;
+      display: flex;
+      gap: 5px;
     }
 
+    .title span {
+      animation: blink 1.5s infinite;
+    }
+
+    /* Different colors per letter */
+    .p1 { color: pink; animation-delay: 0s; }
+    .b1 { color: lightblue; animation-delay: 0.2s; }
+    .g1 { color: lightgreen; animation-delay: 0.4s; }
+    .y1 { color: yellow; animation-delay: 0.6s; }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    nav {
+      margin-top: 20px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    nav a:hover {
+      opacity: 1;
+    }
+
+    /* ===== SECTIONS ===== */
     section {
-      padding: 40px 20px;
+      min-height: 100vh;
+      padding: 80px 20px;
       max-width: 1000px;
       margin: auto;
     }
 
     h2 {
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
+      text-align: center;
+      margin-bottom: 40px;
     }
 
+    /* ===== GALLERY ===== */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -43,7 +86,7 @@
     }
 
     .card {
-      background: white;
+      background: #111;
       padding: 15px;
       border-radius: 12px;
     }
@@ -53,21 +96,27 @@
       border-radius: 10px;
     }
 
+    /* ===== BUTTON ===== */
     .btn {
       display: inline-block;
-      margin-top: 10px;
       padding: 10px 15px;
-      background: black;
-      color: white;
+      background: white;
+      color: black;
       text-decoration: none;
       border-radius: 5px;
+      margin-top: 10px;
     }
 
-    form input, form textarea {
+    /* ===== CONTACT FORM ===== */
+    input, textarea {
       width: 100%;
       margin: 10px 0;
       padding: 10px;
+      background: #111;
+      border: 1px solid #333;
+      color: white;
     }
+
   </style>
 </head>
 
@@ -75,23 +124,27 @@
 
 <!-- HOME -->
 <header>
-  <h1>Myra Arts 🎨</h1>
-  <p>Original artworks & creative expressions</p>
+
+  <div class="title">
+    <span class="p1">M</span>
+    <span class="b1">Y</span>
+    <span class="g1">R</span>
+    <span class="y1">A</span>
+    <span class="p1">A</span>
+    <span class="b1">R</span>
+    <span class="g1">T</span>
+    <span class="y1">S</span>
+  </div>
+
+  <p>Creative Visual Art & Photography</p>
 
   <nav>
-    <a href="#home">Home</a>
     <a href="#portfolio">Portfolio</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
     <a href="#payment">Payment</a>
   </nav>
 
-  <div id="home" style="margin-top:20px;">
-    <p>Welcome to my art world ✨</p>
-    <a class="btn" href="https://instagram.com/YOUR_USERNAME" target="_blank">
-      Instagram
-    </a>
-  </div>
 </header>
 
 <!-- PORTFOLIO -->
@@ -100,21 +153,19 @@
 
   <h3>Photography</h3>
   <div class="grid">
-    <div class="card">
-      <p>No works added yet</p>
-    </div>
+    <div class="card">Coming soon</div>
   </div>
 
   <h3>Paintings</h3>
   <div class="grid">
 
     <div class="card">
-      <img src="art1.jpg" alt="Artwork">
+      <img src="art1.jpg">
       <p>Artwork 1</p>
     </div>
 
     <div class="card">
-      <img src="art2.jpg" alt="Artwork">
+      <img src="art2.jpg">
       <p>Artwork 2</p>
     </div>
 
@@ -124,10 +175,8 @@
 <!-- ABOUT -->
 <section id="about">
   <h2>About Me</h2>
-  <p><b>Your Name</b></p>
-  <img src="profile.jpg" style="max-width:200px; border-radius:50%;">
-  <p>
-    I am an artist creating expressive paintings and visual stories.
+  <p style="text-align:center;">
+    Myra Arts is a creative expression of emotions through visuals.
   </p>
 </section>
 
@@ -136,8 +185,8 @@
   <h2>Contact</h2>
 
   <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="text" name="name" placeholder="Your Name">
+    <input type="email" name="email" placeholder="Your Email">
     <textarea name="message" placeholder="Your Message"></textarea>
     <button class="btn" type="submit">Send</button>
   </form>
@@ -145,13 +194,14 @@
 
 <!-- PAYMENT -->
 <section id="payment">
-  <h2>Payment / Commission</h2>
+  <h2>Payment</h2>
+  <p style="text-align:center;">
+    Commission or buy artwork
+  </p>
 
-  <p>Want to buy or commission artwork?</p>
-
-  <a class="btn" href="https://paypal.me/YOUR_LINK" target="_blank">
-    Pay / Commission
-  </a>
+  <div style="text-align:center;">
+    <a class="btn" href="YOUR_PAYPAL_LINK">Pay Now</a>
+  </div>
 </section>
 
 </body>

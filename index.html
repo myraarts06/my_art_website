@@ -9,78 +9,91 @@
       margin: 0;
       background: black;
       color: white;
-      overflow-x: hidden;
       font-family: Arial, sans-serif;
+      overflow-x: hidden;
     }
 
-    /* ================= HOME ================= */
+    /* ================= HEADER HOME ================= */
 
     .home {
-      height: 100vh;
+      min-height: 120vh;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      text-align: center;
       position: relative;
     }
 
+    /* LIGHT FROM RIGHT SIDE EFFECT */
     .title {
       font-size: 70px;
-      letter-spacing: 8px;
-      display: flex;
-      gap: 5px;
+      letter-spacing: 5px;
       color: silver;
+      position: relative;
+
       text-shadow:
-        -2px 0px 5px rgba(255,255,255,0.4),
-        2px 0px 10px rgba(200,200,200,0.2);
+        8px 0px 15px rgba(255,255,255,0.25),
+        3px 0px 5px rgba(255,255,255,0.2),
+        -2px 0px 10px rgba(0,0,0,0.8);
     }
 
-    .letter {
-      opacity: 0;
-      transform: translateY(-200px);
-      animation: drop 1s forwards;
-    }
-
-    @keyframes drop {
-      0% {
-        opacity: 0;
-        transform: translateY(-200px);
-      }
-      70% {
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* delay per letter */
-    .l1 { animation-delay: 0.2s; }
-    .l2 { animation-delay: 0.4s; }
-    .l3 { animation-delay: 0.6s; }
-    .l4 { animation-delay: 0.8s; }
-    .l5 { animation-delay: 1.0s; }
-    .l6 { animation-delay: 1.2s; }
-    .l7 { animation-delay: 1.4s; }
-    .l8 { animation-delay: 1.6s; }
-
-    /* ================= SIDE MENU ================= */
-
-    .menu {
-      position: fixed;
-      right: 0;
+    /* moving light sweep */
+    .title::after {
+      content: "";
+      position: absolute;
       top: 0;
-      height: 100vh;
-      width: 200px;
-      background: #111;
-      display: flex;
-      flex-direction: column;
-      padding-top: 100px;
-      box-shadow: -5px 0 20px rgba(255,255,255,0.05);
+      left: -50%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255,255,255,0.25),
+        transparent
+      );
+      animation: lightSweep 3s infinite;
     }
 
-    .menu button {
+    @keyframes lightSweep {
+      0% { left: -50%; }
+      100% { left: 120%; }
+    }
+
+    /* ================= HAMBURGER MENU ================= */
+
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .bar {
+      height: 3px;
+      background: white;
+      margin: 6px 0;
+      transition: 0.3s;
+    }
+
+    /* ================= SIDE PANEL ================= */
+
+    .panel {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 250px;
+      height: 100vh;
+      background: #111;
+      padding-top: 80px;
+      transition: 0.5s ease;
+      z-index: 999;
+    }
+
+    .panel button {
+      width: 100%;
       background: none;
       border: none;
       color: white;
@@ -88,33 +101,28 @@
       text-align: left;
       cursor: pointer;
       font-size: 16px;
-      transition: 0.3s;
     }
 
-    .menu button:hover {
+    .panel button:hover {
       background: #222;
     }
 
-    /* ================= PAGES (FLAP EFFECT) ================= */
-
-    .page {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: calc(100% - 200px);
-      height: 100vh;
-      background: #0d0d0d;
-      transition: 0.6s ease;
-      padding: 40px;
-      overflow-y: auto;
+    .panel.active {
+      right: 0;
     }
 
-    .page.active {
-      right: 200px;
+    /* ================= SECTIONS ================= */
+
+    section {
+      min-height: 100vh;
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
     }
 
     h2 {
       color: silver;
+      text-align: center;
     }
 
     .grid {
@@ -134,7 +142,6 @@
       border-radius: 10px;
     }
 
-    /* contact */
     input, textarea {
       width: 100%;
       padding: 10px;
@@ -149,7 +156,6 @@
       background: silver;
       border: none;
       cursor: pointer;
-      margin-top: 10px;
     }
 
   </style>
@@ -157,32 +163,29 @@
 
 <body>
 
-<!-- HOME -->
-<div class="home">
-
-  <div class="title">
-    <span class="letter l1">M</span>
-    <span class="letter l2">Y</span>
-    <span class="letter l3">R</span>
-    <span class="letter l4">A</span>
-    <span class="letter l5">A</span>
-    <span class="letter l6">R</span>
-    <span class="letter l7">T</span>
-    <span class="letter l8">S</span>
-  </div>
-
+<!-- HAMBURGER -->
+<div class="hamburger" onclick="togglePanel()">
+  <div class="bar"></div>
+  <div class="bar"></div>
+  <div class="bar"></div>
 </div>
 
-<!-- SIDE MENU -->
-<div class="menu">
-  <button onclick="openPage('portfolio')">Portfolio</button>
-  <button onclick="openPage('about')">About</button>
-  <button onclick="openPage('contact')">Contact</button>
-  <button onclick="openPage('payment')">Payment</button>
+<!-- SIDE PANEL -->
+<div class="panel" id="panel">
+  <button onclick="scrollToSection('portfolio')">Portfolio</button>
+  <button onclick="scrollToSection('about')">About</button>
+  <button onclick="scrollToSection('contact')">Contact</button>
+  <button onclick="scrollToSection('payment')">Payment</button>
+</div>
+
+<!-- HOME -->
+<div class="home">
+  <div class="title">MYRA ARTS</div>
+  <p>Creative Visual Expression</p>
 </div>
 
 <!-- PORTFOLIO -->
-<div id="portfolio" class="page">
+<section id="portfolio">
   <h2>Portfolio</h2>
 
   <h3>Photography</h3>
@@ -192,23 +195,21 @@
 
   <h3>Paintings</h3>
   <div class="grid">
-    <div class="card">
-      <img src="art1.jpg">
-    </div>
-    <div class="card">
-      <img src="art2.jpg">
-    </div>
+    <div class="card"><img src="art1.jpg"></div>
+    <div class="card"><img src="art2.jpg"></div>
   </div>
-</div>
+</section>
 
 <!-- ABOUT -->
-<div id="about" class="page">
+<section id="about">
   <h2>About Me</h2>
-  <p>Myra Arts is a creative visual expression of emotions.</p>
-</div>
+  <p style="text-align:center;">
+    Myra Arts is a visual storytelling space.
+  </p>
+</section>
 
 <!-- CONTACT -->
-<div id="contact" class="page">
+<section id="contact">
   <h2>Contact</h2>
 
   <form action="https://formspree.io/f/YOUR_ID" method="POST">
@@ -217,21 +218,25 @@
     <textarea name="message" placeholder="Message"></textarea>
     <button class="btn" type="submit">Send</button>
   </form>
-</div>
+</section>
 
 <!-- PAYMENT -->
-<div id="payment" class="page">
+<section id="payment">
   <h2>Payment</h2>
-  <p>Commission or purchase artwork</p>
-  <button class="btn">Pay Now</button>
-</div>
+  <p style="text-align:center;">Commission artwork</p>
+  <div style="text-align:center;">
+    <button class="btn">Pay Now</button>
+  </div>
+</section>
 
 <script>
-  function openPage(id) {
-    document.querySelectorAll('.page').forEach(p => {
-      p.classList.remove('active');
-    });
-    document.getElementById(id).classList.add('active');
+  function togglePanel() {
+    document.getElementById("panel").classList.toggle("active");
+  }
+
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    togglePanel();
   }
 </script>
 

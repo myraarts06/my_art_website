@@ -13,51 +13,98 @@
       overflow-x: hidden;
     }
 
-    /* ================= HEADER HOME ================= */
+    /* ================= HOME ================= */
 
     .home {
-      min-height: 120vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
+      min-height: 200vh; /* makes homepage scrollable */
       position: relative;
+      padding-top: 120px;
+      text-align: center;
     }
 
-    /* LIGHT FROM RIGHT SIDE EFFECT */
+    /* ===== TITLE ===== */
     .title {
       font-size: 70px;
-      letter-spacing: 5px;
+      letter-spacing: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
       color: silver;
       position: relative;
-
+      perspective: 800px;
       text-shadow:
-        8px 0px 15px rgba(255,255,255,0.25),
-        3px 0px 5px rgba(255,255,255,0.2),
-        -2px 0px 10px rgba(0,0,0,0.8);
+        -3px 0px 10px rgba(255,255,255,0.2),
+        8px 0px 15px rgba(0,0,0,0.8);
     }
 
-    /* moving light sweep */
+    /* falling letters */
+    .letter {
+      opacity: 0;
+      transform: translateY(-250px) rotateX(90deg);
+      animation: fall 1.2s forwards;
+    }
+
+    @keyframes fall {
+      0% {
+        opacity: 0;
+        transform: translateY(-250px) rotateX(90deg);
+      }
+      70% {
+        transform: translateY(20px) rotateX(0deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* delay per letter */
+    .l1 { animation-delay: 0.1s; }
+    .l2 { animation-delay: 0.3s; }
+    .l3 { animation-delay: 0.5s; }
+    .l4 { animation-delay: 0.7s; }
+    .l5 { animation-delay: 0.9s; }
+    .l6 { animation-delay: 1.1s; }
+    .l7 { animation-delay: 1.3s; }
+    .l8 { animation-delay: 1.5s; }
+
+    /* ===== LIGHT SHADOW EFFECT (RIGHT SIDE LIGHT) ===== */
     .title::after {
       content: "";
       position: absolute;
       top: 0;
-      left: -50%;
-      width: 50%;
+      right: -100px;
+      width: 200px;
       height: 100%;
-      background: linear-gradient(
-        to right,
-        transparent,
+      background: linear-gradient(to left,
         rgba(255,255,255,0.25),
-        transparent
-      );
-      animation: lightSweep 3s infinite;
+        transparent);
+      filter: blur(8px);
+      animation: lightSweep 3s ease-in-out forwards;
     }
 
     @keyframes lightSweep {
-      0% { left: -50%; }
-      100% { left: 120%; }
+      0% { opacity: 0; transform: translateX(100px); }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; transform: translateX(-50px); }
+    }
+
+    /* ================= SOCIAL LINKS ================= */
+
+    .social {
+      margin-top: 400px;
+      padding-bottom: 100px;
+    }
+
+    .social a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      opacity: 0.7;
+    }
+
+    .social a:hover {
+      opacity: 1;
     }
 
     /* ================= HAMBURGER MENU ================= */
@@ -66,13 +113,13 @@
       position: fixed;
       top: 20px;
       right: 20px;
-      width: 30px;
+      width: 35px;
       cursor: pointer;
       z-index: 1000;
     }
 
     .bar {
-      height: 3px;
+      height: 4px;
       background: white;
       margin: 6px 0;
       transition: 0.3s;
@@ -80,49 +127,53 @@
 
     /* ================= SIDE PANEL ================= */
 
-    .panel {
+    .menu {
       position: fixed;
       top: 0;
       right: -300px;
       width: 250px;
       height: 100vh;
       background: #111;
-      padding-top: 80px;
-      transition: 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      padding-top: 100px;
+      transition: 0.5s;
       z-index: 999;
     }
 
-    .panel button {
-      width: 100%;
+    .menu.active {
+      right: 0;
+    }
+
+    .menu button {
       background: none;
       border: none;
       color: white;
       padding: 20px;
       text-align: left;
-      cursor: pointer;
       font-size: 16px;
+      cursor: pointer;
     }
 
-    .panel button:hover {
+    .menu button:hover {
       background: #222;
     }
 
-    .panel.active {
-      right: 0;
+    /* ================= PAGES ================= */
+
+    .page {
+      display: none;
+      padding: 60px;
+      background: #0d0d0d;
+      min-height: 100vh;
     }
 
-    /* ================= SECTIONS ================= */
-
-    section {
-      min-height: 100vh;
-      padding: 80px 20px;
-      max-width: 1000px;
-      margin: auto;
+    .page.active {
+      display: block;
     }
 
     h2 {
       color: silver;
-      text-align: center;
     }
 
     .grid {
@@ -164,79 +215,84 @@
 <body>
 
 <!-- HAMBURGER -->
-<div class="hamburger" onclick="togglePanel()">
+<div class="hamburger" onclick="toggleMenu()">
   <div class="bar"></div>
   <div class="bar"></div>
   <div class="bar"></div>
 </div>
 
-<!-- SIDE PANEL -->
-<div class="panel" id="panel">
-  <button onclick="scrollToSection('portfolio')">Portfolio</button>
-  <button onclick="scrollToSection('about')">About</button>
-  <button onclick="scrollToSection('contact')">Contact</button>
-  <button onclick="scrollToSection('payment')">Payment</button>
+<!-- SIDE MENU -->
+<div class="menu" id="menu">
+  <button onclick="openPage('portfolio')">Portfolio</button>
+  <button onclick="openPage('about')">About</button>
+  <button onclick="openPage('contact')">Contact</button>
+  <button onclick="openPage('payment')">Payment</button>
 </div>
 
 <!-- HOME -->
 <div class="home">
-  <div class="title">MYRA ARTS</div>
-  <p>Creative Visual Expression</p>
-</div>
 
-<!-- PORTFOLIO -->
-<section id="portfolio">
-  <h2>Portfolio</h2>
-
-  <h3>Photography</h3>
-  <div class="grid">
-    <div class="card">Coming soon</div>
+  <div class="title">
+    <span class="letter l1">M</span>
+    <span class="letter l2">Y</span>
+    <span class="letter l3">R</span>
+    <span class="letter l4">A</span>
+    <span style="width:30px;"></span>
+    <span class="letter l5">A</span>
+    <span class="letter l6">R</span>
+    <span class="letter l7">T</span>
+    <span class="letter l8">S</span>
   </div>
 
-  <h3>Paintings</h3>
+  <!-- scroll content placeholder -->
+  <div style="height:300px;"></div>
+
+  <!-- SOCIAL LINKS -->
+  <div class="social">
+    <a href="https://instagram.com/YOUR_USERNAME" target="_blank">Instagram</a>
+    <a href="https://linkedin.com/in/YOUR_PROFILE" target="_blank">LinkedIn</a>
+  </div>
+
+</div>
+
+<!-- PAGES -->
+<div id="portfolio" class="page">
+  <h2>Portfolio</h2>
   <div class="grid">
     <div class="card"><img src="art1.jpg"></div>
     <div class="card"><img src="art2.jpg"></div>
   </div>
-</section>
+</div>
 
-<!-- ABOUT -->
-<section id="about">
+<div id="about" class="page">
   <h2>About Me</h2>
-  <p style="text-align:center;">
-    Myra Arts is a visual storytelling space.
-  </p>
-</section>
+  <p>Myra Arts - visual storytelling through art.</p>
+</div>
 
-<!-- CONTACT -->
-<section id="contact">
+<div id="contact" class="page">
   <h2>Contact</h2>
-
   <form action="https://formspree.io/f/YOUR_ID" method="POST">
     <input type="text" name="name" placeholder="Name">
     <input type="email" name="email" placeholder="Email">
     <textarea name="message" placeholder="Message"></textarea>
     <button class="btn" type="submit">Send</button>
   </form>
-</section>
+</div>
 
-<!-- PAYMENT -->
-<section id="payment">
+<div id="payment" class="page">
   <h2>Payment</h2>
-  <p style="text-align:center;">Commission artwork</p>
-  <div style="text-align:center;">
-    <button class="btn">Pay Now</button>
-  </div>
-</section>
+  <button class="btn">Pay / Commission</button>
+</div>
 
 <script>
-  function togglePanel() {
-    document.getElementById("panel").classList.toggle("active");
+  function toggleMenu() {
+    document.getElementById("menu").classList.toggle("active");
   }
 
-  function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    togglePanel();
+  function openPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    toggleMenu();
   }
 </script>
 

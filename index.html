@@ -24,22 +24,25 @@
       display: none;
       padding: 40px;
       min-height: 100vh;
+      text-align: center;
     }
 
     .page.active {
       display: block;
     }
 
-    /* ================= ANIMATED TITLE (GLOBAL) ================= */
-    .animated-title {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      width: 100%;
+    /* ================= TITLE ANIMATION (GLOBAL) ================= */
+    .title {
       font-size: 70px;
       letter-spacing: 8px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 80px;
       color: silver;
-      margin-top: 100px;
+      position: relative;
+      flex-wrap: wrap;
     }
 
     .letter {
@@ -54,16 +57,7 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    .l1 { animation-delay: 0.2s; }
-    .l2 { animation-delay: 0.4s; }
-    .l3 { animation-delay: 0.6s; }
-    .l4 { animation-delay: 0.8s; }
-    .l5 { animation-delay: 1.0s; }
-    .l6 { animation-delay: 1.2s; }
-    .l7 { animation-delay: 1.4s; }
-    .l8 { animation-delay: 1.6s; }
-
-    .animated-title::after {
+    .title::after {
       content: "";
       position: absolute;
       top: 0;
@@ -73,7 +67,7 @@
       background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
       transform: skewX(-25deg);
       animation: lightSweep 2s ease forwards;
-      animation-delay: 2.2s;
+      animation-delay: 2s;
     }
 
     @keyframes lightSweep {
@@ -81,19 +75,17 @@
       100% { left: 150%; }
     }
 
-    /* ================= HOME ================= */
-    .home {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    /* delays */
+    .l1 { animation-delay: 0.2s; }
+    .l2 { animation-delay: 0.4s; }
+    .l3 { animation-delay: 0.6s; }
+    .l4 { animation-delay: 0.8s; }
+    .l5 { animation-delay: 1.0s; }
+    .l6 { animation-delay: 1.2s; }
+    .l7 { animation-delay: 1.4s; }
+    .l8 { animation-delay: 1.6s; }
 
-    .content {
-      margin-top: 200px;
-      text-align: center;
-      opacity: 0.7;
-    }
-
+    /* ================= SOCIAL ================= */
     .social {
       margin-top: 120px;
       display: flex;
@@ -155,10 +147,6 @@
     }
 
     /* ================= PORTFOLIO ================= */
-    .portfolio-wrapper {
-      text-align: center;
-    }
-
     .portfolio-options {
       margin-top: 40px;
     }
@@ -194,7 +182,7 @@
     }
 
     .product img {
-      width: 260px;
+      width: 250px;
       border-radius: 10px;
       transition: 0.4s;
     }
@@ -222,10 +210,10 @@
   <button onclick="openPage('payment')">Payment</button>
 </div>
 
-<!-- HOME -->
-<div id="home" class="page active home">
+<!-- ================= HOME ================= -->
+<div id="home" class="page active">
 
-  <div class="animated-title">
+  <div class="title">
     <span class="letter l1">M</span>
     <span class="letter l2">Y</span>
     <span class="letter l3">R</span>
@@ -237,10 +225,6 @@
     <span class="letter l8">S</span>
   </div>
 
-  <div class="content">
-    <p>Welcome to My Creative Space</p>
-  </div>
-
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
@@ -249,50 +233,47 @@
 
 </div>
 
-<!-- PORTFOLIO -->
+<!-- ================= PORTFOLIO ================= -->
 <div id="portfolio" class="page">
 
-  <div class="portfolio-wrapper">
+  <div class="title">
+    <span class="letter l1">P</span>
+    <span class="letter l2">O</span>
+    <span class="letter l3">R</span>
+    <span class="letter l4">T</span>
+    <span class="letter l5">F</span>
+    <span class="letter l6">O</span>
+    <span class="letter l7">L</span>
+    <span class="letter l8">I</span>
+    <span class="letter l1">O</span>
+  </div>
 
-    <div class="animated-title">
-      <span class="letter l1">P</span>
-      <span class="letter l2">O</span>
-      <span class="letter l3">R</span>
-      <span class="letter l4">T</span>
-      <span class="letter l5">F</span>
-      <span class="letter l6">O</span>
-      <span class="letter l7">L</span>
-      <span class="letter l8">I</span>
-      <span class="letter l1">O</span>
-    </div>
+  <div class="portfolio-options">
+    <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
+    <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
+  </div>
 
-    <div class="portfolio-options">
-      <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
-      <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
-    </div>
+  <div id="photo" class="portfolio-content">
+    <p>Photography coming soon...</p>
+  </div>
 
-    <div id="photo" class="portfolio-content">
-      <p>Photography coming soon...</p>
-    </div>
-
-    <div id="paint" class="portfolio-content">
-      <div class="product-grid">
-        <div class="product">
-          <img src="images/art1.jpg" alt="Art 1">
-        </div>
-
-        <div class="product">
-          <img src="images/art2.jpg" alt="Art 2">
-        </div>
+  <div id="paint" class="portfolio-content">
+    <div class="product-grid">
+      <div class="product">
+        <img src="images/art1.jpg">
+      </div>
+      <div class="product">
+        <img src="images/art2.jpg">
       </div>
     </div>
-
   </div>
+
 </div>
 
-<!-- ABOUT -->
+<!-- ================= ABOUT ================= -->
 <div id="about" class="page">
-  <div class="animated-title">
+
+  <div class="title">
     <span class="letter l1">A</span>
     <span class="letter l2">B</span>
     <span class="letter l3">O</span>
@@ -302,11 +283,13 @@
     <span class="letter l6">M</span>
     <span class="letter l7">E</span>
   </div>
+
 </div>
 
-<!-- CONTACT -->
+<!-- ================= CONTACT ================= -->
 <div id="contact" class="page">
-  <div class="animated-title">
+
+  <div class="title">
     <span class="letter l1">C</span>
     <span class="letter l2">O</span>
     <span class="letter l3">N</span>
@@ -315,11 +298,13 @@
     <span class="letter l6">C</span>
     <span class="letter l7">T</span>
   </div>
+
 </div>
 
-<!-- PAYMENT -->
+<!-- ================= PAYMENT ================= -->
 <div id="payment" class="page">
-  <div class="animated-title">
+
+  <div class="title">
     <span class="letter l1">P</span>
     <span class="letter l2">A</span>
     <span class="letter l3">Y</span>
@@ -328,6 +313,7 @@
     <span class="letter l6">N</span>
     <span class="letter l7">T</span>
   </div>
+
 </div>
 
 <script>
@@ -339,6 +325,7 @@
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
     document.getElementById("menu").classList.remove("open");
+
     document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   }
 

@@ -5,116 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: black;
       color: white;
+      overflow-x: hidden;
     }
 
-    /* ===== HEADER ===== */
-    header {
+    /* ================= HOME ================= */
+    .home {
       height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
+      flex-direction: column;
     }
 
     .title {
       font-size: 60px;
       letter-spacing: 5px;
-      font-weight: bold;
-      display: flex;
-      gap: 5px;
+      color: silver;
+      border-right: 2px solid silver;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
-    .title span {
-      animation: blink 1.5s infinite;
-    }
-
-    /* Different colors per letter */
-    .p1 { color: pink; animation-delay: 0s; }
-    .b1 { color: lightblue; animation-delay: 0.2s; }
-    .g1 { color: lightgreen; animation-delay: 0.4s; }
-    .y1 { color: yellow; animation-delay: 0.6s; }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.2; }
-    }
-
-    nav {
-      margin-top: 20px;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-    nav a:hover {
-      opacity: 1;
-    }
-
-    /* ===== SECTIONS ===== */
-    section {
-      min-height: 100vh;
-      padding: 80px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    /* ===== GALLERY ===== */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
+    /* ================= SIDE PANEL ================= */
+    .panel {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100%;
       background: #111;
-      padding: 15px;
-      border-radius: 12px;
+      padding: 20px;
+      transition: 0.4s ease;
+    }
+
+    .panel.open {
+      right: 0;
+    }
+
+    .menu-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: white;
+      color: black;
+      padding: 8px 12px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .panel a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 20px 0;
+      font-size: 18px;
+    }
+
+    section {
+      display: none;
+      padding: 20px;
+    }
+
+    section.active {
+      display: block;
     }
 
     img {
       width: 100%;
       border-radius: 10px;
+      margin-bottom: 10px;
     }
 
-    /* ===== BUTTON ===== */
     .btn {
       display: inline-block;
-      padding: 10px 15px;
+      padding: 10px;
       background: white;
       color: black;
       text-decoration: none;
-      border-radius: 5px;
       margin-top: 10px;
-    }
-
-    /* ===== CONTACT FORM ===== */
-    input, textarea {
-      width: 100%;
-      margin: 10px 0;
-      padding: 10px;
-      background: #111;
-      border: 1px solid #333;
-      color: white;
     }
 
   </style>
@@ -123,86 +96,81 @@
 <body>
 
 <!-- HOME -->
-<header>
+<div class="home">
+  <div id="title" class="title"></div>
+  <p>Creative Art & Photography</p>
+</div>
 
-  <div class="title">
-    <span class="p1">M</span>
-    <span class="b1">Y</span>
-    <span class="g1">R</span>
-    <span class="y1">A</span>
-    <span class="p1">A</span>
-    <span class="b1">R</span>
-    <span class="g1">T</span>
-    <span class="y1">S</span>
-  </div>
+<!-- MENU BUTTON -->
+<button class="menu-btn" onclick="togglePanel()">Menu</button>
 
-  <p>Creative Visual Art & Photography</p>
+<!-- SIDE PANEL -->
+<div class="panel" id="panel">
 
-  <nav>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-    <a href="#payment">Payment</a>
-  </nav>
+  <a href="#" onclick="showSection('portfolio')">Portfolio</a>
+  <a href="#" onclick="showSection('about')">About</a>
+  <a href="#" onclick="showSection('contact')">Contact</a>
+  <a href="#" onclick="showSection('payment')">Payment</a>
 
-</header>
+  <!-- SECTIONS -->
+  <section id="portfolio">
+    <h2>Portfolio</h2>
+    <h3>Paintings</h3>
 
-<!-- PORTFOLIO -->
-<section id="portfolio">
-  <h2>Portfolio</h2>
+    <img src="art1.jpg">
+    <img src="art2.jpg">
+  </section>
 
-  <h3>Photography</h3>
-  <div class="grid">
-    <div class="card">Coming soon</div>
-  </div>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Myra Arts is a creative visual expression.</p>
+  </section>
 
-  <h3>Paintings</h3>
-  <div class="grid">
+  <section id="contact">
+    <h2>Contact</h2>
 
-    <div class="card">
-      <img src="art1.jpg">
-      <p>Artwork 1</p>
-    </div>
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="text" name="name" placeholder="Name"><br><br>
+      <input type="email" name="email" placeholder="Email"><br><br>
+      <textarea name="message" placeholder="Message"></textarea><br><br>
+      <button class="btn" type="submit">Send</button>
+    </form>
+  </section>
 
-    <div class="card">
-      <img src="art2.jpg">
-      <p>Artwork 2</p>
-    </div>
+  <section id="payment">
+    <h2>Payment</h2>
+    <a class="btn" href="YOUR_PAYPAL_LINK">Pay / Commission</a>
+  </section>
 
-  </div>
-</section>
+</div>
 
-<!-- ABOUT -->
-<section id="about">
-  <h2>About Me</h2>
-  <p style="text-align:center;">
-    Myra Arts is a creative expression of emotions through visuals.
-  </p>
-</section>
+<!-- SCRIPT -->
+<script>
+  // TYPEWRITER EFFECT (runs once)
+  const text = "MYRA ARTS";
+  let i = 0;
+  function typeWriter() {
+    if (i < text.length) {
+      document.getElementById("title").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 150);
+    } else {
+      document.getElementById("title").style.borderRight = "none";
+    }
+  }
+  typeWriter();
 
-<!-- CONTACT -->
-<section id="contact">
-  <h2>Contact</h2>
+  // SIDE PANEL
+  function togglePanel() {
+    document.getElementById("panel").classList.toggle("open");
+  }
 
-  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <input type="text" name="name" placeholder="Your Name">
-    <input type="email" name="email" placeholder="Your Email">
-    <textarea name="message" placeholder="Your Message"></textarea>
-    <button class="btn" type="submit">Send</button>
-  </form>
-</section>
-
-<!-- PAYMENT -->
-<section id="payment">
-  <h2>Payment</h2>
-  <p style="text-align:center;">
-    Commission or buy artwork
-  </p>
-
-  <div style="text-align:center;">
-    <a class="btn" href="YOUR_PAYPAL_LINK">Pay Now</a>
-  </div>
-</section>
+  // SHOW SECTION
+  function showSection(id) {
+    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+  }
+</script>
 
 </body>
 </html>

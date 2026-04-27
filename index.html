@@ -23,13 +23,13 @@
     /* ================= PAGE SYSTEM ================= */
 
     .page {
-      display: none;
+      display: none !important;
       padding: 40px;
       min-height: 100vh;
     }
 
     .page.active {
-      display: block;
+      display: block !important;
     }
 
     /* ================= HOME ================= */
@@ -52,6 +52,10 @@
       position: relative;
       color: silver;
       margin-top: 100px;
+
+      justify-content: center;
+      align-items: center;
+      width: 100%;
     }
 
     .letter {
@@ -112,6 +116,8 @@
       text-align: center;
       opacity: 0.7;
     }
+
+    /* ================= SOCIAL ================= */
 
     .social {
       margin-top: 150px;
@@ -242,7 +248,7 @@
   <button onclick="openPage('payment')">Payment</button>
 </div>
 
-<!-- HOME (UNCHANGED) -->
+<!-- HOME -->
 <div id="home" class="page active home">
 
   <div class="title">
@@ -284,13 +290,11 @@
     <div id="photo" class="portfolio-content">
       <h3>Photography</h3>
       <p>Add photography content here...</p>
-      <p>Scroll enabled section...</p>
     </div>
 
     <div id="paint" class="portfolio-content">
       <h3>Paintings</h3>
       <p>Add paintings content here...</p>
-      <p>Scroll enabled section...</p>
     </div>
 
   </div>
@@ -311,6 +315,13 @@
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
     document.getElementById("menu").classList.remove("open");
+
+    // reset portfolio sections when leaving it
+    if (id !== "portfolio") {
+      document.querySelectorAll(".portfolio-content").forEach(el => {
+        el.classList.remove("active");
+      });
+    }
   }
 
   function showPortfolio(id) {

@@ -4,7 +4,7 @@
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Instagram icon library -->
+  <!-- Instagram icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -20,8 +20,7 @@
       scroll-behavior: smooth;
     }
 
-    /* ================= PAGE SYSTEM ================= */
-
+    /* ===== PAGE SYSTEM ===== */
     .page {
       display: none !important;
       padding: 40px;
@@ -32,15 +31,13 @@
       display: block !important;
     }
 
-    /* ================= HOME ================= */
-
+    /* ===== HOME ===== */
     .home {
       min-height: 120vh;
       padding: 80px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
     }
 
     /* ===== TITLE ===== */
@@ -49,20 +46,17 @@
       letter-spacing: 8px;
       display: flex;
       gap: 15px;
-      position: relative;
       color: silver;
       margin-top: 100px;
-
       justify-content: center;
-      align-items: center;
       width: 100%;
+      position: relative;
     }
 
     .letter {
       opacity: 0;
       transform: translateY(-200px);
       animation: drop 1s forwards;
-      position: relative;
     }
 
     @keyframes drop {
@@ -80,6 +74,7 @@
     .l7 { animation-delay: 1.4s; }
     .l8 { animation-delay: 1.6s; }
 
+    /* light sweep */
     .title::after {
       content: "";
       position: absolute;
@@ -87,12 +82,7 @@
       left: -100%;
       width: 60%;
       height: 100%;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.5),
-        transparent
-      );
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
       transform: skewX(-25deg);
       animation: lightSweep 2s ease forwards;
       animation-delay: 2.2s;
@@ -103,39 +93,27 @@
       100% { left: 150%; }
     }
 
-    .title {
-      text-shadow:
-        3px 0px 10px rgba(255,255,255,0.15),
-        8px 0px 20px rgba(255,255,255,0.05);
-    }
-
     .content {
       margin-top: 200px;
-      width: 80%;
-      max-width: 900px;
       text-align: center;
       opacity: 0.7;
     }
 
-    /* ================= SOCIAL ================= */
-
+    /* ===== SOCIAL ===== */
     .social {
       margin-top: 150px;
-      text-align: center;
     }
 
     .social a {
       text-decoration: none;
-      display: inline-block;
-      transition: transform 0.3s ease;
+      transition: 0.3s;
     }
 
     .social a:hover {
       transform: scale(1.2);
     }
 
-    /* ================= HAMBURGER ================= */
-
+    /* ===== MENU ===== */
     .hamburger {
       position: fixed;
       top: 20px;
@@ -151,8 +129,6 @@
       margin: 6px 0;
     }
 
-    /* ================= SIDE PANEL ================= */
-
     .sidepanel {
       position: fixed;
       top: 0;
@@ -162,7 +138,6 @@
       background: #111;
       padding-top: 80px;
       transition: 0.5s;
-      z-index: 999;
     }
 
     .sidepanel.open {
@@ -170,7 +145,6 @@
     }
 
     .sidepanel button {
-      display: block;
       width: 100%;
       padding: 20px;
       background: none;
@@ -184,26 +158,22 @@
       background: #222;
     }
 
-    /* ================= PORTFOLIO ================= */
-
+    /* ===== PORTFOLIO ===== */
     .portfolio-wrapper {
       text-align: center;
     }
 
     .portfolio-options {
       margin-top: 40px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
     }
 
     .portfolio-btn {
-      padding: 12px 25px;
+      padding: 10px 20px;
       border: 1px solid white;
-      background: transparent;
+      background: none;
       color: white;
+      margin: 10px;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     .portfolio-btn:hover {
@@ -214,17 +184,28 @@
     .portfolio-content {
       display: none;
       margin-top: 40px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      max-height: 60vh;
-      overflow-y: auto;
-      border-top: 1px solid rgba(255,255,255,0.2);
-      padding-top: 20px;
     }
 
     .portfolio-content.active {
       display: block;
+    }
+
+    /* ===== GALLERY ===== */
+    .product-grid {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .product img {
+      width: 250px;
+      border-radius: 10px;
+      transition: 0.4s;
+    }
+
+    .product img:hover {
+      transform: scale(1.05);
     }
 
   </style>
@@ -232,20 +213,18 @@
 
 <body>
 
-<!-- HAMBURGER -->
+<!-- MENU -->
 <div class="hamburger" onclick="toggleMenu()">
   <div class="bar"></div>
   <div class="bar"></div>
   <div class="bar"></div>
 </div>
 
-<!-- SIDE MENU -->
 <div id="menu" class="sidepanel">
   <button onclick="openPage('home')">Home</button>
   <button onclick="openPage('portfolio')">Portfolio</button>
   <button onclick="openPage('about')">About</button>
   <button onclick="openPage('contact')">Contact</button>
-  <button onclick="openPage('payment')">Payment</button>
 </div>
 
 <!-- HOME -->
@@ -280,7 +259,18 @@
 
   <div class="portfolio-wrapper">
 
-    <h2>Portfolio</h2>
+    <!-- Animated title -->
+    <div class="title">
+      <span class="letter l1">P</span>
+      <span class="letter l2">O</span>
+      <span class="letter l3">R</span>
+      <span class="letter l4">T</span>
+      <span class="letter l5">F</span>
+      <span class="letter l6">O</span>
+      <span class="letter l7">L</span>
+      <span class="letter l8">I</span>
+      <span class="letter l1">O</span>
+    </div>
 
     <div class="portfolio-options">
       <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
@@ -288,36 +278,32 @@
     </div>
 
     <div id="photo" class="portfolio-content">
-      <h3>Photography</h3>
-      <p>Add photography content here...</p>
+      <p>Photography coming soon...</p>
     </div>
 
-   <div id="paint" class="portfolio-content">
-  <h3>Paintings</h3>
+    <div id="paint" class="portfolio-content">
 
-  <div class="product-grid">
+      <div class="product-grid">
 
-    <!-- Painting 1 -->
-    <div class="product">
-      <img src="https://via.placeholder.com/300">
-      <p>Artwork 1</p>
-      <button onclick="addToCart('Artwork 1', 12000)">Add to Cart</button>
-    </div>
+        <div class="product">
+          <img src="images/art1.jpg">
+        </div>
 
-    <!-- Painting 2 -->
-    <div class="product">
-      <img src="images/art2.jpg" alt="Art 2">
-      <p>Artwork 2</p>
-      <button onclick="addToCart('Artwork 2', 15000)">Add to Cart</button>
+        <div class="product">
+          <img src="images/art2.jpg">
+        </div>
+
+      </div>
+
     </div>
 
   </div>
-</div> 
 
-<!-- OTHER PAGES -->
+</div>
+
+<!-- OTHER -->
 <div id="about" class="page"><h2>About Me</h2></div>
 <div id="contact" class="page"><h2>Contact</h2></div>
-<div id="payment" class="page"><h2>Payment</h2></div>
 
 <script>
   function toggleMenu() {
@@ -329,18 +315,11 @@
     document.getElementById(id).classList.add("active");
     document.getElementById("menu").classList.remove("open");
 
-    // reset portfolio sections when leaving it
-    if (id !== "portfolio") {
-      document.querySelectorAll(".portfolio-content").forEach(el => {
-        el.classList.remove("active");
-      });
-    }
+    document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   }
 
   function showPortfolio(id) {
-    document.querySelectorAll(".portfolio-content").forEach(el => {
-      el.classList.remove("active");
-    });
+    document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
     document.getElementById(id).classList.add("active");
   }
 </script>

@@ -78,6 +78,28 @@
       opacity: 0.7;
     }
 
+    /* SOCIAL FIXED (CENTERED) */
+    .social {
+      margin-top: 150px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .social a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social a:hover {
+      transform: scale(1.2);
+    }
+
     /* MENU */
     .hamburger {
       position: fixed;
@@ -213,6 +235,7 @@
     <p>Welcome to My Creative Space</p>
   </div>
 
+  <!-- CENTERED INSTAGRAM ICON -->
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
@@ -238,12 +261,9 @@
     </div>
 
     <div id="paint" class="portfolio-content">
-
       <h3>Paintings</h3>
 
       <div class="product-grid">
-
-        <!-- YOUR REAL IMAGES -->
         <div class="product">
           <img src="images/art1.jpg" alt="Art 1">
         </div>
@@ -251,13 +271,10 @@
         <div class="product">
           <img src="images/art2.jpg" alt="Art 2">
         </div>
-
       </div>
-
     </div>
 
   </div>
-
 </div>
 
 <!-- OTHER PAGES -->

@@ -20,8 +20,7 @@
       scroll-behavior: smooth;
     }
 
-    /* ================= PAGE SYSTEM ================= */
-
+    /* PAGE SYSTEM */
     .page {
       display: none !important;
       padding: 40px;
@@ -32,8 +31,7 @@
       display: block !important;
     }
 
-    /* ================= HOME ================= */
-
+    /* HOME */
     .home {
       min-height: 120vh;
       padding: 80px 20px;
@@ -51,7 +49,6 @@
       margin-top: 100px;
       justify-content: center;
       width: 100%;
-      position: relative;
     }
 
     .letter {
@@ -81,14 +78,7 @@
       opacity: 0.7;
     }
 
-    /* ================= SOCIAL ================= */
-
-    .social {
-      margin-top: 150px;
-    }
-
-    /* ================= MENU ================= */
-
+    /* MENU */
     .hamburger {
       position: fixed;
       top: 20px;
@@ -134,8 +124,7 @@
       background: #222;
     }
 
-    /* ================= PORTFOLIO ================= */
-
+    /* PORTFOLIO */
     .portfolio-wrapper {
       text-align: center;
     }
@@ -167,18 +156,23 @@
       display: block;
     }
 
-    /* ================= GALLERY ================= */
-
+    /* GALLERY */
     .product-grid {
       display: flex;
-      gap: 30px;
       justify-content: center;
+      gap: 30px;
       flex-wrap: wrap;
+      margin-top: 20px;
     }
 
     .product img {
-      width: 250px;
+      width: 300px;
       border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .product img:hover {
+      transform: scale(1.05);
     }
 
   </style>
@@ -232,17 +226,7 @@
 
   <div class="portfolio-wrapper">
 
-    <div class="title">
-      <span class="letter l1">P</span>
-      <span class="letter l2">O</span>
-      <span class="letter l3">R</span>
-      <span class="letter l4">T</span>
-      <span class="letter l5">F</span>
-      <span class="letter l6">O</span>
-      <span class="letter l7">L</span>
-      <span class="letter l8">I</span>
-      <span class="letter l1">O</span>
-    </div>
+    <h2>Portfolio</h2>
 
     <div class="portfolio-options">
       <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
@@ -253,19 +237,19 @@
       <p>Photography coming soon...</p>
     </div>
 
-    <!-- YOUR UPDATED PAINTINGS SECTION -->
     <div id="paint" class="portfolio-content">
 
-      <h3 style="margin-bottom:20px;">Paintings</h3>
+      <h3>Paintings</h3>
 
       <div class="product-grid">
 
+        <!-- YOUR REAL IMAGES -->
         <div class="product">
-          <img src="https://picsum.photos/300?1">
+          <img src="images/art1.jpg" alt="Art 1">
         </div>
 
         <div class="product">
-          <img src="https://picsum.photos/300?2">
+          <img src="images/art2.jpg" alt="Art 2">
         </div>
 
       </div>

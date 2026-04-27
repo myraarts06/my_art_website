@@ -99,14 +99,21 @@
       opacity: 0.7;
     }
 
-    /* ===== SOCIAL ===== */
+    /* ===== SOCIAL (FIXED CENTER) ===== */
     .social {
       margin-top: 150px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .social a {
-      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       transition: 0.3s;
+      text-decoration: none;
     }
 
     .social a:hover {
@@ -246,6 +253,7 @@
     <p>Welcome to My Creative Space</p>
   </div>
 
+  <!-- CENTERED INSTAGRAM ICON -->
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
@@ -259,7 +267,6 @@
 
   <div class="portfolio-wrapper">
 
-    <!-- Animated title -->
     <div class="title">
       <span class="letter l1">P</span>
       <span class="letter l2">O</span>
@@ -282,9 +289,7 @@
     </div>
 
     <div id="paint" class="portfolio-content">
-
       <div class="product-grid">
-
         <div class="product">
           <img src="images/art1.jpg">
         </div>
@@ -292,13 +297,10 @@
         <div class="product">
           <img src="images/art2.jpg">
         </div>
-
       </div>
-
     </div>
 
   </div>
-
 </div>
 
 <!-- OTHER -->

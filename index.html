@@ -4,8 +4,11 @@
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Organic calligraphy font -->
-  <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+  <!-- Modern sans-serif font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Instagram icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     body {
@@ -31,34 +34,55 @@
       position: relative;
     }
 
-    /* ================= LIVING TITLE ================= */
+    /* ================= TITLE ================= */
 
     .title {
-      font-size: 80px;
-      letter-spacing: 6px;
+      font-size: 72px;
+      letter-spacing: 10px;
       display: flex;
       gap: 15px;
       position: relative;
       margin-top: 100px;
 
-      font-family: 'Parisienne', cursive;
-      color: #d8d8d8;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      color: #d9d9d9;
+      text-transform: uppercase;
 
       text-shadow:
-        0 0 8px rgba(255,255,255,0.15),
-        0 0 25px rgba(255,255,255,0.05);
-
-      animation: breathe 6s ease-in-out infinite;
-      animation-delay: 3s;
+        0 0 8px rgba(255,255,255,0.12),
+        0 0 20px rgba(255,255,255,0.06);
     }
 
-    /* 🌿 breathing life effect */
-    @keyframes breathe {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
+    /* 🌿 botanical glow swashes */
+    .title::before,
+    .title::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle,
+        rgba(144, 238, 144, 0.25),
+        transparent 70%
+      );
+      filter: blur(3px);
+      opacity: 0.6;
+      z-index: -1;
     }
 
-    /* ================= FALLING LETTERS ================= */
+    .title::before {
+      left: -90px;
+      top: -20px;
+      transform: rotate(-25deg);
+    }
+
+    .title::after {
+      right: -90px;
+      top: 20px;
+      transform: rotate(25deg);
+    }
+
+    /* ================= FALLING LETTER ANIMATION ================= */
 
     .letter {
       opacity: 0;
@@ -82,50 +106,7 @@
     .l7 { animation-delay: 1.4s; }
     .l8 { animation-delay: 1.6s; }
 
-    /* ================= CINEMATIC LIGHT SWEEP ================= */
-
-    .title::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -120%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.6),
-        transparent
-      );
-      transform: skewX(-25deg);
-      animation: lightSweep 2.5s ease forwards;
-      animation-delay: 2.2s;
-    }
-
-    @keyframes lightSweep {
-      0% { left: -120%; }
-      100% { left: 150%; }
-    }
-
-    /* ================= FLOATING BOTANICAL PARTICLES ================= */
-
-    .leaf {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: rgba(144, 238, 144, 0.5);
-      border-radius: 50%;
-      filter: blur(1px);
-      animation: floatLeaf 8s infinite ease-in-out;
-    }
-
-    @keyframes floatLeaf {
-      0%   { transform: translateY(0) translateX(0); opacity: 0; }
-      30%  { opacity: 0.7; }
-      100% { transform: translateY(-160px) translateX(50px); opacity: 0; }
-    }
-
-    /* ================= HOME CONTENT ================= */
+    /* ================= CONTENT ================= */
 
     .content {
       margin-top: 200px;
@@ -135,7 +116,7 @@
       opacity: 0.7;
     }
 
-    /* ================= SOCIAL LINKS ================= */
+    /* ================= SOCIAL ================= */
 
     .social {
       margin-top: 150px;
@@ -247,12 +228,6 @@
     <span class="letter l6">R</span>
     <span class="letter l7">T</span>
     <span class="letter l8">S</span>
-
-    <!-- botanical floating particles -->
-    <div class="leaf" style="left:10%; top:60px; animation-delay:0s;"></div>
-    <div class="leaf" style="left:30%; top:80px; animation-delay:1s;"></div>
-    <div class="leaf" style="left:60%; top:70px; animation-delay:2s;"></div>
-    <div class="leaf" style="left:80%; top:90px; animation-delay:3s;"></div>
   </div>
 
   <div class="content">
@@ -260,6 +235,7 @@
     <p>Scroll down to explore more</p>
   </div>
 
+  <!-- INSTAGRAM -->
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>

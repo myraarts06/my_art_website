@@ -4,7 +4,10 @@
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Modern sans-serif font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Instagram icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -20,19 +23,7 @@
       scroll-behavior: smooth;
     }
 
-    /* ================= PAGE SYSTEM ================= */
-
-    .page {
-      display: none;
-      min-height: 100vh;
-      padding: 60px 20px;
-    }
-
-    .page.active {
-      display: block;
-    }
-
-    /* ================= KEEP YOUR HOMEPAGE DESIGN ================= */
+    /* ================= HOME ================= */
 
     .home {
       min-height: 120vh;
@@ -43,27 +34,67 @@
       position: relative;
     }
 
+    /* ================= TITLE ================= */
+
     .title {
-      font-size: 70px;
-      letter-spacing: 8px;
+      font-size: 72px;
+      letter-spacing: 10px;
       display: flex;
       gap: 15px;
       position: relative;
-      color: silver;
       margin-top: 100px;
+
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      color: #d9d9d9;
+      text-transform: uppercase;
+
+      text-shadow:
+        0 0 8px rgba(255,255,255,0.12),
+        0 0 20px rgba(255,255,255,0.06);
     }
+
+    /* 🌿 botanical glow swashes */
+    .title::before,
+    .title::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle,
+        rgba(144, 238, 144, 0.25),
+        transparent 70%
+      );
+      filter: blur(3px);
+      opacity: 0.6;
+      z-index: -1;
+    }
+
+    .title::before {
+      left: -90px;
+      top: -20px;
+      transform: rotate(-25deg);
+    }
+
+    .title::after {
+      right: -90px;
+      top: 20px;
+      transform: rotate(25deg);
+    }
+
+    /* ================= FALLING LETTER ANIMATION ================= */
 
     .letter {
       opacity: 0;
-      transform: translateY(-200px);
-      animation: drop 1s forwards;
+      transform: translateY(-220px) rotate(-10deg);
+      animation: drop 1.2s forwards;
       position: relative;
     }
 
     @keyframes drop {
-      0% { opacity: 0; transform: translateY(-200px); }
-      70% { transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; transform: translateY(-220px) rotate(-10deg); }
+      70% { transform: translateY(15px) rotate(3deg); }
+      100% { opacity: 1; transform: translateY(0) rotate(0); }
     }
 
     .l1 { animation-delay: 0.2s; }
@@ -75,34 +106,17 @@
     .l7 { animation-delay: 1.4s; }
     .l8 { animation-delay: 1.6s; }
 
-    .title::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.5),
-        transparent
-      );
-      transform: skewX(-25deg);
-      animation: lightSweep 2s ease forwards;
-      animation-delay: 2.2s;
-    }
-
-    @keyframes lightSweep {
-      0% { left: -100%; }
-      100% { left: 150%; }
-    }
+    /* ================= CONTENT ================= */
 
     .content {
       margin-top: 200px;
+      width: 80%;
+      max-width: 900px;
       text-align: center;
       opacity: 0.7;
     }
+
+    /* ================= SOCIAL ================= */
 
     .social {
       margin-top: 150px;
@@ -111,6 +125,12 @@
 
     .social a {
       text-decoration: none;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .social a:hover {
+      transform: scale(1.2);
     }
 
     /* ================= HAMBURGER ================= */
@@ -128,6 +148,7 @@
       height: 4px;
       background: white;
       margin: 6px 0;
+      transition: 0.3s;
     }
 
     /* ================= SIDE PANEL ================= */
@@ -149,6 +170,7 @@
     }
 
     .sidepanel button {
+      display: block;
       width: 100%;
       padding: 20px;
       background: none;
@@ -162,9 +184,21 @@
       background: #222;
     }
 
-    /* ================= PORTFOLIO ================= */
+    /* ================= PAGE SYSTEM ================= */
 
-    .portfolio-container {
+    .page {
+      display: none;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* ================= PORTFOLIO (ADDED ONLY) ================= */
+
+    .portfolio-wrapper {
       text-align: center;
     }
 
@@ -175,20 +209,21 @@
       gap: 20px;
     }
 
-    .btn {
+    .portfolio-btn {
       padding: 12px 25px;
       border: 1px solid white;
       background: transparent;
       color: white;
       cursor: pointer;
+      transition: 0.3s;
     }
 
-    .btn:hover {
+    .portfolio-btn:hover {
       background: white;
       color: black;
     }
 
-    .content-box {
+    .portfolio-content {
       display: none;
       margin-top: 40px;
       max-width: 900px;
@@ -200,7 +235,7 @@
       padding-top: 20px;
     }
 
-    .content-box.active {
+    .portfolio-content.active {
       display: block;
     }
 
@@ -218,14 +253,13 @@
 
 <!-- SIDE MENU -->
 <div id="menu" class="sidepanel">
-  <button onclick="showPage('home')">Home</button>
-  <button onclick="showPage('portfolio')">Portfolio</button>
-  <button onclick="showPage('about')">About</button>
-  <button onclick="showPage('contact')">Contact</button>
-  <button onclick="showPage('payment')">Payment</button>
+  <button onclick="openPage('portfolio')">Portfolio</button>
+  <button onclick="openPage('about')">About</button>
+  <button onclick="openPage('contact')">Contact</button>
+  <button onclick="openPage('payment')">Payment</button>
 </div>
 
-<!-- HOME PAGE (UNCHANGED DESIGN) -->
+<!-- HOME -->
 <div id="home" class="page active home">
 
   <div class="title">
@@ -242,6 +276,7 @@
 
   <div class="content">
     <p>Welcome to My Creative Space</p>
+    <p>Scroll down to explore more</p>
   </div>
 
   <div class="social">
@@ -252,27 +287,29 @@
 
 </div>
 
-<!-- PORTFOLIO PAGE -->
+<!-- PORTFOLIO -->
 <div id="portfolio" class="page">
 
-  <div class="portfolio-container">
-    <h1>Portfolio</h1>
+  <div class="portfolio-wrapper">
+    <h2>Portfolio</h2>
 
     <div class="portfolio-buttons">
-      <button class="btn" onclick="toggleContent('photos')">Photographs</button>
-      <button class="btn" onclick="toggleContent('paintings')">Paintings</button>
+      <button class="portfolio-btn" onclick="togglePortfolio('photos')">Photographs</button>
+      <button class="portfolio-btn" onclick="togglePortfolio('paintings')">Paintings</button>
     </div>
 
-    <div id="photos" class="content-box">
-      <h2>Photographs</h2>
-      <p>Add your photography here...</p>
-      <p>Scroll content area...</p>
+    <div id="photos" class="portfolio-content">
+      <h3>Photographs</h3>
+      <p>Add your photography collection here...</p>
+      <p>More content...</p>
+      <p>Scroll enabled section...</p>
     </div>
 
-    <div id="paintings" class="content-box">
-      <h2>Paintings</h2>
-      <p>Add your paintings here...</p>
-      <p>Scroll content area...</p>
+    <div id="paintings" class="portfolio-content">
+      <h3>Paintings</h3>
+      <p>Add your paintings collection here...</p>
+      <p>More artworks...</p>
+      <p>Scroll enabled section...</p>
     </div>
 
   </div>
@@ -289,14 +326,16 @@
     document.getElementById("menu").classList.toggle("open");
   }
 
-  function showPage(id) {
+  function openPage(id) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
     document.getElementById("menu").classList.remove("open");
   }
 
-  function toggleContent(id) {
-    document.querySelectorAll(".content-box").forEach(c => c.classList.remove("active"));
+  function togglePortfolio(id) {
+    document.querySelectorAll(".portfolio-content").forEach(el => {
+      el.classList.remove("active");
+    });
     document.getElementById(id).classList.add("active");
   }
 </script>

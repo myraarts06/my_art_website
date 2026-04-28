@@ -15,6 +15,30 @@
       overflow-x: hidden;
     }
 
+    /* ===== ENTRY SCREEN ===== */
+    #entryScreen {
+      position: fixed;
+      inset: 0;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    #entryScreen h1 {
+      font-size: 26px;
+      color: silver;
+      letter-spacing: 3px;
+    }
+
+    #entryScreen p {
+      opacity: 0.6;
+    }
+
     /* ===== PAGE SYSTEM ===== */
     .page {
       display: none;
@@ -53,6 +77,24 @@
       0% { opacity: 0; transform: translateY(-200px); }
       70% { transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .title::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+      transform: skewX(-25deg);
+      animation: lightSweep 2s ease forwards;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes lightSweep {
+      0% { left: -100%; }
+      100% { left: 150%; }
     }
 
     /* ===== SOCIAL ===== */
@@ -175,52 +217,48 @@
       z-index: 10000;
     }
 
-    /* ===== CONTACT FORM (FULL PAGE FIX) ===== */
+    /* ===== CONTACT FORM FULL PAGE ===== */
+    .contact-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 70vh;
+    }
+
     .contact-form {
-      margin-top: 60px;
+      width: 90%;
+      max-width: 500px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      min-height: 60vh; /* spreads form vertically */
+      gap: 15px;
     }
 
     .contact-form input,
     .contact-form textarea {
-      width: 80%;
-      max-width: 500px;
-      padding: 14px;
-      background: black;
-      border: 1px solid white;
-      color: white;
-      border-radius: 6px;
-      outline: none;
-      font-size: 16px;
-    }
-
-    .contact-form textarea {
-      resize: none;
-    }
-
-    .contact-form button {
-      padding: 12px 25px;
+      padding: 12px;
       border: 1px solid white;
       background: transparent;
       color: white;
-      cursor: pointer;
-      transition: 0.3s;
+      outline: none;
     }
 
-    .contact-form button:hover {
+    .contact-form button {
+      padding: 12px;
+      border: 1px solid white;
       background: white;
       color: black;
+      cursor: pointer;
     }
-
   </style>
 </head>
 
 <body>
+
+<!-- ENTRY SCREEN -->
+<div id="entryScreen">
+  <h1>MYRA ARTS</h1>
+  <p>Click to enter ✨</p>
+</div>
 
 <!-- AUDIO -->
 <audio id="bgMusic" loop>
@@ -228,7 +266,7 @@
 </audio>
 
 <!-- MUSIC BUTTON -->
-<button class="music-btn" onclick="toggleMusic()">Music</button>
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">Music ON</button>
 
 <!-- MENU -->
 <div class="hamburger" onclick="toggleMenu()">
@@ -278,44 +316,56 @@
 </div>
 
 <!-- ABOUT -->
-<div id="about" class="page">
-  <div class="title" data-text="ABOUT ME"></div>
-</div>
+<div id="about" class="page"><div class="title" data-text="ABOUT ME"></div></div>
 
-<!-- CONTACT (FIXED FULL PAGE + REQUIRED FIELDS) -->
+<!-- CONTACT -->
 <div id="contact" class="page">
   <div class="title" data-text="CONTACT"></div>
 
-  <form class="contact-form" action="https://formspree.io/f/xqewvnrq" method="POST">
-
-    <input type="text" name="name" placeholder="Your Name" required>
-
-    <input type="email" name="email" placeholder="Your Email" required>
-
-    <textarea name="message" rows="8" placeholder="Your Message" required></textarea>
-
-    <button type="submit">Send Message</button>
-
-  </form>
+  <div class="contact-container">
+    <form class="contact-form" action="https://formspree.io/f/xqewvnrq" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
 </div>
 
 <!-- PAYMENT -->
-<div id="payment" class="page">
-  <div class="title" data-text="PAYMENT"></div>
-</div>
+<div id="payment" class="page"><div class="title" data-text="PAYMENT"></div></div>
 
 <script>
   const music = document.getElementById("bgMusic");
-  let isPlaying = false;
+  let musicOn = true;
+
+  document.getElementById("entryScreen").addEventListener("click", async () => {
+    document.getElementById("entryScreen").style.display = "none";
+
+    try {
+      music.volume = 0;
+      await music.play();
+
+      let v = 0;
+      const fade = setInterval(() => {
+        if (v < 0.4) {
+          v += 0.05;
+          music.volume = v;
+        } else clearInterval(fade);
+      }, 150);
+
+    } catch (e) {}
+  });
 
   function toggleMusic() {
-    if (!isPlaying) {
-      music.play();
-      isPlaying = true;
-    } else {
+    if (musicOn) {
       music.pause();
-      isPlaying = false;
+      document.getElementById("musicBtn").innerText = "Music OFF";
+    } else {
+      music.play();
+      document.getElementById("musicBtn").innerText = "Music ON";
     }
+    musicOn = !musicOn;
   }
 
   function toggleMenu() {
@@ -326,12 +376,7 @@
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
     document.getElementById("menu").classList.remove("open");
-
     animateTitle(document.getElementById(id));
-
-    if (id === "portfolio") {
-      showPortfolio("photo");
-    }
   }
 
   function showPortfolio(id) {
@@ -353,9 +398,7 @@
       span.classList.add("letter");
       span.innerHTML = char === " " ? "&nbsp;" : char;
 
-      setTimeout(() => {
-        span.classList.add("drop");
-      }, i * 120);
+      setTimeout(() => span.classList.add("drop"), i * 120);
 
       title.appendChild(span);
     });

@@ -2,9 +2,6 @@
 const music = document.getElementById("bgMusic");
 let musicOn = true;
 
-/* =========================
-   PAINTINGS DATA (CLEAN STRUCTURE)
-========================= */
 const paintings = [
   {
     id: 1,
@@ -24,34 +21,35 @@ const paintings = [
   }
 ];
 
-/* =========================
-   CART STATE
-========================= */
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 /* =========================
-   ENTRY SCREEN
+   ENTRY SCREEN (SAFE)
 ========================= */
-document.getElementById("entryScreen").addEventListener("click", async () => {
-  document.getElementById("entryScreen").style.display = "none";
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("entryScreen").addEventListener("click", async () => {
+    document.getElementById("entryScreen").style.display = "none";
 
-  try {
-    music.volume = 0;
-    await music.play();
+    try {
+      music.volume = 0;
+      await music.play();
 
-    let v = 0;
-    const fade = setInterval(() => {
-      if (v < 0.4) {
-        v += 0.05;
-        music.volume = v;
-      } else clearInterval(fade);
-    }, 150);
+      let v = 0;
+      const fade = setInterval(() => {
+        if (v < 0.4) {
+          v += 0.05;
+          music.volume = v;
+        } else clearInterval(fade);
+      }, 150);
 
-  } catch (e) {}
+    } catch (e) {
+      console.log("Audio blocked:", e);
+    }
 
-  startHomeAnimation();
-  renderPaintings();
-  updateCartUI();
+    startHomeAnimation();
+    renderPaintings();
+    updateCartUI();
+  });
 });
 
 /* =========================
@@ -59,8 +57,9 @@ document.getElementById("entryScreen").addEventListener("click", async () => {
 ========================= */
 function startHomeAnimation() {
   const title = document.querySelector("#home .title");
-  const text = title.getAttribute("data-text");
+  if (!title) return;
 
+  const text = title.getAttribute("data-text");
   title.innerHTML = "";
 
   text.split("").forEach((char, i) => {
@@ -74,62 +73,13 @@ function startHomeAnimation() {
 }
 
 /* =========================
-   PAINTINGS GRID RENDER
+   RENDER GRID (SAFE - NO STRUCTURE BREAK)
 ========================= */
 function renderPaintings() {
-  const grid = document.getElementById("paintGrid");
-  if (!grid) return;
+  const paintContainer = document.getElementById("paint");
+  if (!paintContainer) return;
 
-  grid.innerHTML = "";
-
-  paintings.forEach(p => {
-    const div = document.createElement("div");
-    div.className = "product";
-
-    div.innerHTML = `
-      <img src="${p.image}" onclick="openPainting(${p.id})">
-    `;
-
-    grid.appendChild(div);
-  });
-}
-
-/* =========================
-   OPEN PAINTING (INLINE DETAIL VIEW)
-========================= */
-function openPainting(id) {
-  const p = paintings.find(item => item.id === id);
-
-  const paintSection = document.getElementById("paint");
-
-  paintSection.innerHTML = `
-    <button class="portfolio-btn" onclick="renderPaintings()">
-      ← Back to Paintings
-    </button>
-
-    <div style="max-width:650px;margin:30px auto;text-align:left;">
-      <img src="${p.image}" style="width:100%;border-radius:10px;">
-
-      <h2 style="margin-top:15px;">${p.title}</h2>
-
-      <p><b>Description:</b><br>${p.description}</p>
-      <p><b>Size:</b><br>${p.size}</p>
-      <p><b>Price:</b><br>€${p.price}</p>
-
-      <button class="portfolio-btn" onclick="addToCart(${p.id})">
-        Add to Cart
-      </button>
-    </div>
-  `;
-}
-
-/* =========================
-   BACK TO GRID VIEW
-========================= */
-function renderPaintings() {
-  const paintSection = document.getElementById("paint");
-
-  paintSection.innerHTML = `
+  paintContainer.innerHTML = `
     <div class="product-grid" id="paintGrid"></div>
   `;
 
@@ -148,7 +98,34 @@ function renderPaintings() {
 }
 
 /* =========================
-   CART SYSTEM (MINI STORE)
+   OPEN PAINTING (INLINE VIEW)
+========================= */
+function openPainting(id) {
+  const p = paintings.find(x => x.id === id);
+  const paintContainer = document.getElementById("paint");
+
+  paintContainer.innerHTML = `
+    <button class="portfolio-btn" onclick="renderPaintings()">
+      ← Back to Paintings
+    </button>
+
+    <div style="max-width:650px;margin:30px auto;text-align:left;">
+      <img src="${p.image}" style="width:100%;border-radius:10px;">
+
+      <h2>${p.title}</h2>
+      <p><b>Description:</b><br>${p.description}</p>
+      <p><b>Size:</b><br>${p.size}</p>
+      <p><b>Price:</b><br>€${p.price}</p>
+
+      <button class="portfolio-btn" onclick="addToCart(${p.id})">
+        Add to Cart
+      </button>
+    </div>
+  `;
+}
+
+/* =========================
+   CART SYSTEM (SAFE)
 ========================= */
 function addToCart(id) {
   const item = paintings.find(p => p.id === id);
@@ -161,28 +138,23 @@ function addToCart(id) {
 }
 
 function updateCartUI() {
-  const counter = document.getElementById("cartCount");
-  if (counter) counter.innerText = cart.length;
+  const el = document.getElementById("cartCount");
+  if (el) el.innerText = cart.length;
 }
 
-/* Simple cart view (can be expanded later) */
 function toggleCart() {
-  const items = cart.map(c => `${c.title} - €${c.price}`).join("\n");
-  alert(cart.length ? items : "Cart is empty");
+  alert(cart.length ? cart.map(c => `${c.title} - €${c.price}`).join("\n") : "Cart empty");
 }
 
 /* =========================
-   MUSIC TOGGLE
+   MUSIC
 ========================= */
 function toggleMusic() {
-  if (musicOn) {
-    music.pause();
-    document.getElementById("musicBtn").innerText = "Music OFF";
-  } else {
-    music.play();
-    document.getElementById("musicBtn").innerText = "Music ON";
-  }
+  if (musicOn) music.pause();
+  else music.play();
+
   musicOn = !musicOn;
+  document.getElementById("musicBtn").innerText = musicOn ? "Music ON" : "Music OFF";
 }
 
 /* =========================
@@ -196,18 +168,13 @@ function openPage(id) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
-  // restore paintings when coming back
   if (id === "portfolio") {
-    const paint = document.getElementById("paint");
-    if (paint) {
-      paint.innerHTML = `<div class="product-grid" id="paintGrid"></div>`;
-      renderPaintings();
-    }
+    renderPaintings();
   }
 }
 
 function showPortfolio(id) {
-  document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
+  document.querySelectorAll(".portfolio-content").forEach(e => e.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
   if (id === "paint") {

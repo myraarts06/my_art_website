@@ -194,14 +194,21 @@
       margin-top: 20px;
     }
 
+    .product {
+      overflow: hidden;
+      position: relative;
+      border-radius: 10px;
+    }
+
     .product img {
       width: 250px;
       border-radius: 10px;
       transition: 0.3s;
+      cursor: zoom-in;
     }
 
-    .product img:hover {
-      transform: scale(1.05);
+    .product:hover img {
+      transform: scale(2);
     }
 
     /* ===== MUSIC BUTTON ===== */
@@ -217,7 +224,7 @@
       z-index: 10000;
     }
 
-    /* ===== CONTACT FORM FULL PAGE ===== */
+    /* ===== CONTACT FORM ===== */
     .contact-container {
       display: flex;
       justify-content: center;
@@ -254,21 +261,17 @@
 
 <body>
 
-<!-- ENTRY SCREEN -->
 <div id="entryScreen">
   <h1>MYRA ARTS</h1>
   <p>Click to enter ✨</p>
 </div>
 
-<!-- AUDIO -->
 <audio id="bgMusic" loop>
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
 </audio>
 
-<!-- MUSIC BUTTON -->
 <button class="music-btn" onclick="toggleMusic()" id="musicBtn">Music ON</button>
 
-<!-- MENU -->
 <div class="hamburger" onclick="toggleMenu()">
   <div class="bar"></div>
   <div class="bar"></div>
@@ -283,7 +286,6 @@
   <button onclick="openPage('payment')">Payment</button>
 </div>
 
-<!-- HOME -->
 <div id="home" class="page active">
   <div class="title" data-text="MYRA ARTS"></div>
 
@@ -294,7 +296,6 @@
   </div>
 </div>
 
-<!-- PORTFOLIO -->
 <div id="portfolio" class="page">
   <div class="title" data-text="PORTFOLIO"></div>
 
@@ -315,10 +316,8 @@
   </div>
 </div>
 
-<!-- ABOUT -->
 <div id="about" class="page"><div class="title" data-text="ABOUT ME"></div></div>
 
-<!-- CONTACT -->
 <div id="contact" class="page">
   <div class="title" data-text="CONTACT"></div>
 
@@ -332,7 +331,6 @@
   </div>
 </div>
 
-<!-- PAYMENT -->
 <div id="payment" class="page"><div class="title" data-text="PAYMENT"></div></div>
 
 <script>
@@ -405,6 +403,23 @@
   }
 
   animateTitle(document.querySelector(".page.active"));
+
+  /* ZOOM FOLLOW CURSOR */
+  document.querySelectorAll(".product").forEach(container => {
+    const img = container.querySelector("img");
+
+    container.addEventListener("mousemove", (e) => {
+      const rect = container.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      img.style.transformOrigin = `${x}% ${y}%`;
+    });
+
+    container.addEventListener("mouseleave", () => {
+      img.style.transformOrigin = "center";
+    });
+  });
 </script>
 
 </body>

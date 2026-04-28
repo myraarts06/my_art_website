@@ -40,7 +40,6 @@
 
     #entryScreen p {
       opacity: 0.6;
-      margin-top: 10px;
     }
 
     /* ===== PAGE SYSTEM ===== */
@@ -110,7 +109,6 @@
 
     .social a {
       transition: 0.3s;
-      text-decoration: none;
     }
 
     .social a:hover {
@@ -226,18 +224,18 @@
 
 <body>
 
-<!-- 🎵 ENTRY SCREEN -->
+<!-- ENTRY SCREEN -->
 <div id="entryScreen">
   <h1>MYRA ARTS</h1>
-  <p>Tap to enter experience 🎵</p>
+  <p>Click to enter 🎵</p>
 </div>
 
-<!-- 🎵 AUDIO -->
+<!-- AUDIO -->
 <audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c1b6c2a7c.mp3?filename=peaceful-indian-flute-ambient-110764.mp3">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 🎵 MUSIC BUTTON -->
+<!-- MUSIC BUTTON -->
 <button class="music-btn" onclick="toggleMusic()">Music ON/OFF</button>
 
 <!-- MENU -->
@@ -300,22 +298,27 @@
   const music = document.getElementById("bgMusic");
   let musicOn = true;
 
-  // ENTRY SCREEN LOGIC
-  document.getElementById("entryScreen").addEventListener("click", () => {
+  // ENTRY CLICK START
+  document.getElementById("entryScreen").addEventListener("click", async () => {
     document.getElementById("entryScreen").style.display = "none";
 
-    music.volume = 0;
-    music.play().catch(()=>{});
+    try {
+      music.volume = 0;
+      await music.play();
 
-    let v = 0;
-    const fade = setInterval(() => {
-      if (v < 0.4) {
-        v += 0.05;
-        music.volume = v;
-      } else {
-        clearInterval(fade);
-      }
-    }, 200);
+      let v = 0;
+      const fade = setInterval(() => {
+        if (v < 0.4) {
+          v += 0.05;
+          music.volume = v;
+        } else {
+          clearInterval(fade);
+        }
+      }, 200);
+
+    } catch (e) {
+      console.log("Audio blocked:", e);
+    }
 
     animateTitle(document.querySelector(".page.active"));
   });

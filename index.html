@@ -42,7 +42,7 @@
     /* ===== PAGE SYSTEM ===== */
     .page {
       display: none;
-      padding: 70px 40px 40px; /* FIXED TOP SPACE */
+      padding: 70px 40px 40px;
       min-height: 100vh;
       text-align: center;
     }
@@ -60,7 +60,7 @@
       flex-wrap: wrap;
       gap: 10px;
       color: silver;
-      margin-top: 40px; /* FIXED (was too high) */
+      margin-top: 40px;
       position: relative;
     }
 
@@ -97,11 +97,19 @@
       100% { left: 150%; }
     }
 
-    /* ===== SOCIAL ===== */
+    /* ===== SOCIAL (RESTORED) ===== */
     .social {
       margin-top: 100px;
       display: flex;
       justify-content: center;
+    }
+
+    .social a {
+      transition: 0.3s;
+    }
+
+    .social a:hover {
+      transform: scale(1.2);
     }
 
     /* ===== MENU ===== */
@@ -217,7 +225,8 @@
     .detail-text {
       margin-top: 20px;
       max-width: 500px;
-      line-height: 1.6;
+      line-height: 1.8;
+      text-align: center;
     }
 
     .cart-btn {
@@ -227,19 +236,6 @@
       background: white;
       color: black;
       cursor: pointer;
-    }
-
-    /* ===== MUSIC BUTTON ===== */
-    .music-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 14px;
-      border: 1px solid white;
-      background: black;
-      color: white;
-      cursor: pointer;
-      z-index: 10000;
     }
   </style>
 </head>
@@ -276,7 +272,16 @@
 
 <!-- HOME -->
 <div id="home" class="page active">
+
   <div class="title" data-text="MYRA ARTS"></div>
+
+  <!-- ✅ RESTORED INSTAGRAM ICON -->
+  <div class="social">
+    <a href="https://www.instagram.com/myraarts06/" target="_blank">
+      <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
+    </a>
+  </div>
+
 </div>
 
 <!-- PORTFOLIO -->
@@ -291,25 +296,29 @@
   <div id="paint" class="portfolio-content active">
     <div class="product-grid">
 
+      <!-- ART 1 -->
       <div class="product">
-        <img src="images/art1.jpg" onclick="openDetail()">
+        <img src="images/art1.jpg">
       </div>
 
+      <!-- ART 2 (CLICKABLE DETAIL) -->
       <div class="product">
-        <img src="images/art2.jpg">
+        <img src="images/art2.jpg" onclick="openDetail()">
       </div>
 
     </div>
   </div>
 
-  <!-- DETAIL PAGE -->
+  <!-- DETAIL PAGE (FIXED TO ART 2) -->
   <div id="detail" class="detail-container">
-    <img src="images/art1.jpg">
+
+    <img src="images/art2.jpg">
 
     <div class="detail-text">
-      <h3>Artwork Title: Buddha Painting</h3>
-      <p>Description: Acrylic on canvas, 24x36 inches</p>
-      <p>Price: €1200</p>
+      <p><b>Artwork Title:</b><br>Buddha Painting</p>
+      <p><b>Description:</b><br>Acrylic painting inspired by calm meditation</p>
+      <p><b>Size:</b><br>24 x 36 inches</p>
+      <p><b>Price:</b><br>€1200</p>
     </div>
 
     <button class="cart-btn">Add to Cart</button>
@@ -317,7 +326,7 @@
 
 </div>
 
-<!-- ABOUT / CONTACT / PAYMENT -->
+<!-- OTHER -->
 <div id="about" class="page"><div class="title" data-text="ABOUT ME"></div></div>
 <div id="contact" class="page"><div class="title" data-text="CONTACT"></div></div>
 <div id="payment" class="page"><div class="title" data-text="PAYMENT"></div></div>
@@ -345,7 +354,7 @@ document.getElementById("entryScreen").onclick = async () => {
   } catch (e) {}
 };
 
-/* MUSIC TOGGLE */
+/* MUSIC */
 function toggleMusic() {
   const btn = document.getElementById("musicBtn");
 
@@ -369,37 +378,14 @@ function openPage(id) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   document.getElementById("menu").classList.remove("open");
-  animateTitle(document.getElementById(id));
 
   document.getElementById("detail").classList.remove("active");
 }
 
-/* PORTFOLIO DETAIL */
+/* DETAIL */
 function openDetail() {
   document.getElementById("detail").classList.add("active");
 }
-
-/* TITLE ANIMATION */
-function animateTitle(page) {
-  const title = page.querySelector(".title");
-  if (!title) return;
-
-  const text = title.getAttribute("data-text");
-  if (!text) return;
-
-  title.innerHTML = "";
-
-  text.split("").forEach((char, i) => {
-    const span = document.createElement("span");
-    span.classList.add("letter");
-    span.innerHTML = char === " " ? "&nbsp;" : char;
-
-    setTimeout(() => span.classList.add("drop"), i * 120);
-    title.appendChild(span);
-  });
-}
-
-animateTitle(document.querySelector(".page.active"));
 </script>
 
 </body>

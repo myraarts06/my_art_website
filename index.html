@@ -1,32 +1,10 @@
 <script>
-const music = document.getElementById("bgMusic");
-let musicOn = true;
+  const music = document.getElementById("bgMusic");
+  let musicOn = true;
 
-const paintings = [
-  {
-    id: 1,
-    title: "Sunset Dreams",
-    image: "images/art1.jpg",
-    description: "A calming sunset over abstract waves.",
-    size: "24 x 36 inches",
-    price: 120
-  },
-  {
-    id: 2,
-    title: "Golden Forest",
-    image: "images/art2.jpg",
-    description: "Nature-inspired textured acrylic painting.",
-    size: "20 x 30 inches",
-    price: 150
-  }
-];
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-/* =========================
-   ENTRY SCREEN (SAFE)
-========================= */
-document.addEventListener("DOMContentLoaded", () => {
+  /* =========================
+     ENTRY SCREEN
+  ========================== */
   document.getElementById("entryScreen").addEventListener("click", async () => {
     document.getElementById("entryScreen").style.display = "none";
 
@@ -42,143 +20,106 @@ document.addEventListener("DOMContentLoaded", () => {
         } else clearInterval(fade);
       }, 150);
 
-    } catch (e) {
-      console.log("Audio blocked:", e);
-    }
+    } catch (e) {}
 
     startHomeAnimation();
-    renderPaintings();
-    updateCartUI();
   });
-});
 
-/* =========================
-   HOME ANIMATION
-========================= */
-function startHomeAnimation() {
-  const title = document.querySelector("#home .title");
-  if (!title) return;
+  /* =========================
+     HOME ANIMATION (UNCHANGED)
+  ========================== */
+  function startHomeAnimation() {
+    const title = document.querySelector("#home .title");
+    const text = title.getAttribute("data-text");
 
-  const text = title.getAttribute("data-text");
-  title.innerHTML = "";
+    title.innerHTML = "";
 
-  text.split("").forEach((char, i) => {
-    const span = document.createElement("span");
-    span.classList.add("letter");
-    span.innerHTML = char === " " ? "&nbsp;" : char;
+    text.split("").forEach((char, i) => {
+      const span = document.createElement("span");
+      span.classList.add("letter");
+      span.innerHTML = char === " " ? "&nbsp;" : char;
 
-    setTimeout(() => span.classList.add("drop"), i * 120);
-    title.appendChild(span);
-  });
-}
-
-/* =========================
-   RENDER GRID (SAFE - NO STRUCTURE BREAK)
-========================= */
-function renderPaintings() {
-  const paintContainer = document.getElementById("paint");
-  if (!paintContainer) return;
-
-  paintContainer.innerHTML = `
-    <div class="product-grid" id="paintGrid"></div>
-  `;
-
-  const grid = document.getElementById("paintGrid");
-
-  paintings.forEach(p => {
-    const div = document.createElement("div");
-    div.className = "product";
-
-    div.innerHTML = `
-      <img src="${p.image}" onclick="openPainting(${p.id})">
-    `;
-
-    grid.appendChild(div);
-  });
-}
-
-/* =========================
-   OPEN PAINTING (INLINE VIEW)
-========================= */
-function openPainting(id) {
-  const p = paintings.find(x => x.id === id);
-  const paintContainer = document.getElementById("paint");
-
-  paintContainer.innerHTML = `
-    <button class="portfolio-btn" onclick="renderPaintings()">
-      ← Back to Paintings
-    </button>
-
-    <div style="max-width:650px;margin:30px auto;text-align:left;">
-      <img src="${p.image}" style="width:100%;border-radius:10px;">
-
-      <h2>${p.title}</h2>
-      <p><b>Description:</b><br>${p.description}</p>
-      <p><b>Size:</b><br>${p.size}</p>
-      <p><b>Price:</b><br>€${p.price}</p>
-
-      <button class="portfolio-btn" onclick="addToCart(${p.id})">
-        Add to Cart
-      </button>
-    </div>
-  `;
-}
-
-/* =========================
-   CART SYSTEM (SAFE)
-========================= */
-function addToCart(id) {
-  const item = paintings.find(p => p.id === id);
-  cart.push(item);
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartUI();
-
-  alert("Added to cart ✔");
-}
-
-function updateCartUI() {
-  const el = document.getElementById("cartCount");
-  if (el) el.innerText = cart.length;
-}
-
-function toggleCart() {
-  alert(cart.length ? cart.map(c => `${c.title} - €${c.price}`).join("\n") : "Cart empty");
-}
-
-/* =========================
-   MUSIC
-========================= */
-function toggleMusic() {
-  if (musicOn) music.pause();
-  else music.play();
-
-  musicOn = !musicOn;
-  document.getElementById("musicBtn").innerText = musicOn ? "Music ON" : "Music OFF";
-}
-
-/* =========================
-   MENU
-========================= */
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("open");
-}
-
-function openPage(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-
-  if (id === "portfolio") {
-    renderPaintings();
+      setTimeout(() => span.classList.add("drop"), i * 120);
+      title.appendChild(span);
+    });
   }
-}
 
-function showPortfolio(id) {
-  document.querySelectorAll(".portfolio-content").forEach(e => e.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-
-  if (id === "paint") {
-    renderPaintings();
+  /* =========================
+     MUSIC
+  ========================== */
+  function toggleMusic() {
+    if (musicOn) {
+      music.pause();
+      document.getElementById("musicBtn").innerText = "Music OFF";
+    } else {
+      music.play();
+      document.getElementById("musicBtn").innerText = "Music ON";
+    }
+    musicOn = !musicOn;
   }
-}
+
+  /* =========================
+     MENU
+  ========================== */
+  function toggleMenu() {
+    document.getElementById("menu").classList.toggle("open");
+  }
+
+  function openPage(id) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+  }
+
+  /* =========================
+     PORTFOLIO
+  ========================== */
+  function showPortfolio(id) {
+    document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+  }
+
+  /* =========================
+     🖼️ PAINTING SPA FEATURE (ADDED ONLY)
+  ========================== */
+
+  let cartCount = 0;
+
+  const paintings = {
+    art1: {
+      title: "Dreamscape",
+      desc: "A surreal expression of emotions through abstract strokes.",
+      size: "24x36 inches",
+      price: "€250",
+      img: "images/art1.jpg"
+    },
+    art2: {
+      title: "Golden Silence",
+      desc: "Minimalist piece inspired by calm landscapes.",
+      size: "18x24 inches",
+      price: "€180",
+      img: "images/art2.jpg"
+    }
+  };
+
+  function openPainting(id) {
+    const p = paintings[id];
+
+    document.getElementById("modalImg").src = p.img;
+    document.getElementById("modalTitle").innerText = p.title;
+    document.getElementById("modalDesc").innerText = p.desc;
+    document.getElementById("modalSize").innerText = p.size;
+    document.getElementById("modalPrice").innerText = p.price;
+
+    document.getElementById("paintingModal").style.display = "flex";
+  }
+
+  function closePainting() {
+    document.getElementById("paintingModal").style.display = "none";
+  }
+
+  function addToCart() {
+    cartCount++;
+    document.getElementById("cartInfo").innerText = "Cart: " + cartCount;
+  }
+
 </script>

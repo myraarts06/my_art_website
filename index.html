@@ -22,10 +22,13 @@
       padding: 40px;
       min-height: 100vh;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .page.active {
       display: block;
+      z-index: 10;
     }
 
     /* ===== TITLE ===== */
@@ -75,11 +78,12 @@
       100% { left: 150%; }
     }
 
-    /* ===== SOCIAL ===== */
+    /* ===== SOCIAL (FIXED CENTER) ===== */
     .social {
       margin-top: 100px;
       display: flex;
       justify-content: center;
+      align-items: center;
     }
 
     .social a {
@@ -98,7 +102,7 @@
       right: 20px;
       width: 35px;
       cursor: pointer;
-      z-index: 1000;
+      z-index: 10000;
     }
 
     .bar {
@@ -116,6 +120,7 @@
       background: #111;
       padding-top: 80px;
       transition: 0.4s;
+      z-index: 9999;
     }
 
     .sidepanel.open {
@@ -130,6 +135,7 @@
       color: white;
       text-align: left;
       cursor: pointer;
+      pointer-events: auto;
     }
 
     .sidepanel button:hover {
@@ -230,10 +236,10 @@
   <div id="paint" class="portfolio-content">
     <div class="product-grid">
       <div class="product">
-        <img src="images/art1.jpg">
+        <img src="images/art1.jpg" alt="Art 1">
       </div>
       <div class="product">
-        <img src="images/art2.jpg">
+        <img src="images/art2.jpg" alt="Art 2">
       </div>
     </div>
   </div>
@@ -260,27 +266,27 @@
   }
 
   function openPage(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  document.getElementById("menu").classList.remove("open");
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.getElementById("menu").classList.remove("open");
 
-  animateTitle(document.getElementById(id));
+    animateTitle(document.getElementById(id));
 
-  // ✅ FIX: show something when Portfolio opens
-  if (id === "portfolio") {
-    showPortfolio("photo"); // or "paint"
+    if (id === "portfolio") {
+      showPortfolio("photo");
+    }
   }
-}
 
   function showPortfolio(id) {
     document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
     document.getElementById(id).classList.add("active");
   }
 
-  // 🔥 THIS FIXES YOUR ANIMATION ISSUE
   function animateTitle(page) {
     const title = page.querySelector(".title");
     const text = title.getAttribute("data-text");
+
+    if (!text) return;
 
     title.innerHTML = "";
 
@@ -297,7 +303,6 @@
     });
   }
 
-  // run on first load
   animateTitle(document.querySelector(".page.active"));
 </script>
 

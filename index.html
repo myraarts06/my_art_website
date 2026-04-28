@@ -42,7 +42,7 @@
     /* ===== PAGE SYSTEM ===== */
     .page {
       display: none;
-      padding: 70px 40px 40px;
+      padding: 40px;
       min-height: 100vh;
       text-align: center;
     }
@@ -51,7 +51,7 @@
       display: block;
     }
 
-    /* ===== TITLE ===== */
+    /* ===== TITLE ANIMATION ===== */
     .title {
       font-size: 60px;
       letter-spacing: 8px;
@@ -60,7 +60,7 @@
       flex-wrap: wrap;
       gap: 10px;
       color: silver;
-      margin-top: 40px;
+      margin-top: 80px;
       position: relative;
     }
 
@@ -97,15 +97,11 @@
       100% { left: 150%; }
     }
 
-    /* ===== SOCIAL (RESTORED) ===== */
+    /* ===== SOCIAL ===== */
     .social {
       margin-top: 100px;
       display: flex;
       justify-content: center;
-    }
-
-    .social a {
-      transition: 0.3s;
     }
 
     .social a:hover {
@@ -194,65 +190,56 @@
       margin-top: 20px;
     }
 
+    .product {
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .product:hover {
+      transform: scale(1.05);
+      filter: brightness(1.2);
+    }
+
     .product img {
       width: 250px;
       border-radius: 10px;
-      transition: 0.3s;
-      cursor: pointer;
     }
 
-    .product img:hover {
-      transform: scale(1.05);
-    }
-
-    /* ===== DETAIL PAGE ===== */
-    .detail-container {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 60px;
-    }
-
-    .detail-container.active {
-      display: flex;
-    }
-
-    .detail-container img {
-      width: 320px;
-      border-radius: 10px;
-    }
-
-    .detail-text {
-      margin-top: 20px;
-      max-width: 500px;
-      line-height: 1.8;
-      text-align: center;
-    }
-
-    .cart-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
+    /* ===== MUSIC BUTTON ===== */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 14px;
       border: 1px solid white;
-      background: white;
-      color: black;
+      background: black;
+      color: white;
       cursor: pointer;
+      z-index: 10000;
+    }
+
+    /* ===== PRODUCT PAGE ===== */
+    .product-detail img {
+      width: 300px;
+      border-radius: 10px;
     }
   </style>
 </head>
 
 <body>
 
-<!-- ENTRY -->
+<!-- ENTRY SCREEN -->
 <div id="entryScreen">
   <h1>MYRA ARTS</h1>
   <p>Click to enter ✨</p>
 </div>
 
-<!-- MUSIC -->
+<!-- AUDIO -->
 <audio id="bgMusic" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
 </audio>
 
+<!-- MUSIC BUTTON -->
 <button class="music-btn" onclick="toggleMusic()" id="musicBtn">Music ON</button>
 
 <!-- MENU -->
@@ -272,21 +259,11 @@
 
 <!-- HOME -->
 <div id="home" class="page active">
-
   <div class="title" data-text="MYRA ARTS"></div>
-
-  <!-- ✅ RESTORED INSTAGRAM ICON -->
-  <div class="social">
-    <a href="https://www.instagram.com/myraarts06/" target="_blank">
-      <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
-    </a>
-  </div>
-
 </div>
 
 <!-- PORTFOLIO -->
 <div id="portfolio" class="page">
-
   <div class="title" data-text="PORTFOLIO"></div>
 
   <div class="portfolio-options">
@@ -296,96 +273,122 @@
   <div id="paint" class="portfolio-content active">
     <div class="product-grid">
 
-      <!-- ART 1 -->
-      <div class="product">
+      <div class="product" onclick="openProduct('art1')">
         <img src="images/art1.jpg">
       </div>
 
-      <!-- ART 2 (CLICKABLE DETAIL) -->
-      <div class="product">
-        <img src="images/art2.jpg" onclick="openDetail()">
+      <div class="product" onclick="openProduct('art2')">
+        <img src="images/art2.jpg">
       </div>
 
     </div>
   </div>
-
-  <!-- DETAIL PAGE (FIXED TO ART 2) -->
-  <div id="detail" class="detail-container">
-
-    <img src="images/art2.jpg">
-
-    <div class="detail-text">
-      <p><b>Artwork Title:</b><br>Buddha Painting</p>
-      <p><b>Description:</b><br>Acrylic painting inspired by calm meditation</p>
-      <p><b>Size:</b><br>24 x 36 inches</p>
-      <p><b>Price:</b><br>€1200</p>
-    </div>
-
-    <button class="cart-btn">Add to Cart</button>
-  </div>
-
 </div>
 
-<!-- OTHER -->
+<!-- PRODUCT PAGE -->
+<div id="product" class="page">
+  <div class="title" data-text="ARTWORK"></div>
+
+  <div class="product-detail">
+    <img id="productImg">
+    <h2 id="productTitle"></h2>
+    <p id="productPrice"></p>
+    <button class="portfolio-btn">Add to Cart</button>
+  </div>
+</div>
+
+<!-- ABOUT -->
 <div id="about" class="page"><div class="title" data-text="ABOUT ME"></div></div>
+
+<!-- CONTACT -->
 <div id="contact" class="page"><div class="title" data-text="CONTACT"></div></div>
+
+<!-- PAYMENT -->
 <div id="payment" class="page"><div class="title" data-text="PAYMENT"></div></div>
 
 <script>
 const music = document.getElementById("bgMusic");
 let musicOn = true;
 
-/* ENTRY */
-document.getElementById("entryScreen").onclick = async () => {
+document.getElementById("entryScreen").addEventListener("click", async () => {
   document.getElementById("entryScreen").style.display = "none";
+  music.volume = 0;
+  await music.play();
 
-  try {
-    music.volume = 0;
-    await music.play();
+  let v = 0;
+  const fade = setInterval(() => {
+    if (v < 0.4) {
+      v += 0.05;
+      music.volume = v;
+    } else clearInterval(fade);
+  }, 150);
 
-    let v = 0;
-    let fade = setInterval(() => {
-      if (v < 0.4) {
-        v += 0.05;
-        music.volume = v;
-      } else clearInterval(fade);
-    }, 150);
+  animateTitle(document.querySelector(".page.active"));
+});
 
-  } catch (e) {}
-};
-
-/* MUSIC */
 function toggleMusic() {
-  const btn = document.getElementById("musicBtn");
-
   if (musicOn) {
     music.pause();
-    btn.innerText = "Music OFF";
+    document.getElementById("musicBtn").innerText = "Music OFF";
   } else {
     music.play();
-    btn.innerText = "Music ON";
+    document.getElementById("musicBtn").innerText = "Music ON";
   }
   musicOn = !musicOn;
 }
 
-/* MENU */
 function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-/* PAGES */
 function openPage(id) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   document.getElementById("menu").classList.remove("open");
-
-  document.getElementById("detail").classList.remove("active");
+  animateTitle(document.getElementById(id));
 }
 
-/* DETAIL */
-function openDetail() {
-  document.getElementById("detail").classList.add("active");
+function showPortfolio(id) {
+  document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
+
+const products = {
+  art1: { img: "images/art1.jpg", title: "Abstract Soul", price: "€50" },
+  art2: { img: "images/art2.jpg", title: "Golden Emotion", price: "€70" }
+};
+
+function openProduct(id) {
+  const p = products[id];
+
+  document.querySelectorAll(".page").forEach(x => x.classList.remove("active"));
+  document.getElementById("product").classList.add("active");
+
+  document.getElementById("productImg").src = p.img;
+  document.getElementById("productTitle").innerText = p.title;
+  document.getElementById("productPrice").innerText = p.price;
+
+  animateTitle(document.getElementById("product"));
+}
+
+function animateTitle(page) {
+  const title = page.querySelector(".title");
+  if (!title) return;
+
+  const text = title.getAttribute("data-text");
+  title.innerHTML = "";
+
+  text.split("").forEach((char, i) => {
+    const span = document.createElement("span");
+    span.classList.add("letter");
+    span.innerHTML = char === " " ? "&nbsp;" : char;
+
+    setTimeout(() => span.classList.add("drop"), i * 120);
+    title.appendChild(span);
+  });
+}
+
+animateTitle(document.querySelector(".page.active"));
 </script>
 
 </body>

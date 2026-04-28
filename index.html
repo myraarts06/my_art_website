@@ -12,24 +12,20 @@
       background: black;
       color: white;
       font-family: Arial, sans-serif;
-      overflow-x: hidden;
     }
 
-    html { scroll-behavior: smooth; }
-
-    /* ================= PAGE SYSTEM ================= */
     .page {
       display: none;
       padding: 40px;
-      min-height: 100vh;
       text-align: center;
+      min-height: 100vh;
     }
 
     .page.active {
       display: block;
     }
 
-    /* ================= TITLE SYSTEM (FIXED + RESTORED ANIMATION) ================= */
+    /* ===== TITLE ===== */
     .title {
       font-size: 70px;
       letter-spacing: 8px;
@@ -47,8 +43,8 @@
       transform: translateY(-200px);
     }
 
-    /* IMPORTANT: animation only runs when page is active */
-    .page.active .letter {
+    /* animation */
+    .animate .letter {
       animation: drop 1s forwards;
     }
 
@@ -58,7 +54,7 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* stagger delays */
+    /* delays */
     .l1 { animation-delay: 0.2s; }
     .l2 { animation-delay: 0.4s; }
     .l3 { animation-delay: 0.6s; }
@@ -79,7 +75,7 @@
       background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
       transform: skewX(-25deg);
       animation: lightSweep 2s ease forwards;
-      animation-delay: 1.8s;
+      animation-delay: 2s;
     }
 
     @keyframes lightSweep {
@@ -87,17 +83,16 @@
       100% { left: 150%; }
     }
 
-    /* ================= MENU ================= */
+    /* MENU */
     .hamburger {
       position: fixed;
       top: 20px;
       right: 20px;
-      width: 35px;
       cursor: pointer;
-      z-index: 1000;
     }
 
     .bar {
+      width: 30px;
       height: 4px;
       background: white;
       margin: 6px 0;
@@ -105,21 +100,23 @@
 
     .sidepanel {
       position: fixed;
+      right: -250px;
       top: 0;
-      right: -300px;
       width: 250px;
       height: 100vh;
       background: #111;
-      padding-top: 80px;
       transition: 0.5s;
-      z-index: 999;
+      padding-top: 80px;
     }
 
-    .sidepanel.open { right: 0; }
+    .sidepanel.open {
+      right: 0;
+    }
 
     .sidepanel button {
+      display: block;
       width: 100%;
-      padding: 20px;
+      padding: 15px;
       background: none;
       border: none;
       color: white;
@@ -131,7 +128,7 @@
       background: #222;
     }
 
-    /* ================= PORTFOLIO ================= */
+    /* PORTFOLIO */
     .portfolio-options {
       margin-top: 40px;
     }
@@ -145,14 +142,9 @@
       cursor: pointer;
     }
 
-    .portfolio-btn:hover {
-      background: white;
-      color: black;
-    }
-
     .portfolio-content {
       display: none;
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     .portfolio-content.active {
@@ -161,31 +153,22 @@
 
     .product-grid {
       display: flex;
-      gap: 30px;
       justify-content: center;
+      gap: 30px;
       flex-wrap: wrap;
     }
 
     .product img {
       width: 250px;
       border-radius: 10px;
-      transition: 0.4s;
     }
 
-    .product img:hover {
-      transform: scale(1.05);
-    }
-
-    /* ================= SOCIAL ================= */
     .social {
-      margin-top: 120px;
+      margin-top: 100px;
       display: flex;
       justify-content: center;
     }
 
-    .social a:hover {
-      transform: scale(1.2);
-    }
   </style>
 </head>
 
@@ -201,13 +184,13 @@
 <div id="menu" class="sidepanel">
   <button onclick="openPage('home')">Home</button>
   <button onclick="openPage('portfolio')">Portfolio</button>
-  <button onclick="openPage('about')">About Me</button>
+  <button onclick="openPage('about')">About</button>
   <button onclick="openPage('contact')">Contact</button>
   <button onclick="openPage('payment')">Payment</button>
 </div>
 
-<!-- ================= HOME ================= -->
-<div id="home" class="page active">
+<!-- HOME -->
+<div id="home" class="page active animate">
   <div class="title">
     <span class="letter l1">M</span>
     <span class="letter l2">Y</span>
@@ -221,15 +204,12 @@
   </div>
 
   <div class="social">
-    <a href="https://www.instagram.com/myraarts06/" target="_blank">
-      <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
-    </a>
+    <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
   </div>
 </div>
 
-<!-- ================= PORTFOLIO ================= -->
+<!-- PORTFOLIO -->
 <div id="portfolio" class="page">
-
   <div class="title">
     <span class="letter l1">P</span>
     <span class="letter l2">O</span>
@@ -247,78 +227,45 @@
     <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
   </div>
 
-  <div id="photo" class="portfolio-content">
-    <p>Photography coming soon...</p>
-  </div>
-
   <div id="paint" class="portfolio-content">
     <div class="product-grid">
-      <div class="product">
-        <img src="images/art1.jpg">
-      </div>
-      <div class="product">
-        <img src="images/art2.jpg">
-      </div>
+      <img src="images/art1.jpg">
+      <img src="images/art2.jpg">
     </div>
   </div>
-
 </div>
 
-<!-- ================= ABOUT ================= -->
-<div id="about" class="page">
-  <div class="title">
-    <span class="letter l1">A</span>
-    <span class="letter l2">B</span>
-    <span class="letter l3">O</span>
-    <span class="letter l4">U</span>
-    <span class="letter l5">T</span>
-    <span style="width:20px;"></span>
-    <span class="letter l6">M</span>
-    <span class="letter l7">E</span>
-  </div>
-</div>
-
-<!-- ================= CONTACT ================= -->
-<div id="contact" class="page">
-  <div class="title">
-    <span class="letter l1">C</span>
-    <span class="letter l2">O</span>
-    <span class="letter l3">N</span>
-    <span class="letter l4">T</span>
-    <span class="letter l5">A</span>
-    <span class="letter l6">C</span>
-    <span class="letter l7">T</span>
-  </div>
-</div>
-
-<!-- ================= PAYMENT ================= -->
-<div id="payment" class="page">
-  <div class="title">
-    <span class="letter l1">P</span>
-    <span class="letter l2">A</span>
-    <span class="letter l3">Y</span>
-    <span class="letter l4">M</span>
-    <span class="letter l5">E</span>
-    <span class="letter l6">N</span>
-    <span class="letter l7">T</span>
-  </div>
-</div>
+<!-- OTHER PAGES -->
+<div id="about" class="page"><div class="title"><span class="letter l1">A</span><span class="letter l2">B</span><span class="letter l3">O</span><span class="letter l4">U</span><span class="letter l5">T</span></div></div>
+<div id="contact" class="page"><div class="title"><span class="letter l1">C</span><span class="letter l2">O</span><span class="letter l3">N</span><span class="letter l4">T</span><span class="letter l5">A</span><span class="letter l6">C</span><span class="letter l7">T</span></div></div>
+<div id="payment" class="page"><div class="title"><span class="letter l1">P</span><span class="letter l2">A</span><span class="letter l3">Y</span><span class="letter l4">M</span><span class="letter l5">E</span><span class="letter l6">N</span><span class="letter l7">T</span></div></div>
 
 <script>
-  function toggleMenu() {
-    document.getElementById("menu").classList.toggle("open");
-  }
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("open");
+}
 
-  function openPage(id) {
-    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-    document.getElementById("menu").classList.remove("open");
-  }
+function openPage(id) {
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+    p.classList.remove("animate");
+  });
 
-  function showPortfolio(id) {
-    document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-  }
+  const page = document.getElementById(id);
+  page.classList.add("active");
+
+  // FORCE animation restart
+  setTimeout(() => {
+    page.classList.add("animate");
+  }, 10);
+
+  document.getElementById("menu").classList.remove("open");
+}
+
+function showPortfolio(id) {
+  document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
 </script>
 
 </body>

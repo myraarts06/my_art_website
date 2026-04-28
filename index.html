@@ -4,6 +4,7 @@
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Instagram icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -12,13 +13,15 @@
       background: black;
       color: white;
       font-family: Arial, sans-serif;
+      overflow-x: hidden;
     }
 
+    /* ===== PAGE SYSTEM ===== */
     .page {
       display: none;
       padding: 40px;
-      text-align: center;
       min-height: 100vh;
+      text-align: center;
     }
 
     .page.active {
@@ -27,15 +30,15 @@
 
     /* ===== TITLE ===== */
     .title {
-      font-size: 70px;
+      font-size: 60px;
       letter-spacing: 8px;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 10px;
       color: silver;
       margin-top: 80px;
       position: relative;
-      flex-wrap: wrap;
     }
 
     .letter {
@@ -43,9 +46,8 @@
       transform: translateY(-200px);
     }
 
-    /* animation */
-    .animate .letter {
-      animation: drop 1s forwards;
+    .drop {
+      animation: drop 0.8s forwards;
     }
 
     @keyframes drop {
@@ -54,17 +56,7 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* delays */
-    .l1 { animation-delay: 0.2s; }
-    .l2 { animation-delay: 0.4s; }
-    .l3 { animation-delay: 0.6s; }
-    .l4 { animation-delay: 0.8s; }
-    .l5 { animation-delay: 1.0s; }
-    .l6 { animation-delay: 1.2s; }
-    .l7 { animation-delay: 1.4s; }
-    .l8 { animation-delay: 1.6s; }
-
-    /* light sweep */
+    /* LIGHT SWEEP */
     .title::after {
       content: "";
       position: absolute;
@@ -75,7 +67,7 @@
       background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
       transform: skewX(-25deg);
       animation: lightSweep 2s ease forwards;
-      animation-delay: 2s;
+      animation-delay: 1.5s;
     }
 
     @keyframes lightSweep {
@@ -83,16 +75,33 @@
       100% { left: 150%; }
     }
 
-    /* MENU */
+    /* ===== SOCIAL ===== */
+    .social {
+      margin-top: 100px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .social a {
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .social a:hover {
+      transform: scale(1.2);
+    }
+
+    /* ===== MENU ===== */
     .hamburger {
       position: fixed;
       top: 20px;
       right: 20px;
+      width: 35px;
       cursor: pointer;
+      z-index: 1000;
     }
 
     .bar {
-      width: 30px;
       height: 4px;
       background: white;
       margin: 6px 0;
@@ -100,13 +109,13 @@
 
     .sidepanel {
       position: fixed;
-      right: -250px;
       top: 0;
+      right: -300px;
       width: 250px;
       height: 100vh;
       background: #111;
-      transition: 0.5s;
       padding-top: 80px;
+      transition: 0.4s;
     }
 
     .sidepanel.open {
@@ -114,9 +123,8 @@
     }
 
     .sidepanel button {
-      display: block;
       width: 100%;
-      padding: 15px;
+      padding: 20px;
       background: none;
       border: none;
       color: white;
@@ -128,7 +136,7 @@
       background: #222;
     }
 
-    /* PORTFOLIO */
+    /* ===== PORTFOLIO ===== */
     .portfolio-options {
       margin-top: 40px;
     }
@@ -142,31 +150,37 @@
       cursor: pointer;
     }
 
+    .portfolio-btn:hover {
+      background: white;
+      color: black;
+    }
+
     .portfolio-content {
       display: none;
-      margin-top: 30px;
+      margin-top: 40px;
     }
 
     .portfolio-content.active {
       display: block;
     }
 
+    /* ===== GALLERY ===== */
     .product-grid {
       display: flex;
-      justify-content: center;
       gap: 30px;
+      justify-content: center;
       flex-wrap: wrap;
+      margin-top: 20px;
     }
 
     .product img {
       width: 250px;
       border-radius: 10px;
+      transition: 0.3s;
     }
 
-    .social {
-      margin-top: 100px;
-      display: flex;
-      justify-content: center;
+    .product img:hover {
+      transform: scale(1.05);
     }
 
   </style>
@@ -184,90 +198,103 @@
 <div id="menu" class="sidepanel">
   <button onclick="openPage('home')">Home</button>
   <button onclick="openPage('portfolio')">Portfolio</button>
-  <button onclick="openPage('about')">About</button>
+  <button onclick="openPage('about')">About Me</button>
   <button onclick="openPage('contact')">Contact</button>
   <button onclick="openPage('payment')">Payment</button>
 </div>
 
 <!-- HOME -->
-<div id="home" class="page active animate">
-  <div class="title">
-    <span class="letter l1">M</span>
-    <span class="letter l2">Y</span>
-    <span class="letter l3">R</span>
-    <span class="letter l4">A</span>
-    <span style="width:20px;"></span>
-    <span class="letter l5">A</span>
-    <span class="letter l6">R</span>
-    <span class="letter l7">T</span>
-    <span class="letter l8">S</span>
-  </div>
+<div id="home" class="page active">
+  <div class="title" data-text="MYRA ARTS"></div>
 
   <div class="social">
-    <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
+    <a href="https://www.instagram.com/myraarts06/" target="_blank">
+      <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
+    </a>
   </div>
 </div>
 
 <!-- PORTFOLIO -->
 <div id="portfolio" class="page">
-  <div class="title">
-    <span class="letter l1">P</span>
-    <span class="letter l2">O</span>
-    <span class="letter l3">R</span>
-    <span class="letter l4">T</span>
-    <span class="letter l5">F</span>
-    <span class="letter l6">O</span>
-    <span class="letter l7">L</span>
-    <span class="letter l8">I</span>
-    <span class="letter l1">O</span>
-  </div>
+  <div class="title" data-text="PORTFOLIO"></div>
 
   <div class="portfolio-options">
     <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
     <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
   </div>
 
+  <div id="photo" class="portfolio-content">
+    <p>Photography coming soon...</p>
+  </div>
+
   <div id="paint" class="portfolio-content">
     <div class="product-grid">
-      <img src="images/art1.jpg">
-      <img src="images/art2.jpg">
+      <div class="product">
+        <img src="images/art1.jpg">
+      </div>
+      <div class="product">
+        <img src="images/art2.jpg">
+      </div>
     </div>
   </div>
 </div>
 
-<!-- OTHER PAGES -->
-<div id="about" class="page"><div class="title"><span class="letter l1">A</span><span class="letter l2">B</span><span class="letter l3">O</span><span class="letter l4">U</span><span class="letter l5">T</span></div></div>
-<div id="contact" class="page"><div class="title"><span class="letter l1">C</span><span class="letter l2">O</span><span class="letter l3">N</span><span class="letter l4">T</span><span class="letter l5">A</span><span class="letter l6">C</span><span class="letter l7">T</span></div></div>
-<div id="payment" class="page"><div class="title"><span class="letter l1">P</span><span class="letter l2">A</span><span class="letter l3">Y</span><span class="letter l4">M</span><span class="letter l5">E</span><span class="letter l6">N</span><span class="letter l7">T</span></div></div>
+<!-- ABOUT -->
+<div id="about" class="page">
+  <div class="title" data-text="ABOUT ME"></div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="page">
+  <div class="title" data-text="CONTACT"></div>
+</div>
+
+<!-- PAYMENT -->
+<div id="payment" class="page">
+  <div class="title" data-text="PAYMENT"></div>
+</div>
 
 <script>
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("open");
-}
+  function toggleMenu() {
+    document.getElementById("menu").classList.toggle("open");
+  }
 
-function openPage(id) {
-  document.querySelectorAll(".page").forEach(p => {
-    p.classList.remove("active");
-    p.classList.remove("animate");
-  });
+  function openPage(id) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    document.getElementById("menu").classList.remove("open");
 
-  const page = document.getElementById(id);
-  page.classList.add("active");
+    animateTitle(document.getElementById(id));
+  }
 
-  // FORCE animation restart
-  setTimeout(() => {
-    page.classList.add("animate");
-  }, 10);
+  function showPortfolio(id) {
+    document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+  }
 
-  document.getElementById("menu").classList.remove("open");
-}
+  // 🔥 THIS FIXES YOUR ANIMATION ISSUE
+  function animateTitle(page) {
+    const title = page.querySelector(".title");
+    const text = title.getAttribute("data-text");
 
-function showPortfolio(id) {
-  document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
+    title.innerHTML = "";
+
+    text.split("").forEach((char, index) => {
+      const span = document.createElement("span");
+      span.classList.add("letter");
+      span.innerHTML = char === " " ? "&nbsp;" : char;
+
+      setTimeout(() => {
+        span.classList.add("drop");
+      }, index * 120);
+
+      title.appendChild(span);
+    });
+  }
+
+  // run on first load
+  animateTitle(document.querySelector(".page.active"));
 </script>
 
 </body>
 </html>
-

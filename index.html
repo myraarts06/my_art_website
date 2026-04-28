@@ -64,13 +64,13 @@
       position: relative;
     }
 
-    /* ONLY USED FOR HOME ANIMATION */
-    .letter {
+    /* ===== HOME ONLY ANIMATION ===== */
+    #home .letter {
       opacity: 0;
       transform: translateY(-200px);
     }
 
-    .drop {
+    #home .drop {
       animation: drop 0.8s forwards;
     }
 
@@ -80,7 +80,8 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    .title::after {
+    /* ✅ LIGHT SWEEP ONLY FOR HOME */
+    #home .title::after {
       content: "";
       position: absolute;
       top: 0;
@@ -334,7 +335,6 @@
 <script>
   const music = document.getElementById("bgMusic");
   let musicOn = true;
-  let entryDone = false;
 
   document.getElementById("entryScreen").addEventListener("click", async () => {
     document.getElementById("entryScreen").style.display = "none";
@@ -352,29 +352,7 @@
       }, 150);
 
     } catch (e) {}
-
-    entryDone = true;
-
-    // ONLY NOW animate HOME title
-    animateHomeTitle();
   });
-
-  function animateHomeTitle() {
-    const title = document.querySelector("#home .title");
-    const text = title.getAttribute("data-text");
-
-    title.innerHTML = "";
-
-    text.split("").forEach((char, i) => {
-      const span = document.createElement("span");
-      span.classList.add("letter");
-      span.innerHTML = char === " " ? "&nbsp;" : char;
-
-      setTimeout(() => span.classList.add("drop"), i * 120);
-
-      title.appendChild(span);
-    });
-  }
 
   function toggleMusic() {
     if (musicOn) {

@@ -1,10 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Myra Arts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ===== ENTRY SCREEN ===== */
+    #entryScreen {
+      position: fixed;
+      inset: 0;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    #entryScreen h1 {
+      font-size: 26px;
+      color: silver;
+      letter-spacing: 3px;
+    }
+
+    #entryScreen p {
+      opacity: 0.6;
+    }
+
+    /* ===== PAGE SYSTEM ===== */
+    .page {
+      display: none;
+      padding: 40px;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* ===== TITLE ===== */
+    .title {
+      font-size: 60px;
+      letter-spacing: 8px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: silver;
+      margin-top: 80px;
+      position: relative;
+    }
+
+    /* ===== ONLY HOME ANIMATION ===== */
+    #home .letter {
+      opacity: 0;
+      transform: translateY(-200px);
+    }
+
+    #home .drop {
+      animation: drop 0.8s forwards;
+    }
+
+    @keyframes drop {
+      0% { opacity: 0; transform: translateY(-200px); }
+      70% { transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* LIGHT SWEEP ONLY HOME */
+    #home .title::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+      transform: skewX(-25deg);
+      animation: lightSweep 2s ease forwards;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes lightSweep {
+      0% { left: -100%; }
+      100% { left: 150%; }
+    }
+
+    /* ===== SOCIAL ===== */
+    .social {
+      margin-top: 100px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .social a {
+      transition: 0.3s;
+    }
+
+    .social a:hover {
+      transform: scale(1.2);
+    }
+
+    /* ===== MENU ===== */
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 35px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    .bar {
+      height: 4px;
+      background: white;
+      margin: 6px 0;
+    }
+
+    .sidepanel {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 250px;
+      height: 100vh;
+      background: #111;
+      padding-top: 80px;
+      transition: 0.4s;
+      z-index: 9999;
+    }
+
+    .sidepanel.open {
+      right: 0;
+    }
+
+    .sidepanel button {
+      width: 100%;
+      padding: 20px;
+      background: none;
+      border: none;
+      color: white;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .sidepanel button:hover {
+      background: #222;
+    }
+
+    /* ===== PORTFOLIO ===== */
+    .portfolio-options {
+      margin-top: 40px;
+    }
+
+    .portfolio-btn {
+      padding: 10px 20px;
+      border: 1px solid white;
+      background: none;
+      color: white;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .portfolio-content {
+      display: none;
+      margin-top: 40px;
+    }
+
+    .portfolio-content.active {
+      display: block;
+    }
+
+    .product-grid {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .product img {
+      width: 250px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    /* ===== MUSIC BUTTON ===== */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 14px;
+      border: 1px solid white;
+      background: black;
+      color: white;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    /* ===== CONTACT FORM ===== */
+    .contact-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 70vh;
+    }
+
+    .contact-form {
+      width: 90%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 12px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      outline: none;
+    }
+
+    .contact-form button {
+      padding: 12px;
+      border: 1px solid white;
+      background: white;
+      color: black;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ENTRY SCREEN -->
+<div id="entryScreen">
+  <h1>MYRA ARTS</h1>
+  <p>Click to enter ✨</p>
+</div>
+
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MUSIC BUTTON -->
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">Music ON</button>
+
+<!-- MENU -->
+<div class="hamburger" onclick="toggleMenu()">
+  <div class="bar"></div>
+  <div class="bar"></div>
+  <div class="bar"></div>
+</div>
+
+<div id="menu" class="sidepanel">
+  <button onclick="openPage('home')">Home</button>
+  <button onclick="openPage('portfolio')">Portfolio</button>
+  <button onclick="openPage('about')">About Me</button>
+  <button onclick="openPage('contact')">Contact</button>
+  <button onclick="openPage('payment')">Payment</button>
+</div>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="title" data-text="MYRA ARTS"></div>
+
+  <div class="social">
+    <a href="https://www.instagram.com/myraarts06/" target="_blank">
+      <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
+    </a>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<div id="portfolio" class="page">
+  <div class="title">PORTFOLIO</div>
+
+  <div class="portfolio-options">
+    <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
+    <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
+  </div>
+
+  <div id="photo" class="portfolio-content">
+    <p>Photography coming soon...</p>
+  </div>
+
+  <div id="paint" class="portfolio-content">
+    <div class="product-grid">
+      <div class="product"><img src="images/art1.jpg"></div>
+      <div class="product"><img src="images/art2.jpg"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="page">
+  <div class="title">ABOUT ME</div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="page">
+  <div class="title">CONTACT</div>
+
+  <div class="contact-container">
+    <form class="contact-form" action="https://formspree.io/f/xqewvnrq" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+
+<!-- PAYMENT -->
+<div id="payment" class="page">
+  <div class="title">PAYMENT</div>
+</div>
+
 <script>
   const music = document.getElementById("bgMusic");
   let musicOn = true;
 
-  /* =========================
-     ENTRY SCREEN
-  ========================== */
   document.getElementById("entryScreen").addEventListener("click", async () => {
     document.getElementById("entryScreen").style.display = "none";
 
@@ -25,9 +356,6 @@
     startHomeAnimation();
   });
 
-  /* =========================
-     HOME ANIMATION (UNCHANGED)
-  ========================== */
   function startHomeAnimation() {
     const title = document.querySelector("#home .title");
     const text = title.getAttribute("data-text");
@@ -44,9 +372,6 @@
     });
   }
 
-  /* =========================
-     MUSIC
-  ========================== */
   function toggleMusic() {
     if (musicOn) {
       music.pause();
@@ -58,9 +383,6 @@
     musicOn = !musicOn;
   }
 
-  /* =========================
-     MENU
-  ========================== */
   function toggleMenu() {
     document.getElementById("menu").classList.toggle("open");
   }
@@ -70,56 +392,11 @@
     document.getElementById(id).classList.add("active");
   }
 
-  /* =========================
-     PORTFOLIO
-  ========================== */
   function showPortfolio(id) {
     document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
     document.getElementById(id).classList.add("active");
   }
-
-  /* =========================
-     🖼️ PAINTING SPA FEATURE (ADDED ONLY)
-  ========================== */
-
-  let cartCount = 0;
-
-  const paintings = {
-    art1: {
-      title: "Dreamscape",
-      desc: "A surreal expression of emotions through abstract strokes.",
-      size: "24x36 inches",
-      price: "€250",
-      img: "images/art1.jpg"
-    },
-    art2: {
-      title: "Golden Silence",
-      desc: "Minimalist piece inspired by calm landscapes.",
-      size: "18x24 inches",
-      price: "€180",
-      img: "images/art2.jpg"
-    }
-  };
-
-  function openPainting(id) {
-    const p = paintings[id];
-
-    document.getElementById("modalImg").src = p.img;
-    document.getElementById("modalTitle").innerText = p.title;
-    document.getElementById("modalDesc").innerText = p.desc;
-    document.getElementById("modalSize").innerText = p.size;
-    document.getElementById("modalPrice").innerText = p.price;
-
-    document.getElementById("paintingModal").style.display = "flex";
-  }
-
-  function closePainting() {
-    document.getElementById("paintingModal").style.display = "none";
-  }
-
-  function addToCart() {
-    cartCount++;
-    document.getElementById("cartInfo").innerText = "Cart: " + cartCount;
-  }
-
 </script>
+
+</body>
+</html>

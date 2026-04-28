@@ -260,12 +260,17 @@
   }
 
   function openPage(id) {
-    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-    document.getElementById("menu").classList.remove("open");
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.getElementById("menu").classList.remove("open");
 
-    animateTitle(document.getElementById(id));
+  animateTitle(document.getElementById(id));
+
+  // ✅ FIX: show something when Portfolio opens
+  if (id === "portfolio") {
+    showPortfolio("photo"); // or "paint"
   }
+}
 
   function showPortfolio(id) {
     document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));

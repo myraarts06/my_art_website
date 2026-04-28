@@ -172,11 +172,6 @@
       cursor: pointer;
     }
 
-    .portfolio-btn:hover {
-      background: white;
-      color: black;
-    }
-
     .portfolio-content {
       display: none;
       margin-top: 40px;
@@ -194,22 +189,13 @@
       margin-top: 20px;
     }
 
-    .product {
-      overflow: hidden;
-      position: relative;
-      border-radius: 10px;
-    }
-
     .product img {
       width: 250px;
       border-radius: 10px;
-      transition: 0.3s;
-      cursor: zoom-in;
+      cursor: pointer;
     }
 
-    .product:hover img {
-      transform: scale(2);
-    }
+    /* REMOVED HOVER ZOOM AS REQUESTED */
 
     /* ===== MUSIC BUTTON ===== */
     .music-btn {
@@ -256,22 +242,65 @@
       color: black;
       cursor: pointer;
     }
+
+    /* ===== PRODUCT PAGE (NEW) ===== */
+    #productPage {
+      display: none;
+      padding: 40px;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    #productPage.active {
+      display: block;
+    }
+
+    .product-detail img {
+      width: 300px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    .product-detail {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .product-detail p {
+      margin: 8px 0;
+      line-height: 1.5;
+    }
+
+    .back-btn, .cart-btn {
+      margin-top: 20px;
+      padding: 10px 15px;
+      border: 1px solid white;
+      background: black;
+      color: white;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
   </style>
 </head>
 
 <body>
 
+<!-- ENTRY SCREEN -->
 <div id="entryScreen">
   <h1>MYRA ARTS</h1>
   <p>Click to enter ✨</p>
 </div>
 
+<!-- AUDIO -->
 <audio id="bgMusic" loop>
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
 </audio>
 
+<!-- MUSIC BUTTON -->
 <button class="music-btn" onclick="toggleMusic()" id="musicBtn">Music ON</button>
 
+<!-- MENU -->
 <div class="hamburger" onclick="toggleMenu()">
   <div class="bar"></div>
   <div class="bar"></div>
@@ -286,6 +315,7 @@
   <button onclick="openPage('payment')">Payment</button>
 </div>
 
+<!-- HOME -->
 <div id="home" class="page active">
   <div class="title" data-text="MYRA ARTS"></div>
 
@@ -296,6 +326,7 @@
   </div>
 </div>
 
+<!-- PORTFOLIO -->
 <div id="portfolio" class="page">
   <div class="title" data-text="PORTFOLIO"></div>
 
@@ -310,14 +341,34 @@
 
   <div id="paint" class="portfolio-content">
     <div class="product-grid">
-      <div class="product"><img src="images/art1.jpg"></div>
-      <div class="product"><img src="images/art2.jpg"></div>
+      <div class="product">
+        <img src="images/art1.jpg" onclick="openProduct('art1')">
+      </div>
+      <div class="product">
+        <img src="images/art2.jpg" onclick="openProduct('art2')">
+      </div>
     </div>
   </div>
 </div>
 
+<!-- PRODUCT PAGE -->
+<div id="productPage">
+  <div class="product-detail">
+    <h2 id="pTitle"></h2>
+    <img id="pImage">
+    <p id="pDesc"></p>
+    <p id="pSize"></p>
+    <p id="pPrice"></p>
+
+    <button class="cart-btn" onclick="addToCart()">Add to Cart</button>
+    <button class="back-btn" onclick="goBack()">Back</button>
+  </div>
+</div>
+
+<!-- ABOUT -->
 <div id="about" class="page"><div class="title" data-text="ABOUT ME"></div></div>
 
+<!-- CONTACT -->
 <div id="contact" class="page">
   <div class="title" data-text="CONTACT"></div>
 
@@ -331,19 +382,35 @@
   </div>
 </div>
 
+<!-- PAYMENT -->
 <div id="payment" class="page"><div class="title" data-text="PAYMENT"></div></div>
 
 <script>
   const music = document.getElementById("bgMusic");
   let musicOn = true;
 
+  const products = {
+    art1: {
+      title: "Abstract Art Piece",
+      desc: "Modern abstract expression",
+      size: "24x36 inches",
+      price: "800 EUR",
+      img: "images/art1.jpg"
+    },
+    art2: {
+      title: "Buddha Painting",
+      desc: "Spiritual Buddha artwork",
+      size: "30x40 inches",
+      price: "1200 EUR",
+      img: "images/art2.jpg"
+    }
+  };
+
   document.getElementById("entryScreen").addEventListener("click", async () => {
     document.getElementById("entryScreen").style.display = "none";
-
     try {
       music.volume = 0;
       await music.play();
-
       let v = 0;
       const fade = setInterval(() => {
         if (v < 0.4) {
@@ -351,7 +418,6 @@
           music.volume = v;
         } else clearInterval(fade);
       }, 150);
-
     } catch (e) {}
   });
 
@@ -373,7 +439,7 @@
   function openPage(id) {
     document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
     document.getElementById(id).classList.add("active");
-    document.getElementById("menu").classList.remove("open");
+    document.getElementById("productPage").style.display = "none";
     animateTitle(document.getElementById(id));
   }
 
@@ -382,44 +448,45 @@
     document.getElementById(id).classList.add("active");
   }
 
+  function openProduct(id) {
+    const p = products[id];
+
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById("productPage").style.display = "block";
+
+    document.getElementById("pTitle").innerText = p.title;
+    document.getElementById("pDesc").innerText = "Description: " + p.desc;
+    document.getElementById("pSize").innerText = "Size: " + p.size;
+    document.getElementById("pPrice").innerText = "Price: " + p.price;
+    document.getElementById("pImage").src = p.img;
+  }
+
+  function goBack() {
+    document.getElementById("productPage").style.display = "none";
+    openPage("portfolio");
+  }
+
+  function addToCart() {
+    alert("Added to cart!");
+  }
+
   function animateTitle(page) {
     const title = page.querySelector(".title");
     if (!title) return;
-
     const text = title.getAttribute("data-text");
     if (!text) return;
 
     title.innerHTML = "";
-
     text.split("").forEach((char, i) => {
       const span = document.createElement("span");
       span.classList.add("letter");
       span.innerHTML = char === " " ? "&nbsp;" : char;
-
       setTimeout(() => span.classList.add("drop"), i * 120);
-
       title.appendChild(span);
     });
   }
 
   animateTitle(document.querySelector(".page.active"));
-
-  /* ZOOM FOLLOW CURSOR */
-  document.querySelectorAll(".product").forEach(container => {
-    const img = container.querySelector("img");
-
-    container.addEventListener("mousemove", (e) => {
-      const rect = container.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-      img.style.transformOrigin = `${x}% ${y}%`;
-    });
-
-    container.addEventListener("mouseleave", () => {
-      img.style.transformOrigin = "center";
-    });
-  });
 </script>
 
 </body>

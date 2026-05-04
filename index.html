@@ -100,10 +100,6 @@
       justify-content: center;
     }
 
-    .social a:hover {
-      transform: scale(1.2);
-    }
-
     .hamburger {
       position: fixed;
       top: 20px;
@@ -145,10 +141,6 @@
       cursor: pointer;
     }
 
-    .sidepanel button:hover {
-      background: #222;
-    }
-
     .portfolio-options {
       margin-top: 40px;
     }
@@ -183,14 +175,9 @@
       width: 250px;
       border-radius: 10px;
       cursor: pointer;
-      transition: 0.3s;
     }
 
-    .product img:hover {
-      transform: scale(1.05);
-    }
-
-    /* ===== CONTACT FORM ===== */
+    /* CONTACT FORM */
     .contact-container {
       display: flex;
       justify-content: center;
@@ -212,7 +199,6 @@
       border: 1px solid white;
       background: transparent;
       color: white;
-      outline: none;
     }
 
     .contact-form button {
@@ -223,7 +209,7 @@
       cursor: pointer;
     }
 
-    /* ===== MODAL ===== */
+    /* MODAL */
     #paintingModal {
       position: fixed;
       inset: 0;
@@ -245,7 +231,6 @@
     .modal-content img {
       width: 100%;
       border-radius: 10px;
-      margin-bottom: 15px;
     }
 
     .close-btn {
@@ -265,7 +250,6 @@
       background: black;
       color: white;
       cursor: pointer;
-      z-index: 10000;
     }
   </style>
 </head>
@@ -302,19 +286,14 @@
 <div id="portfolio" class="page">
   <div class="title">PORTFOLIO</div>
 
-  <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
+  <div class="portfolio-options">
+    <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
+  </div>
 
   <div id="paint" class="portfolio-content active">
     <div class="product-grid">
-      <div class="product">
-        <img src="images/art1.jpg"
-        onclick="openPainting('Sunset Dream','A calm emotional sunset piece.','24x36 inches','€250','images/art1.jpg')">
-      </div>
-
-      <div class="product">
-        <img src="images/art2.jpg"
-        onclick="openPainting('Inner Thoughts','Abstract expression of emotions.','18x24 inches','€180','images/art2.jpg')">
-      </div>
+      <img src="images/art1.jpg" onclick="openPainting('Sunset Dream','A calm emotional sunset piece.','24x36 inches','€250','images/art1.jpg')">
+      <img src="images/art2.jpg" onclick="openPainting('Inner Thoughts','Abstract expression of emotions.','18x24 inches','€180','images/art2.jpg')">
     </div>
   </div>
 </div>
@@ -345,7 +324,55 @@
 </div>
 
 <script>
-function openPainting(title, desc, size, price, img){
+const music = document.getElementById("bgMusic");
+let musicOn = true;
+
+document.getElementById("entryScreen").addEventListener("click", () => {
+  document.getElementById("entryScreen").style.display = "none";
+  music.play();
+  startHomeAnimation();
+});
+
+function startHomeAnimation() {
+  const title = document.querySelector("#home .title");
+  const text = title.getAttribute("data-text");
+  title.innerHTML = "";
+
+  text.split("").forEach((char, i) => {
+    const span = document.createElement("span");
+    span.classList.add("letter");
+    span.innerHTML = char === " " ? "&nbsp;" : char;
+    setTimeout(() => span.classList.add("drop"), i * 120);
+    title.appendChild(span);
+  });
+}
+
+function toggleMusic() {
+  if (musicOn) {
+    music.pause();
+    musicBtn.innerText = "Music OFF";
+  } else {
+    music.play();
+    musicBtn.innerText = "Music ON";
+  }
+  musicOn = !musicOn;
+}
+
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("open");
+}
+
+function openPage(id) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function showPortfolio(id) {
+  document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function openPainting(title, desc, size, price, img) {
   modalTitle.innerText = title;
   modalDesc.innerText = desc;
   modalSize.innerText = size;
@@ -354,13 +381,8 @@ function openPainting(title, desc, size, price, img){
   paintingModal.style.display = "flex";
 }
 
-function closePainting(){
+function closePainting() {
   paintingModal.style.display = "none";
-}
-
-function openPage(id){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
 }
 </script>
 

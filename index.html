@@ -243,6 +243,39 @@
       cursor: pointer;
       z-index: 10000;
     }
+
+    /* ===== CONTACT FORM ===== */
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.contact-form {
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  outline: none;
+}
+
+.contact-form button {
+  padding: 12px;
+  border: 1px solid white;
+  background: white;
+  color: black;
+  cursor: pointer;
+}
   </style>
 </head>
 
@@ -322,6 +355,15 @@
 <!-- CONTACT -->
 <div id="contact" class="page">
   <div class="title">CONTACT</div>
+
+  <div class="contact-container">
+    <form class="contact-form" action="https://formspree.io/f/xqewvnrq" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
 </div>
 
 <!-- PAYMENT -->

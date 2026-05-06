@@ -335,12 +335,12 @@
 
       <div class="product">
         <img src="images/art1.jpg"
-          onclick="openPainting('Sunset Dream', 'A calm emotional sunset piece.', '24x36 inches', '€250', 'images/art1.jpg')">
+          onclick="openPainting('Sunset Dream', 'images/art1.jpg')">
       </div>
 
       <div class="product">
         <img src="images/art2.jpg"
-          onclick="openPainting('Inner Thoughts', 'Abstract expression of emotions.', '18x24 inches', '€180', 'images/art2.jpg')">
+          onclick="openPainting('Inner Thoughts', 'images/art2.jpg')">
       </div>
 
     </div>
@@ -378,9 +378,6 @@
   <div class="modal-content">
     <img id="modalImg">
     <h2 id="modalTitle"></h2>
-    <p id="modalDesc"></p>
-    <p id="modalSize"></p>
-    <h3 id="modalPrice"></h3>
   </div>
 </div>
   
@@ -444,11 +441,8 @@
   }
 
   // ===== NEW SPA PAINTING VIEW =====
-  function openPainting(title, desc, size, price, img) {
+  function openPainting(title, img) {
     document.getElementById("modalTitle").innerText = title;
-    document.getElementById("modalDesc").innerText = desc;
-    document.getElementById("modalSize").innerText = size;
-    document.getElementById("modalPrice").innerText = price;
     document.getElementById("modalImg").src = img;
 
     document.getElementById("paintingModal").style.display = "flex";

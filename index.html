@@ -198,14 +198,15 @@
     }
 
     /* ===== MODAL (NEW SPA VIEW) ===== */
-    #paintingModal {
+   #paintingModal {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.95);
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 999999999; /* increase this */
+  z-index: 999999999;
+  pointer-events: auto;
 }
 .page {
   position: relative;
@@ -480,6 +481,16 @@
       Buy Now
     </button>
   </div>
+
+    <!-- ===== MODAL (NEW SPA) ===== -->
+<div id="paintingModal">
+  <div class="close-btn" onclick="closePainting()">×</div>
+
+  <div class="modal-content">
+    <img id="modalImg">
+    <h2 id="modalTitle"></h2>
+  </div>
+</div>
   
 <script>
   const music = document.getElementById("bgMusic");
@@ -545,12 +556,13 @@
 
   // ===== NEW SPA PAINTING VIEW =====
   function openPainting(title, img) {
-    document.getElementById("modalTitle").innerText = title;
-    document.getElementById("modalImg").src = img;
+  event?.stopPropagation(); // prevents weird bubbling issues
 
-    document.getElementById("paintingModal").style.display = "flex";
-  }
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalImg").src = img;
 
+  document.getElementById("paintingModal").style.display = "flex";
+}
   function closePainting() {
     document.getElementById("paintingModal").style.display = "none";
   }
@@ -649,16 +661,6 @@ img.style.top = cartRect.top + "px";
   document.getElementById("cartPanel").style.right = "-320px";
 }
 </script>
-</div>
-<!-- ===== MODAL (NEW SPA) ===== -->
-<div id="paintingModal">
-  <div class="close-btn" onclick="closePainting()">×</div>
-
-  <div class="modal-content">
-    <img id="modalImg">
-    <h2 id="modalTitle"></h2>
-  </div>
-</div>
   
 </body>
 </html>

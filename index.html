@@ -323,12 +323,21 @@
   gap: 10px;
   font-size: 20px;
 }
-#cartIcon {
-  display: none;
-}
 
-#payment.active #cartIcon {
-  display: flex;
+    #cartIcon {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: black;
+  border: 1px solid white;
+  padding: 14px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 10000;
+  display: none; /* IMPORTANT */
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
 }
     
 #cartIcon span {
@@ -338,7 +347,18 @@
   </style>
 </head>
   
-  <div id="cartPanel" style="
+  <h2>Cart</h2>
+
+  <div id="cartItems"></div>
+
+  <hr style="margin:15px 0;">
+
+  <p id="cartTotal">Total: €0</p>
+    
+</div>
+<body>
+
+   <div id="cartPanel" style="
   position: fixed;
   right: -320px;
   top: 0;
@@ -351,16 +371,6 @@
   z-index: 99999;
   overflow-y: auto;
 ">
-  <h2>Cart</h2>
-
-  <div id="cartItems"></div>
-
-  <hr style="margin:15px 0;">
-
-  <p id="cartTotal">Total: €0</p>
-    
-</div>
-<body>
 
 <!-- ENTRY SCREEN -->
 <div id="entryScreen">
@@ -549,9 +559,11 @@
   }
 
   function openPage(id) {
-    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-  }
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  updateCartVisibility(id);
+}
 
   function showPortfolio(id) {
     document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
@@ -650,6 +662,18 @@ img.style.top = cartRect.top + "px";
   }, 10);
 
   setTimeout(() => img.remove(), 900);
+}
+  function updateCartVisibility(pageId) {
+  const cart = document.getElementById("cartIcon");
+
+  if (pageId === "payment") {
+    cart.style.display = "flex";
+  } else {
+    cart.style.display = "none";
+  }
+}
+  function closeCart() {
+  document.getElementById("cartPanel").style.right = "-320px";
 }
 </script>
 

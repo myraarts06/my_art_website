@@ -443,6 +443,7 @@
   
 <script>
   const music = document.getElementById("bgMusic");
+  const musicBtn = document.getElementById("musicBtn");
   let musicOn = true;
 
   document.getElementById("entryScreen").addEventListener("click", async () => {
@@ -537,22 +538,46 @@ function addToCart(name, price, img) {
     setTimeout(() => preview.remove(), 500);
   }, 1000);
 }
+ 
+function renderShop() {
+  const grid = document.getElementById("shopGrid");
+  grid.innerHTML = "";
+
   const products = [
-  {
-    id: 1,
-    title: "Sunset Dream",
-    price: 250,
-    size: "24x36 inches",
-    image: "images/art1.jpg"
-  },
-  {
-    id: 2,
-    title: "Inner Thoughts",
-    price: 180,
-    size: "18x24 inches",
-    image: "images/art2.jpg"
-  }
-];
+    {
+      id: 1,
+      title: "Sunset Dream",
+      price: 250,
+      size: "24x36 inches",
+      image: "images/art1.jpg"
+    },
+    {
+      id: 2,
+      title: "Inner Thoughts",
+      price: 180,
+      size: "18x24 inches",
+      image: "images/art2.jpg"
+    }
+  ];
+
+  products.forEach(p => {
+    grid.innerHTML += `
+      <div class="shop-item">
+        <img src="${p.image}">
+
+        <h2>${p.title}</h2>
+        <p class="desc">PRINT ONLY</p>
+        <p>${p.size}</p>
+        <p>€${p.price} + SHIPPING + VAT</p>
+
+        <button onclick="addToCart('${p.title}', ${p.price}, '${p.image}')">
+          Buy Now
+        </button>
+      </div>
+    `;
+  });
+}
+  document.addEventListener("DOMContentLoaded", renderShop);
 </script>
 
 </body>

@@ -308,23 +308,25 @@
   font-weight: bold;
   letter-spacing: 1px;
 }
-    #cartIcon {
+#cartIcon {
   position: fixed;
   bottom: 20px;
   left: 20px;
   background: black;
   border: 1px solid white;
-  padding: 10px 14px;
+  padding: 14px 18px;
   border-radius: 50px;
   cursor: pointer;
   z-index: 10000;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  font-size: 20px;
 }
 
 #cartIcon span {
   font-weight: bold;
+  font-size: 16px;
 }
   </style>
 </head>
@@ -430,7 +432,7 @@
       <p>24x36 inches</p>
       <p>€250 + SHIPPING + VAT</p>
 
-       <button onclick="addToCart('Sunset Dream', 250)">
+       <button onclick="addToCart('Sunset Dream', 250, 'images/art1.jpg')">
     Buy Now
   </button>
     </div>
@@ -443,7 +445,7 @@
       <p>18x24 inches</p>
       <p>€180 + SHIPPING + VAT</p>
 
-      <button onclick="addToCart('Inner Thoughts', 180)">
+      <button onclick="addToCart('Inner Thoughts', 180, 'images/art2.jpg')">
     Buy Now
   </button>
     </div>
@@ -537,13 +539,29 @@
   }
   let cart = [];
 
-function addToCart(name, price) {
-  cart.push({ name, price });
+function addToCart(name, price, img) {
+  cart.push({ name, price, img });
 
-  // update cart counter
   document.getElementById("cartCount").innerText = cart.length;
 
-  alert(name + " added to cart");
+  // small visual feedback (no alert)
+  const cartIcon = document.getElementById("cartIcon");
+
+  const preview = document.createElement("img");
+  preview.src = img;
+  preview.style.width = "30px";
+  preview.style.height = "30px";
+  preview.style.objectFit = "cover";
+  preview.style.borderRadius = "4px";
+
+  cartIcon.appendChild(preview);
+
+  // optional: fade out preview after a short time
+  setTimeout(() => {
+    preview.style.transition = "0.5s";
+    preview.style.opacity = "0";
+    setTimeout(() => preview.remove(), 500);
+  }, 1000);
 }
 </script>
 

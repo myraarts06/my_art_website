@@ -277,20 +277,20 @@
   cursor: pointer;
 }
     .shop-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 40px;
   margin-top: 40px;
+  justify-items: center;
 }
 
 .shop-item {
-  width: 250px; /* same as portfolio image size */
+  width: 220px;
   text-align: center;
 }
 
 .shop-item img {
-  width: 250px;
+  width: 100%;
   border-radius: 10px;
   transition: 0.3s;
 }

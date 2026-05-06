@@ -330,11 +330,7 @@
 }
   </style>
 </head>
-    
-</div>
-<body>
-
-  <div id="cartPanel" style="
+   <div id="cartPanel" style="
   position: fixed;
   right: -320px;
   top: 0;
@@ -351,7 +347,11 @@
   <div id="cartItems"></div>
   <hr style="margin:15px 0;">
   <p id="cartTotal">Total: €0</p>
+     <button onclick="closeCart()" style="margin-bottom:10px;">
+  Close
+</button>
 </div>
+<body>
 
 <!-- ENTRY SCREEN -->
 <div id="entryScreen">
@@ -645,10 +645,10 @@ img.style.top = cartRect.top + "px";
   setTimeout(() => img.remove(), 900);
 }
   function updateCartVisibility(pageId) {
-  const cart = document.getElementById("cartIcon");
+    const cartIcon = document.getElementById("cartIcon");
 
   if (pageId === "payment") {
-    cart.style.display = "flex";
+    cartIcon.style.display = "flex";
   } else {
     cart.style.display = "none";
   }

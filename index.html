@@ -199,15 +199,18 @@
 
     /* ===== MODAL (NEW SPA VIEW) ===== */
     #paintingModal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 100000;
-    }
-
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999999; /* increase this */
+}
+.page {
+  position: relative;
+  z-index: 1;
+}
     .modal-content {
       background: #111;
       padding: 30px;
@@ -477,17 +480,6 @@
       Buy Now
     </button>
   </div>
-
-</div>
-<!-- ===== MODAL (NEW SPA) ===== -->
-<div id="paintingModal">
-  <div class="close-btn" onclick="closePainting()">×</div>
-
-  <div class="modal-content">
-    <img id="modalImg">
-    <h2 id="modalTitle"></h2>
-  </div>
-</div>
   
 <script>
   const music = document.getElementById("bgMusic");
@@ -657,6 +649,16 @@ img.style.top = cartRect.top + "px";
   document.getElementById("cartPanel").style.right = "-320px";
 }
 </script>
+</div>
+<!-- ===== MODAL (NEW SPA) ===== -->
+<div id="paintingModal">
+  <div class="close-btn" onclick="closePainting()">×</div>
 
+  <div class="modal-content">
+    <img id="modalImg">
+    <h2 id="modalTitle"></h2>
+  </div>
+</div>
+  
 </body>
 </html>

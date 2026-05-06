@@ -211,14 +211,14 @@
 
     /* ===== MODAL (NEW SPA VIEW) ===== */
     #paintingModal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 100000;
-    }
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+}
 
     .modal-content {
       background: #111;
@@ -530,9 +530,13 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-function openPage(id) {
+  function openPage(id) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+
+  // CLOSE modal when switching pages
+  closePainting();
+
   updateCartVisibility(id);
 }
 
@@ -540,12 +544,21 @@ function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
-
 function openPainting(title, img) {
+  // ALWAYS switch to portfolio page
+  openPage('portfolio');
+
+  // Make sure Paintings tab is active
+  showPortfolio('paint');
+
+  // Set modal content
   document.getElementById("modalTitle").innerText = title;
   document.getElementById("modalImg").src = img;
+
+  // Show modal
   document.getElementById("paintingModal").style.display = "flex";
 }
+
 function closePainting() {
   document.getElementById("paintingModal").style.display = "none";
 }

@@ -15,18 +15,28 @@
       overflow-x: hidden;
     }
 
-    /* ===== ENTRY ===== */
+    /* ===== ENTRY SCREEN ===== */
     #entryScreen {
       position: fixed;
       inset: 0;
       background: black;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       z-index: 99999;
       cursor: pointer;
       text-align: center;
+    }
+
+    #entryScreen h1 {
+      font-size: 26px;
+      color: silver;
+      letter-spacing: 3px;
+    }
+
+    #entryScreen p {
+      opacity: 0.6;
     }
 
     /* ===== PAGE SYSTEM ===== */
@@ -35,18 +45,76 @@
       padding: 40px;
       min-height: 100vh;
       text-align: center;
-      position: relative;
     }
 
     .page.active {
       display: block;
     }
 
+    /* ===== TITLE ===== */
     .title {
       font-size: 60px;
       letter-spacing: 8px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
       color: silver;
       margin-top: 80px;
+      position: relative;
+    }
+
+    /* ===== ONLY HOME ANIMATION ===== */
+    #home .letter {
+      opacity: 0;
+      transform: translateY(-200px);
+    }
+
+    #home .drop {
+      animation: drop 0.8s forwards;
+    }
+
+    @keyframes drop {
+      0% {
+        opacity: 0;
+        transform: translateY(-200px);
+      }
+      70% {
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #home .title::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+      transform: skewX(-25deg);
+      animation: lightSweep 2s ease forwards;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes lightSweep {
+      0% { left: -100%; }
+      100% { left: 150%; }
+    }
+
+    /* ===== SOCIAL ===== */
+    .social {
+      margin-top: 100px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .social a:hover {
+      transform: scale(1.2);
     }
 
     /* ===== MENU ===== */
@@ -54,12 +122,12 @@
       position: fixed;
       top: 20px;
       right: 20px;
-      z-index: 10000;
+      width: 35px;
       cursor: pointer;
+      z-index: 10000;
     }
 
     .bar {
-      width: 35px;
       height: 4px;
       background: white;
       margin: 6px 0;
@@ -68,12 +136,12 @@
     .sidepanel {
       position: fixed;
       top: 0;
-      right: -260px;
+      right: -300px;
       width: 250px;
       height: 100vh;
       background: #111;
       padding-top: 80px;
-      transition: 0.3s;
+      transition: 0.4s;
       z-index: 9999;
     }
 
@@ -91,13 +159,39 @@
       cursor: pointer;
     }
 
+    .sidepanel button:hover {
+      background: #222;
+    }
+
     /* ===== PORTFOLIO ===== */
+    .portfolio-options {
+      margin-top: 40px;
+    }
+
+    .portfolio-btn {
+      padding: 10px 20px;
+      border: 1px solid white;
+      background: none;
+      color: white;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .portfolio-content {
+      display: none;
+      margin-top: 40px;
+    }
+
+    .portfolio-content.active {
+      display: block;
+    }
+
     .product-grid {
       display: flex;
       gap: 30px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
     .product img {
@@ -111,7 +205,7 @@
       transform: scale(1.05);
     }
 
-    /* ===== MODAL (FIXED) ===== */
+    /* ===== MODAL (NEW SPA VIEW) ===== */
     #paintingModal {
       position: fixed;
       inset: 0;
@@ -119,7 +213,7 @@
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 999999999;
+      z-index: 100000;
     }
 
     .modal-content {
@@ -128,88 +222,268 @@
       border-radius: 12px;
       max-width: 500px;
       text-align: center;
-      position: relative;
     }
 
     .modal-content img {
       width: 100%;
       border-radius: 10px;
+      margin-bottom: 15px;
     }
 
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 15px;
+      top: 20px;
+      right: 30px;
       font-size: 30px;
       cursor: pointer;
+      color: white;
+    }
+
+    /* ===== MUSIC BUTTON ===== */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 14px;
+      border: 1px solid white;
+      background: black;
+      color: white;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    /* ===== CONTACT FORM ===== */
+    .contact-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 70vh;
+    }
+
+    .contact-form {
+      width: 90%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 12px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      outline: none;
+    }
+
+    .contact-form button {
+      padding: 12px;
+      border: 1px solid white;
+      background: white;
+      color: black;
+      cursor: pointer;
+    }
+
+    .shop-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+      justify-items: center;
+    }
+
+    .shop-item {
+      width: 220px;
+      text-align: center;
+    }
+
+    .shop-item img {
+      width: 100%;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .shop-item img:hover {
+      transform: scale(1.05);
+    }
+
+    .shop-item .desc {
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #ccc;
+    }
+
+    .shop-item p:last-of-type {
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    #cartIcon {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: black;
+      border: 1px solid white;
+      padding: 14px 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+    }
+
+    #cartIcon span {
+      font-weight: bold;
+      font-size: 16px;
     }
   </style>
 </head>
-
 <body>
 
-<!-- ENTRY -->
-<div id="entryScreen" onclick="startSite()">
+<!-- ENTRY SCREEN -->
+<div id="entryScreen">
   <h1>MYRA ARTS</h1>
   <p>Click to enter ✨</p>
 </div>
 
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">Music ON</button>
+
 <!-- MENU -->
 <div class="hamburger" onclick="toggleMenu()">
-  <div class="bar"></div>
-  <div class="bar"></div>
-  <div class="bar"></div>
+  <div class="bar"></div><div class="bar"></div><div class="bar"></div>
 </div>
 
 <div id="menu" class="sidepanel">
   <button onclick="openPage('home')">Home</button>
   <button onclick="openPage('portfolio')">Portfolio</button>
-  <button onclick="openPage('shop')">Shop</button>
+  <button onclick="openPage('about')">About Me</button>
+  <button onclick="openPage('contact')">Contact</button>
+  <button onclick="openPage('payment')">Shop</button>
 </div>
 
 <!-- HOME -->
 <div id="home" class="page active">
-  <div class="title">MYRA ARTS</div>
+  <div class="title" data-text="MYRA ARTS"></div>
+  <div class="social">
+    <a href="https://www.instagram.com/myraarts06/" target="_blank">
+      <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
+    </a>
+  </div>
 </div>
 
 <!-- PORTFOLIO -->
 <div id="portfolio" class="page">
   <div class="title">PORTFOLIO</div>
 
-  <div class="product-grid">
-    <div class="product">
-      <img src="images/art1.jpg" onclick="openPainting('Sunset Dream','images/art1.jpg')">
-    </div>
+  <div class="portfolio-options">
+    <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
+    <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
+  </div>
 
-    <div class="product">
-      <img src="images/art2.jpg" onclick="openPainting('Inner Thoughts','images/art2.jpg')">
+  <div id="photo" class="portfolio-content">
+    <p>Photography coming soon...</p>
+  </div>
+
+  <div id="paint" class="portfolio-content">
+    <div class="product-grid">
+      <div class="product">
+        <img src="images/art1.jpg" onclick="openPainting('Sunset Dream', 'images/art1.jpg')">
+      </div>
+      <div class="product">
+        <img src="images/art2.jpg" onclick="openPainting('Inner Thoughts', 'images/art2.jpg')">
+      </div>
     </div>
   </div>
 </div>
 
-<!-- SHOP -->
-<div id="shop" class="page">
+<!-- ABOUT -->
+<div id="about" class="page">
+  <div class="title">ABOUT ME</div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="page">
+  <div class="title">CONTACT</div>
+
+  <div class="contact-container">
+    <form class="contact-form" action="https://formspree.io/f/xqewvnrq" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+
+<!-- PAYMENT -->
+<div id="payment" class="page">
   <div class="title">SHOP</div>
-
-  <div class="product-grid">
-    <div class="product">
-      <img src="images/art1.jpg" onclick="openPainting('Sunset Dream','images/art1.jpg')">
-    </div>
-  </div>
+  <div class="product-grid" id="shopGrid"></div>
 </div>
 
-<!-- MODAL (ONLY ONE — GLOBAL) -->
-<div id="paintingModal" onclick="closePainting(event)">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <div class="close-btn" onclick="closePainting()">×</div>
+<!-- CART ICON -->
+<div id="cartIcon" onclick="openCart()">
+  🛒 <span id="cartCount">0</span>
+</div>
+
+<!-- MODAL -->
+<div id="paintingModal">
+  <div class="close-btn" onclick="closePainting()">×</div>
+  <div class="modal-content">
     <img id="modalImg">
     <h2 id="modalTitle"></h2>
   </div>
 </div>
 
 <script>
-function startSite() {
+const music = document.getElementById("bgMusic");
+let musicOn = true;
+
+document.getElementById("entryScreen").addEventListener("click", async () => {
   document.getElementById("entryScreen").style.display = "none";
+  music.volume = 0;
+  music.play();
+  let v = 0;
+  const fade = setInterval(() => {
+    if (v < 0.4) {
+      v += 0.05;
+      music.volume = v;
+    } else clearInterval(fade);
+  }, 150);
+  startHomeAnimation();
+});
+
+function startHomeAnimation() {
+  const title = document.querySelector("#home .title");
+  const text = title.getAttribute("data-text");
+  title.innerHTML = "";
+
+  text.split("").forEach((char, i) => {
+    const span = document.createElement("span");
+    span.classList.add("letter");
+    span.innerHTML = char === " " ? "&nbsp;" : char;
+    setTimeout(() => span.classList.add("drop"), i * 120);
+    title.appendChild(span);
+  });
+}
+
+function toggleMusic() {
+  if (musicOn) {
+    music.pause();
+    musicBtn.innerText = "Music OFF";
+  } else {
+    music.play();
+    musicBtn.innerText = "Music ON";
+  }
+  musicOn = !musicOn;
 }
 
 function toggleMenu() {
@@ -221,17 +495,52 @@ function openPage(id) {
   document.getElementById(id).classList.add("active");
 }
 
-/* ===== FIXED MODAL FUNCTION ===== */
+function showPortfolio(id) {
+  document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
 function openPainting(title, img) {
   document.getElementById("modalTitle").innerText = title;
   document.getElementById("modalImg").src = img;
   document.getElementById("paintingModal").style.display = "flex";
 }
 
-function closePainting(e) {
-  if (e) e.stopPropagation();
+function closePainting() {
   document.getElementById("paintingModal").style.display = "none";
 }
+
+let cart = [];
+
+function addToCart(name, price, img) {
+  cart.push({ name, price, img });
+  document.getElementById("cartCount").innerText = cart.length;
+
+  const cartIcon = document.getElementById("cartIcon");
+  const preview = document.createElement("img");
+  preview.src = img;
+  preview.style.width = "30px";
+  preview.style.height = "30px";
+  preview.style.objectFit = "cover";
+  preview.style.borderRadius = "4px";
+  cartIcon.appendChild(preview);
+
+  setTimeout(() => {
+    preview.style.transition = "0.5s";
+    preview.style.opacity = "0";
+    setTimeout(() => preview.remove(), 500);
+  }, 1000);
+}
+
+const products = [
+  { id: 1, title: "Sunset Dream", price: 250, size: "24x36 inches", image: "images/art1.jpg" },
+  { id: 2, title: "Inner Thoughts", price: 180, size: "18x24 inches", image: "images/art2.jpg" }
+];
+
+const shopProducts = [
+  { id: 1, title: "Sunset Dream", price: 250, size: "24x36 inches", image: "images/art1.jpg" },
+  { id: 2, title: "Inner Thoughts", price: 180, size: "18x24 inches", image: "images/art2.jpg" }
+];
 </script>
 
 </body>

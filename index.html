@@ -323,7 +323,14 @@
   gap: 10px;
   font-size: 20px;
 }
+#cartIcon {
+  display: none;
+}
 
+#payment.active #cartIcon {
+  display: flex;
+}
+    
 #cartIcon span {
   font-weight: bold;
   font-size: 16px;
@@ -352,13 +359,6 @@
 
   <p id="cartTotal">Total: €0</p>
     
-    #cartIcon {
-  display: none;
-}
-
-#payment.active #cartIcon {
-  display: flex;
-}
 </div>
 <body>
 

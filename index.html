@@ -411,12 +411,12 @@
 
       <div class="product">
         <img src="images/art1.jpg"
-          onclick="openPainting('Sunset Dream', 'images/art1.jpg')">
+        onclick="openPainting(event, 'Sunset Dream', 'images/art1.jpg')"
       </div>
 
       <div class="product">
         <img src="images/art2.jpg"
-          onclick="openPainting('Inner Thoughts', 'images/art2.jpg')">
+onclick="openPainting(event, 'Inner Thoughts', 'images/art2.jpg')"
       </div>
 
     </div>
@@ -555,8 +555,8 @@
   }
 
   // ===== NEW SPA PAINTING VIEW =====
-  function openPainting(title, img) {
-  event?.stopPropagation(); // prevents weird bubbling issues
+  function openPainting(e, title, img) {
+  if (e) e.stopPropagation();
 
   document.getElementById("modalTitle").innerText = title;
   document.getElementById("modalImg").src = img;

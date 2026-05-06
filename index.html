@@ -1,1 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Myra Arts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ===== ENTRY ===== */
+    #entryScreen {
+      position: fixed;
+      inset: 0;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 99999;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    /* ===== PAGE SYSTEM ===== */
+    .page {
+      display: none;
+      padding: 40px;
+      min-height: 100vh;
+      text-align: center;
+      position: relative;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .title {
+      font-size: 60px;
+      letter-spacing: 8px;
+      color: silver;
+      margin-top: 80px;
+    }
+
+    /* ===== MENU ===== */
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      cursor: pointer;
+    }
+
+    .bar {
+      width: 35px;
+      height: 4px;
+      background: white;
+      margin: 6px 0;
+    }
+
+    .sidepanel {
+      position: fixed;
+      top: 0;
+      right: -260px;
+      width: 250px;
+      height: 100vh;
+      background: #111;
+      padding-top: 80px;
+      transition: 0.3s;
+      z-index: 9999;
+    }
+
+    .sidepanel.open {
+      right: 0;
+    }
+
+    .sidepanel button {
+      width: 100%;
+      padding: 20px;
+      background: none;
+      border: none;
+      color: white;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    /* ===== PORTFOLIO ===== */
+    .product-grid {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .product img {
+      width: 250px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .product img:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===== MODAL (FIXED) ===== */
+    #paintingModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999999999;
+    }
+
+    .modal-content {
+      background: #111;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ENTRY -->
+<div id="entryScreen" onclick="startSite()">
+  <h1>MYRA ARTS</h1>
+  <p>Click to enter ✨</p>
+</div>
+
+<!-- MENU -->
+<div class="hamburger" onclick="toggleMenu()">
+  <div class="bar"></div>
+  <div class="bar"></div>
+  <div class="bar"></div>
+</div>
+
+<div id="menu" class="sidepanel">
+  <button onclick="openPage('home')">Home</button>
+  <button onclick="openPage('portfolio')">Portfolio</button>
+  <button onclick="openPage('shop')">Shop</button>
+</div>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="title">MYRA ARTS</div>
+</div>
+
+<!-- PORTFOLIO -->
+<div id="portfolio" class="page">
+  <div class="title">PORTFOLIO</div>
+
+  <div class="product-grid">
+    <div class="product">
+      <img src="images/art1.jpg" onclick="openPainting('Sunset Dream','images/art1.jpg')">
+    </div>
+
+    <div class="product">
+      <img src="images/art2.jpg" onclick="openPainting('Inner Thoughts','images/art2.jpg')">
+    </div>
+  </div>
+</div>
+
+<!-- SHOP -->
+<div id="shop" class="page">
+  <div class="title">SHOP</div>
+
+  <div class="product-grid">
+    <div class="product">
+      <img src="images/art1.jpg" onclick="openPainting('Sunset Dream','images/art1.jpg')">
+    </div>
+  </div>
+</div>
+
+<!-- MODAL (ONLY ONE — GLOBAL) -->
+<div id="paintingModal" onclick="closePainting(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <div class="close-btn" onclick="closePainting()">×</div>
+    <img id="modalImg">
+    <h2 id="modalTitle"></h2>
+  </div>
+</div>
+
+<script>
+function startSite() {
+  document.getElementById("entryScreen").style.display = "none";
+}
+
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("open");
+}
+
+function openPage(id) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+/* ===== FIXED MODAL FUNCTION ===== */
+function openPainting(title, img) {
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalImg").src = img;
+  document.getElementById("paintingModal").style.display = "flex";
+}
+
+function closePainting(e) {
+  if (e) e.stopPropagation();
+  document.getElementById("paintingModal").style.display = "none";
+}
+</script>
+
+</body>
+</html>

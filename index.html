@@ -276,6 +276,34 @@
   color: black;
   cursor: pointer;
 }
+    .shop-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.shop-item {
+  width: 250px; /* same as portfolio image size */
+  text-align: center;
+}
+
+.shop-item img {
+  width: 250px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.shop-item img:hover {
+  transform: scale(1.05);
+}
+
+.shop-item .desc {
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #ccc;
+}
   </style>
 </head>
 
@@ -369,6 +397,28 @@
 <!-- PAYMENT -->
 <div id="payment" class="page">
   <div class="title">SHOP</div>
+
+  <div class="shop-list">
+
+    <!-- PRODUCT 1 -->
+    <div class="shop-item">
+      <img src="images/art1.jpg">
+      <h2>Sunset Dream</h2>
+      <p class="desc">PRINT ONLY</p>
+      <p>24x36 inches</p>
+      <p>€250</p>
+    </div>
+
+    <!-- PRODUCT 2 -->
+    <div class="shop-item">
+      <img src="images/art2.jpg">
+      <h2>Inner Thoughts</h2>
+      <p class="desc">PRINT ONLY</p>
+      <p>18x24 inches</p>
+      <p>€180</p>
+    </div>
+
+  </div>
 </div>
 
 <!-- ===== MODAL (NEW SPA) ===== -->

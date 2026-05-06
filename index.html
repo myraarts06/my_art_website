@@ -351,6 +351,14 @@
   <hr style="margin:15px 0;">
 
   <p id="cartTotal">Total: €0</p>
+    
+    #cartIcon {
+  display: none;
+}
+
+#payment.active #cartIcon {
+  display: flex;
+}
 </div>
 <body>
 
@@ -440,11 +448,16 @@
 </div>
   
   <!-- PAYMENT -->
+<div id="payment" class="page">
+
   <div class="title">SHOP</div>
-<div id="cartIcon" onclick="openCart()">
-  🛒 <span id="cartCount">0</span>
-</div>
-<div class="shop-list">
+
+  <!-- CART ICON (ONLY SHOP PAGE) -->
+  <div id="cartIcon" onclick="openCart()">
+    🛒 <span id="cartCount">0</span>
+  </div>
+
+  <div class="shop-list">
 
   <!-- PRODUCT 1 -->
   <div class="shop-item">
@@ -625,12 +638,12 @@ function openCart() {
   img.style.transition = "0.8s ease";
 
   document.body.appendChild(img);
-
-  const cart = document.getElementById("cartIcon").getBoundingClientRect();
+    
+    const cartRect = document.getElementById("cartIcon").getBoundingClientRect();
 
   setTimeout(() => {
-    img.style.left = cart.left + "px";
-    img.style.top = cart.top + "px";
+    img.style.left = cartRect.left + "px";
+img.style.top = cartRect.top + "px";
     img.style.width = "20px";
     img.style.height = "20px";
     img.style.opacity = "0";

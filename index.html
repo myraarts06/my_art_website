@@ -546,11 +546,10 @@ function openPainting(title, img) {
   document.getElementById("modalImg").src = img;
   document.getElementById("paintingModal").style.display = "flex";
 }
-
 function closePainting() {
   document.getElementById("paintingModal").style.display = "none";
 }
-
+  
 let cart = [];
 
 function addToCart(name, price, img, event) {
@@ -630,7 +629,7 @@ function updateCartVisibility(pageId) {
   if (pageId === "payment") {
     cartIcon.style.display = "flex";
   } else {
-    cart.style.display = "none";
+    cartIcon.style.display = "none";
   }
 }
 

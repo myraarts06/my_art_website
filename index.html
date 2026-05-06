@@ -381,20 +381,6 @@
     <p id="modalDesc"></p>
     <p id="modalSize"></p>
     <h3 id="modalPrice"></h3>
-
-    <!-- 👇 SHIPPING SECTION -->
-    <h4>Shipping</h4>
-
-    <select id="shippingCountry">
-      <option value="">Select Country</option>
-      <option value="DE">Germany</option>
-      <option value="EU">EU</option>
-      <option value="INT">International</option>
-    </select>
-
-    <button onclick="calculateShipping()">Calculate Shipping</button>
-
-    <p id="shippingResult"></p>
   </div>
 </div>
   
@@ -471,23 +457,6 @@
   function closePainting() {
     document.getElementById("paintingModal").style.display = "none";
   }
-  function calculateShipping() {
-  const country = document.getElementById("shippingCountry").value;
-  let cost = 0;
-
-  if (!country) {
-    document.getElementById("shippingResult").innerText =
-      "Please select a country";
-    return;
-  }
-
-  if (country === "DE") cost = 10;
-  else if (country === "EU") cost = 25;
-  else cost = 60;
-
-  document.getElementById("shippingResult").innerText =
-    "Shipping cost: €" + cost;
-}
 </script>
 
 </body>

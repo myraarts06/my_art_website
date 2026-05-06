@@ -346,7 +346,8 @@
   </style>
 </head>
 
-<div id="cartPanel" style="
+<body>
+  <div id="cartPanel" style="
   position: fixed;
   right: -320px;
   top: 0;
@@ -365,8 +366,6 @@
   <p id="cartTotal">Total: €0</p>
   <button onclick="closeCart()" style="margin-bottom:10px;"> Close </button>
 </div>
-
-<body>
 
 <!-- ENTRY SCREEN -->
 <div id="entryScreen">
@@ -651,6 +650,8 @@ function updateCartVisibility(pageId) {
 function closeCart() {
   document.getElementById("cartPanel").style.right = "-320px";
 }
+  </script>
+  
    <!-- MODAL -->
   <div id="paintingModal">
     <div class="close-btn" onclick="closePainting()">×</div>
@@ -659,7 +660,6 @@ function closeCart() {
       <h2 id="modalTitle"></h2>
     </div>
   </div>
-</script>
 
 </body>
 </html>

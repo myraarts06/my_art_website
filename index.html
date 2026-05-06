@@ -308,22 +308,6 @@
   font-weight: bold;
   letter-spacing: 1px;
 }
-#cartIcon {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  background: black;
-  border: 1px solid white;
-  padding: 14px 18px;
-  border-radius: 50px;
-  cursor: pointer;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 20px;
-}
-
     #cartIcon {
   position: fixed;
   bottom: 20px;
@@ -346,19 +330,11 @@
 }
   </style>
 </head>
-  
-  <h2>Cart</h2>
-
-  <div id="cartItems"></div>
-
-  <hr style="margin:15px 0;">
-
-  <p id="cartTotal">Total: €0</p>
     
 </div>
 <body>
 
-   <div id="cartPanel" style="
+  <div id="cartPanel" style="
   position: fixed;
   right: -320px;
   top: 0;
@@ -371,6 +347,11 @@
   z-index: 99999;
   overflow-y: auto;
 ">
+  <h2>Cart</h2>
+  <div id="cartItems"></div>
+  <hr style="margin:15px 0;">
+  <p id="cartTotal">Total: €0</p>
+</div>
 
 <!-- ENTRY SCREEN -->
 <div id="entryScreen">

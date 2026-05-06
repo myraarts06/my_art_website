@@ -308,6 +308,24 @@
   font-weight: bold;
   letter-spacing: 1px;
 }
+    #cartIcon {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: black;
+  border: 1px solid white;
+  padding: 10px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#cartIcon span {
+  font-weight: bold;
+}
   </style>
 </head>
 
@@ -430,6 +448,10 @@
   </button>
     </div>
 
+    <div id="cartIcon" onclick="openCart()">
+  🛒 <span id="cartCount">0</span>
+</div>
+
   </div>
 </div>
 
@@ -517,8 +539,11 @@
 
 function addToCart(name, price) {
   cart.push({ name, price });
+
+  // update cart counter
+  document.getElementById("cartCount").innerText = cart.length;
+
   alert(name + " added to cart");
-  console.log(cart);
 }
 </script>
 

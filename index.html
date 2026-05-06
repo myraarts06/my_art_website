@@ -534,9 +534,11 @@ function toggleMenu() {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
-  // CLOSE modal when switching pages
-  closePainting();
+  if (id === "portfolio") {
+    showPortfolio("paint"); // auto show paintings
+  }
 
+  closePainting();
   updateCartVisibility(id);
 }
 
@@ -545,20 +547,20 @@ function showPortfolio(id) {
   document.getElementById(id).classList.add("active");
 }
 function openPainting(title, img) {
-  // ALWAYS switch to portfolio page
-  openPage('portfolio');
+  const modal = document.getElementById("paintingModal");
+  const modalImg = document.getElementById("modalImg");
+  const modalTitle = document.getElementById("modalTitle");
 
-  // Make sure Paintings tab is active
-  showPortfolio('paint');
+  if (!modal || !modalImg || !modalTitle) {
+    console.error("Modal elements not found!");
+    return;
+  }
 
-  // Set modal content
-  document.getElementById("modalTitle").innerText = title;
-  document.getElementById("modalImg").src = img;
+  modalImg.src = img;
+  modalTitle.innerText = title;
 
-  // Show modal
-  document.getElementById("paintingModal").style.display = "flex";
+  modal.style.display = "flex";
 }
-
 function closePainting() {
   document.getElementById("paintingModal").style.display = "none";
 }
@@ -649,9 +651,7 @@ function updateCartVisibility(pageId) {
 function closeCart() {
   document.getElementById("cartPanel").style.right = "-320px";
 }
-</script>
-
-  <!-- MODAL -->
+   <!-- MODAL -->
   <div id="paintingModal">
     <div class="close-btn" onclick="closePainting()">×</div>
     <div class="modal-content">
@@ -659,5 +659,7 @@ function closeCart() {
       <h2 id="modalTitle"></h2>
     </div>
   </div>
+</script>
+
 </body>
 </html>

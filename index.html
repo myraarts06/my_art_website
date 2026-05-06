@@ -644,13 +644,13 @@ img.style.top = cartRect.top + "px";
 
   setTimeout(() => img.remove(), 900);
 }
-  function updateCartVisibility(pageId) {
-    const cartIcon = document.getElementById("cartIcon");
+ function updateCartVisibility(pageId) {
+  const cartIcon = document.getElementById("cartIcon");
 
   if (pageId === "payment") {
     cartIcon.style.display = "flex";
   } else {
-    cart.style.display = "none";
+    cartIcon.style.display = "none";
   }
 }
   function closeCart() {

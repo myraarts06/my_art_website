@@ -545,7 +545,9 @@ function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
-function openPainting(title, img) {
+  function openPainting(title, img) {
+  console.log("Clicked:", title); // 👈 ADD THIS
+
   const modal = document.getElementById("paintingModal");
   const modalImg = document.getElementById("modalImg");
   const modalTitle = document.getElementById("modalTitle");

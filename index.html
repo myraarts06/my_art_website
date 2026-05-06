@@ -102,8 +102,12 @@
     }
 
     @keyframes lightSweep {
-      0% { left: -100%; }
-      100% { left: 150%; }
+      0% {
+        left: -100%;
+      }
+      100% {
+        left: 150%;
+      }
     }
 
     /* ===== SOCIAL ===== */
@@ -329,7 +333,7 @@
       border-radius: 50px;
       cursor: pointer;
       z-index: 10000;
-      display: flex;
+      display: none;
       align-items: center;
       gap: 10px;
       font-size: 20px;
@@ -341,6 +345,27 @@
     }
   </style>
 </head>
+
+<div id="cartPanel" style="
+  position: fixed;
+  right: -320px;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  background: #111;
+  color: white;
+  padding: 20px;
+  transition: 0.3s;
+  z-index: 99999;
+  overflow-y: auto;
+">
+  <h2>Cart</h2>
+  <div id="cartItems"></div>
+  <hr style="margin:15px 0;">
+  <p id="cartTotal">Total: €0</p>
+  <button onclick="closeCart()" style="margin-bottom:10px;"> Close </button>
+</div>
+
 <body>
 
 <!-- ENTRY SCREEN -->
@@ -397,6 +422,7 @@
       <div class="product">
         <img src="images/art1.jpg" onclick="openPainting('Sunset Dream', 'images/art1.jpg')">
       </div>
+
       <div class="product">
         <img src="images/art2.jpg" onclick="openPainting('Inner Thoughts', 'images/art2.jpg')">
       </div>
@@ -426,31 +452,53 @@
 <!-- PAYMENT -->
 <div id="payment" class="page">
   <div class="title">SHOP</div>
-  <div class="product-grid" id="shopGrid"></div>
-</div>
 
-<!-- CART ICON -->
-<div id="cartIcon" onclick="openCart()">
-  🛒 <span id="cartCount">0</span>
-</div>
-
-<!-- MODAL -->
-<div id="paintingModal">
-  <div class="close-btn" onclick="closePainting()">×</div>
-  <div class="modal-content">
-    <img id="modalImg">
-    <h2 id="modalTitle"></h2>
+  <!-- CART ICON -->
+  <div id="cartIcon" onclick="openCart()">
+    🛒 <span id="cartCount">0</span>
   </div>
-</div>
+
+  <div class="shop-list">
+
+    <div class="shop-item">
+      <img src="images/art1.jpg">
+      <h2>Sunset Dream</h2>
+      <p class="desc">PRINT ONLY</p>
+      <p>24x36 inches</p>
+      <p>€250 + SHIPPING + VAT</p>
+      <button onclick="addToCart('Sunset Dream', 250, 'images/art1.jpg', event)">Buy Now</button>
+    </div>
+
+    <div class="shop-item">
+      <img src="images/art2.jpg">
+      <h2>Inner Thoughts</h2>
+      <p class="desc">PRINT ONLY</p>
+      <p>18x24 inches</p>
+      <p>€180 + SHIPPING + VAT</p>
+      <button onclick="addToCart('Inner Thoughts', 180, 'images/art2.jpg', event)">Buy Now</button>
+    </div>
+
+  </div>
+
+  <!-- MODAL -->
+  <div id="paintingModal">
+    <div class="close-btn" onclick="closePainting()">×</div>
+    <div class="modal-content">
+      <img id="modalImg">
+      <h2 id="modalTitle"></h2>
+    </div>
+  </div>
 
 <script>
 const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
 let musicOn = true;
 
 document.getElementById("entryScreen").addEventListener("click", async () => {
   document.getElementById("entryScreen").style.display = "none";
   music.volume = 0;
   music.play();
+
   let v = 0;
   const fade = setInterval(() => {
     if (v < 0.4) {
@@ -458,12 +506,14 @@ document.getElementById("entryScreen").addEventListener("click", async () => {
       music.volume = v;
     } else clearInterval(fade);
   }, 150);
+
   startHomeAnimation();
 });
 
 function startHomeAnimation() {
   const title = document.querySelector("#home .title");
   const text = title.getAttribute("data-text");
+
   title.innerHTML = "";
 
   text.split("").forEach((char, i) => {
@@ -493,6 +543,7 @@ function toggleMenu() {
 function openPage(id) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+  updateCartVisibility(id);
 }
 
 function showPortfolio(id) {
@@ -512,35 +563,90 @@ function closePainting() {
 
 let cart = [];
 
-function addToCart(name, price, img) {
+function addToCart(name, price, img, event) {
   cart.push({ name, price, img });
   document.getElementById("cartCount").innerText = cart.length;
-
-  const cartIcon = document.getElementById("cartIcon");
-  const preview = document.createElement("img");
-  preview.src = img;
-  preview.style.width = "30px";
-  preview.style.height = "30px";
-  preview.style.objectFit = "cover";
-  preview.style.borderRadius = "4px";
-  cartIcon.appendChild(preview);
-
-  setTimeout(() => {
-    preview.style.transition = "0.5s";
-    preview.style.opacity = "0";
-    setTimeout(() => preview.remove(), 500);
-  }, 1000);
+  renderCart();
+  flyToCart(img, event);
 }
 
-const products = [
-  { id: 1, title: "Sunset Dream", price: 250, size: "24x36 inches", image: "images/art1.jpg" },
-  { id: 2, title: "Inner Thoughts", price: 180, size: "18x24 inches", image: "images/art2.jpg" }
-];
+function openCart() {
+  document.getElementById("cartPanel").style.right = "0";
+  renderCart();
+}
 
-const shopProducts = [
-  { id: 1, title: "Sunset Dream", price: 250, size: "24x36 inches", image: "images/art1.jpg" },
-  { id: 2, title: "Inner Thoughts", price: 180, size: "18x24 inches", image: "images/art2.jpg" }
-];
+function renderCart() {
+  const container = document.getElementById("cartItems");
+  container.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    container.innerHTML += `
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+        <img src="${item.img}" style="width:40px;height:40px;object-fit:cover;border-radius:5px;">
+        <div style="flex:1">
+          <p style="margin:0;font-size:14px;">${item.name}</p>
+          <p style="margin:0;font-size:12px;color:gray;">€${item.price}</p>
+        </div>
+        <button onclick="removeFromCart(${index})" style="background:red;color:white;border:none;cursor:pointer;padding:4px 8px;">X</button>
+      </div>
+    `;
+  });
+
+  document.getElementById("cartTotal").innerText = "Total: €" + total;
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  document.getElementById("cartCount").innerText = cart.length;
+  renderCart();
+}
+
+function flyToCart(imgSrc, event) {
+  const img = document.createElement("img");
+  img.src = imgSrc;
+
+  const rect = event.target.getBoundingClientRect();
+
+  img.style.position = "fixed";
+  img.style.left = rect.left + "px";
+  img.style.top = rect.top + "px";
+  img.style.width = "80px";
+  img.style.height = "80px";
+  img.style.objectFit = "cover";
+  img.style.zIndex = 99999;
+  img.style.transition = "0.8s ease";
+
+  document.body.appendChild(img);
+
+  const cartRect = document.getElementById("cartIcon").getBoundingClientRect();
+
+  setTimeout(() => {
+    img.style.left = cartRect.left + "px";
+    img.style.top = cartRect.top + "px";
+    img.style.width = "20px";
+    img.style.height = "20px";
+    img.style.opacity = "0";
+  }, 10);
+
+  setTimeout(() => img.remove(), 900);
+}
+
+function updateCartVisibility(pageId) {
+  const cartIcon = document.getElementById("cartIcon");
+
+  if (pageId === "payment") {
+    cartIcon.style.display = "flex";
+  } else {
+    cart.style.display = "none";
+  }
+}
+
+function closeCart() {
+  document.getElementById("cartPanel").style.right = "-320px";
+}
 </script>
 
 </body>

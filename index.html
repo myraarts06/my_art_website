@@ -15,6 +15,7 @@
       overflow-x: hidden;
     }
 
+    /* ===== ENTRY SCREEN ===== */
     #entryScreen {
       position: fixed;
       inset: 0;
@@ -38,6 +39,7 @@
       opacity: 0.6;
     }
 
+    /* ===== PAGE SYSTEM ===== */
     .page {
       display: none;
       padding: 40px;
@@ -49,6 +51,7 @@
       display: block;
     }
 
+    /* ===== TITLE ===== */
     .title {
       font-size: 60px;
       letter-spacing: 8px;
@@ -61,6 +64,7 @@
       position: relative;
     }
 
+    /* ===== ONLY HOME ANIMATION ===== */
     #home .letter {
       opacity: 0;
       transform: translateY(-200px);
@@ -71,22 +75,53 @@
     }
 
     @keyframes drop {
-      0% { opacity: 0; transform: translateY(-200px); }
-      70% { transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% {
+        opacity: 0;
+        transform: translateY(-200px);
+      }
+      70% {
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #home .title::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+      transform: skewX(-25deg);
+      animation: lightSweep 2s ease forwards;
+      animation-delay: 1.5s;
     }
 
     @keyframes lightSweep {
-      0% { left: -100%; }
-      100% { left: 150%; }
+      0% {
+        left: -100%;
+      }
+      100% {
+        left: 150%;
+      }
     }
 
+    /* ===== SOCIAL ===== */
     .social {
       margin-top: 100px;
       display: flex;
       justify-content: center;
     }
 
+    .social a:hover {
+      transform: scale(1.2);
+    }
+
+    /* ===== MENU ===== */
     .hamburger {
       position: fixed;
       top: 20px;
@@ -132,8 +167,28 @@
       background: #222;
     }
 
-    .portfolio-content { display: none; margin-top: 40px; }
-    .portfolio-content.active { display: block; }
+    /* ===== PORTFOLIO ===== */
+    .portfolio-options {
+      margin-top: 40px;
+    }
+
+    .portfolio-btn {
+      padding: 10px 20px;
+      border: 1px solid white;
+      background: none;
+      color: white;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .portfolio-content {
+      display: none;
+      margin-top: 40px;
+    }
+
+    .portfolio-content.active {
+      display: block;
+    }
 
     .product-grid {
       display: flex;
@@ -154,6 +209,41 @@
       transform: scale(1.05);
     }
 
+    /* ===== MODAL (NEW SPA VIEW) ===== */
+    #paintingModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 100000;
+    }
+
+    .modal-content {
+      background: #111;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+    }
+
+    /* ===== MUSIC BUTTON ===== */
     .music-btn {
       position: fixed;
       bottom: 20px;
@@ -166,6 +256,7 @@
       z-index: 10000;
     }
 
+    /* ===== CONTACT FORM ===== */
     .contact-container {
       display: flex;
       justify-content: center;
@@ -221,6 +312,17 @@
       transform: scale(1.05);
     }
 
+    .shop-item .desc {
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #ccc;
+    }
+
+    .shop-item p:last-of-type {
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
     #cartIcon {
       position: fixed;
       bottom: 20px;
@@ -237,44 +339,36 @@
       font-size: 20px;
     }
 
-    #paintingModal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 100000;
-    }
-
-    .modal-content {
-      background: #111;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 500px;
-      text-align: center;
-    }
-
-    .modal-content img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 30px;
-      cursor: pointer;
-      color: white;
+    #cartIcon span {
+      font-weight: bold;
+      font-size: 16px;
     }
   </style>
 </head>
 
+<div id="cartPanel" style="
+  position: fixed;
+  right: -320px;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  background: #111;
+  color: white;
+  padding: 20px;
+  transition: 0.3s;
+  z-index: 99999;
+  overflow-y: auto;
+">
+  <h2>Cart</h2>
+  <div id="cartItems"></div>
+  <hr style="margin:15px 0;">
+  <p id="cartTotal">Total: €0</p>
+  <button onclick="closeCart()" style="margin-bottom:10px;"> Close </button>
+</div>
+
 <body>
 
-<!-- ENTRY -->
+<!-- ENTRY SCREEN -->
 <div id="entryScreen">
   <h1>MYRA ARTS</h1>
   <p>Click to enter ✨</p>
@@ -282,10 +376,10 @@
 
 <!-- AUDIO -->
 <audio id="bgMusic" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
 </audio>
 
-<button class="music-btn" onclick="toggleMusic()">Music</button>
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">Music ON</button>
 
 <!-- MENU -->
 <div class="hamburger" onclick="toggleMenu()">
@@ -295,7 +389,7 @@
 <div id="menu" class="sidepanel">
   <button onclick="openPage('home')">Home</button>
   <button onclick="openPage('portfolio')">Portfolio</button>
-  <button onclick="openPage('about')">About</button>
+  <button onclick="openPage('about')">About Me</button>
   <button onclick="openPage('contact')">Contact</button>
   <button onclick="openPage('payment')">Shop</button>
 </div>
@@ -303,26 +397,34 @@
 <!-- HOME -->
 <div id="home" class="page active">
   <div class="title" data-text="MYRA ARTS"></div>
+  <div class="social">
+    <a href="https://www.instagram.com/myraarts06/" target="_blank">
+      <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
+    </a>
+  </div>
 </div>
 
 <!-- PORTFOLIO -->
 <div id="portfolio" class="page">
   <div class="title">PORTFOLIO</div>
 
-  <button onclick="showPortfolio('photo')">Photography</button>
-  <button onclick="showPortfolio('paint')">Paintings</button>
+  <div class="portfolio-options">
+    <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
+    <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
+  </div>
 
   <div id="photo" class="portfolio-content">
-    <p>Coming soon...</p>
+    <p>Photography coming soon...</p>
   </div>
 
   <div id="paint" class="portfolio-content">
     <div class="product-grid">
       <div class="product">
-        <img src="images/art1.jpg" onclick="openPainting('Sunset Dream','images/art1.jpg')">
+        <img src="images/art1.jpg" onclick="openPainting('Sunset Dream', 'images/art1.jpg')">
       </div>
+
       <div class="product">
-        <img src="images/art2.jpg" onclick="openPainting('Inner Thoughts','images/art2.jpg')">
+        <img src="images/art2.jpg" onclick="openPainting('Inner Thoughts', 'images/art2.jpg')">
       </div>
     </div>
   </div>
@@ -330,70 +432,220 @@
 
 <!-- ABOUT -->
 <div id="about" class="page">
-  <div class="title">ABOUT</div>
+  <div class="title">ABOUT ME</div>
 </div>
 
 <!-- CONTACT -->
 <div id="contact" class="page">
   <div class="title">CONTACT</div>
-</div>
 
-<!-- SHOP -->
+  <div class="contact-container">
+    <form class="contact-form" action="https://formspree.io/f/xqewvnrq" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+ <!-- PAYMENT -->
 <div id="payment" class="page">
   <div class="title">SHOP</div>
 
-  <div id="cartIcon" onclick="openCart()">🛒 <span id="cartCount">0</span></div>
+  <!-- CART ICON -->
+  <div id="cartIcon" onclick="openCart()">
+    🛒 <span id="cartCount">0</span>
+  </div>
 
   <div class="shop-list">
+
     <div class="shop-item">
       <img src="images/art1.jpg">
       <h2>Sunset Dream</h2>
-      <button onclick="addToCart('Sunset Dream',250,'images/art1.jpg',event)">Buy</button>
+      <p class="desc">PRINT ONLY</p>
+      <p>24x36 inches</p>
+      <p>€250 + SHIPPING + VAT</p>
+      <button onclick="addToCart('Sunset Dream', 250, 'images/art1.jpg', event)">Buy Now</button>
     </div>
-  </div>
-</div>
 
-<!-- ✅ FIXED MODAL (MOVED OUTSIDE PAGES) -->
-<div id="paintingModal">
-  <div class="close-btn" onclick="closePainting()">×</div>
-  <div class="modal-content">
-    <img id="modalImg">
-    <h2 id="modalTitle"></h2>
-  </div>
-</div>
+    <div class="shop-item">
+      <img src="images/art2.jpg">
+      <h2>Inner Thoughts</h2>
+      <p class="desc">PRINT ONLY</p>
+      <p>18x24 inches</p>
+      <p>€180 + SHIPPING + VAT</p>
+      <button onclick="addToCart('Inner Thoughts', 180, 'images/art2.jpg', event)">Buy Now</button>
+    </div>
 
+  </div>
+  
 <script>
 const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+let musicOn = true;
 
-document.getElementById("entryScreen").onclick = () => {
+document.getElementById("entryScreen").addEventListener("click", async () => {
   document.getElementById("entryScreen").style.display = "none";
+  music.volume = 0;
   music.play();
-};
 
-function toggleMenu(){
+  let v = 0;
+  const fade = setInterval(() => {
+    if (v < 0.4) {
+      v += 0.05;
+      music.volume = v;
+    } else clearInterval(fade);
+  }, 150);
+
+  startHomeAnimation();
+});
+
+function startHomeAnimation() {
+  const title = document.querySelector("#home .title");
+  const text = title.getAttribute("data-text");
+
+  title.innerHTML = "";
+
+  text.split("").forEach((char, i) => {
+    const span = document.createElement("span");
+    span.classList.add("letter");
+    span.innerHTML = char === " " ? "&nbsp;" : char;
+    setTimeout(() => span.classList.add("drop"), i * 120);
+    title.appendChild(span);
+  });
+}
+
+function toggleMusic() {
+  if (musicOn) {
+    music.pause();
+    musicBtn.innerText = "Music OFF";
+  } else {
+    music.play();
+    musicBtn.innerText = "Music ON";
+  }
+  musicOn = !musicOn;
+}
+
+function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-function openPage(id){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+function openPage(id) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  updateCartVisibility(id);
+}
+
+function showPortfolio(id) {
+  document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
-function showPortfolio(id){
-  document.querySelectorAll(".portfolio-content").forEach(e=>e.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
-
-function openPainting(t,img){
-  document.getElementById("modalTitle").innerText = t;
+function openPainting(title, img) {
+  document.getElementById("modalTitle").innerText = title;
   document.getElementById("modalImg").src = img;
-  document.getElementById("paintingModal").style.display="flex";
+  document.getElementById("paintingModal").style.display = "flex";
 }
 
-function closePainting(){
-  document.getElementById("paintingModal").style.display="none";
+function closePainting() {
+  document.getElementById("paintingModal").style.display = "none";
+}
+
+let cart = [];
+
+function addToCart(name, price, img, event) {
+  cart.push({ name, price, img });
+  document.getElementById("cartCount").innerText = cart.length;
+  renderCart();
+  flyToCart(img, event);
+}
+
+function openCart() {
+  document.getElementById("cartPanel").style.right = "0";
+  renderCart();
+}
+
+function renderCart() {
+  const container = document.getElementById("cartItems");
+  container.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    container.innerHTML += `
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+        <img src="${item.img}" style="width:40px;height:40px;object-fit:cover;border-radius:5px;">
+        <div style="flex:1">
+          <p style="margin:0;font-size:14px;">${item.name}</p>
+          <p style="margin:0;font-size:12px;color:gray;">€${item.price}</p>
+        </div>
+        <button onclick="removeFromCart(${index})" style="background:red;color:white;border:none;cursor:pointer;padding:4px 8px;">X</button>
+      </div>
+    `;
+  });
+
+  document.getElementById("cartTotal").innerText = "Total: €" + total;
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  document.getElementById("cartCount").innerText = cart.length;
+  renderCart();
+}
+
+function flyToCart(imgSrc, event) {
+  const img = document.createElement("img");
+  img.src = imgSrc;
+
+  const rect = event.target.getBoundingClientRect();
+
+  img.style.position = "fixed";
+  img.style.left = rect.left + "px";
+  img.style.top = rect.top + "px";
+  img.style.width = "80px";
+  img.style.height = "80px";
+  img.style.objectFit = "cover";
+  img.style.zIndex = 99999;
+  img.style.transition = "0.8s ease";
+
+  document.body.appendChild(img);
+
+  const cartRect = document.getElementById("cartIcon").getBoundingClientRect();
+
+  setTimeout(() => {
+    img.style.left = cartRect.left + "px";
+    img.style.top = cartRect.top + "px";
+    img.style.width = "20px";
+    img.style.height = "20px";
+    img.style.opacity = "0";
+  }, 10);
+
+  setTimeout(() => img.remove(), 900);
+}
+
+function updateCartVisibility(pageId) {
+  const cartIcon = document.getElementById("cartIcon");
+
+  if (pageId === "payment") {
+    cartIcon.style.display = "flex";
+  } else {
+    cart.style.display = "none";
+  }
+}
+
+function closeCart() {
+  document.getElementById("cartPanel").style.right = "-320px";
 }
 </script>
 
+  <!-- MODAL -->
+  <div id="paintingModal">
+    <div class="close-btn" onclick="closePainting()">×</div>
+    <div class="modal-content">
+      <img id="modalImg">
+      <h2 id="modalTitle"></h2>
+    </div>
+  </div>
 </body>
 </html>

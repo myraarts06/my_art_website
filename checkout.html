@@ -94,7 +94,13 @@
   <input type="text" placeholder="Postal Code" required>
   <input type="text" placeholder="Country" required>
 
-  <button type="submit">Proceed to Payment</button>
+  <button id="calcShippingBtn" type="button" onclick="calculateShipping()">
+  Calculate Shipping Costs
+</button>
+
+<button id="paymentBtn" type="button" style="display:none;" onclick="proceedToPayment()">
+  Proceed to Payment
+</button>
 </form>
 
 <script>
@@ -118,14 +124,29 @@ cart.forEach(item => {
   `;
 });
 
-let shipping = 0; // future Shippo
-let vat = subtotal * 0.19; // Germany default VAT (temporary)
 
-let total = subtotal + shipping + vat;
 
-document.getElementById("subtotal").innerText = "Subtotal: €" + subtotal.toFixed(2);
-document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
-document.getElementById("total").innerText = "Total: €" + total.toFixed(2);
+let shippingCalculated = false;
+let shipping = 0;
+  function calculateShipping() {
+
+  // fake shipping for now (Shippo later)
+  shipping = 15;
+
+  let vat = subtotal * 0.19;
+  let total = subtotal + shipping + vat;
+
+  document.getElementById("shipping").innerText = "Shipping: €" + shipping.toFixed(2);
+  document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
+  document.getElementById("total").innerText = "Total: €" + total.toFixed(2);
+
+  // ✅ mark state as done
+  shippingCalculated = true;
+
+  // ✅ switch buttons
+  document.getElementById("calcShippingBtn").style.display = "none";
+  document.getElementById("paymentBtn").style.display = "block";
+}
 </script>
 
 </body>

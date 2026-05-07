@@ -233,7 +233,11 @@ async function calculateShipping() {
       throw new Error("API response failed");
     }
 
-    const data = await res.json();
+    const text = await res.text();
+
+alert(text);
+
+return;
 
     // SAFE NUMBER
     shipping = Number(data.shippingCost) || 0;

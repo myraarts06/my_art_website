@@ -208,46 +208,44 @@ let shippingCalculated = false;
 
 // 4. Shipping
 async function calculateShipping() {
-
   try {
+    const country = document.getElementById("country").value;
 
- const countryInput = document.getElementById("country");
-
-    if (!countryInput.value.trim()) {
-      alert("Please enter country");
+    if (!country) {
+      alert("Please select country");
       return;
     }
 
     const res = await fetch("/api/shippo-rate", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: document.querySelector('input[placeholder="Full Name"]').value,
         address: document.querySelector('input[placeholder="Address"]').value,
         city: document.querySelector('input[placeholder="City"]').value,
         postalCode: document.querySelector('input[placeholder="Postal Code"]').value,
-        country: countryInput.value
+        country
       })
     });
 
     const data = await res.json();
 
-    shipping = Number(data.shippingCost) || 0;
+    if (!res.ok) {
+      console.error("Backend error:", data);
+      alert(data.error || "Shipping failed");
+      return;
+    }
+
+    shipping = Number(data.shippingCost);
 
     updateUI();
 
     shippingCalculated = true;
-
     document.getElementById("paymentBtn").style.display = "block";
-
-    alert("Shipping calculated successfully");
 
   } catch (err) {
     console.error(err);
-    console.error("FULL ERROR:", err);
-alert(err.message || "Shipping calculation failed");
+    alert("Shipping calculation failed");
   }
 }
   

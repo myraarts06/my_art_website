@@ -62,12 +62,15 @@ const shipment = {
 try {
   data = await response.json();
 } catch (e) {
+  console.error("Shippo invalid response");
   return res.status(500).json({
-    error: "Shippo returned invalid response",
+    error: "Shippo returned invalid response"
   });
 }
-    console.log("SHIPPO RESPONSE:", JSON.stringify(data, null, 2));
-    const rates = data.rates || [];
+
+console.log("SHIPPO RESPONSE:", JSON.stringify(data, null, 2));
+
+const rates = data.rates || [];
 
 if (!rates.length) {
   return res.status(400).json({
@@ -77,9 +80,9 @@ if (!rates.length) {
 }
 
 const cheapestRate = rates.reduce((min, r) =>
-  Number(r.amount) < Number(min.amount) ? r : min
+  Number(r.amount || 9999) < Number(min.amount || 9999) ? r : min
 );
 
 return res.status(200).json({
-  shippingCost: Number(cheapestRate.amount)
+  shippingCost: Number(cheapestRate.amount || 15)
 });

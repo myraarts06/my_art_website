@@ -141,32 +141,28 @@
 </div>
 
 <script>
- let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const container = document.getElementById("cartContainer");
 
 container.innerHTML = "";
+
+// ===== SAFE INITIALIZATION =====
 let subtotal = 0;
-
-cart.forEach(item => {
-  const price = Number(item.price);
-
-  if (!isNaN(price)) {
-    subtotal += price;
-  }
-});
-
-
-// RESET container
-container.innerHTML = "";
+let vat = 0;
+let vat19 = 0;
+let vat7 = 0;
+let shipping = 0;
+let total = 0;
 
 // 1. Render cart + calculate values correctly
 cart.forEach(item => {
-  subtotal += item.price;
+  const price = Number(item.price);
+  const rate = item.type === "original" ? 0.07 : 0.19;
 
-  let rate = item.type === "original" ? 0.07 : 0.19;
-  let itemVat = item.price * rate;
+  subtotal += price;
 
+  const itemVat = price * rate;
   vat += itemVat;
 
   if (rate === 0.19) vat19 += itemVat;
@@ -177,17 +173,21 @@ cart.forEach(item => {
       <img src="${item.img}">
       <div>
         <p>${item.name}</p>
-        <p>€${item.price}</p>
+        <p>€${price.toFixed(2)}</p>
       </div>
     </div>
   `;
 });
 
 // 2. Initial total
-total = subtotal + vat + shipping;
+  function recalcTotal() {
+  total = subtotal + vat + shipping;
+}
 
 // 3. UI update function
-  function updateUI() {
+ function updateUI() {
+  recalcTotal();
+
   document.getElementById("subtotal").innerText = "Subtotal: €" + subtotal.toFixed(2);
   document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
   document.getElementById("shipping").innerText = "Shipping: €" + shipping.toFixed(2);
@@ -196,7 +196,6 @@ total = subtotal + vat + shipping;
   document.getElementById("vat19").innerText = "19% VAT: €" + vat19.toFixed(2);
   document.getElementById("vat7").innerText = "7% VAT: €" + vat7.toFixed(2);
 }
-
 // initial render
 updateUI();
 

@@ -1,4 +1,4 @@
-export default function handler(req, res) {
+module.exports = (req, res) => {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Use POST" });
   }
@@ -11,7 +11,5 @@ export default function handler(req, res) {
     shippingCost = 6;
   }
 
-  return res.status(200).json({
-    shippingCost
-  });
-}
+  res.status(200).json({ shippingCost });
+};

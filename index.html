@@ -210,13 +210,16 @@
     }
 
     /* ===== MODAL (NEW SPA VIEW) ===== */
-    #paintingModal {
+   #paintingModal {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.95);
-  display: none;
+
+  display: flex !important;
+
   justify-content: center;
   align-items: center;
+
   z-index: 100000;
 }
 
@@ -475,8 +478,7 @@
       <p>€180 + SHIPPING + VAT</p>
       <button onclick="addToCart('Inner Thoughts', 180, 'images/art2.jpg', event)">Buy Now</button>
     </div>
-
-  </div>
+</div>
   
 <script>
 const music = document.getElementById("bgMusic");

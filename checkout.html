@@ -92,6 +92,11 @@
     <span>Total</span>
     <span id="total"></span>
   </div>
+  <div style="margin-top:20px; font-size:14px; opacity:0.8; text-align:right;">
+  <h4>VAT Breakdown</h4>
+  <p id="vat19">19% VAT: €0</p>
+  <p id="vat7">7% VAT: €0</p>
+</div>
 
 </div>
   
@@ -124,7 +129,8 @@
 const container = document.getElementById("cartContainer");
 
 let subtotal = 0;
-let vat = 0;
+let vat19 = 0;
+let vat7 = 0;
 let shipping = 0;
 let total = 0;
 
@@ -136,9 +142,17 @@ cart.forEach(item => {
 
   subtotal += item.price;
 
-  // VAT per item
   let rate = item.type === "original" ? 0.07 : 0.19;
-  vat += item.price * rate;
+
+  let itemVat = item.price * rate;
+  vat += itemVat;
+
+  // NEW: split tracking
+  if (rate === 0.19) {
+    vat19 += itemVat;
+  } else {
+    vat7 += itemVat;
+  }
 
   container.innerHTML += `
     <div class="cart-item">
@@ -160,6 +174,10 @@ function updateUI() {
   document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
   document.getElementById("shipping").innerText = "Shipping: €" + shipping.toFixed(2);
   document.getElementById("total").innerText = "€" + total.toFixed(2);
+
+  // NEW breakdown
+  document.getElementById("vat19").innerText = "19% VAT: €" + vat19.toFixed(2);
+  document.getElementById("vat7").innerText = "7% VAT: €" + vat7.toFixed(2);
 }
 
 // initial render

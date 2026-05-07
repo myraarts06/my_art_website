@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Checkout - Myra Arts</title>
+  <title>CHECKOUT - Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -100,6 +100,7 @@
 
 </div>
   
+<div class="checkout-wrapper">
 <h2>Shipping Details</h2>
 
 <form>
@@ -120,8 +121,9 @@
     Proceed to Payment
   </button>
 
+  </form>
 </div>
-</form>
+
 
 <script>
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -129,8 +131,9 @@
 const container = document.getElementById("cartContainer");
 
 let subtotal = 0;
-let vat19 = 0;
+  let vat19 = 0;
 let vat7 = 0;
+let vat = 0;
 let shipping = 0;
 let total = 0;
 
@@ -139,20 +142,15 @@ container.innerHTML = "";
 
 // 1. Render cart + calculate values correctly
 cart.forEach(item => {
-
   subtotal += item.price;
 
   let rate = item.type === "original" ? 0.07 : 0.19;
-
   let itemVat = item.price * rate;
+
   vat += itemVat;
 
-  // NEW: split tracking
-  if (rate === 0.19) {
-    vat19 += itemVat;
-  } else {
-    vat7 += itemVat;
-  }
+  if (rate === 0.19) vat19 += itemVat;
+  else vat7 += itemVat;
 
   container.innerHTML += `
     <div class="cart-item">
@@ -169,13 +167,12 @@ cart.forEach(item => {
 total = subtotal + vat + shipping;
 
 // 3. UI update function
-function updateUI() {
+  function updateUI() {
   document.getElementById("subtotal").innerText = "Subtotal: €" + subtotal.toFixed(2);
   document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
   document.getElementById("shipping").innerText = "Shipping: €" + shipping.toFixed(2);
   document.getElementById("total").innerText = "€" + total.toFixed(2);
 
-  // NEW breakdown
   document.getElementById("vat19").innerText = "19% VAT: €" + vat19.toFixed(2);
   document.getElementById("vat7").innerText = "7% VAT: €" + vat7.toFixed(2);
 }
@@ -207,6 +204,17 @@ function proceedToPayment() {
   }
 
   alert("Proceeding to Stripe integration...");
+}
+  .checkout-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.checkout-wrapper form {
+  width: 100%;
+  max-width: 500px;
 }
 </script>
 

@@ -210,41 +210,50 @@
     }
 
     /* ===== MODAL (NEW SPA VIEW) ===== */
-   #paintingModal {
+  #paintingModal {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
+  top: 0;
+  left: 0;
 
-  display: flex !important;
+  width: 100vw;
+  height: 100vh;
 
+  background: rgba(0,0,0,0.96);
+
+  display: none;
   justify-content: center;
   align-items: center;
 
-  z-index: 100000;
+  z-index: 999999;
 }
 
-    .modal-content {
-      background: #111;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 500px;
-      text-align: center;
-    }
+.modal-content {
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
 
-    .modal-content img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
+.modal-content img {
+  max-width: 80vw;
+  max-height: 75vh;
+  border-radius: 10px;
+}
 
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 30px;
-      cursor: pointer;
-      color: white;
-    }
+#modalTitle {
+  margin-top: 15px;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 35px;
+  cursor: pointer;
+  color: white;
+}
 
     /* ===== MUSIC BUTTON ===== */
     .music-btn {
@@ -428,6 +437,14 @@
       <div class="product">
         <img src="images/art2.jpg" onclick="openPainting('Inner Thoughts', 'images/art2.jpg')">
       </div>
+    </div>
+  </div>
+   <!-- MODAL -->
+  <div id="paintingModal">
+    <div class="close-btn" onclick="closePainting()">×</div>
+    <div class="modal-content">
+      <img id="modalImg">
+      <h2 id="modalTitle"></h2>
     </div>
   </div>
 </div>
@@ -655,15 +672,6 @@ function closeCart() {
   document.getElementById("cartPanel").style.right = "-320px";
 }
   </script>
-  
-   <!-- MODAL -->
-  <div id="paintingModal">
-    <div class="close-btn" onclick="closePainting()">×</div>
-    <div class="modal-content">
-      <img id="modalImg">
-      <h2 id="modalTitle"></h2>
-    </div>
-  </div>
 
 </body>
 </html>

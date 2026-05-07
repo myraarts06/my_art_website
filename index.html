@@ -552,6 +552,8 @@ function toggleMenu() {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
+  // Close hamburger menu
+  document.getElementById("menu").classList.remove("open");
   closePainting();
   updateCartVisibility(id);
 }

@@ -165,6 +165,18 @@ cart.forEach(item => {
 
   subtotal += price;
 
+  // VAT RATE
+  const rate = item.type === "original" ? 0.07 : 0.19;
+  const itemVat = price * rate;
+
+  vat += itemVat;
+
+  if (rate === 0.19) {
+    vat19 += itemVat;
+  } else {
+    vat7 += itemVat;
+  }
+
   container.innerHTML += `
     <div class="cart-item">
       <img src="${img}" alt="${name}">
@@ -176,7 +188,6 @@ cart.forEach(item => {
   `;
 });
 
-
   
 // 2. Initial total
   function recalcTotal() {
@@ -185,7 +196,8 @@ cart.forEach(item => {
 
 // 3. UI update function
 function updateUI() {
-  recalcTotal();
+
+  total = subtotal + vat + shipping;
 
   document.getElementById("subtotal").innerText = "Subtotal: €" + subtotal.toFixed(2);
   document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
@@ -195,7 +207,6 @@ function updateUI() {
   document.getElementById("vat19").innerText = "19% VAT: €" + vat19.toFixed(2);
   document.getElementById("vat7").innerText = "7% VAT: €" + vat7.toFixed(2);
 }
-
   
 // initial render
 updateUI();

@@ -199,30 +199,31 @@ let shippingCalculated = false;
 
 // 4. Shipping
 function calculateShipping() {
-async function calculateShipping() {
   const form = document.querySelector("form");
-
   const country = form.querySelector('input[placeholder="Country"]').value;
 
-  const res = await fetch("/api/shippo-rate", {
+  fetch("/api/shippo-rate", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({ country })
+  })
+  .then(res => res.json())
+  .then(data => {
+    shipping = data.shippingCost;
+
+    total = subtotal + vat + shipping;
+
+    updateUI();
+
+    shippingCalculated = true;
+
+    document.getElementById("paymentBtn").style.display = "block";
+  })
+  .catch(err => {
+    console.error("Shipping error:", err);
   });
-
-  const data = await res.json();
-
-  shipping = data.shippingCost;
-
-  total = subtotal + vat + shipping;
-
-  updateUI();
-
-  shippingCalculated = true;
-
-  document.getElementById("paymentBtn").style.display = "block";
 }
 
 // 5. Payment

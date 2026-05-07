@@ -207,9 +207,16 @@ let shippingCalculated = false;
 // 4. Shipping
 async function calculateShipping() {
 
-  alert("Button works");
-
   try {
+
+    const countryInput = document.querySelector(
+      'input[placeholder="Country"]'
+    );
+
+    if (!countryInput.value.trim()) {
+      alert("Please enter country");
+      return;
+    }
 
     const res = await fetch("/api/shippo-rate", {
       method: "POST",
@@ -217,27 +224,38 @@ async function calculateShipping() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        country: "Germany"
+        country: countryInput.value.trim()
       })
     });
 
-    alert("API reached");
+    // IMPORTANT
+    if (!res.ok) {
+      throw new Error("API response failed");
+    }
 
     const data = await res.json();
 
-    alert("Shipping cost: €" + data.shippingCost);
+    // SAFE NUMBER
+    shipping = Number(data.shippingCost) || 0;
 
-    shipping = Number(data.shippingCost || 0);
+    // RECALCULATE TOTAL
+    total = subtotal + vat + shipping;
 
+    // UPDATE UI
     updateUI();
 
+    // SHOW PAYMENT BUTTON
     shippingCalculated = true;
 
     document.getElementById("paymentBtn").style.display = "block";
 
+    alert("Shipping calculated successfully");
+
   } catch (err) {
 
-    alert("API failed");
+    console.error(err);
+
+    alert("Shipping calculation failed");
 
   }
 }

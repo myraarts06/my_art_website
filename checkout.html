@@ -141,16 +141,31 @@
 </div>
 
 <script>
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const container = document.getElementById("cartContainer");
 
+container.innerHTML = "";
+
 let subtotal = 0;
-  let vat19 = 0;
-let vat7 = 0;
-let vat = 0;
-let shipping = 0;
-let total = 0;
+
+if (cart.length === 0) {
+  container.innerHTML = "<p>No items in cart</p>";
+}
+
+cart.forEach(item => {
+  subtotal += Number(item.price);
+
+  container.innerHTML += `
+    <div class="cart-item">
+      <img src="${item.img}">
+      <div>
+        <p>${item.name}</p>
+        <p>€${item.price}</p>
+      </div>
+    </div>
+  `;
+});
 
 // RESET container
 container.innerHTML = "";
@@ -198,20 +213,21 @@ updateUI();
 let shippingCalculated = false;
 
 // 4. Shipping
-function calculateShipping() {
-  const form = document.querySelector("form");
-  const country = form.querySelector('input[placeholder="Country"]').value;
+async function calculateShipping() {
+  try {
+    const country = document.querySelector('input[placeholder="Country"]').value;
 
-  fetch("/api/shippo-rate", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ country })
-  })
-  .then(res => res.json())
-  .then(data => {
-    shipping = data.shippingCost;
+    const res = await fetch("/api/shippo-rate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ country })
+    });
+
+    const data = await res.json();
+
+    shipping = Number(data.shippingCost || 0);
 
     total = subtotal + vat + shipping;
 
@@ -220,12 +236,13 @@ function calculateShipping() {
     shippingCalculated = true;
 
     document.getElementById("paymentBtn").style.display = "block";
-  })
-  .catch(err => {
-    console.error("Shipping error:", err);
-  });
-}
 
+  } catch (err) {
+    console.error("Shipping error:", err);
+    alert("Shipping calculation failed. Check console.");
+  }
+}
+  
 // 5. Payment
 function proceedToPayment() {
   if (!shippingCalculated) {

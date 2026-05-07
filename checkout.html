@@ -69,8 +69,6 @@
 
 <h1>Checkout</h1>
 
-<div id="cartContainer"></div>
-
 <div class="summary" id="total"></div>
 
   <h2>Order Summary</h2>
@@ -110,12 +108,15 @@ const container = document.getElementById("cartContainer");
 
 let subtotal = 0;
 
+container.innerHTML = "";
+
+// 1. Render cart items
 cart.forEach(item => {
   subtotal += item.price;
 
   container.innerHTML += `
-    <div style="display:flex; gap:15px; margin-bottom:15px;">
-      <img src="${item.img}" style="width:60px;height:60px;object-fit:cover;border-radius:8px;">
+    <div class="cart-item">
+      <img src="${item.img}">
       <div>
         <p>${item.name}</p>
         <p>€${item.price}</p>
@@ -124,10 +125,8 @@ cart.forEach(item => {
   `;
 });
 
-let shipping = 0;
-
-// ✅ dynamic VAT logic (PRINT vs ORIGINAL)
-let vatRate = 0.19; // default for prints
+// 2. VAT logic
+let vatRate = 0.19;
 
 cart.forEach(item => {
   if (item.type === "original") {
@@ -136,18 +135,42 @@ cart.forEach(item => {
 });
 
 let vat = subtotal * vatRate;
-let total = subtotal + shipping + vat;
+let shipping = 0;
+let total = subtotal + vat + shipping;
+
+// 3. Initial UI update
+document.getElementById("subtotal").innerText = "Subtotal: €" + subtotal.toFixed(2);
+document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
+document.getElementById("total").innerText = "Total: €" + total.toFixed(2);
+
+// 4. Shipping state
+let shippingCalculated = false;
+
+// 5. SHIPPING FUNCTION (MISSING BEFORE)
+function calculateShipping() {
+  shipping = 15; // placeholder (Shippo later)
+
+  vat = subtotal * vatRate;
+  total = subtotal + vat + shipping;
 
   document.getElementById("shipping").innerText = "Shipping: €" + shipping.toFixed(2);
   document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
   document.getElementById("total").innerText = "Total: €" + total.toFixed(2);
 
-  // ✅ mark state as done
   shippingCalculated = true;
 
-  // ✅ switch buttons
   document.getElementById("calcShippingBtn").style.display = "none";
   document.getElementById("paymentBtn").style.display = "block";
+}
+
+// 6. PAYMENT FUNCTION
+function proceedToPayment() {
+  if (!shippingCalculated) {
+    alert("Please calculate shipping first.");
+    return;
+  }
+
+  alert("Proceeding to Stripe integration...");
 }
 </script>
 

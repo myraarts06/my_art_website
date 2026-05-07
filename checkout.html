@@ -206,22 +206,28 @@ let shippingCalculated = false;
 
 // 4. Shipping
 async function calculateShipping() {
+
+  alert("Button works");
+
   try {
-    const country = document.querySelector('input[placeholder="Country"]').value;
 
     const res = await fetch("/api/shippo-rate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ country })
+      body: JSON.stringify({
+        country: "Germany"
+      })
     });
+
+    alert("API reached");
 
     const data = await res.json();
 
-    shipping = Number(data.shippingCost || 0);
+    alert("Shipping cost: €" + data.shippingCost);
 
-    total = subtotal + vat + shipping;
+    shipping = Number(data.shippingCost || 0);
 
     updateUI();
 
@@ -230,8 +236,9 @@ async function calculateShipping() {
     document.getElementById("paymentBtn").style.display = "block";
 
   } catch (err) {
-    console.error("Shipping error:", err);
-    alert("Shipping calculation failed. Check console.");
+
+    alert("API failed");
+
   }
 }
   

@@ -60,7 +60,17 @@ const shipment = {
     let data;
 
 try {
-  data = await response.json();
+  let data;
+
+try {
+  data = JSON.parse(rawText);
+} catch (e) {
+  console.error("NOT JSON:", rawText);
+  return res.status(500).json({
+    error: "Shippo did not return JSON",
+    raw: rawText
+  });
+}
 } catch (e) {
   console.error("Shippo invalid response");
   return res.status(500).json({
@@ -69,6 +79,9 @@ try {
 }
 
 console.log("SHIPPO RESPONSE:", JSON.stringify(data, null, 2));
+    console.log("SHIPPO STATUS:", response.status);
+const rawText = await response.text();
+console.log("SHIPPO RAW RESPONSE:", rawText);
 
 const rates = data.rates || [];
 

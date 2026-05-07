@@ -8,31 +8,44 @@ module.exports = async (req, res) => {
 
   try {
 
-    const shipment = {
-      address_from: {
-        name: "Myra Arts",
-        street1: "Moerfelder Landstrasse 200",
-        city: "Frankfurt am Main",
-        zip: "60598",
-        country: "Germany"
-      },
-      address_to: {
-        name: "Customer",
-        street1: address,
-        city,
-        zip: postalCode,
-        country
-      },
-      parcels: [{
-        length: "10",
-        width: "10",
-        height: "10",
-        distance_unit: "cm",
-        weight: "1",
-        mass_unit: "kg"
-      }],
-      async: false
-    };
+   const COUNTRY_MAP = {
+  germany: "DE",
+  india: "IN",
+  france: "FR",
+  spain: "ES",
+  "united states": "US",
+  usa: "US",
+  uk: "GB"
+};
+
+const normalizedCountry =
+  COUNTRY_MAP[(country || "").toLowerCase()] || country.toUpperCase();
+
+const shipment = {
+  address_from: {
+    name: "Myra Arts",
+    street1: "Moerfelder Landstrasse 200",
+    city: "Frankfurt am Main",
+    zip: "60598",
+    country: "DE"
+  },
+  address_to: {
+    name: "Customer",
+    street1: address,
+    city,
+    zip: postalCode,
+    country: normalizedCountry
+  },
+  parcels: [{
+    length: "10",
+    width: "10",
+    height: "10",
+    distance_unit: "cm",
+    weight: "1",
+    mass_unit: "kg"
+  }],
+  async: false
+};
 
     const response = await fetch("https://api.goshippo.com/shipments/", {
       method: "POST",

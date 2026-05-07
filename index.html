@@ -541,7 +541,9 @@ let musicOn = true;
 document.getElementById("entryScreen").addEventListener("click", async () => {
   document.getElementById("entryScreen").style.display = "none";
   music.volume = 0;
-  music.play();
+music.play().catch((err) => {
+  console.log("Music blocked by browser:", err);
+});
 
   let v = 0;
   const fade = setInterval(() => {

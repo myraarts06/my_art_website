@@ -51,6 +51,7 @@ module.exports = async (req, res) => {
     });
 
     const data = await response.json();
+    console.log(data);
 
     // 3. Get cheapest rate
     const rate = data.rates?.[0]?.amount || 15;

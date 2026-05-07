@@ -157,9 +157,6 @@ let total = 0;
 
 // 1. Render cart + calculate values correctly
 container.innerHTML = "";
-
-let subtotal = 0;
-
 cart.forEach(item => {
 
   const price = Number(item.price) || 0;
@@ -178,6 +175,7 @@ cart.forEach(item => {
     </div>
   `;
 });
+
 
   
 // 2. Initial total
@@ -223,21 +221,16 @@ async function calculateShipping() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: body: JSON.stringify({
-  name: document.querySelector('input[placeholder="Full Name"]').value,
-  address: document.querySelector('input[placeholder="Address"]').value,
-  city: document.querySelector('input[placeholder="City"]').value,
-  postalCode: document.querySelector('input[placeholder="Postal Code"]').value,
-  country: document.querySelector('input[placeholder="Country"]').value
-})
+      body: JSON.stringify({
+        name: document.querySelector('input[placeholder="Full Name"]').value,
+        address: document.querySelector('input[placeholder="Address"]').value,
+        city: document.querySelector('input[placeholder="City"]').value,
+        postalCode: document.querySelector('input[placeholder="Postal Code"]').value,
+        country: countryInput.value
+      })
+    });
 
-    // GET RAW RESPONSE FIRST
     const text = await res.text();
-
-    // SHOW WHAT SERVER SENT
-    alert(text);
-
-    // TRY CONVERTING TO JSON
     const data = JSON.parse(text);
 
     shipping = Number(data.shippingCost) || 0;
@@ -251,9 +244,8 @@ async function calculateShipping() {
     alert("Shipping calculated successfully");
 
   } catch (err) {
-
+    console.error(err);
     alert("Shipping calculation failed");
-
   }
 }
   

@@ -556,6 +556,14 @@ function toggleMenu() {
   document.getElementById("menu").classList.remove("open");
   closePainting();
   updateCartVisibility(id);
+   if (id === "home") {
+  const title = document.querySelector("#home .title");
+  title.innerHTML = "";
+  
+  setTimeout(() => {
+    startHomeAnimation();
+  }, 50);
+}  
 }
 
 function showPortfolio(id) {

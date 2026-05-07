@@ -1,15 +1,15 @@
 module.exports = (req, res) => {
+
+  res.setHeader("Content-Type", "application/json");
+
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Use POST" });
+    return res.status(405).json({
+      error: "Method not allowed"
+    });
   }
 
-  const { country } = req.body || {};
+  return res.status(200).json({
+    shippingCost: 15
+  });
 
-  let shippingCost = 15;
-
-  if (country === "Germany") {
-    shippingCost = 6;
-  }
-
-  res.status(200).json({ shippingCost });
 };

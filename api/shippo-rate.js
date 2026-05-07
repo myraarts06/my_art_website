@@ -56,8 +56,16 @@ const shipment = {
       },
       body: JSON.stringify(shipment)
     });
+    
+    let data;
 
-    const data = await response.json();
+try {
+  data = await response.json();
+} catch (e) {
+  return res.status(500).json({
+    error: "Shippo returned invalid response",
+  });
+}
     console.log("SHIPPO RESPONSE:", JSON.stringify(data, null, 2));
     const rates = data.rates || [];
 

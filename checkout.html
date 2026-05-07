@@ -73,6 +73,17 @@
 
 <div class="summary" id="total"></div>
 
+  <h2>Order Summary</h2>
+<div id="cartContainer"></div>
+
+<div style="margin-top:20px; font-size:18px;">
+  <p id="subtotal"></p>
+  <p id="shipping">Shipping: €0</p>
+  <p id="vat">VAT: €0</p>
+  <hr>
+  <h3 id="total"></h3>
+</div>
+  
 <h2>Shipping Details</h2>
 
 <form>
@@ -87,19 +98,18 @@
 </form>
 
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const container = document.getElementById("cartContainer");
-const totalBox = document.getElementById("total");
 
-let total = 0;
+let subtotal = 0;
 
 cart.forEach(item => {
-  total += item.price;
+  subtotal += item.price;
 
   container.innerHTML += `
-    <div class="cart-item">
-      <img src="${item.img}">
+    <div style="display:flex; gap:15px; margin-bottom:15px;">
+      <img src="${item.img}" style="width:60px;height:60px;object-fit:cover;border-radius:8px;">
       <div>
         <p>${item.name}</p>
         <p>€${item.price}</p>
@@ -108,7 +118,14 @@ cart.forEach(item => {
   `;
 });
 
-totalBox.innerText = "Total: €" + total;
+let shipping = 0; // future Shippo
+let vat = subtotal * 0.19; // Germany default VAT (temporary)
+
+let total = subtotal + shipping + vat;
+
+document.getElementById("subtotal").innerText = "Subtotal: €" + subtotal.toFixed(2);
+document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
+document.getElementById("total").innerText = "Total: €" + total.toFixed(2);
 </script>
 
 </body>

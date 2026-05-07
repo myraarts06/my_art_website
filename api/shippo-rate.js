@@ -5,48 +5,36 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { address, city, postalCode, country } = req.body;
-
   try {
+    const { address, city, postalCode, country } = req.body;
 
-   const COUNTRY_MAP = {
-  germany: "DE",
-  india: "IN",
-  france: "FR",
-  spain: "ES",
-  "united states": "US",
-  usa: "US",
-  uk: "GB"
-};
-
-const normalizedCountry =
-  COUNTRY_MAP[(country || "").toLowerCase()] || country.toUpperCase();
-
-const shipment = {
-  address_from: {
-    name: "Myra Arts",
-    street1: "Moerfelder Landstrasse 200",
-    city: "Frankfurt am Main",
-    zip: "60598",
-    country: "DE"
-  },
-  address_to: {
-    name: "Customer",
-    street1: address,
-    city,
-    zip: postalCode,
-    country: normalizedCountry
-  },
-  parcels: [{
-    length: "10",
-    width: "10",
-    height: "10",
-    distance_unit: "cm",
-    weight: "1",
-    mass_unit: "kg"
-  }],
-  async: false
-};
+    const shipment = {
+      address_from: {
+        name: "Myra Arts",
+        street1: "Moerfelder Landstrasse 200",
+        city: "Frankfurt am Main",
+        zip: "60598",
+        country: "DE"
+      },
+      address_to: {
+        name: "Customer",
+        street1: address,
+        city,
+        zip: postalCode,
+        country
+      },
+      parcels: [
+        {
+          length: "10",
+          width: "10",
+          height: "10",
+          distance_unit: "cm",
+          weight: "1",
+          mass_unit: "kg"
+        }
+      ],
+      async: false
+    };
 
     const response = await fetch("https://api.goshippo.com/shipments/", {
       method: "POST",
@@ -56,46 +44,41 @@ const shipment = {
       },
       body: JSON.stringify(shipment)
     });
-    
+
+    const text = await response.text();
+    console.log("RAW SHIPPO RESPONSE:", text);
+
     let data;
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      return res.status(500).json({
+        error: "Shippo returned non-JSON response",
+        raw: text
+      });
+    }
 
-try {
-  let data;
+    if (!data.rates || !data.rates.length) {
+      return res.status(500).json({
+        error: "No rates returned",
+        raw: data
+      });
+    }
 
-try {
-  data = JSON.parse(rawText);
-} catch (e) {
-  console.error("NOT JSON:", rawText);
-  return res.status(500).json({
-    error: "Shippo did not return JSON",
-    raw: rawText
-  });
-}
-} catch (e) {
-  console.error("Shippo invalid response");
-  return res.status(500).json({
-    error: "Shippo returned invalid response"
-  });
-}
+    const cheapest = data.rates.reduce((min, r) =>
+      Number(r.amount) < Number(min.amount) ? r : min
+    );
 
-console.log("SHIPPO RESPONSE:", JSON.stringify(data, null, 2));
-    console.log("SHIPPO STATUS:", response.status);
-const rawText = await response.text();
-console.log("SHIPPO RAW RESPONSE:", rawText);
+    return res.status(200).json({
+      shippingCost: Number(cheapest.amount)
+    });
 
-const rates = data.rates || [];
+  } catch (err) {
+    console.error("SERVER ERROR:", err);
 
-if (!rates.length) {
-  return res.status(400).json({
-    error: "No shipping rates returned",
-    raw: data
-  });
-}
-
-const cheapestRate = rates.reduce((min, r) =>
-  Number(r.amount || 9999) < Number(min.amount || 9999) ? r : min
-);
-
-return res.status(200).json({
-  shippingCost: Number(cheapestRate.amount || 15)
-});
+    return res.status(500).json({
+      error: "Server crashed",
+      details: err.message
+    });
+  }
+};

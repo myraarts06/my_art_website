@@ -248,31 +248,6 @@ async function calculateShipping() {
 
   }
 }
-
-    // SAFE NUMBER
-    shipping = Number(data.shippingCost) || 0;
-
-    // RECALCULATE TOTAL
-    total = subtotal + vat + shipping;
-
-    // UPDATE UI
-    updateUI();
-
-    // SHOW PAYMENT BUTTON
-    shippingCalculated = true;
-
-    document.getElementById("paymentBtn").style.display = "block";
-
-    alert("Shipping calculated successfully");
-
-  } catch (err) {
-
-    console.error(err);
-
-    alert("Shipping calculation failed");
-
-  }
-}
   
 // 5. Payment
 function proceedToPayment() {

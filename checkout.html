@@ -232,8 +232,7 @@ async function calculateShipping() {
       })
     });
 
-    const text = await res.text();
-    const data = JSON.parse(text);
+    const data = await res.json();
 
     shipping = Number(data.shippingCost) || 0;
 

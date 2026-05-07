@@ -75,11 +75,28 @@
 <div id="cartContainer"></div>
 
 <div style="margin-top:20px; font-size:18px;">
-  <p id="subtotal"></p>
-  <p id="shipping">Shipping: €0</p>
-  <p id="vat">VAT: €0</p>
+  <div style="margin-top:20px; font-size:18px;">
+
+  <div style="display:flex; justify-content:space-between;">
+    <span id="subtotal"></span>
+  </div>
+
+  <div style="display:flex; justify-content:space-between;">
+    <span id="shipping">Shipping: €0</span>
+  </div>
+
+  <div style="display:flex; justify-content:space-between;">
+    <span id="vat">VAT: €0</span>
+  </div>
+
   <hr>
-  <h3 id="total"></h3>
+
+  <div style="display:flex; justify-content:space-between;">
+    <h3 style="margin:0;">Total</h3>
+    <h3 id="total" style="margin:0;"></h3>
+  </div>
+
+</div>
 </div>
   
 <h2>Shipping Details</h2>
@@ -92,13 +109,17 @@
   <input type="text" placeholder="Postal Code" required>
   <input type="text" placeholder="Country" required>
 
+  <div style="display:flex; gap:10px; margin-top:20px;">
+  
   <button id="calcShippingBtn" type="button" onclick="calculateShipping()">
-  Calculate Shipping Costs
-</button>
+    Calculate Shipping Costs
+  </button>
 
-<button id="paymentBtn" type="button" style="display:none;" onclick="proceedToPayment()">
-  Proceed to Payment
-</button>
+  <button id="paymentBtn" type="button" style="display:none; background:#4CAF50; color:white;" onclick="proceedToPayment()">
+    Proceed to Payment
+  </button>
+
+</div>
 </form>
 
 <script>
@@ -148,10 +169,11 @@ let shippingCalculated = false;
 
 // 5. SHIPPING FUNCTION (MISSING BEFORE)
 function calculateShipping() {
-  shipping = 15; // placeholder (Shippo later)
 
-  vat = subtotal * vatRate;
-  total = subtotal + vat + shipping;
+  shipping = 15; // later Shippo
+
+  let vat = subtotal * vatRate;
+  let total = subtotal + vat + shipping;
 
   document.getElementById("shipping").innerText = "Shipping: €" + shipping.toFixed(2);
   document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
@@ -159,7 +181,7 @@ function calculateShipping() {
 
   shippingCalculated = true;
 
-  document.getElementById("calcShippingBtn").style.display = "none";
+  // show payment button (but DO NOT hide calculate button)
   document.getElementById("paymentBtn").style.display = "block";
 }
 

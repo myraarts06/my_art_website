@@ -247,7 +247,8 @@ async function calculateShipping() {
 
   } catch (err) {
     console.error(err);
-    alert("Shipping calculation failed");
+    console.error("FULL ERROR:", err);
+alert(err.message || "Shipping calculation failed");
   }
 }
   

@@ -11,10 +11,10 @@ module.exports = async (req, res) => {
     const shipment = {
       address_from: {
         name: "Myra Arts",
-        street1: "Your Studio Address",
-        city: "Your City",
-        zip: "Your ZIP",
-        country: "DE"
+        street1: "Moerfelder Landstrasse 200",
+        city: "Frankfurt am Main",
+        zip: "60598",
+        country: "Germany"
       },
       address_to: {
         name: "Customer",

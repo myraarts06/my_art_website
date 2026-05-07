@@ -226,30 +226,23 @@ async function calculateShipping() {
     }
 
     function getZone(country) {
-  const c = country.toUpperCase();
+      const c = country.toUpperCase();
 
-  const EU = ["DE","FR","IT","ES","NL","BE","PL","AT","SE","DK"];
+      const EU = ["DE","FR","IT","ES","NL","BE","PL","AT","SE","DK"];
 
-  if (c === "DE") return "DE";
-  if (EU.includes(c)) return "EU";
-  return "ROW";
-}
-
-const shippingRates = {
-  DE: 6,
-  EU: 18,
-  ROW: 45
-};
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      console.error("Backend error:", data);
-      alert(data.error || "Shipping failed");
-      return;
+      if (c === "DE") return "DE";
+      if (EU.includes(c)) return "EU";
+      return "ROW";
     }
 
-    shipping = Number(data.shippingCost) || 0;
+    const shippingRates = {
+      DE: 6,
+      EU: 18,
+      ROW: 45
+    };
+
+    const zone = getZone(country);
+    shipping = shippingRates[zone];
 
     updateUI();
 

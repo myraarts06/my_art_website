@@ -146,26 +146,16 @@
 const container = document.getElementById("cartContainer");
 
 container.innerHTML = "";
-
 let subtotal = 0;
 
-if (cart.length === 0) {
-  container.innerHTML = "<p>No items in cart</p>";
-}
-
 cart.forEach(item => {
-  subtotal += Number(item.price);
+  const price = Number(item.price);
 
-  container.innerHTML += `
-    <div class="cart-item">
-      <img src="${item.img}">
-      <div>
-        <p>${item.name}</p>
-        <p>€${item.price}</p>
-      </div>
-    </div>
-  `;
+  if (!isNaN(price)) {
+    subtotal += price;
+  }
 });
+
 
 // RESET container
 container.innerHTML = "";

@@ -73,9 +73,7 @@
 
   <h2>Order Summary</h2>
 <div id="cartContainer"></div>
-
-<div style="margin-top:20px; font-size:18px;">
-  <div style="margin-top:20px; font-size:18px;">
+<div style="margin-top:20px; font-size:18px; max-width:400px; margin-left:auto;">
 
   <div style="display:flex; justify-content:space-between;">
     <span id="subtotal"></span>
@@ -91,12 +89,12 @@
 
   <hr>
 
-  <div style="display:flex; justify-content:space-between;">
-    <h3 style="margin:0;">Total</h3>
-    <h3 id="total" style="margin:0;"></h3>
+  <!-- TOTAL BELOW VAT (STRICT ORDER) -->
+  <div style="display:flex; justify-content:space-between; font-weight:bold;">
+    <span>Total</span>
+    <span id="total"></span>
   </div>
 
-</div>
 </div>
   
 <h2>Shipping Details</h2>

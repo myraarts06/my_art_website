@@ -1,1 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout - Myra Arts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      letter-spacing: 3px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .summary {
+      margin-top: 30px;
+      font-size: 20px;
+      text-align: right;
+    }
+
+    form {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 500px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      background: transparent;
+      border: 1px solid white;
+      color: white;
+    }
+
+    button {
+      padding: 12px;
+      background: white;
+      color: black;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Checkout</h1>
+
+<div id="cartContainer"></div>
+
+<div class="summary" id="total"></div>
+
+<h2>Shipping Details</h2>
+
+<form>
+  <input type="text" placeholder="Full Name" required>
+  <input type="email" placeholder="Email" required>
+  <input type="text" placeholder="Address" required>
+  <input type="text" placeholder="City" required>
+  <input type="text" placeholder="Postal Code" required>
+  <input type="text" placeholder="Country" required>
+
+  <button type="submit">Proceed to Payment</button>
+</form>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const container = document.getElementById("cartContainer");
+const totalBox = document.getElementById("total");
+
+let total = 0;
+
+cart.forEach(item => {
+  total += item.price;
+
+  container.innerHTML += `
+    <div class="cart-item">
+      <img src="${item.img}">
+      <div>
+        <p>${item.name}</p>
+        <p>€${item.price}</p>
+      </div>
+    </div>
+  `;
+});
+
+totalBox.innerText = "Total: €" + total;
+</script>
+
+</body>
+</html>

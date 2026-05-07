@@ -223,8 +223,7 @@ async function calculateShipping() {
 
   try {
 
-    const countryInput = document.querySelector(
-      'input[placeholder="Country"]'
+   const countryInput = document.getElementById("country");
     );
 
     if (!countryInput.value.trim()) {

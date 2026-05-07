@@ -1,4 +1,8 @@
 export default function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Use POST" });
+  }
+
   const { country } = req.body || {};
 
   let shippingCost = 15;
@@ -7,7 +11,5 @@ export default function handler(req, res) {
     shippingCost = 6;
   }
 
-  res.status(200).json({
-    shippingCost
-  });
+  res.status(200).json({ shippingCost });
 }

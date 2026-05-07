@@ -175,7 +175,10 @@ cart.forEach(item => {
 
   subtotal += price;
 
-  const rate = item.type === "original" ? 0.07 : 0.19;
+  const rate =
+  item.type === "print"
+    ? 0.19
+    : item.type === "original" ? 0.07 : 0.19;
   const itemVat = price * rate;
 
   vat += itemVat;
@@ -222,17 +225,21 @@ async function calculateShipping() {
       return;
     }
 
-    const res = await fetch("/api/shippo-rate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: document.querySelector('input[placeholder="Full Name"]').value,
-        address: document.querySelector('input[placeholder="Address"]').value,
-        city: document.querySelector('input[placeholder="City"]').value,
-        postalCode: document.querySelector('input[placeholder="Postal Code"]').value,
-        country
-      })
-    });
+    function getZone(country) {
+  const c = country.toUpperCase();
+
+  const EU = ["DE","FR","IT","ES","NL","BE","PL","AT","SE","DK"];
+
+  if (c === "DE") return "DE";
+  if (EU.includes(c)) return "EU";
+  return "ROW";
+}
+
+const shippingRates = {
+  DE: 6,
+  EU: 18,
+  ROW: 45
+};
 
     const data = await res.json();
 

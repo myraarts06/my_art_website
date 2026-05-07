@@ -146,7 +146,13 @@
 </div>
 
 <script>
- let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = [];
+
+try {
+  cart = JSON.parse(localStorage.getItem("cart")) || [];
+} catch (e) {
+  cart = [];
+}
 const container = document.getElementById("cartContainer");
 
 // ===== SAFE INIT =====

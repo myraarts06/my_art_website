@@ -199,8 +199,22 @@ let shippingCalculated = false;
 
 // 4. Shipping
 function calculateShipping() {
+async function calculateShipping() {
+  const form = document.querySelector("form");
 
-  shipping = 15; // Shippo later
+  const country = form.querySelector('input[placeholder="Country"]').value;
+
+  const res = await fetch("/api/shippo-rate", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ country })
+  });
+
+  const data = await res.json();
+
+  shipping = data.shippingCost;
 
   total = subtotal + vat + shipping;
 

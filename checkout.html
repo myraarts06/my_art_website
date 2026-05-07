@@ -22,7 +22,7 @@
       align-items: center;
       gap: 15px;
       margin-bottom: 15px;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid #333;F
       padding-bottom: 10px;
     }
 
@@ -146,12 +146,11 @@
 </div>
 
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
+ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 const container = document.getElementById("cartContainer");
 
 // ===== SAFE INIT =====
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+ 
 
 let subtotal = 0;
 let vat = 0;
@@ -212,8 +211,7 @@ async function calculateShipping() {
 
   try {
 
-   const countryInput = document.getElementById("country");
-    );
+ const countryInput = document.getElementById("country");
 
     if (!countryInput.value.trim()) {
       alert("Please enter country");

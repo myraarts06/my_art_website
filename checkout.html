@@ -123,17 +123,22 @@
 
 const container = document.getElementById("cartContainer");
 
-  let subtotal = 0;
+let subtotal = 0;
+let vat = 0;
+let shipping = 0;
+let total = 0;
 
-cart.forEach(item => {
-  subtotal += item.price;
-});
-  
+// RESET container
 container.innerHTML = "";
 
-// Render cart
+// 1. Render cart + calculate values correctly
 cart.forEach(item => {
+
   subtotal += item.price;
+
+  // VAT per item
+  let rate = item.type === "original" ? 0.07 : 0.19;
+  vat += item.price * rate;
 
   container.innerHTML += `
     <div class="cart-item">
@@ -146,40 +151,27 @@ cart.forEach(item => {
   `;
 });
 
-// VAT logic
-  let vat = 0;
+// 2. Initial total
+total = subtotal + vat + shipping;
 
-cart.forEach(item => {
-  let rate = 0.19;
-
-  if (item.type === "original") {
-    rate = 0.07;
-  }
-
-  vat += item.price * rate;
-});
-
-let vat = subtotal * vatRate;
-let shipping = 0;
-let total = subtotal + vat + shipping;
+// 3. UI update function
+function updateUI() {
+  document.getElementById("subtotal").innerText = "Subtotal: €" + subtotal.toFixed(2);
+  document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
+  document.getElementById("shipping").innerText = "Shipping: €" + shipping.toFixed(2);
+  document.getElementById("total").innerText = "€" + total.toFixed(2);
+}
 
 // initial render
 updateUI();
 
 let shippingCalculated = false;
 
-function updateUI() {
-  document.getElementById("subtotal").innerText = "Subtotal: €" + subtotal.toFixed(2);
-  document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
-  document.getElementById("total").innerText = "€" + total.toFixed(2);
-  document.getElementById("shipping").innerText = "Shipping: €" + shipping.toFixed(2);
-}
-
-// SHIPPING
+// 4. Shipping
 function calculateShipping() {
-  shipping = 15;
 
-  vat = subtotal * vatRate;
+  shipping = 15; // Shippo later
+
   total = subtotal + vat + shipping;
 
   updateUI();
@@ -189,7 +181,7 @@ function calculateShipping() {
   document.getElementById("paymentBtn").style.display = "block";
 }
 
-// PAYMENT
+// 5. Payment
 function proceedToPayment() {
   if (!shippingCalculated) {
     alert("Please calculate shipping first.");

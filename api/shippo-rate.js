@@ -1,6 +1,4 @@
-module.exports = (req, res) => {
-
-  res.setHeader("Content-Type", "application/json");
+export default function handler(req, res) {
 
   if (req.method !== "POST") {
     return res.status(405).json({
@@ -8,8 +6,8 @@ module.exports = (req, res) => {
     });
   }
 
-  return res.status(200).json({
+  res.status(200).json({
     shippingCost: 15
   });
 
-};
+}

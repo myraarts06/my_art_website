@@ -228,11 +228,16 @@ async function calculateShipping() {
       })
     });
 
-    const data = await res.json();
+    // GET RAW RESPONSE FIRST
+    const text = await res.text();
+
+    // SHOW WHAT SERVER SENT
+    alert(text);
+
+    // TRY CONVERTING TO JSON
+    const data = JSON.parse(text);
 
     shipping = Number(data.shippingCost) || 0;
-
-    total = subtotal + vat + shipping;
 
     updateUI();
 

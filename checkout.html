@@ -228,16 +228,26 @@ async function calculateShipping() {
       })
     });
 
-    // IMPORTANT
-    if (!res.ok) {
-      throw new Error("API response failed");
-    }
+    const data = await res.json();
 
-    const text = await res.text();
+    shipping = Number(data.shippingCost) || 0;
 
-alert(text);
+    total = subtotal + vat + shipping;
 
-return;
+    updateUI();
+
+    shippingCalculated = true;
+
+    document.getElementById("paymentBtn").style.display = "block";
+
+    alert("Shipping calculated successfully");
+
+  } catch (err) {
+
+    alert("Shipping calculation failed");
+
+  }
+}
 
     // SAFE NUMBER
     shipping = Number(data.shippingCost) || 0;

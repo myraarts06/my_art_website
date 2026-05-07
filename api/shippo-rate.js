@@ -57,9 +57,25 @@ const shipment = {
     });
 
     const data = await response.json();
+    console.log("SHIPPO RESPONSE:", JSON.stringify(data, null, 2));
     console.log("Shippo response:", data);
 
-    const rates = data.rates || [];
+  const rates = data.rates || [];
+
+if (!rates.length) {
+  return res.status(400).json({
+    error: "No shipping rates returned",
+    raw: data
+  });
+}
+
+const cheapestRate = rates.reduce((min, r) =>
+  Number(r.amount) < Number(min.amount) ? r : min
+);
+
+return res.status(200).json({
+  shippingCost: Number(cheapestRate.amount)
+});
 
     const cheapestRate = rates.length
       ? rates.reduce((min, r) =>

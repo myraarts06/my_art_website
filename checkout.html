@@ -223,10 +223,13 @@ async function calculateShipping() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        country: countryInput.value.trim()
-      })
-    });
+      body: body: JSON.stringify({
+  name: document.querySelector('input[placeholder="Full Name"]').value,
+  address: document.querySelector('input[placeholder="Address"]').value,
+  city: document.querySelector('input[placeholder="City"]').value,
+  postalCode: document.querySelector('input[placeholder="Postal Code"]').value,
+  country: document.querySelector('input[placeholder="Country"]').value
+})
 
     // GET RAW RESPONSE FIRST
     const text = await res.text();

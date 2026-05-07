@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
     const response = await fetch("https://api.goshippo.com/shipments/", {
       method: "POST",
       headers: {
-        "Authorization": `ShippoToken YOUR_SHIPPO_API_KEY`,
+        "Authorization": `shippo_test_3e98650968e74cdf15bba601b7b9c35ec061a3d0`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(shipment)
@@ -54,7 +54,15 @@ module.exports = async (req, res) => {
     console.log(data);
 
     // 3. Get cheapest rate
-    const rate = data.rates?.[0]?.amount || 15;
+    const rates = data.rates || [];
+
+console.log("Shippo rates:", rates);
+
+const cheapestRate = rates.length
+  ? rates.reduce((min, r) => {
+      return Number(r.amount) < Number(min.amount) ? r : min;
+    }).amount
+  : 15;
 
     return res.status(200).json({
       shippingCost: parseFloat(rate)

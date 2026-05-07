@@ -11,5 +11,7 @@ export default function handler(req, res) {
     shippingCost = 6;
   }
 
-  res.status(200).json({ shippingCost });
+  return res.status(200).json({
+    shippingCost
+  });
 }

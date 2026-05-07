@@ -22,7 +22,7 @@
       align-items: center;
       gap: 15px;
       margin-bottom: 15px;
-      border-bottom: 1px solid #333;F
+      border-bottom: 1px solid #333;
       padding-bottom: 10px;
     }
 
@@ -242,7 +242,7 @@ async function calculateShipping() {
       return;
     }
 
-    shipping = Number(data.shippingCost);
+    shipping = Number(data.shippingCost) || 0;
 
     updateUI();
 

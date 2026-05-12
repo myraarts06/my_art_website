@@ -329,33 +329,29 @@ function proceedToPayment() {
 
   async function proceedToPayment() {
 
-  const shippingInfo = {
-    fullName: document.getElementById("fullName").value,
-    email: document.getElementById("email").value,
-    address1: document.getElementById("address1").value,
-    address2: document.getElementById("address2").value,
-    city: document.getElementById("city").value,
-    state: document.getElementById("state").value,
-    postal: document.getElementById("postal").value,
-    country: document.getElementById("country").value,
-    notes: document.getElementById("notes").value
-  };
+  try {
+    const res = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        cart: JSON.parse(localStorage.getItem("cart") || "[]")
+      })
+    });
 
-  const res = await fetch("/api/create-checkout-session", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      cart,
-      shippingInfo
-    })
-  });
+    const data = await res.json();
 
-  const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert("Payment session failed");
+      console.error(data);
+    }
 
-  if (data.url) {
-    window.location.href = data.url;
-  } else {
-    alert("Payment failed");
+  } catch (err) {
+    console.error(err);
+    alert("Server error");
   }
 }
 

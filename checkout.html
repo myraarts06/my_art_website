@@ -327,7 +327,36 @@ function proceedToPayment() {
     JSON.stringify(shippingInfo)
   );
 
-  alert("Proceeding to payment integration...");
+  async function proceedToPayment() {
+
+  const shippingInfo = {
+    fullName: document.getElementById("fullName").value,
+    email: document.getElementById("email").value,
+    address1: document.getElementById("address1").value,
+    address2: document.getElementById("address2").value,
+    city: document.getElementById("city").value,
+    state: document.getElementById("state").value,
+    postal: document.getElementById("postal").value,
+    country: document.getElementById("country").value,
+    notes: document.getElementById("notes").value
+  };
+
+  const res = await fetch("/api/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      cart,
+      shippingInfo
+    })
+  });
+
+  const data = await res.json();
+
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    alert("Payment failed");
+  }
 }
 
 </script>

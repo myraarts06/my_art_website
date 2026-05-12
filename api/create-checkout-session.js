@@ -25,8 +25,8 @@ module.exports = async (req, res) => {
       line_items,
       mode: "payment",
 
-      success_url: "https://your-domain.vercel.app/success.html",
-      cancel_url: "https://your-domain.vercel.app/cancel.html",
+      success_url: "https://my-art-website-2q6j.vercel.app/",
+      cancel_url: "https://my-art-website-2q6j.vercel.app/",
     });
 
     res.json({ url: session.url });

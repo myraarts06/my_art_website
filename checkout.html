@@ -322,33 +322,31 @@ function validateForm() {
     notes: document.getElementById("notes").value
   };
 
-  localStorage.setItem("shippingInfo", JSON.stringify(shippingInfo));
+  localStorage.setItem("shippingInfo", JSON.stringify(shippingInfo))
 
   fetch("/api/create-checkout-session", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      cart: JSON.parse(localStorage.getItem("cart") || "[]")
-    })
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    cart: JSON.parse(localStorage.getItem("cart") || "[]")
   })
-  .then(res => res.json())
-  .then(data => {
+})
+.then(async (res) => {
+  const data = await res.json();
+  console.log("RESPONSE:", data);   // 👈 ADD THIS
 
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      alert("Payment session failed");
-      console.error(data);
-    }
-
-  })
-  .catch(err => {
-    console.error(err);
-    alert("Server error");
-  });
-}
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    alert("Error: " + (data.error || "Unknown error"));
+  }
+})
+.catch(err => {
+  console.error("FETCH FAILED:", err);
+  alert("Server error");
+});
 </script>
 
 </body>

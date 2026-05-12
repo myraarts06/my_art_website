@@ -10,9 +10,10 @@
       color: white;
       font-family: Arial, sans-serif;
       padding: 30px;
+      margin: 0;
     }
 
-    h1 {
+    h1, h2 {
       text-align: center;
       letter-spacing: 3px;
     }
@@ -26,54 +27,103 @@
       padding-bottom: 10px;
     }
 
-    img {
-      width: 60px;
-      height: 60px;
+    .cart-item img {
+      width: 70px;
+      height: 70px;
       object-fit: cover;
       border-radius: 8px;
     }
 
-    .summary {
-      margin-top: 30px;
-      font-size: 20px;
-      text-align: right;
+    .summary-box {
+      max-width: 500px;
+      margin: 40px auto;
+      border: 1px solid #333;
+      padding: 25px;
+      border-radius: 10px;
+      background: #111;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .total-row {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .checkout-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
     }
 
     form {
-      margin-top: 40px;
+      width: 100%;
+      max-width: 550px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      max-width: 500px;
+      gap: 15px;
     }
 
-    input, textarea {
-      padding: 12px;
+    input,
+    textarea {
+      padding: 14px;
       background: transparent;
       border: 1px solid white;
       color: white;
+      font-size: 15px;
+      outline: none;
+      border-radius: 5px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
     }
 
     button {
-      padding: 12px;
+      padding: 14px;
       background: white;
       color: black;
       border: none;
       cursor: pointer;
       font-weight: bold;
+      font-size: 16px;
+      border-radius: 5px;
+      transition: 0.3s;
     }
 
-     .checkout-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+    button:hover {
+      opacity: 0.85;
+    }
 
-.checkout-wrapper form {
-  width: 100%;
-  max-width: 500px;
-}
+    button:disabled {
+      background: #555;
+      color: #999;
+      cursor: not-allowed;
+    }
+
+    .vat-breakdown {
+      margin-top: 25px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    @media(max-width: 700px) {
+      body {
+        padding: 20px;
+      }
+
+      .summary-box {
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 
@@ -81,114 +131,123 @@
 
 <h1>CHECKOUT</h1>
 
+<!-- ORDER SUMMARY -->
+<div class="summary-box">
+
   <h2>Order Summary</h2>
-<div id="cartContainer"></div>
-<div style="margin-top:20px; font-size:18px; max-width:400px; margin-left:auto;">
 
-  <div style="display:flex; justify-content:space-between;">
-    <span id="subtotal"></span>
+  <div id="cartContainer"></div>
+
+  <div class="summary-row">
+    <span>Subtotal</span>
+    <span id="subtotal">€0</span>
   </div>
 
-  <div style="display:flex; justify-content:space-between;">
-    <span id="shipping">Shipping: €0</span>
+  <div class="summary-row">
+    <span>Shipping</span>
+    <span>FREE</span>
   </div>
 
-  <div style="display:flex; justify-content:space-between;">
-    <span id="vat">VAT: €0</span>
+  <div class="summary-row">
+    <span>VAT</span>
+    <span id="vat">€0</span>
   </div>
 
   <hr>
 
-  <!-- TOTAL BELOW VAT (STRICT ORDER) -->
-  <div style="display:flex; justify-content:space-between; font-weight:bold;">
+  <div class="summary-row total-row">
     <span>Total</span>
-    <span id="total"></span>
+    <span id="total">€0</span>
   </div>
-  <div style="margin-top:20px; font-size:14px; opacity:0.8; text-align:right;">
-  <h4>VAT Breakdown</h4>
-  <p id="vat19">19% VAT: €0</p>
-  <p id="vat7">7% VAT: €0</p>
-</div>
+
+  <div class="vat-breakdown">
+    <p id="vat19">19% VAT: €0</p>
+    <p id="vat7">7% VAT: €0</p>
+  </div>
 
 </div>
-  <div class="checkout-wrapper">
 
-  <h2>Shipping Details</h2>
+<!-- SHIPPING FORM -->
+<div class="checkout-wrapper">
 
-  <form>
-    <input type="text" placeholder="Full Name" required>
-    <input type="email" placeholder="Email" required>
-    <input type="text" placeholder="Address" required>
-    <input type="text" placeholder="City" required>
-    <input type="text" placeholder="Postal Code" required>
-  <select id="country" required>
-  <option value="">Select Country</option>
-  <option value="DE">Germany</option>
-  <option value="IN">India</option>
-  <option value="US">United States</option>
-</select>
+  <h2>Shipping Information</h2>
 
-    <div style="display:flex; gap:10px; margin-top:20px; justify-content:center;">
-      
-      <button id="calcShippingBtn" type="button" onclick="calculateShipping()">
-        Calculate Shipping Costs
-      </button>
+  <form id="checkoutForm">
 
-      <button id="paymentBtn" type="button"
-        style="display:none; background:#4CAF50; color:white;"
-        onclick="proceedToPayment()">
-        Proceed to Payment
-      </button>
+    <input type="text" id="fullName" placeholder="Full Name" required>
 
-    </div>
+    <input type="email" id="email" placeholder="Email Address" required>
+
+    <input type="text" id="address1" placeholder="Street Address / House Number" required>
+
+    <input type="text" id="address2" placeholder="Apartment, Suite, Unit (Optional)">
+
+    <input type="text" id="city" placeholder="City / Town" required>
+
+    <input type="text" id="state" placeholder="State / Province / Region" required>
+
+    <input type="text" id="postal" placeholder="Postal / ZIP Code" required>
+
+    <input type="text" id="country" placeholder="Country" required>
+
+    <textarea id="notes" placeholder="Delivery Notes (Optional)"></textarea>
+
+    <button id="paymentBtn" type="button" disabled onclick="proceedToPayment()">
+      Proceed to Payment
+    </button>
+
   </form>
 
 </div>
 
 <script>
-  let cart = [];
+
+let cart = [];
 
 try {
   cart = JSON.parse(localStorage.getItem("cart")) || [];
 } catch (e) {
   cart = [];
 }
-const container = document.getElementById("cartContainer");
 
-// ===== SAFE INIT =====
- 
+const container = document.getElementById("cartContainer");
 
 let subtotal = 0;
 let vat = 0;
 let vat19 = 0;
 let vat7 = 0;
-let shipping = 0;
 let total = 0;
 
-// 1. Render cart + calculate values correctly
+/* ===== RENDER CART ===== */
+
 container.innerHTML = "";
 
 cart.forEach(item => {
+
   const price = Number(item.price) || 0;
   const img = item.img || "";
-  const name = item.name || "Unnamed item";
+  const name = item.name || "Artwork";
 
   subtotal += price;
 
-  const rate =
-  item.type === "print"
-    ? 0.19
-    : item.type === "original" ? 0.07 : 0.19;
-  const itemVat = price * rate;
+  const vatRate =
+    item.type === "original"
+      ? 0.07
+      : 0.19;
+
+  const itemVat = price * vatRate;
 
   vat += itemVat;
 
-  if (rate === 0.19) vat19 += itemVat;
-  else vat7 += itemVat;
+  if (vatRate === 0.19) {
+    vat19 += itemVat;
+  } else {
+    vat7 += itemVat;
+  }
 
   container.innerHTML += `
     <div class="cart-item">
-      <img src="${img}" alt="${name}">
+      <img src="${img}">
       <div>
         <p>${name}</p>
         <p>€${price.toFixed(2)}</p>
@@ -197,74 +256,80 @@ cart.forEach(item => {
   `;
 });
 
-// 3. UI update function
-function updateUI() {
-  total = subtotal + vat + shipping;
+total = subtotal + vat;
 
-  document.getElementById("subtotal").innerText = "Subtotal: €" + subtotal.toFixed(2);
-  document.getElementById("vat").innerText = "VAT: €" + vat.toFixed(2);
-  document.getElementById("shipping").innerText = "Shipping: €" + shipping.toFixed(2);
-  document.getElementById("total").innerText = "€" + total.toFixed(2);
+/* ===== UPDATE UI ===== */
 
-  document.getElementById("vat19").innerText = "19% VAT: €" + vat19.toFixed(2);
-  document.getElementById("vat7").innerText = "7% VAT: €" + vat7.toFixed(2);
-}
-  
-// initial render
-updateUI();
+document.getElementById("subtotal").innerText =
+  "€" + subtotal.toFixed(2);
 
-let shippingCalculated = false;
+document.getElementById("vat").innerText =
+  "€" + vat.toFixed(2);
 
-// 4. Shipping
-async function calculateShipping() {
-  try {
-    const country = document.getElementById("country").value;
+document.getElementById("total").innerText =
+  "€" + total.toFixed(2);
 
-    if (!country) {
-      alert("Please select country");
-      return;
+document.getElementById("vat19").innerText =
+  "19% VAT: €" + vat19.toFixed(2);
+
+document.getElementById("vat7").innerText =
+  "7% VAT: €" + vat7.toFixed(2);
+
+/* ===== FORM VALIDATION ===== */
+
+const requiredFields = [
+  "fullName",
+  "email",
+  "address1",
+  "city",
+  "state",
+  "postal",
+  "country"
+];
+
+requiredFields.forEach(id => {
+  document.getElementById(id).addEventListener("input", validateForm);
+});
+
+function validateForm() {
+
+  let valid = true;
+
+  requiredFields.forEach(id => {
+    const value = document.getElementById(id).value.trim();
+
+    if (!value) {
+      valid = false;
     }
+  });
 
-    function getZone(country) {
-      const c = country.toUpperCase();
-
-      const EU = ["DE","FR","IT","ES","NL","BE","PL","AT","SE","DK"];
-
-      if (c === "DE") return "DE";
-      if (EU.includes(c)) return "EU";
-      return "ROW";
-    }
-
-    const shippingRates = {
-      DE: 6,
-      EU: 18,
-      ROW: 45
-    };
-
-    const zone = getZone(country);
-    shipping = shippingRates[zone];
-
-    updateUI();
-
-    shippingCalculated = true;
-    document.getElementById("paymentBtn").style.display = "block";
-
-  } catch (err) {
-    console.error(err);
-    alert("Shipping calculation failed");
-  }
+  document.getElementById("paymentBtn").disabled = !valid;
 }
-  
-// 5. Payment
+
+/* ===== PAYMENT ===== */
+
 function proceedToPayment() {
-  if (!shippingCalculated) {
-    alert("Please calculate shipping first.");
-    return;
-  }
 
-  alert("Proceeding to Stripe integration...");
+  const shippingInfo = {
+    fullName: document.getElementById("fullName").value,
+    email: document.getElementById("email").value,
+    address1: document.getElementById("address1").value,
+    address2: document.getElementById("address2").value,
+    city: document.getElementById("city").value,
+    state: document.getElementById("state").value,
+    postal: document.getElementById("postal").value,
+    country: document.getElementById("country").value,
+    notes: document.getElementById("notes").value
+  };
+
+  localStorage.setItem(
+    "shippingInfo",
+    JSON.stringify(shippingInfo)
+  );
+
+  alert("Proceeding to payment integration...");
 }
- 
+
 </script>
 
 </body>

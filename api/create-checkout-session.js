@@ -21,13 +21,24 @@ module.exports = async (req, res) => {
     }));
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
-      line_items,
-      mode: "payment",
+  payment_method_types: ["card"],
+  mode: "payment",
 
-      success_url: "https://my-art-website-2q6j.vercel.app/",
-      cancel_url: "https://my-art-website-2q6j.vercel.app/",
-    });
+  line_items: cart.map(item => ({
+    price_data: {
+      currency: "eur",
+      product_data: {
+        name: item.name,
+        images: [item.img],
+      },
+      unit_amount: Math.round(item.price * 100),
+    },
+    quantity: 1,
+  })),
+
+  success_url: `${req.headers.origin}/success.html`,
+  cancel_url: `${req.headers.origin}/checkout.html`,
+});
 
     res.json({ url: session.url });
 

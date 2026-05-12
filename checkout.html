@@ -308,7 +308,7 @@ function validateForm() {
 
 /* ===== PAYMENT ===== */
 
-function proceedToPayment() {
+  function proceedToPayment() {
 
   const shippingInfo = {
     fullName: document.getElementById("fullName").value,
@@ -322,25 +322,19 @@ function proceedToPayment() {
     notes: document.getElementById("notes").value
   };
 
-  localStorage.setItem(
-    "shippingInfo",
-    JSON.stringify(shippingInfo)
-  );
+  localStorage.setItem("shippingInfo", JSON.stringify(shippingInfo));
 
-  async function proceedToPayment() {
-
-  try {
-    const res = await fetch("/api/create-checkout-session", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        cart: JSON.parse(localStorage.getItem("cart") || "[]")
-      })
-    });
-
-    const data = await res.json();
+  fetch("/api/create-checkout-session", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      cart: JSON.parse(localStorage.getItem("cart") || "[]")
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
 
     if (data.url) {
       window.location.href = data.url;
@@ -349,12 +343,12 @@ function proceedToPayment() {
       console.error(data);
     }
 
-  } catch (err) {
+  })
+  .catch(err => {
     console.error(err);
     alert("Server error");
-  }
+  });
 }
-
 </script>
 
 </body>

@@ -8,38 +8,31 @@ module.exports = async (req, res) => {
   try {
     const { cart } = req.body;
 
-    const line_items = cart.map(item => ({
-      price_data: {
-        currency: "eur",
-        product_data: {
-          name: item.name,
-          images: [item.img],
-        },
-        unit_amount: Math.round(item.price * 100), // cents
-      },
-      quantity: 1,
-    }));
+    const line_items = cart.map(item => {
 
-    const session = await stripe.checkout.sessions.create({
-  payment_method_types: ["card"],
-  mode: "payment",
+  const vatRate = item.type === "original" ? 0.07 : 0.19;
 
-  line_items: cart.map(item => ({
+  const finalPrice = item.price * (1 + vatRate);
+
+  return {
     price_data: {
       currency: "eur",
       product_data: {
         name: item.name,
         images: [item.img],
       },
-      unit_amount: Math.round(item.price * 100),
+      unit_amount: Math.round(finalPrice * 100),
     },
     quantity: 1,
-  })),
-
+  };
+});
+    
+const session = await stripe.checkout.sessions.create({
+  mode: "payment",
+  line_items,
   success_url: `${req.headers.origin}/success.html`,
   cancel_url: `${req.headers.origin}/checkout.html`,
 });
-
     res.json({ url: session.url });
 
   } catch (err) {

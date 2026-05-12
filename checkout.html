@@ -202,14 +202,17 @@
 
 <script>
 
-let cart = [];
+  let cart = [];
 
 try {
-  cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const storedCart = localStorage.getItem("cart");
+  cart = storedCart ? JSON.parse(storedCart) : [];
 } catch (e) {
+  console.error("Cart parse error:", e);
   cart = [];
 }
-
+console.log("CART LOADED:", cart);
+  
 const container = document.getElementById("cartContainer");
 
 let subtotal = 0;

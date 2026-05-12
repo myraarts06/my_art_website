@@ -500,7 +500,7 @@
       <h2>Sunset Dream</h2>
       <p class="desc">PRINT ONLY</p>
       <p>24x36 inches</p>
-      <p>€250 + VAT + SHIPPING</p>
+      <p>€250 </p>
       <button onclick="addToCart(
   'Sunset Dream',
   250,
@@ -518,7 +518,7 @@
       <h2>Inner Thoughts</h2>
       <p class="desc">PRINT ONLY</p>
       <p>18x24 inches</p>
-      <p>€180 + VAT + SHIPPING</p>
+      <p>€180</p>
       <button onclick="addToCart(
   'Inner Thoughts',
   180,
@@ -628,47 +628,15 @@ function showPortfolio(id) {
 function closePainting() {
   document.getElementById("paintingModal").style.display = "none";
 }
+
   function addToCart(name, price, img, type, size, event) {
-
-  let shippingProfile = {};
-
-  // PRINT
-  if (type === "print") {
-    shippingProfile = {
-      weight: 1,
-      length: 65,
-      width: 10,
-      height: 10
-    };
-  }
-
-  // SMALL ORIGINAL
-  else if (type === "original-small") {
-    shippingProfile = {
-      weight: 5,
-      length: 80,
-      width: 15,
-      height: 15
-    };
-  }
-
-  // LARGE ORIGINAL
-  else if (type === "original-large") {
-    shippingProfile = {
-      weight: 10,
-      length: 120,
-      width: 20,
-      height: 20
-    };
-  }
 
   cart.push({
     name,
     price,
     img,
     type,
-    size,
-    shippingProfile
+    size
   });
 
   document.getElementById("cartCount").innerText = cart.length;
@@ -677,7 +645,6 @@ function closePainting() {
 
   flyToCart(img, event);
 }
-
 
 function openCart() {
   document.getElementById("cartPanel").style.right = "0";

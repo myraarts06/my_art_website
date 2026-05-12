@@ -199,20 +199,16 @@
   </form>
 
 </div>
-
 <script>
 
- 
-  let cart = [];
+let cart = [];
 
 function loadCart() {
   try {
     const stored = localStorage.getItem("cart");
-
-    console.log("RAW LOCALSTORAGE CART:", stored);
+    console.log("RAW CART:", stored);
 
     cart = stored ? JSON.parse(stored) : [];
-
   } catch (e) {
     console.error("Cart parse error:", e);
     cart = [];
@@ -225,14 +221,20 @@ loadCart();
 
 const container = document.getElementById("cartContainer");
 
+let subtotal = 0;
+let vat = 0;
+let vat19 = 0;
+let vat7 = 0;
+
+/* ===== RENDER ===== */
 function renderCart() {
 
   container.innerHTML = "";
 
-  let subtotal = 0;
-  let vat = 0;
-  let vat19 = 0;
-  let vat7 = 0;
+  subtotal = 0;
+  vat = 0;
+  vat19 = 0;
+  vat7 = 0;
 
   cart.forEach(item => {
 
@@ -261,35 +263,25 @@ function renderCart() {
     `;
   });
 
+  updateUI();
+}
+
+/* ===== UI UPDATE ===== */
+function updateUI() {
+
   const total = subtotal + vat;
 
   document.getElementById("subtotal").innerText = "€" + subtotal.toFixed(2);
   document.getElementById("vat").innerText = "€" + vat.toFixed(2);
   document.getElementById("total").innerText = "€" + total.toFixed(2);
+
   document.getElementById("vat19").innerText = "19% VAT: €" + vat19.toFixed(2);
   document.getElementById("vat7").innerText = "7% VAT: €" + vat7.toFixed(2);
 }
 
 renderCart();
 
-/* ===== UPDATE UI ===== */
-
-document.getElementById("subtotal").innerText =
-  "€" + subtotal.toFixed(2);
-
-document.getElementById("vat").innerText =
-  "€" + vat.toFixed(2);
-
-document.getElementById("total").innerText =
-  "€" + total.toFixed(2);
-
-document.getElementById("vat19").innerText =
-  "19% VAT: €" + vat19.toFixed(2);
-
-document.getElementById("vat7").innerText =
-  "7% VAT: €" + vat7.toFixed(2);
-
-/* ===== FORM VALIDATION ===== */
+/* ===== VALIDATION ===== */
 
 const requiredFields = [
   "fullName",
@@ -306,23 +298,16 @@ requiredFields.forEach(id => {
 });
 
 function validateForm() {
-
-  let valid = true;
-
-  requiredFields.forEach(id => {
-    const value = document.getElementById(id).value.trim();
-
-    if (!value) {
-      valid = false;
-    }
-  });
+  let valid = requiredFields.every(id =>
+    document.getElementById(id).value.trim()
+  );
 
   document.getElementById("paymentBtn").disabled = !valid;
 }
 
 /* ===== PAYMENT ===== */
 
-  function proceedToPayment() {
+function proceedToPayment() {
 
   const shippingInfo = {
     fullName: document.getElementById("fullName").value,
@@ -336,32 +321,37 @@ function validateForm() {
     notes: document.getElementById("notes").value
   };
 
-  localStorage.setItem("shippingInfo", JSON.stringify(shippingInfo))
+  localStorage.setItem("shippingInfo", JSON.stringify(shippingInfo));
 
   fetch("/api/create-checkout-session", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    cart: JSON.parse(localStorage.getItem("cart") || "[]")
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      cart: cart
+    })
   })
-})
-.then(async (res) => {
-  const data = await res.json();
-  console.log("RESPONSE:", data);   // 👈 ADD THIS
+  .then(async (res) => {
+    const data = await res.json();
+    console.log("RESPONSE:", data);
 
-  if (data.url) {
-    window.location.href = data.url;
-  } else {
-    alert("Error: " + (data.error || "Unknown error"));
-  }
-})
-.catch(err => {
-  console.error("FETCH FAILED:", err);
-  alert("Server error");
-});
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert("Error: " + (data.error || "Unknown error"));
+    }
+  })
+  .catch(err => {
+    console.error("FETCH FAILED:", err);
+    alert("Server error");
+  });
+}
+
 </script>
+
+
+ 
+  
+
 
 </body>
 </html>

@@ -725,11 +725,27 @@ function updateCartVisibility(pageId) {
 function closeCart() {
   document.getElementById("cartPanel").style.right = "-320px";
 }
-    function goToCheckout() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-  window.location.href = "checkout.html";
-}
+  
+function goToCheckout() {
 
+  try {
+    console.log("CART BEFORE SAVE:", cart);
+
+    if (!cart || cart.length === 0) {
+      alert("Cart is empty!");
+      return;
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    console.log("SAVED TO LOCALSTORAGE:", localStorage.getItem("cart"));
+
+    window.location.href = "checkout.html";
+
+  } catch (e) {
+    console.error("Checkout error:", e);
+  }
+}
   </script>
 
 </body>

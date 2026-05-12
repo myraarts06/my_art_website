@@ -202,64 +202,75 @@
 
 <script>
 
+ 
   let cart = [];
 
-try {
-  const storedCart = localStorage.getItem("cart");
-  cart = storedCart ? JSON.parse(storedCart) : [];
-} catch (e) {
-  console.error("Cart parse error:", e);
-  cart = [];
-}
-console.log("CART LOADED:", cart);
-  
-const container = document.getElementById("cartContainer");
+function loadCart() {
+  try {
+    const stored = localStorage.getItem("cart");
 
-let subtotal = 0;
-let vat = 0;
-let vat19 = 0;
-let vat7 = 0;
-let total = 0;
+    console.log("RAW LOCALSTORAGE CART:", stored);
 
-/* ===== RENDER CART ===== */
+    cart = stored ? JSON.parse(stored) : [];
 
-container.innerHTML = "";
-
-cart.forEach(item => {
-
-  const price = Number(item.price) || 0;
-  const img = item.img || "";
-  const name = item.name || "Artwork";
-
-  subtotal += price;
-
-  const vatRate =
-    item.type === "original"
-      ? 0.07
-      : 0.19;
-
-  const itemVat = price * vatRate;
-
-  vat += itemVat;
-
-  if (vatRate === 0.19) {
-    vat19 += itemVat;
-  } else {
-    vat7 += itemVat;
+  } catch (e) {
+    console.error("Cart parse error:", e);
+    cart = [];
   }
 
-  container.innerHTML += `
-    <div class="cart-item">
-      <img src="${img}">
-      <div>
-        <p>${name}</p>
-        <p>€${price.toFixed(2)}</p>
-      </div>
-    </div>
-  `;
-});
+  console.log("PARSED CART:", cart);
+}
 
-total = subtotal + vat;
+loadCart();
+
+const container = document.getElementById("cartContainer");
+
+function renderCart() {
+
+  container.innerHTML = "";
+
+  let subtotal = 0;
+  let vat = 0;
+  let vat19 = 0;
+  let vat7 = 0;
+
+  cart.forEach(item => {
+
+    const price = Number(item.price || 0);
+    const img = item.img || "";
+    const name = item.name || "Artwork";
+
+    subtotal += price;
+
+    const vatRate = item.type === "original" ? 0.07 : 0.19;
+    const itemVat = price * vatRate;
+
+    vat += itemVat;
+
+    if (vatRate === 0.19) vat19 += itemVat;
+    else vat7 += itemVat;
+
+    container.innerHTML += `
+      <div class="cart-item">
+        <img src="${img}">
+        <div>
+          <p>${name}</p>
+          <p>€${price.toFixed(2)}</p>
+        </div>
+      </div>
+    `;
+  });
+
+  const total = subtotal + vat;
+
+  document.getElementById("subtotal").innerText = "€" + subtotal.toFixed(2);
+  document.getElementById("vat").innerText = "€" + vat.toFixed(2);
+  document.getElementById("total").innerText = "€" + total.toFixed(2);
+  document.getElementById("vat19").innerText = "19% VAT: €" + vat19.toFixed(2);
+  document.getElementById("vat7").innerText = "7% VAT: €" + vat7.toFixed(2);
+}
+
+renderCart();
 
 /* ===== UPDATE UI ===== */
 

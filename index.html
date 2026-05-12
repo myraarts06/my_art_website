@@ -725,10 +725,11 @@ function updateCartVisibility(pageId) {
 function closeCart() {
   document.getElementById("cartPanel").style.right = "-320px";
 }
-  function goToCheckout() {
+    function goToCheckout() {
   localStorage.setItem("cart", JSON.stringify(cart));
   window.location.href = "checkout.html";
 }
+
   </script>
 
 </body>

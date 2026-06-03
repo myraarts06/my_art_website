@@ -14,8 +14,7 @@ module.exports = async (req, res) => {
 
     const line_items = cart.map(item => {
       const vatRate = item.type === "original" ? 0.07 : 0.19;
-      const basePrice = Number(item.price);
-      const finalPrice = basePrice * (1 + vatRate);
+      const finalPrice = Number(item.price) * (1 + vatRate);
 
       return {
         price_data: {
@@ -30,20 +29,19 @@ module.exports = async (req, res) => {
       };
     });
 
-    const origin = req.headers.origin || "https://myra-arts.vercel.app";
+    const BASE_URL = "https://myra-arts.vercel.app";
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
-
-      success_url: `${origin}/success.html`,
-      cancel_url: `${origin}/cancel.html`,
+      success_url: `${BASE_URL}/success.html`,
+      cancel_url: `${BASE_URL}/cancel.html`,
     });
 
     return res.json({ url: session.url });
 
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ error: err.message || "Payment failed" });
+    return res.status(500).json({ error: err.message });
   }
 };

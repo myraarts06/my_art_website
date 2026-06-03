@@ -191,12 +191,17 @@
     }
 
     .product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 50px;
-  justify-items: center;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 60px !important;
+  width: 100% !important;
+  margin-top: 20px !important;
+  border: 5px solid red; /* debug */
 }
 
+.product {
+  border: 3px solid blue; /* debug */
+}
     .product img {
       width: 250px;
       border-radius: 10px;

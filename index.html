@@ -681,12 +681,21 @@ function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
-
-  const artworkData = {
+    const artworkData = {
   "Affection": {
     medium: "Acrylic on Foam board",
     size: "21 × 29.7 cm / A4",
-    year: "2019"
+    year: "2019",
+    description: ""
+  },
+
+  "Inner Thoughts": {
+    medium: "Acrylics on Canvas",
+    size: "42 × 30 cm",
+    year: "2019",
+    description: `What does it take to become a Buddha?
+
+Before the stillness, there must have been fire, an inner churning. In Telugu, we call it Antarmadhanam. That's when I turned to Surya mandala, not merely as the sun but as a representation of the transformation itself. Because I believe enlightenment isn't peaceful to reach, it is what remains after the burn.`
   }
 };
 

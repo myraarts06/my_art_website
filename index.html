@@ -189,14 +189,14 @@
     .portfolio-content.active {
       display: block;
     }
-
+    
     .product-grid {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  align-items: start;
+}
 
     .product img {
       width: 250px;

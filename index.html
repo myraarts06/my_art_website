@@ -469,7 +469,53 @@
 
   <!-- PHOTO -->
   <div id="photo" class="portfolio-content">
-    <p>Photography coming soon...</p>
+<div class="product-grid">
+
+  <div class="product">
+    <img src="photos/An Elegant Pose.jpg" onclick="openPhoto('An Elegant Pose', 'photos/An Elegant Pose.jpg')">
+  </div>
+
+  <div class="product">
+    <img src="photos/An Evening Walk.jpg" onclick="openPhoto('An Evening Walk', 'photos/An Evening Walk.jpg')">
+  </div>
+
+  <div class="product">
+    <img src="photos/Blue Sky Butterfly.jpg" onclick="openPhoto('Blue Sky Butterfly', 'photos/Blue Sky Butterfly.jpg')">
+  </div>
+
+   <div class="product">
+    <img src="photos/Konstanz.jpg" onclick="openPhoto('Konstanz', 'photos/Konstanz.jpg')">
+  </div>
+
+  <div class="product">
+    <img src="photos/Mysterious.jpg" onclick="openPhoto('Mysterious', 'photos/Mysterious.jpg')">
+  </div>
+
+  <div class="product">
+    <img src="photos/One Step At a Time.jpg" onclick="openPhoto('One Step At a Time', 'photos/One Step At a Time.jpg')">
+  </div>
+
+  <div class="product">
+    <img src="photos/Serene.jpg" onclick="openPhoto('Serene', 'photos/Serene.jpg')">
+  </div>
+
+  <div class="product">
+    <img src="photos/The Spiny Chuckwalla - Sauromalus hispidus.jpg" onclick="openPhoto('The Spiny Chuckwalla - Sauromalus hispidus', 'photos/The Spiny Chuckwalla - Sauromalus hispidus.jpg')">
+  </div>
+
+  
+  <div class="product">
+    <img src="photos/The Slow Walking Snail.jpg" onclick="openPhoto('The Slow Walking Snail', 'photos/The Slow Walking Snail.jpg')">
+  </div>
+
+     <div class="product">
+    <img src="photos/The Swan.jpg" onclick="openPhoto('The Swan', 'photos/The Swan.jpg')">
+  </div>
+
+   <div class="product">
+    <img src="photos/The Vulture.jpg" onclick="openPhoto('The Vulture', 'photos/The Vulture.jpg')">
+  </div>
+    
   </div>
 
   <!-- PAINTINGS -->
@@ -680,6 +726,17 @@ function toggleMenu() {
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+}
+
+  function openPhoto(title, img) {
+  const modal = document.getElementById("paintingModal");
+  const modalImg = document.getElementById("modalImg");
+  const modalTitle = document.getElementById("modalTitle");
+
+  modalImg.src = img;
+  modalTitle.innerText = title;
+
+  modal.style.display = "flex";
 }
 
   const artworkData = {

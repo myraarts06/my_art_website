@@ -681,14 +681,8 @@ function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
-    const artworkData = {
-  "Affection": {
-    medium: "Acrylic on Foam board",
-    size: "21 × 29.7 cm / A4",
-    year: "2019",
-    description: ""
-  },
 
+  const artworkData = {
   "Inner Thoughts": {
     medium: "Acrylics on Canvas",
     size: "42 × 30 cm",
@@ -696,6 +690,41 @@ function showPortfolio(id) {
     description: `What does it take to become a Buddha?
 
 Before the stillness, there must have been fire, an inner churning. In Telugu, we call it Antarmadhanam. That's when I turned to Surya mandala, not merely as the sun but as a representation of the transformation itself. Because I believe enlightenment isn't peaceful to reach, it is what remains after the burn.`
+  },
+
+  "Karma Yogi": {
+    medium: "Acrylic on Foam board",
+    size: "42 × 30 cm",
+    year: "2019",
+    description: `The one who transcended duality. Here, black and white are chosen to represent the dual nature of the human realm. Although human perception remains confined to duality, the karma yogi transcends these limitations/illusions, thereby embodying a non-dual reality.`
+  },
+
+  "Mother’s Protection": {
+    medium: "Ink on acid-free paper (250 gsm)",
+    size: "29.7 × 42 cm / A3",
+    year: "2019",
+    description: `"The natural state of motherhood is unselfishness." — Jessica Lange. Among all human experiences, there is not one that matches motherly emotion.`
+  },
+
+  "Affection": {
+    medium: "Acrylic on Foam board",
+    size: "21 × 29.7 cm / A4",
+    year: "2019",
+    description: ""
+  },
+
+  "Dreamy sky - Gentle Swing": {
+    medium: "Aluminium foil on acid-free paper (250 gsm)",
+    size: "21 × 29.7 cm / A4",
+    year: "2019",
+    description: ""
+  },
+
+  "Naked Truth": {
+    medium: "Glitter pen on acid-free paper (250 gsm)",
+    size: "29.7 × 42 cm / A3",
+    year: "2019",
+    description: ""
   }
 };
 
@@ -710,8 +739,8 @@ Before the stillness, there must have been fire, an inner churning. In Telugu, w
 
   const data = artworkData[title];
 
-  if (data) {
-    modalDesc.innerHTML = `
+  modalDesc.innerHTML = data
+    ? `
       <p><strong>Medium:</strong> ${data.medium}</p>
       <p><strong>Size:</strong> ${data.size}</p>
       <p><strong>Year:</strong> ${data.year}</p>
@@ -719,10 +748,8 @@ Before the stillness, there must have been fire, an inner churning. In Telugu, w
       <p style="white-space: pre-line; line-height: 1.6;">
         ${data.description || ""}
       </p>
-    `;
-  } else {
-    modalDesc.innerHTML = `<p>No details added yet.</p>`;
-  }
+    `
+    : `<p>No details added yet.</p>`;
 
   modal.style.display = "flex";
 }

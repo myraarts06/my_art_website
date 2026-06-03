@@ -196,22 +196,27 @@
   gap: 60px !important;
   width: 100% !important;
   margin-top: 20px !important;
-  border: 5px solid red; /* debug */
 }
 
 .product {
-  border: 3px solid blue; /* debug */
+  display: flex;
+  justify-content: center;
 }
-    .product img {
-      width: 250px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
 
-    .product img:hover {
-      transform: scale(1.05);
-    }
+.product img {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  object-fit: cover;
+  display: block;
+}
+
+.product img:hover {
+  transform: scale(1.05);
+}
 
     /* ===== MODAL (NEW SPA VIEW) ===== */
   #paintingModal {

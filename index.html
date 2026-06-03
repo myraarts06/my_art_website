@@ -225,34 +225,45 @@
 }
 
     /* ===== MODAL (NEW SPA VIEW) ===== */
-  #paintingModal {
+
+    #paintingModal {
   position: fixed;
   top: 0;
   left: 0;
-
   width: 100vw;
   height: 100vh;
-
   background: rgba(0,0,0,0.96);
-
   display: none;
   justify-content: center;
   align-items: center;
-
   z-index: 999999;
 }
 
-.modal-content {
-  background: #111;
-  padding: 20px;
-  border-radius: 12px;
+.modal-wrapper {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  max-width: 90vw;
+}
+
+.modal-left {
   text-align: center;
 }
 
-.modal-content img {
-  max-width: 80vw;
+.modal-left img {
+  max-width: 60vw;
   max-height: 75vh;
   border-radius: 10px;
+}
+
+.modal-right {
+  max-width: 300px;
+  color: #ccc;
+  font-size: 16px;
+  line-height: 1.5;
+  border-left: 1px solid #333;
+  padding-left: 20px;
 }
 
 #modalTitle {
@@ -260,7 +271,6 @@
   color: white;
   letter-spacing: 2px;
 }
-
 .close-btn {
   position: absolute;
   top: 20px;
@@ -505,13 +515,26 @@
 
 </div>
    <!-- MODAL -->
-  <div id="paintingModal">
-    <div class="close-btn" onclick="closePainting()">×</div>
-    <div class="modal-content">
+<div id="paintingModal">
+  
+  <div class="modal-wrapper">
+
+    <!-- IMAGE SIDE -->
+    <div class="modal-left">
       <img id="modalImg">
       <h2 id="modalTitle"></h2>
     </div>
+
+    <!-- DESCRIPTION SIDE -->
+    <div class="modal-right">
+      <p id="modalDesc">
+        Description will appear here
+      </p>
+    </div>
+
   </div>
+
+  <div class="close-btn" onclick="closePainting()">×</div>
 </div>
 
 <!-- ABOUT -->
@@ -658,20 +681,35 @@ function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
-  function openPainting(title, img) {
-  console.log("Clicked:", title); // 👈 ADD THIS
 
+  const artworkData = {
+  "Affection": {
+    medium: "Acrylic on Foam board",
+    size: "21 × 29.7 cm / A4",
+    year: "2019"
+  }
+};
+
+function openPainting(title, img) {
   const modal = document.getElementById("paintingModal");
   const modalImg = document.getElementById("modalImg");
   const modalTitle = document.getElementById("modalTitle");
-
-  if (!modal || !modalImg || !modalTitle) {
-    console.error("Modal elements not found!");
-    return;
-  }
+  const modalDesc = document.getElementById("modalDesc");
 
   modalImg.src = img;
   modalTitle.innerText = title;
+
+  const data = artworkData[title];
+
+  if (data) {
+    modalDesc.innerHTML = `
+      <p><strong>Medium:</strong> ${data.medium}</p>
+      <p><strong>Size:</strong> ${data.size}</p>
+      <p><strong>Year:</strong> ${data.year}</p>
+    `;
+  } else {
+    modalDesc.innerHTML = `<p>No details added yet.</p>`;
+  }
 
   modal.style.display = "flex";
 }

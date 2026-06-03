@@ -731,9 +731,13 @@ function showPortfolio(id) {
   const modal = document.getElementById("paintingModal");
   const modalImg = document.getElementById("modalImg");
   const modalTitle = document.getElementById("modalTitle");
+  const modalDesc = document.getElementById("modalDesc");
 
   modalImg.src = img;
   modalTitle.innerText = title;
+
+  // 🚫 Hide description for photos
+  modalDesc.style.display = "none";
 
   modal.style.display = "flex";
 }
@@ -794,6 +798,8 @@ Before the stillness, there must have been fire, an inner churning. In Telugu, w
   modalTitle.innerText = title;
 
   const data = artworkData[title];
+
+  modalDesc.style.display = "block"; // ✅ IMPORTANT RESET
 
   modalDesc.innerHTML = data
     ? `

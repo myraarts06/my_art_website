@@ -699,7 +699,7 @@ Before the stillness, there must have been fire, an inner churning. In Telugu, w
   }
 };
 
-function openPainting(title, img) {
+  function openPainting(title, img) {
   const modal = document.getElementById("paintingModal");
   const modalImg = document.getElementById("modalImg");
   const modalTitle = document.getElementById("modalTitle");
@@ -715,6 +715,10 @@ function openPainting(title, img) {
       <p><strong>Medium:</strong> ${data.medium}</p>
       <p><strong>Size:</strong> ${data.size}</p>
       <p><strong>Year:</strong> ${data.year}</p>
+      <br>
+      <p style="white-space: pre-line; line-height: 1.6;">
+        ${data.description || ""}
+      </p>
     `;
   } else {
     modalDesc.innerHTML = `<p>No details added yet.</p>`;
@@ -722,6 +726,7 @@ function openPainting(title, img) {
 
   modal.style.display = "flex";
 }
+
 function closePainting() {
   document.getElementById("paintingModal").style.display = "none";
 }

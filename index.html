@@ -448,7 +448,7 @@
 </div>
 
 <!-- PORTFOLIO -->
-<div id="portfolio" class="page">
+  <div id="portfolio" class="page">
   <div class="title">PORTFOLIO</div>
 
   <div class="portfolio-options">
@@ -457,12 +457,15 @@
     <button class="portfolio-btn" onclick="showPortfolio('projects')">Projects</button>
   </div>
 
+  <!-- PHOTO -->
   <div id="photo" class="portfolio-content">
     <p>Photography coming soon...</p>
   </div>
 
+  <!-- PAINTINGS -->
   <div id="paint" class="portfolio-content">
     <div class="product-grid">
+
       <div class="product">
         <img src="images/Affection.jpg" onclick="openPainting('Affection', 'images/Affection.jpg')">
       </div>
@@ -482,21 +485,25 @@
       <div class="product">
         <img src="images/Karma Yogi.jpg" onclick="openPainting('Karma Yogi', 'images/Karma Yogi.jpg')">
       </div>
-      
+
       <div class="product">
-  <img src="images/Mother's Protection.jpg"
-       onclick="openPainting('Mother\'s Protection', 'images/Mother\'s Protection.jpg')">
-</div>
-      
+        <img src="images/Mother's Protection.jpg"
+             onclick="openPainting('Mother\'s Protection', 'images/Mother\'s Protection.jpg')">
+      </div>
+
       <div class="product">
         <img src="images/Naked Truth.jpg" onclick="openPainting('Naked Truth', 'images/Naked Truth.jpg')">
       </div>
- </div>
-    
-      <div id="projects" class="portfolio-content">
-  <p>Projects coming soon...</p>
-        </div>
+
+    </div>
   </div>
+
+  <!-- PROJECTS (OUTSIDE paint) -->
+  <div id="projects" class="portfolio-content">
+    <p>Projects coming soon...</p>
+  </div>
+
+</div>
    <!-- MODAL -->
   <div id="paintingModal">
     <div class="close-btn" onclick="closePainting()">×</div>

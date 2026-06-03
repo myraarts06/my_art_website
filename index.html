@@ -385,6 +385,93 @@
 .contact-form textarea {
   font-family: Arial, sans-serif;
 }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+
+@media screen and (max-width: 768px) {
+
+  .page {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 32px;
+    letter-spacing: 4px;
+    margin-top: 50px;
+  }
+
+  .portfolio-btn {
+    padding: 8px 14px;
+    margin: 5px;
+    font-size: 14px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .product img {
+    max-width: 85vw;
+  }
+
+  .shop-list {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .shop-item {
+    width: 90%;
+  }
+
+  .modal-wrapper {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .modal-left img {
+    max-width: 90vw;
+    max-height: 60vh;
+  }
+
+  .modal-right {
+    max-width: 90%;
+    border-left: none;
+    border-top: 1px solid #333;
+    padding-left: 0;
+    padding-top: 20px;
+    text-align: left;
+  }
+
+  .hamburger {
+    top: 15px;
+    right: 15px;
+  }
+
+  .music-btn {
+    bottom: 15px;
+    right: 15px;
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  #cartIcon {
+    bottom: 15px;
+    left: 15px;
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+
+  .contact-form {
+    width: 100%;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 16px;
+  }
+}
   </style>
 </head>
 

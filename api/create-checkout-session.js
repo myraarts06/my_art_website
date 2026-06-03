@@ -12,6 +12,8 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: "Cart is empty" });
     }
 
+    const BASE_URL = "https://myra-arts.vercel.app";
+
     const line_items = cart.map(item => {
       const vatRate = item.type === "original" ? 0.07 : 0.19;
       const finalPrice = Number(item.price) * (1 + vatRate);
@@ -21,7 +23,11 @@ module.exports = async (req, res) => {
           currency: "eur",
           product_data: {
             name: item.name,
-            images: item.img ? [item.img] : [],
+
+            // ✅ SAFE FIX (optional but important)
+            images: item.img
+              ? [`${BASE_URL}/${item.img}`]
+              : [],
           },
           unit_amount: Math.round(finalPrice * 100),
         },
@@ -29,11 +35,10 @@ module.exports = async (req, res) => {
       };
     });
 
-    const BASE_URL = "https://myra-arts.vercel.app";
-
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
+
       success_url: `${BASE_URL}/success.html`,
       cancel_url: `${BASE_URL}/cancel.html`,
     });

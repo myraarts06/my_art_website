@@ -141,21 +141,38 @@
   text-align: center;
 }
 
-    #home {
+#home {
   position: relative;
-  min-height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-    .home-center {
-  flex: 1;
+/* TOP */
+.home-top {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  text-align: center;
+}
+
+/* CENTER */
+.home-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  max-width: 800px;
+  width: 90%;
+}
+
+/* BOTTOM */
+.social {
+  position: absolute;
+  bottom: 25px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
     .body-line {
@@ -164,6 +181,8 @@
   text-align: center;
   margin: 6px 0;
   letter-spacing: 1px;
+  text-align: center;
+  line-height: 1.4;
 }
     /* ===== SOCIAL ===== */
    .social {
@@ -665,22 +684,29 @@
 
 <!-- HOME -->
 <div id="home" class="page active">
-  <div class="home-center">
+
+    <!-- TOP -->
+  <div class="home-top">
   <div class="title" data-text="MYRA ARTS"></div>
   <div id="subtitle" class="subtitle"></div>
-  <div class="home-body">
+</div>
+
+   <!-- CENTER -->
+  <div class="home-center">
   <div class="body-line">Namaste, I am a multidisciplinary artist working between painting, photography, and installation.</div>
   <div class="body-line">My practice investigates a single enduring question: the nature of the self and human experience.</div>
   <div class="body-line">Drawing from Indian Knowledge Systems as a lived intellectual framework, I create invitations to contemplation.</div>
   <div class="body-line">Based in Frankfurt, my work emerges from a transition from the scientific and corporate world into a long-term artistic inquiry into how reality is perceived, structured, and experienced.</div>
 </div>
+
+   <!-- BOTTOM -->
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
     </a>
   </div>
 </div>
-</div>
+
   
 <!-- PORTFOLIO -->
   <div id="portfolio" class="page">

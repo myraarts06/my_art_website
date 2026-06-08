@@ -64,6 +64,24 @@
       position: relative;
     }
 
+    .subtitle {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #aaa;
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+    .subtitle .letter {
+  opacity: 0;
+  transform: translateY(-200px);
+}
+
+.subtitle .drop {
+  animation: drop 0.8s forwards;
+}
+    
     /* ===== ONLY HOME ANIMATION ===== */
     #home .letter {
       opacity: 0;
@@ -609,6 +627,7 @@
 <!-- HOME -->
 <div id="home" class="page active">
   <div class="title" data-text="MYRA ARTS"></div>
+  <div id="subtitle" class="subtitle"></div>
   <div class="social">
     <a href="https://www.instagram.com/myraarts06/" target="_blank">
       <i class="fa-brands fa-instagram" style="font-size:45px; color:#E1306C;"></i>
@@ -846,19 +865,50 @@ music.play().catch((err) => {
 
 function startHomeAnimation() {
   const title = document.querySelector("#home .title");
+  const subtitle = document.querySelector("#subtitle");
   const text = title.getAttribute("data-text");
 
   title.innerHTML = "";
+  subtitle.innerHTML = "";
+   let lastIndex = text.length - 1;
 
   text.split("").forEach((char, i) => {
     const span = document.createElement("span");
     span.classList.add("letter");
     span.innerHTML = char === " " ? "&nbsp;" : char;
-    setTimeout(() => span.classList.add("drop"), i * 120);
+     setTimeout(() => {
+      span.classList.add("drop");
+
+      // AFTER LAST LETTER → trigger subtitle
+      if (i === lastIndex) {
+        setTimeout(() => startSubtitleAnimation(), 400);
+      }
+
+    }, i * 120);
+
     title.appendChild(span);
   });
 }
+    function startSubtitleAnimation() {
+  const subtitle = document.getElementById("subtitle");
 
+  const text = "by Pradeep Krishna";
+
+  subtitle.innerHTML = "";
+
+  text.split("").forEach((char, i) => {
+    const span = document.createElement("span");
+    span.classList.add("letter");
+    span.innerHTML = char === " " ? "&nbsp;" : char;
+
+    setTimeout(() => {
+      span.classList.add("drop");
+    }, i * 80);
+
+    subtitle.appendChild(span);
+  });
+}
+  
 function toggleMusic() {
   if (musicOn) {
     music.pause();

@@ -1163,15 +1163,21 @@ function openShopGallery(mediaArray) {
   thumbs.innerHTML = "";
   modal.style.display = "flex";
 
-  // =========================
-  // ✅ ZOOM LOGIC (PUT HERE)
-  // =========================
+  function showMedia(src) {
+    if (src.endsWith(".mp4")) {
+      mainImg.style.display = "none";
+      mainVideo.style.display = "block";
+      mainVideo.src = src;
+    } else {
+      mainVideo.style.display = "none";
+      mainImg.style.display = "block";
+      mainImg.src = src;
+    }
+  }
 
+  // reset zoom
   mainImg.style.transform = "scale(1)";
   mainImg.style.transformOrigin = "center";
-
-  mainImg.onmousemove = null;
-  mainImg.onmouseleave = null;
 
   mainImg.onmousemove = (e) => {
     const rect = mainImg.getBoundingClientRect();
@@ -1188,71 +1194,14 @@ function openShopGallery(mediaArray) {
     mainImg.style.transformOrigin = "center";
   };
 
-  // =========================
-  // MEDIA SWITCH LOGIC
-  // =========================
-
-  function showMedia(src) {
-    if (src.endsWith(".mp4")) {
-      mainImg.style.display = "none";
-      mainVideo.style.display = "block";
-      mainVideo.src = src;
-    } else {
-      mainVideo.style.display = "none";
-      mainImg.style.display = "block";
-      mainImg.src = src;
-    }
-  }
-
   showMedia(mediaArray[0]);
 
   mediaArray.forEach(src => {
-    let element = src.endsWith(".mp4")
+    const element = src.endsWith(".mp4")
       ? document.createElement("video")
       : document.createElement("img");
 
     element.src = src;
-    element.onclick = () => showMedia(src);
-
-    thumbs.appendChild(element);
-  });
-}
-
-  function showMedia(src) {
-
-    if (src.endsWith(".mp4")) {
-
-      mainImg.style.display = "none";
-      mainVideo.style.display = "block";
-
-      mainVideo.src = src;
-
-    } else {
-
-      mainVideo.style.display = "none";
-      mainImg.style.display = "block";
-
-      mainImg.src = src;
-    }
-  }
-
-  showMedia(mediaArray[0]);
-
-  mediaArray.forEach(src => {
-
-    let element;
-
-    if (src.endsWith(".mp4")) {
-
-      element = document.createElement("video");
-      element.src = src;
-
-    } else {
-
-      element = document.createElement("img");
-      element.src = src;
-    }
-
     element.onclick = () => showMedia(src);
 
     thumbs.appendChild(element);

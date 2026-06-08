@@ -1007,18 +1007,20 @@ function toggleMusic() {
 function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
+
   function openPage(id) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
   document.getElementById("menu").classList.remove("open");
 
-  // IMPORTANT: close all overlays
   closePainting();
   closeCart();
   closeShopGallery();
 
   updateCartVisibility(id);
+
+  window.scrollTo(0, 0); // 🔥 FIX
 
   if (id === "home") {
     const title = document.querySelector("#home .title");
@@ -1029,7 +1031,6 @@ function toggleMenu() {
     }, 50);
   }
 }
-
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");

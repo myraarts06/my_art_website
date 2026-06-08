@@ -904,6 +904,11 @@ html, body {
 
   
 <script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("cartIcon").style.display = "none";
+});
+  
   let cart = [];
   const shopData = {
   "3 Guṇas - Ahambrahmasmi.jpg": {
@@ -920,11 +925,15 @@ const musicBtn = document.getElementById("musicBtn");
 let musicOn = true;
 
 document.getElementById("entryScreen").addEventListener("click", async () => {
-  document.getElementById("entryScreen").style.display = "none";
+  const entry = document.getElementById("entryScreen");
+  entry.style.opacity = "0";
+
+  setTimeout(() => {
+    entry.style.display = "none";
+  }, 300);
+
   music.volume = 0;
-music.play().catch((err) => {
-  console.log("Music blocked by browser:", err);
-});
+  music.play().catch(err => console.log(err));
 
   let v = 0;
   const fade = setInterval(() => {
@@ -1002,18 +1011,22 @@ function toggleMenu() {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
-  // Close hamburger menu
   document.getElementById("menu").classList.remove("open");
   closePainting();
+
   updateCartVisibility(id);
-   if (id === "home") {
-  const title = document.querySelector("#home .title");
-  title.innerHTML = "";
-  
-  setTimeout(() => {
-    startHomeAnimation();
-  }, 50);
-}  
+
+  // FORCE CART RESET SAFETY
+  if (id !== "payment") {
+    document.getElementById("cartIcon").style.display = "none";
+  }
+
+  if (id === "home") {
+    const title = document.querySelector("#home .title");
+    title.innerHTML = "";
+
+    setTimeout(() => startHomeAnimation(), 50);
+  }
 }
 
 function showPortfolio(id) {

@@ -699,7 +699,7 @@
 <div class="shop-list">
 
   <div class="shop-item">
-    <img src="images/3 Guṇas - Ahambrahmasmi.jpg">
+    <img src="images/3 Gunas - Ahambrahmasmi.jpg" onclick="openShopProduct('3 Gunas - Ahambrahmasmi')">
 
     <h2>3 Guṇas - Ahambrahmasmi</h2>
 
@@ -726,7 +726,16 @@
   
 <script>
   let cart = [];
-  
+  const shopData = {
+  "3 Guṇas - Ahambrahmasmi.jpg": {
+    media: [
+      "images/Ahambrahmasmi_Presentation_1.png",
+      "images/Ahambrahmasmi_Presentation_3.jpg",
+      "images/Ahambrahmasmi_Presentation_4.png",
+      "images/Ahambrahmasmi_Presentation_2.mp4"
+    ]
+  }
+};
 const music = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
 let musicOn = true;
@@ -1010,7 +1019,87 @@ function goToCheckout() {
     console.error("Checkout error:", e);
   }
 }
+
+  function openShopProduct(title) {
+  const modal = document.getElementById("shopModal");
+  const img = document.getElementById("shopMainImg");
+  const video = document.getElementById("shopMainVideo");
+  const thumbs = document.getElementById("shopThumbs");
+  const shopTitle = document.getElementById("shopTitle");
+
+  const data = shopData[title];
+
+  shopTitle.innerText = title;
+  thumbs.innerHTML = "";
+
+  function show(src) {
+    if (src.endsWith(".mp4")) {
+      img.style.display = "none";
+      video.style.display = "block";
+      video.src = src;
+    } else {
+      video.style.display = "none";
+      img.style.display = "block";
+      img.src = src;
+    }
+  }
+
+  const media = data.media;
+  show(media[0]);
+
+  media.forEach(src => {
+    const t = document.createElement("img");
+    t.src = src;
+    t.style.width = "80px";
+    t.style.cursor = "pointer";
+    t.style.marginBottom = "10px";
+    t.style.borderRadius = "6px";
+
+    t.onclick = () => show(src);
+    thumbs.appendChild(t);
+  });
+
+  modal.style.display = "flex";
+}
+
+function closeShopModal() {
+  document.getElementById("shopModal").style.display = "none";
+}
   </script>
 
+
+  <!-- SHOP MODAL -->
+<div id="shopModal" style="
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.96);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+">
+
+  <div class="modal-wrapper">
+
+    <!-- MAIN IMAGE / VIDEO -->
+    <div class="modal-left">
+      <img id="shopMainImg" style="display:none; max-width:60vw; max-height:75vh;">
+      <video id="shopMainVideo" controls style="display:none; max-width:60vw; max-height:75vh;"></video>
+
+      <h2 id="shopTitle"></h2>
+    </div>
+
+    <!-- THUMBNAILS -->
+    <div class="modal-right" id="shopThumbs"></div>
+
+  </div>
+
+  <div class="close-btn" onclick="closeShopModal()">×</div>
+</div>
 </body>
 </html>
+
+

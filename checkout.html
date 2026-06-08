@@ -190,6 +190,8 @@
 
     <input type="text" id="country" placeholder="Country" required>
 
+     <input type="text" id="collectorName" placeholder="Collector name: Full name that is to be displayed on the Certificate of Authenticity & Authorship" required>
+
     <textarea id="notes" placeholder="Delivery Notes (Optional)"></textarea>
 
     <button id="paymentBtn" type="button" disabled onclick="proceedToPayment()">
@@ -290,7 +292,8 @@ const requiredFields = [
   "city",
   "state",
   "postal",
-  "country"
+  "country",
+  "collectorName"
 ];
 
 requiredFields.forEach(id => {
@@ -318,6 +321,7 @@ function proceedToPayment() {
     state: document.getElementById("state").value,
     postal: document.getElementById("postal").value,
     country: document.getElementById("country").value,
+    collectorName: document.getElementById("collectorName").value,
     notes: document.getElementById("notes").value
   };
 
@@ -347,11 +351,6 @@ function proceedToPayment() {
 }
 
 </script>
-
-
- 
-  
-
 
 </body>
 </html>

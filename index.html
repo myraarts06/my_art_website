@@ -1163,6 +1163,27 @@ function openShopGallery(mediaArray) {
   thumbs.innerHTML = "";
 
   modal.style.display = "flex";
+  const mainImg = document.getElementById("mainGalleryImage");
+
+// reset zoom every time modal opens
+mainImg.style.transform = "scale(1)";
+mainImg.style.transformOrigin = "center";
+
+// cursor-based zoom
+mainImg.onmousemove = (e) => {
+  const rect = mainImg.getBoundingClientRect();
+
+  const x = ((e.clientX - rect.left) / rect.width) * 100;
+  const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+  mainImg.style.transformOrigin = `${x}% ${y}%`;
+  mainImg.style.transform = "scale(2)";
+};
+
+mainImg.onmouseleave = () => {
+  mainImg.style.transform = "scale(1)";
+  mainImg.style.transformOrigin = "center";
+};
 
   function showMedia(src) {
 

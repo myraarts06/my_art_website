@@ -40,16 +40,16 @@
     }
 
     /* ===== PAGE SYSTEM ===== */
-    .page {
-      display: none;
-      padding: 40px;
-      min-height: 100vh;
-      text-align: center;
-    }
 
-    .page.active {
-      display: block;
-    }
+    .page {
+  display: none;
+  position: relative;
+  width: 100%;
+}
+
+.page.active {
+  display: block;
+}
 
     /* ===== TITLE ===== */
     .title {
@@ -1194,14 +1194,14 @@ function flyToCart(imgSrc, event) {
 
   setTimeout(() => img.remove(), 900);
 }
-
-function updateCartVisibility(pageId) {
+  function updateCartVisibility(pageId) {
   const cartIcon = document.getElementById("cartIcon");
+
+  // always reset first
+  cartIcon.style.display = "none";
 
   if (pageId === "payment") {
     cartIcon.style.display = "flex";
-  } else {
-    cartIcon.style.display = "none";
   }
 }
 

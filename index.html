@@ -155,15 +155,18 @@
   text-align: center;
 }
 
-/* CENTER */
+/* CENTER AREA (FULL HEIGHT DISTRIBUTION ZONE) */
 .home-center {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  max-width: 800px;
-  width: 90%;
+  top: 140px;   /* below title area */
+  bottom: 100px; /* above instagram */
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; /* KEY FIX */
+  align-items: center;
 }
 
 /* BOTTOM */
@@ -179,10 +182,15 @@
   font-size: 22px;
   color: #aaa;
   text-align: center;
-  margin: 6px 0;
   letter-spacing: 1px;
-  text-align: center;
   line-height: 1.4;
+  padding: 5px 0;
+}
+
+    html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
 }
     /* ===== SOCIAL ===== */
    .social {

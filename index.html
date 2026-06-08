@@ -472,6 +472,69 @@
     font-size: 16px;
   }
 }
+
+    /* ===== SHOP GALLERY ===== */
+
+#shopGalleryModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.96);
+  display: none;
+  z-index: 999999;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-container {
+  display: flex;
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.gallery-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-main img,
+.gallery-main video {
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 10px;
+}
+
+.gallery-thumbs {
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.gallery-thumbs img,
+.gallery-thumbs video {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 2px solid transparent;
+}
+
+.gallery-thumbs img:hover,
+.gallery-thumbs video:hover {
+  border-color: white;
+}
+
+.close-gallery {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
   </style>
 </head>
 
@@ -698,28 +761,41 @@
 
 <div class="shop-list">
 
-  <div class="shop-item">
-    <img src="images/3 Guṇas - Ahambrahmasmi.jpg" onclick="openShopProduct('3 Guṇas - Ahambrahmasmi')">
+ <div class="shop-item">
 
-    <h2>3 Guṇas - Ahambrahmasmi</h2>
+  <!-- CLICKABLE IMAGE -->
+  <img 
+    src="images/3 Guṇas - Ahambrahmasmi.jpg"
+    onclick="openShopGallery(
+      [
+        'images/Ahambrahmasmi_Presentation_1.png',
+        'images/Ahambrahmasmi_Presentation_2.mp4',
+        'images/Ahambrahmasmi_Presentation_3.jpg',
+        'videos/Ahambrahmasmi_Presentation_4'
+      ]
+    )"
+  >
 
-    <p class="desc">ORIGINAL PAINTING</p>
+  <h2>3 Guṇas - Ahambrahmasmi</h2>
 
-    <p>20×16 inches</p>
+  <p class="desc">ORIGINAL</p>
 
-    <p>€2145</p>
+  <p>20x16 inches</p>
 
-    <button onclick="addToCart(
-      '3 Guṇas - Ahambrahmasmi,
-      2145,
-      'images/3 Guṇas - Ahambrahmasmi.jpg',
-      'original',
-      '20x16',
-      event
-    )">
-      Buy Now
-    </button>
-  </div>
+  <p>€2145</p>
+
+  <button onclick="addToCart(
+    '3 Guṇas - Ahambrahmasmi',
+    2145,
+    'images//3 Guṇas - Ahambrahmasmi.jpg',
+    'original',
+    '20x16',
+    event
+  )">
+    Buy Now
+  </button>
+
+</div>
 
 </div>
 
@@ -1065,40 +1141,89 @@ function goToCheckout() {
 function closeShopModal() {
   document.getElementById("shopModal").style.display = "none";
 }
-  </script>
 
+  <script>
 
-  <!-- SHOP MODAL -->
-<div id="shopModal" style="
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.96);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999999;
-">
+function openShopGallery(mediaArray) {
 
-  <div class="modal-wrapper">
+  const modal = document.getElementById("shopGalleryModal");
+  const thumbs = document.getElementById("galleryThumbs");
 
-    <!-- MAIN IMAGE / VIDEO -->
-    <div class="modal-left">
-      <img id="shopMainImg" style="display:none; max-width:60vw; max-height:75vh;">
-      <video id="shopMainVideo" controls style="display:none; max-width:60vw; max-height:75vh;"></video>
+  const mainImg = document.getElementById("mainGalleryImage");
+  const mainVideo = document.getElementById("mainGalleryVideo");
 
-      <h2 id="shopTitle"></h2>
+  thumbs.innerHTML = "";
+
+  modal.style.display = "flex";
+
+  function showMedia(src) {
+
+    if (src.endsWith(".mp4")) {
+
+      mainImg.style.display = "none";
+      mainVideo.style.display = "block";
+
+      mainVideo.src = src;
+
+    } else {
+
+      mainVideo.style.display = "none";
+      mainImg.style.display = "block";
+
+      mainImg.src = src;
+    }
+  }
+
+  showMedia(mediaArray[0]);
+
+  mediaArray.forEach(src => {
+
+    let element;
+
+    if (src.endsWith(".mp4")) {
+
+      element = document.createElement("video");
+      element.src = src;
+
+    } else {
+
+      element = document.createElement("img");
+      element.src = src;
+    }
+
+    element.onclick = () => showMedia(src);
+
+    thumbs.appendChild(element);
+  });
+}
+
+function closeShopGallery() {
+  document.getElementById("shopGalleryModal").style.display = "none";
+}
+
+</script>
+  
+
+<!-- SHOP GALLERY MODAL -->
+<div id="shopGalleryModal">
+
+  <span class="close-gallery" onclick="closeShopGallery()">×</span>
+
+  <div class="gallery-container">
+
+    <!-- MAIN DISPLAY -->
+    <div class="gallery-main">
+      <img id="mainGalleryImage">
+      <video id="mainGalleryVideo" controls></video>
     </div>
 
     <!-- THUMBNAILS -->
-    <div class="modal-right" id="shopThumbs"></div>
+    <div class="gallery-thumbs" id="galleryThumbs"></div>
 
   </div>
 
-  <div class="close-btn" onclick="closeShopModal()">×</div>
 </div>
+
 </body>
 </html>
 

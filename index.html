@@ -214,6 +214,7 @@ html, body {
     }
 
     .sidepanel {
+      z-index: 100001; /* IMPORTANT: higher than modals */
       position: fixed;
       top: 0;
       right: -300px;
@@ -1006,26 +1007,26 @@ function toggleMusic() {
 function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
-
   function openPage(id) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
   document.getElementById("menu").classList.remove("open");
+
+  // IMPORTANT: close all overlays
   closePainting();
+  closeCart();
+  closeShopGallery();
 
   updateCartVisibility(id);
-
-  // FORCE CART RESET SAFETY
-  if (id !== "payment") {
-    document.getElementById("cartIcon").style.display = "none";
-  }
 
   if (id === "home") {
     const title = document.querySelector("#home .title");
     title.innerHTML = "";
 
-    setTimeout(() => startHomeAnimation(), 50);
+    setTimeout(() => {
+      startHomeAnimation();
+    }, 50);
   }
 }
 

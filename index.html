@@ -509,8 +509,9 @@
   transition: transform 0.3s ease;
 }
 
-.gallery-main img:hover {
-  transform: scale(1.8);
+.gallery-main img {
+  transition: transform 0.2s ease;
+  transform-origin: center;
   cursor: zoom-in;
 }
 
@@ -1207,6 +1208,23 @@ function openShopGallery(mediaArray) {
 function closeShopGallery() {
   document.getElementById("shopGalleryModal").style.display = "none";
 }
+
+  const zoomImg = document.getElementById("mainGalleryImage");
+
+zoomImg.addEventListener("mousemove", (e) => {
+  const rect = zoomImg.getBoundingClientRect();
+
+  const x = ((e.clientX - rect.left) / rect.width) * 100;
+  const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+  zoomImg.style.transformOrigin = `${x}% ${y}%`;
+  zoomImg.style.transform = "scale(2)";
+});
+
+zoomImg.addEventListener("mouseleave", () => {
+  zoomImg.style.transform = "scale(1)";
+  zoomImg.style.transformOrigin = "center";
+});
 
 </script>
   

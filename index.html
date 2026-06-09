@@ -1141,7 +1141,7 @@
 
       <img
         src="images/3 Guṇas - Ahambrahmasmi.jpg"
-        onclick="openProjectPage('3 Guṇas - Ahambrahmasmi', 'images/3 Guṇas - Ahambrahmasmi.jpg')"
+        onclick="openProjectPage('3 Guṇas', 'images/3 Guṇas - Ahambrahmasmi.jpg')"
       >
 
       <h3 class="project-title">
@@ -1900,13 +1900,16 @@ function closeShopGallery() {
   showPortfolio("projects");
 }
 
-  function openProjectPage(title, img) {
+function openProjectPage(title, img) {
   openPage('gunaProject');
 
-  window.currentProjectTitle = title;
-  window.currentProjectImage = img;
+  // remove everything after "-" if it exists
+  const cleanTitle = title.split('-')[0].trim();
 
-  document.getElementById("projectMainTitle").innerText = title;
+  document.getElementById("projectMainTitle").innerText = cleanTitle;
+
+  document.getElementById("projectHeroImage").src = img;
+  document.getElementById("centerProjectImage").src = img;
 }
   
 </script>

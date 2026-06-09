@@ -423,6 +423,13 @@
   transform: scale(1.05);
 }
 
+    .project-title {
+  margin-top: 14px;
+  text-align: center;
+  color: #ccc;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
     .portfolio-content {
   overflow-y: auto;
   scrollbar-width: none; /* Firefox */
@@ -1104,67 +1111,33 @@
       </div>
 </div>
 </div>
-  
-   <div class="product">
 
-  <!-- CLICKABLE PROJECT IMAGE -->
-  <img 
-    src="images/3 Guṇas - Ahambrahmasmi.jpg"
-    onclick="openPage('gunaProjectPage')"
-  >
+     <!-- PROJECTS -->
+<div id="projects" class="portfolio-content">
 
-  <!-- TITLE UNDER IMAGE -->
-  <h3 class="project-title">
-    3 Guṇas - Ahambrahmasmi
-  </h3>
+  <div class="product-grid">
 
-</div>
+    <div class="product">
+
+      <!-- CLICKABLE IMAGE -->
+      <img
+        src="images/3 Guṇas - Ahambrahmasmi.jpg"
+        onclick="openPage('gunaProject')"
+      >
+
+      <!-- TITLE UNDER IMAGE -->
+      <h3 class="project-title">
+        3 Guṇas - Ahambrahmasmi
+      </h3>
+
     </div>
 
-<!-- PROJECT DETAIL PAGE -->
-<div id="projectView" class="page">
-
-  <div class="title">PROJECT</div>
-
-  <div style="
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 80px 20px;
-  ">
-
-    <!-- IMAGE -->
-    <img id="projectImage" style="
-      max-width: 80%;
-      border-radius: 10px;
-    ">
-
-    <!-- TITLE (UNDER IMAGE) -->
-    <h2 id="projectTitle" style="
-      margin-top: 15px;
-      font-size: 22px;
-      color: white;
-      letter-spacing: 2px;
-      text-align: center;
-    "></h2>
-
-    <!-- BACK BUTTON -->
-    <button onclick="backToProjects()" style="
-      margin-top: 30px;
-      padding: 10px 18px;
-      border: 1px solid white;
-      background: transparent;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    ">
-      ← Back to Projects
-    </button>
-
   </div>
+
 </div>
-  </div>
-  
+</div>
+
+ 
    <!-- MODAL -->
 <div id="paintingModal">
   
@@ -1235,6 +1208,66 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
   </div>
 </div>
 
+<!-- PROJECT PAGE -->
+<div id="gunaProject" class="page">
+
+  <div style="padding: 120px 40px; text-align: center;">
+
+    <!-- BACK BUTTON -->
+    <button
+      onclick="openPage('portfolio')"
+      style="
+        margin-bottom:40px;
+        padding:10px 20px;
+        background:none;
+        border:1px solid white;
+        color:white;
+        cursor:pointer;
+      "
+    >
+      ← Back to Projects
+    </button>
+
+    <!-- IMAGE -->
+    <img
+      src="images/3 Guṇas - Ahambrahmasmi.jpg"
+      style="
+        width:100%;
+        max-width:700px;
+        border-radius:12px;
+      "
+    >
+
+    <!-- TITLE -->
+    <h1 style="
+      margin-top:30px;
+      color:white;
+      letter-spacing:2px;
+    ">
+      3 Guṇas - Ahambrahmasmi
+    </h1>
+
+    <!-- DESCRIPTION -->
+    <div style="
+      max-width:900px;
+      margin:40px auto;
+      text-align:left;
+      line-height:1.8;
+      color:#ccc;
+      font-size:16px;
+    ">
+
+      <p>
+        Add your complete project description here.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+  
 <!-- CONTACT -->
 <div id="contact" class="page">
   <div class="title">CONTACT</div>

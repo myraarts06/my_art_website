@@ -673,7 +673,7 @@
   }
 }
 
-.floating-img {
+    .floating-img {
   position: absolute;
   width: 260px;
   height: auto;
@@ -682,24 +682,14 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
   z-index: 1;
   pointer-events: none;
+
+  /* 🔴 IMPORTANT: hidden by default */
+  display: none;
 }
 
-/* Top right */
-.top-right {
-  top: 120px;
-  right: 60px;
-}
-
-/* Bottom left */
-.bottom-left {
-  bottom: 80px;
-  left: 60px;
-}
-
-/* hover effect */
-.floating-img:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
+/* Only show when inside ACTIVE About page */
+#about.active .floating-img {
+  display: block;
 }
 
     /* ===== SHOP GALLERY ===== */

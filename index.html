@@ -504,6 +504,63 @@
   transform: translateY(-5px);
   border-color: white;
 }
+    .inverted-t-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  margin-top: 80px;
+}
+
+/* TOP STACK (above middle box only) */
+.top-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+
+  /* IMPORTANT: align directly above middle box */
+  transform: translateX(0);
+}
+
+/* BOTTOM ROW */
+.bottom-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* BOX STYLE (shared) */
+.top-box,
+.bottom-box {
+  width: 140px;
+  height: 140px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+  color: #ccc;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  transition: 0.3s ease;
+}
+
+/* hover effect */
+.top-box:hover,
+.bottom-box:hover {
+  transform: translateY(-5px);
+  border-color: white;
+}
+
+/* OPTIONAL: emphasize middle alignment */
+.middle-box {
+  border-color: rgba(255,255,255,0.4);
+}
     
     /* ===== MODAL (NEW SPA VIEW) ===== */
 
@@ -1281,25 +1338,29 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
 
   <!-- RIGHT COLUMN -->
   <div class="project-right">
-  <div class="right-box-row">
+ <div class="inverted-t-layout">
 
-  <div class="right-box">
-    Box 1
+  <!-- TOP COLUMN (2 boxes above middle) -->
+  <div class="top-column">
+    <div class="top-box">Top Box 1</div>
+    <div class="top-box">Top Box 2</div>
   </div>
 
-  <div class="right-box">
-    Box 2
-  </div>
+  <!-- BOTTOM ROW (3 boxes) -->
+  <div class="bottom-row">
 
-  <div class="right-box">
-    Box 3
+    <div class="bottom-box">Box 1</div>
+
+    <div class="bottom-box middle-box">Box 2</div>
+
+    <div class="bottom-box">Box 3</div>
+
   </div>
 
 </div>
-  </div>
-
 </div>
 
+    
   <!-- BACK BUTTON -->
   <button
     onclick="openPage('portfolio')"

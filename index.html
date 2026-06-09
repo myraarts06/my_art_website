@@ -678,17 +678,14 @@
 }
 
     .floating-img {
-  position: absolute;
-  width: 260px;
+  position: static;      /* IMPORTANT */
+  width: 100%;
+  max-width: 320px;
   height: auto;
-  opacity: 0.75;
   border-radius: 12px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  z-index: 1;
-  pointer-events: none;
-
-  /* 🔴 IMPORTANT: hidden by default */
-  display: none;
+  opacity: 0.9;
+  display: block;
+  margin: 20px 0;
 }
 
 /* Only show when inside ACTIVE About page */
@@ -1009,10 +1006,6 @@
 <!-- ABOUT -->
 <div id="about" class="page">
   <div class="title">ABOUT ME</div>
-
-  <img src="images/Pradeep_Portrait.jpg" class="floating-img top-right">
-
-<img src="images/Pradeep_Portrait_Camera.jpg" class="floating-img bottom-left">
   
   <div class="about-container">
     <div class="about-top-left">
@@ -1030,6 +1023,8 @@ Ultimately, my practice seeks to create spaces where the viewer is invited into 
    <p>
     </div>
 
+     <img src="images/Pradeep_Portrait.jpg" class="floating-img">
+    
     <div class="about-bottom-right">
       <h3 class="about-subheading">Artist statement</h3>
       <p>
@@ -1044,6 +1039,8 @@ The viewer is not positioned as a passive observer, but as part of the perceptua
 The aim of my practice is not to resolve inquiry, but to sustain it — allowing perception itself to remain active, unstable, and open within the experience of the work.
     </div>
 
+     <img src="images/Pradeep_Portrait_Camera.jpg" class="floating-img">
+    
   </div>
 </div>
 

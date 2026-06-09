@@ -969,14 +969,14 @@
    <!-- BOTTOM -->
       <div class="social">
  <div class="social">
-   <a 
+  <a 
   class="insta-link"
   href="https://www.instagram.com/myraarts06/"
   target="_blank"
   rel="noopener noreferrer"
-  onclick="window.open(this.href, '_blank'); return false;"
+  onclick="window.location.href='https://www.instagram.com/myraarts06/'; return false;"
 >
-  <i class="fa-brands fa-instagram insta-icon"></i>
+ <i class="fa-brands fa-instagram insta-icon" onclick="openInsta()"></i>
 </a>
 </div>
   </div>
@@ -1750,6 +1750,12 @@ function closeShopGallery() {
   document.querySelector("#home .title").style.visibility = "visible";
   document.getElementById("subtitle").style.visibility = "visible";
 });
+
+  function openInsta() {
+  setTimeout(() => {
+    window.open("https://www.instagram.com/myraarts06/", "_blank");
+  }, 50);
+}
   
 </script>
   

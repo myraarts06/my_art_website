@@ -396,39 +396,35 @@ html, body {
     /* ===== ABOUT ME ===== */
     .about-container {
   position: relative;
-  min-height: 70vh;
-  margin-top: 40px; /* keeps it below title */
+  width: 100%;
+  min-height: calc(100vh - 120px); /* accounts for title space */
 }
 
-/* TOP LEFT PARAGRAPH */
-.about-top-left {
+    .about-top-left {
   position: absolute;
-  top: 40px;
+  top: 120px;   /* pushes below title */
   left: 60px;
   max-width: 420px;
-  color: #ccc;
-  line-height: 1.6;
-  font-size: 16px;
 }
 
-/* BOTTOM RIGHT PARAGRAPH */
 .about-bottom-right {
   position: absolute;
-  bottom: 40px;
+  bottom: 60px;
   right: 60px;
   max-width: 420px;
-  color: #ccc;
-  line-height: 1.6;
-  font-size: 16px;
   text-align: right;
 }
-
+    
     .about-subheading {
-  font-size: 12px;
+  font-size: 25px;
   letter-spacing: 2px;
   color: #888;
   margin-bottom: 10px;
   text-transform: uppercase;
+}
+    #about.page {
+  display: flex;
+  flex-direction: column;
 }
     
     /* ===== CONTACT FORM ===== */

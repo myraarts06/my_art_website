@@ -424,7 +424,7 @@
 }
 
     .project-title {
-  margin-top: 14px;
+  margin-top: 10px;
   text-align: center;
   color: #ccc;
   font-size: 18px;
@@ -448,7 +448,7 @@
 }
 
     .project-title {
-  margin-top: 14px;
+  margin-top: 10px;
   text-align: center;
   color: #ccc;
   font-size: 18px;
@@ -626,6 +626,12 @@
 .mini-card p {
   font-size: 13px;
   color: #aaa;
+}
+
+    .product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
     
     /* ===== MODAL (NEW SPA VIEW) ===== */
@@ -1382,92 +1388,42 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
 </div>
 
 
-<!-- PROJECT SUBPAGE -->
+<!-- PROJECT SUBPAGE (SIMPLIFIED) -->
 <div id="gunaProject" class="page">
+
   <h1 id="projectMainTitle" style="
-  text-align:center;
-  margin-top:60px;
-  font-size:32px;
-  letter-spacing:2px;
-  color:silver;
-"></h1>
+    text-align:center;
+    margin-top:80px;
+    font-size:32px;
+    letter-spacing:2px;
+    color:silver;
+  "></h1>
 
-  <div class="project-layout">
+  <div style="
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:60vh;
+  ">
 
-  <!-- LEFT COLUMN -->
-  <div class="project-left">
-    <img id="projectHeroImage" src="" style="max-width:100%; border-radius:10px;">
-    <p style="margin-top:20px; color:#aaa;">
-      Project introduction text goes here later.
+    <img id="projectHeroImage"
+      style="max-width:400px; border-radius:10px; display:none;"
+    >
+
+    <p style="color:#888; margin-top:20px;">
+      <!-- intentionally empty -->
     </p>
-  </div>
-
-  <!-- RIGHT COLUMN -->
-  <div class="project-right">
- <div class="inverted-t-layout">
-  
-  <div class="mini-card">
-    <img src="images/3 Guṇas - Ahambrahmasmi.jpg">
-    <h4>3 Guṇas - Ahambrahmasmi</h4>
-    <p>Description coming soon</p>
-  </div>
-
-  <div class="mini-card">
-    <img src="images/placeholder.jpg">
-    <h4>Top Box 2</h4>
-    <p>Work in development</p>
-  </div>
-
-  <div class="mini-card">
-    <img src="images/placeholder.jpg">
-    <h4>Box 1</h4>
-    <p>Work in development</p>
-  </div>
-
-  <div class="mini-card">
-    <img src="images/placeholder.jpg">
-    <h4>Box 2</h4>
-    <p>Work in development</p>
-  </div>
-
-  <div class="mini-card">
-    <img src="images/placeholder.jpg">
-    <h4>Box 3</h4>
-    <p>Work in development</p>
-  </div>
-
-</div>
-
-  <!-- TOP COLUMN (2 boxes above middle) -->
-  <div class="top-column">
-    <div class="top-box">
-  <img src="images/3 Guṇas - Ahambrahmasmi.jpg" alt="3 Guṇas - Ahambrahmasmi">
-</div>
-    <div class="top-box">Top Box 2</div>
-  </div>
-
-  <!-- BOTTOM ROW (3 boxes) -->
-  <div class="bottom-row">
-
-    <div class="bottom-box">Box 1</div>
-
-    <div class="bottom-box middle-box">Box 2</div>
-
-    <div class="bottom-box">Box 3</div>
 
   </div>
 
-</div>
-</div>
-
-    
   <!-- BACK BUTTON -->
   <button
-    onclick="openPage('portfolio')"
+    onclick="openPage('portfolio'); showPortfolio('projects');"
     style="
       position: fixed;
       bottom: 30px;
-      left: 30px;
+      right: 30px;
       padding: 12px 22px;
       background: black;
       color: white;
@@ -2105,16 +2061,16 @@ function closeShopGallery() {
   showPortfolio("projects");
 }
 
-function openProjectPage(title, img) {
+  function openProjectPage(title, img) {
   openPage('gunaProject');
 
-  // remove everything after "-" if it exists
   const cleanTitle = title.split('-')[0].trim();
 
   document.getElementById("projectMainTitle").innerText = cleanTitle;
 
-  document.getElementById("projectHeroImage").src = img;
-  document.getElementById("centerProjectImage").src = img;
+  const hero = document.getElementById("projectHeroImage");
+  hero.src = img;
+  hero.style.display = "block";
 }
 
 

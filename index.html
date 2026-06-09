@@ -810,7 +810,7 @@
 
     <!-- TOP -->
   <div class="home-top">
-  <div class="title" data-text="MYRA ARTS"></div>
+ <div class="title"></div>
   <div id="subtitle" class="subtitle"></div>
 </div>
 
@@ -1124,8 +1124,10 @@ document.getElementById("entryScreen").addEventListener("click", async () => {
     });
 }
 
-  function animateTitle(text) {
+ function animateTitle(text) {
   const title = document.querySelector("#home .title");
+
+  title.innerHTML = ""; // ✅ IMPORTANT: prevent duplication
 
   return new Promise((resolve) => {
     let count = 0;
@@ -1141,9 +1143,8 @@ document.getElementById("entryScreen").addEventListener("click", async () => {
         span.classList.add("drop");
         count++;
 
-        // resolve ONLY when all letters are done animating
         if (count === text.length) {
-          setTimeout(resolve, 400); // small buffer after last drop
+          setTimeout(resolve, 400);
         }
       }, i * 120);
     });

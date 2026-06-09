@@ -479,6 +479,10 @@
   text-align: justify;
   text-justify: inter-word;
 }
+
+    .about-container {
+  position: relative; /* IMPORTANT */
+}
     
     /* ===== CONTACT FORM ===== */
     .contact-container {
@@ -669,6 +673,39 @@
   }
 }
 
+    .floating-img {
+  position: absolute;
+  width: 260px;
+  height: auto;
+  opacity: 0.75;
+  border-radius: 12px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 1;
+  pointer-events: none; /* IMPORTANT: text stays clickable */
+}
+
+/* Top right image */
+.top-right {
+  top: 120px;
+  right: 60px;
+}
+
+/* Bottom left image */
+.bottom-left {
+  bottom: 80px;
+  left: 60px;
+}
+
+/* subtle interactive feel */
+.floating-img:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+    .floating-img {
+    display: none; /* prevents clutter on mobile */
+  }
+}
     /* ===== SHOP GALLERY ===== */
 
 #shopGalleryModal {
@@ -962,12 +999,14 @@
 </div>
 
 <!-- ABOUT -->
-<!-- ABOUT -->
 <div id="about" class="page">
   <div class="title">ABOUT ME</div>
 
-  <div class="about-container">
+  <img src="images/Pradeep_Portrait.jpg" class="floating-img top-right">
 
+<img src="images/Pradeep_Portrait_Camera.jpg" class="floating-img bottom-left">
+  
+  <div class="about-container">
     <div class="about-top-left">
       <p>
         My name is Pradeep Krishna. I am a Frankfurt-based, research-driven contemporary conceptual artist. I work across painting, photography, and installation. 

@@ -1107,9 +1107,15 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-  function openPage(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+    function openPage(id) {
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+    p.style.display = "none";
+  });
+
+  const activePage = document.getElementById(id);
+  activePage.classList.add("active");
+  activePage.style.display = "block";
 
   document.getElementById("menu").classList.remove("open");
 
@@ -1119,18 +1125,16 @@ function toggleMenu() {
 
   updateCartVisibility(id);
 
-  window.scrollTo(0, 0); // 🔥 FIX
-if (id === "home") {
+  window.scrollTo(0, 0);
 
-  const title = document.querySelector("#home .title");
+  if (id === "home") {
+    const title = document.querySelector("#home .title");
 
-  // Prevent duplicate rebuilds
-  if (title.innerHTML.trim() === "") {
-
-    setTimeout(() => {
-      startHomeAnimation();
-    }, 50);
-
+    if (title.innerHTML.trim() === "") {
+      setTimeout(() => {
+        startHomeAnimation();
+      }, 50);
+    }
   }
 }
  
@@ -1454,6 +1458,10 @@ function openShopGallery(mediaArray) {
 function closeShopGallery() {
   document.getElementById("shopGalleryModal").style.display = "none";
 }
+
+  window.addEventListener("load", () => {
+  openPage("home");
+});
 
 </script>
   

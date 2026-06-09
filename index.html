@@ -1104,6 +1104,35 @@
       </div>
   </div>
 </div>
+
+    <!-- PROJECT DETAIL PAGE (HIDDEN ROUTE) -->
+<div id="projectView" class="page">
+
+  <div class="title">PROJECT</div>
+
+  <div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px;
+  ">
+
+    <img id="projectImage" style="
+      max-width: 80%;
+      border-radius: 10px;
+    ">
+
+    <h2 id="projectTitle" style="
+      margin-top: 15px;
+      font-size: 22px;
+      color: white;
+      letter-spacing: 2px;
+      text-align: center;
+    "></h2>
+
+  </div>
+
+</div>
   </div>
   
    <!-- MODAL -->
@@ -1780,6 +1809,17 @@ function closeShopGallery() {
     window.open("https://www.instagram.com/myraarts06/", "_blank");
   }, 50);
 }
+
+
+  function openProjectView(title, img) {
+  // 1. Go to the internal project page
+  openPage("projectView");
+
+  // 2. Inject image and title
+  document.getElementById("projectImage").src = img;
+  document.getElementById("projectTitle").innerText = title;
+}
+
   
 </script>
   

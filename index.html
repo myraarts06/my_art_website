@@ -241,6 +241,57 @@
   justify-content: center;
   padding-bottom: 25px;
 }
+    .insta-link {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Instagram gradient icon */
+.insta-icon {
+  font-size: 30px;
+  background: radial-gradient(circle at 30% 110%, 
+    #fdf497 0%, 
+    #fdf497 5%, 
+    #fd5949 45%, 
+    #d6249f 60%, 
+    #285AEB 90%);
+  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.insta-icon:hover {
+  transform: scale(1.15);
+}
+
+    .insta-link::after {
+  content: "Follow on Instagram";
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.insta-link:hover::after {
+  opacity: 1;
+}
+
     
     /* ===== MENU ===== */
     .hamburger {
@@ -918,13 +969,15 @@
    <!-- BOTTOM -->
       <div class="social">
  <div class="social">
-<a 
+   <a 
+  class="insta-link"
   href="https://www.instagram.com/myraarts06/"
   target="_blank"
   rel="noopener noreferrer"
+  data-tooltip="Follow on Instagram"
 >
-    <i class="fa-brands fa-instagram"></i>
-  </a>
+  <i class="fa-brands fa-instagram insta-icon"></i>
+</a>
 </div>
   </div>
 </div>

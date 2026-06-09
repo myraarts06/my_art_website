@@ -504,12 +504,22 @@
   grid-row: 2;
 }
 
-    .about-top-left,
+   .about-top-left,
 .about-top-right,
 .about-bottom-left,
 .about-bottom-right {
-  max-width: 500px;
   width: 100%;
+  max-width: 420px;
+  justify-self: center;
+}
+    .about-top-right img,
+.about-bottom-left img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
 }
     
     /* ===== CONTACT FORM ===== */
@@ -1049,12 +1059,12 @@ Ultimately, my practice seeks to create spaces where the viewer is invited into 
 
      <!-- TOP RIGHT IMAGE -->
   <div class="about-top-right">
-    <img src="images/Pradeep_Portrait.jpg" style="width:100%; border-radius:12px;">
+   <img src="images/Pradeep_Portrait.jpg">
   </div>
 
       <!-- BOTTOM LEFT IMAGE -->
   <div class="about-bottom-left">
-    <img src="images/Pradeep_Portrait_Camera.jpg" style="width:100%; border-radius:12px;">
+   <img src="images/Pradeep_Portrait_Camera.jpg">
   </div>
     
     <div class="about-bottom-right">

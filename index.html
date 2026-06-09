@@ -321,6 +321,14 @@ html, body {
   transform: scale(1.05);
 }
 
+#paint {
+  scrollbar-width: none; /* Firefox */
+}
+
+#paint::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+    
     /* ===== MODAL (NEW SPA VIEW) ===== */
 
     #paintingModal {

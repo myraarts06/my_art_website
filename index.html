@@ -433,17 +433,14 @@
 
     /* ===== ABOUT ME ===== */
 
-    .about-container {
-  width: 100%;
-  min-height: calc(100vh - 120px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  padding: 120px 100px 60px 100px; /* increased from 60px */
-  box-sizing: border-box;
+  .about-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 60px;
+  padding: 140px 120px;
+  align-items: start;
 }
-
     .about-top-left {
   max-width: 1000px;
   align-self: flex-start;
@@ -486,7 +483,26 @@
   padding: 140px 120px 140px 120px;
   overflow: hidden; /* prevents visual collision outside bounds */
 }
-    
+
+    .about-top-left {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.about-top-right {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.about-bottom-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.about-bottom-right {
+  grid-column: 2;
+  grid-row: 2;
+}
     
     /* ===== CONTACT FORM ===== */
     .contact-container {
@@ -1023,7 +1039,15 @@ Ultimately, my practice seeks to create spaces where the viewer is invited into 
    <p>
     </div>
 
-     <img src="images/Pradeep_Portrait.jpg" class="floating-img">
+     <!-- TOP RIGHT IMAGE -->
+  <div class="about-top-right">
+    <img src="images/Pradeep_Portrait.jpg" style="width:100%; border-radius:12px;">
+  </div>
+
+      <!-- BOTTOM LEFT IMAGE -->
+  <div class="about-bottom-left">
+    <img src="images/Pradeep_Portrait_Camera.jpg" style="width:100%; border-radius:12px;">
+  </div>
     
     <div class="about-bottom-right">
       <h3 class="about-subheading">Artist statement</h3>
@@ -1038,8 +1062,6 @@ Across all mediums, I work with formal elements such as rhythm, density, fragmen
 The viewer is not positioned as a passive observer, but as part of the perceptual system that the work activates. Meaning emerges through the act of encountering the work rather than being contained within it.
 The aim of my practice is not to resolve inquiry, but to sustain it — allowing perception itself to remain active, unstable, and open within the experience of the work.
     </div>
-
-     <img src="images/Pradeep_Portrait_Camera.jpg" class="floating-img">
     
   </div>
 </div>

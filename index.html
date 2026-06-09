@@ -1467,9 +1467,10 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
     >
       ← Back to Projects
     </button>
-  </div>
-
-</div>
+  </div> 
+      </div> <!-- end project-right -->
+</div> <!-- end project-layout -->
+</div> <!-- end gunaProject page -->
     
   
 <!-- CONTACT -->
@@ -1699,39 +1700,34 @@ function toggleMenu() {
 
   function openPage(id) {
 
-  // hide all pages
   document.querySelectorAll(".page").forEach(p => {
     p.classList.remove("active");
   });
 
-  // show selected page
   const activePage = document.getElementById(id);
+  if (!activePage) return;
+
   activePage.classList.add("active");
 
-  // reset scroll
   window.scrollTo(0, 0);
 
-  // close UI overlays safely (avoid breaking JS if missing)
-  try { document.getElementById("menu").classList.remove("open"); } catch(e) {}
+  const menu = document.getElementById("menu");
+  if (menu) menu.classList.remove("open");
+
   try { closePainting(); } catch(e) {}
   try { closeCart(); } catch(e) {}
   try { closeShopGallery(); } catch(e) {}
 
   updateCartVisibility(id);
 
-  // special case: home animation restart
   if (id === "home") {
-    const home = document.getElementById("home");
     const title = document.querySelector("#home .title");
     const subtitle = document.getElementById("subtitle");
 
-    home.classList.remove("reveal-body");
-    title.innerHTML = "";
-    subtitle.innerHTML = "";
+    if (title) title.innerHTML = "";
+    if (subtitle) subtitle.innerHTML = "";
 
-    setTimeout(() => {
-      startHomeAnimation();
-    }, 50);
+    setTimeout(() => startHomeAnimation(), 50);
   }
 }
   

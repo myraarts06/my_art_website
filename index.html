@@ -1327,6 +1327,7 @@ html, body {
   </div>
 
 </div>
+    </div>
  
    <!-- MODAL -->
 <div id="paintingModal">
@@ -1701,9 +1702,10 @@ function toggleMenu() {
 
   activePage.classList.add("active");
 
-  if (id === "portfolio") {
-    showPortfolio("photo");
-  }
+   if (id === "portfolio") {
+  document.querySelectorAll(".portfolio-content")
+    .forEach(el => el.classList.remove("active"));
+}
 
   window.scrollTo(0,0);
 

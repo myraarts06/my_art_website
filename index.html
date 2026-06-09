@@ -41,19 +41,19 @@
 
     /* ===== PAGE SYSTEM ===== */
 
-    .page {
+   .page {
   display: none;
-  position: relative;
   width: 100%;
+  min-height: 100vh;
 }
 
 .page.active {
   display: block;
 }
 
-/* HOME must remain flex */
 #home.page.active {
   display: flex;
+  flex-direction: column;
 }
     
     /* ===== TITLE ===== */
@@ -144,7 +144,6 @@
 }
 
 #home {
-  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -172,12 +171,12 @@
 
 /* BOTTOM */
 .social {
-  position: absolute;
-  bottom: 25px;
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-bottom: 25px;
 }
+
 
  .body-line {
   font-size: 22px;

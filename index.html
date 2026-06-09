@@ -8,12 +8,14 @@
 
   <style>
     body {
-      margin: 0;
-      background: black;
-      color: white;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
 
     /* ===== ENTRY SCREEN ===== */
     #entryScreen {
@@ -41,10 +43,15 @@
 
     /* ===== PAGE SYSTEM ===== */
 
-   .page {
+    .page {
   display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   min-height: 100vh;
+  background: black;
+  overflow-x: hidden;
 }
 
 .page.active {

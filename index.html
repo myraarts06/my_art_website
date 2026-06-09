@@ -1073,31 +1073,48 @@ document.getElementById("entryScreen").addEventListener("click", async () => {
   startHomeAnimation();
 });
 
-  function startHomeAnimation() {
+ function startHomeAnimation() {
+  const home = document.getElementById("home");
   const title = document.querySelector("#home .title");
-  const subtitle = document.querySelector("#subtitle");
+  const subtitle = document.getElementById("subtitle");
 
   const text = title.getAttribute("data-text");
 
   title.innerHTML = "";
   subtitle.innerHTML = "";
 
-  let lastIndex = text.length - 1;
+  home.classList.remove("reveal-body");
 
-  text.split("").forEach((char, i) => {
-    const span = document.createElement("span");
-    span.classList.add("letter");
-    span.innerHTML = char === " " ? "&nbsp;" : char;
+  animateTitle(text).then(() => {
+    return animateSubtitle("by Pradeep Krishna");
+  }).then(() => {
+    home.classList.add("reveal-body");
+  });
+}
 
-    setTimeout(() => {
-      span.classList.add("drop");
+  function animateTitle(text) {
+  const title = document.querySelector("#home .title");
 
-      if (i === lastIndex) {
-        setTimeout(() => startSubtitleAnimation(), 400);
-      }
-    }, i * 120);
+  return new Promise((resolve) => {
+    let count = 0;
 
-    title.appendChild(span);
+    text.split("").forEach((char, i) => {
+      const span = document.createElement("span");
+      span.classList.add("letter");
+      span.innerHTML = char === " " ? "&nbsp;" : char;
+
+      title.appendChild(span);
+
+      setTimeout(() => {
+        span.classList.add("drop");
+        count++;
+
+        // resolve ONLY when all letters are done animating
+        if (count === text.length) {
+          setTimeout(resolve, 400); // small buffer after last drop
+        }
+      }, i * 120);
+    });
   });
 }
     
@@ -1129,6 +1146,32 @@ document.getElementById("entryScreen").addEventListener("click", async () => {
   });
 }
 
+  function animateSubtitle(text) {
+  const subtitle = document.getElementById("subtitle");
+
+  return new Promise((resolve) => {
+    let count = 0;
+
+    subtitle.innerHTML = "";
+
+    text.split("").forEach((char, i) => {
+      const span = document.createElement("span");
+      span.classList.add("letter");
+      span.innerHTML = char === " " ? "&nbsp;" : char;
+
+      subtitle.appendChild(span);
+
+      setTimeout(() => {
+        span.classList.add("drop");
+        count++;
+
+        if (count === text.length) {
+          setTimeout(resolve, 300);
+        }
+      }, i * 80);
+    });
+  });
+}
   
 function toggleMusic() {
   if (musicOn) {

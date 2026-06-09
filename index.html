@@ -197,6 +197,19 @@ html, body {
   margin: 0;
   overflow-x: hidden;
 }
+
+    #home .home-center,
+#home .social {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#home.reveal-body .home-center,
+#home.reveal-body .social {
+  opacity: 1;
+  transform: translateY(0);
+}
     /* ===== SOCIAL ===== */
   .social {
   flex: 0 0 auto;
@@ -1086,7 +1099,8 @@ function startHomeAnimation() {
     title.appendChild(span);
   });
 }
-    function startSubtitleAnimation() {
+    
+  function startSubtitleAnimation() {
   const subtitle = document.getElementById("subtitle");
 
   const text = "by Pradeep Krishna";
@@ -1100,11 +1114,20 @@ function startHomeAnimation() {
 
     setTimeout(() => {
       span.classList.add("drop");
+
+      // AFTER LAST LETTER → reveal body + insta
+      if (i === text.length - 1) {
+        setTimeout(() => {
+          document.getElementById("home").classList.add("reveal-body");
+        }, 600);
+      }
+
     }, i * 80);
 
     subtitle.appendChild(span);
   });
 }
+
   
 function toggleMusic() {
   if (musicOn) {

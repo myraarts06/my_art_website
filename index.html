@@ -1430,56 +1430,47 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
     <!-- RIGHT SIDE (WIDER + INVERTED T STRUCTURE) -->
     <div class="project-right">
 
-      <div class="inverted-t-layout">
-
-        <!-- TOP COLUMN (CENTERED ABOVE MIDDLE BOX) -->
-        <div class="top-column">
-
-          <div class="top-box middle-box">
-            <img id="projectHeroImage" src="" alt="project image">
-          </div>
-
-        </div>
-
-        <!-- BOTTOM ROW -->
-        <div class="bottom-row">
-
-          <div class="bottom-box">Coming soon</div>
-          <div class="bottom-box">Coming soon</div>
-
-        </div>
-
+  <div class="inverted-t-layout">
+    <!-- TOP COLUMN -->
+    <div class="top-column">
+      <div class="top-box middle-box">
+        <img id="projectHeroImage" src="" alt="project image">
       </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="bottom-row">
+      <div class="bottom-box">Coming soon</div>
+      <div class="bottom-box">Coming soon</div>
     </div>
   </div>
 
-  <!-- BACK BUTTON (inside project page layout) -->
-<div style="
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  padding: 40px;
-  box-sizing: border-box;
-">
-  <button
-    onclick="openPage('portfolio'); showPortfolio('projects');"
-    style="
-      padding: 12px 22px;
-      background: black;
-      color: white;
-      border: 1px solid white;
-      cursor: pointer;
-      letter-spacing: 1px;
-      transition: 0.3s;
-    "
-    onmouseover="this.style.background='white'; this.style.color='black'"
-    onmouseout="this.style.background='black'; this.style.color='white'"
-  >
-    ← Back to Projects
-  </button>
-</div>
+  <!-- ✅ BACK BUTTON (NOW INSIDE RIGHT PANEL FLOW) -->
+  <div style="
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+    padding-right: 20px;
+  ">
+    <button
+      onclick="openPage('portfolio'); showPortfolio('projects');"
+      style="
+        padding: 12px 22px;
+        background: black;
+        color: white;
+        border: 1px solid white;
+        cursor: pointer;
+        letter-spacing: 1px;
+      "
+      onmouseover="this.style.background='white'; this.style.color='black'"
+      onmouseout="this.style.background='black'; this.style.color='white'"
+    >
+      ← Back to Projects
+    </button>
+  </div>
 
 </div>
+    
   
 <!-- CONTACT -->
 <div id="contact" class="page">

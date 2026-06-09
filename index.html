@@ -219,12 +219,12 @@
   padding: 2px 0;     /* reduced from 5px */
 }
     
-
-    html, body {
+html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
     .page {
   height: 100vh;
@@ -1189,9 +1189,7 @@
 
    <!-- BOTTOM -->
       <div class="social">
- <div class="social">
-  <div class="social">
-  <a 
+  <a
     class="insta-link"
     href="https://www.instagram.com/myraarts06/"
     target="_blank"
@@ -1200,10 +1198,9 @@
     <i class="fa-brands fa-instagram insta-icon"></i>
   </a>
 
-  <span class="insta-note"> Artist's Instagram page opens best when you are logged in</span>
-</div>
-</div>
-  </div>
+  <span class="insta-note">
+    Artist's Instagram page opens best when you are logged in
+  </span>
 </div>
 
   
@@ -1700,33 +1697,27 @@ function toggleMenu() {
 
   function openPage(id) {
 
-  document.querySelectorAll(".page").forEach(p => {
-    p.classList.remove("active");
+  document.querySelectorAll(".page").forEach(page => {
+    page.style.display = "none";
+    page.classList.remove("active");
   });
 
-  const activePage = document.getElementById(id);
-  if (!activePage) return;
+  const page = document.getElementById(id);
+  if (!page) return;
 
-  activePage.classList.add("active");
+  page.style.display = "block";
+  page.classList.add("active");
 
-  window.scrollTo(0, 0);
+  document.getElementById("menu").classList.remove("open");
 
-  const menu = document.getElementById("menu");
-  if (menu) menu.classList.remove("open");
-
-  try { closePainting(); } catch(e) {}
-  try { closeCart(); } catch(e) {}
-  try { closeShopGallery(); } catch(e) {}
+  window.scrollTo({
+    top: 0,
+    behavior: "instant"
+  });
 
   updateCartVisibility(id);
 
   if (id === "home") {
-    const title = document.querySelector("#home .title");
-    const subtitle = document.getElementById("subtitle");
-
-    if (title) title.innerHTML = "";
-    if (subtitle) subtitle.innerHTML = "";
-
     setTimeout(() => startHomeAnimation(), 50);
   }
 }

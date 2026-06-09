@@ -59,6 +59,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  justify-content: space-between;
 }
     
     /* ===== TITLE ===== */
@@ -146,13 +147,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;   /* controls spacing between lines */
-}
-
-#home {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  justify-content: space-between;
 }
 
 /* TOP */
@@ -1696,7 +1690,7 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-  function openPage(id) {
+ function openPage(id) {
 
   document.querySelectorAll(".page").forEach(p => {
     p.classList.remove("active");
@@ -1713,16 +1707,27 @@ function toggleMenu() {
 
   window.scrollTo(0,0);
 
-  document.getElementById("menu").classList.remove("open");
+  const menu = document.getElementById("menu");
+  if (menu) menu.classList.remove("open");
 
   try { closePainting(); } catch(e) {}
   try { closeCart(); } catch(e) {}
   try { closeShopGallery(); } catch(e) {}
 
   updateCartVisibility(id);
+
+  if (id === "home") {
+    const title = document.querySelector("#home .title");
+    const subtitle = document.getElementById("subtitle");
+
+    if (title) title.innerHTML = "";
+    if (subtitle) subtitle.innerHTML = "";
+
+    setTimeout(() => startHomeAnimation(), 50);
+  }
 }
 
-
+  
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -2061,16 +2066,6 @@ function closeShopGallery() {
   setTimeout(() => {
     window.open("https://www.instagram.com/myraarts06/", "_blank");
   }, 50);
-}
-
-
-  function openProjectView(title, img) {
-  // 1. Go to the internal project page
-  openPage("projectView");
-
-  // 2. Inject image and title
-  document.getElementById("projectImage").src = img;
-  document.getElementById("projectTitle").innerText = title;
 }
 
   function backToProjects() {

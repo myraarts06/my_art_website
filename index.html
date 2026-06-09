@@ -422,23 +422,23 @@ html, body {
 
     /* ===== ABOUT ME ===== */
     .about-container {
-  position: relative;
   width: 100%;
-  min-height: calc(100vh - 120px); /* accounts for title space */
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 120px 60px 60px 60px;
+  box-sizing: border-box;
 }
 
     .about-top-left {
-  position: absolute;
-  top: 120px;   /* pushes below title */
-  left: 60px;
   max-width: 420px;
+  align-self: flex-start;
 }
 
 .about-bottom-right {
-  position: absolute;
-  bottom: 60px;
-  right: 60px;
   max-width: 420px;
+  align-self: flex-end;
   text-align: right;
 }
     

@@ -1697,20 +1697,15 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-    function openPage(id) {
-      window.currentProjectTitle = null;
+   function openPage(id) {
+  window.currentProjectTitle = null;
+
   document.querySelectorAll(".page").forEach(p => {
     p.classList.remove("active");
-    p.style.display = "none";
   });
 
   const activePage = document.getElementById(id);
   activePage.classList.add("active");
-      if (id === "home") {
-  activePage.style.display = "flex";
-} else {
-  activePage.style.display = "block";
-}
 
   document.getElementById("menu").classList.remove("open");
 
@@ -1720,23 +1715,18 @@ function toggleMenu() {
 
   updateCartVisibility(id);
 
-if (id === "home") {
-  const home = document.getElementById("home");
-
-  home.classList.remove("reveal-body");
-
-  const title = document.querySelector("#home .title");
-  const subtitle = document.getElementById("subtitle");
-
-  title.innerHTML = "";
-  subtitle.innerHTML = "";
-
-  setTimeout(() => {
-    startHomeAnimation();
-  }, 50);
-}
-}      
   window.scrollTo(0, 0);
+
+  if (id === "home") {
+    const home = document.getElementById("home");
+    home.classList.remove("reveal-body");
+
+    document.querySelector("#home .title").innerHTML = "";
+    document.getElementById("subtitle").innerHTML = "";
+
+    setTimeout(() => startHomeAnimation(), 50);
+  }
+}
 
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));

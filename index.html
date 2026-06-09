@@ -455,6 +455,25 @@
   letter-spacing: 1px;
   font-weight: normal;
 }
+
+    .project-layout {
+  display: flex;
+  height: 100vh;
+  padding: 40px;
+  gap: 40px;
+}
+
+/* invisible divider feel */
+.project-left {
+  flex: 1;
+  padding-right: 40px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.project-right {
+  flex: 1.3; /* right slightly wider */
+  padding-left: 40px;
+}
     
     /* ===== MODAL (NEW SPA VIEW) ===== */
 
@@ -1122,7 +1141,7 @@
 
       <img
         src="images/3 Guṇas - Ahambrahmasmi.jpg"
-        onclick="openPage('gunaProject')"
+        onclick="openProjectPage('3 Guṇas - Ahambrahmasmi', 'images/3 Guṇas - Ahambrahmasmi.jpg')"
       >
 
       <h3 class="project-title">
@@ -1212,6 +1231,30 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
 
 <!-- PROJECT SUBPAGE -->
 <div id="gunaProject" class="page">
+  <h1 id="projectMainTitle" style="
+  text-align:center;
+  margin-top:60px;
+  font-size:32px;
+  letter-spacing:2px;
+  color:silver;
+"></h1>
+
+  <div class="project-layout">
+
+  <!-- LEFT COLUMN -->
+  <div class="project-left">
+    <img id="projectHeroImage" src="" style="max-width:100%; border-radius:10px;">
+    <p style="margin-top:20px; color:#aaa;">
+      Project introduction text goes here later.
+    </p>
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="project-right">
+    <div id="pentagonContainer"></div>
+  </div>
+
+</div>
 
   <!-- BACK BUTTON -->
   <button
@@ -1460,6 +1503,7 @@ function toggleMenu() {
 }
 
     function openPage(id) {
+      window.currentProjectTitle = null;
   document.querySelectorAll(".page").forEach(p => {
     p.classList.remove("active");
     p.style.display = "none";
@@ -1854,6 +1898,15 @@ function closeShopGallery() {
 
   // ensure Projects tab is active
   showPortfolio("projects");
+}
+
+  function openProjectPage(title, img) {
+  openPage('gunaProject');
+
+  window.currentProjectTitle = title;
+  window.currentProjectImage = img;
+
+  document.getElementById("projectMainTitle").innerText = title;
 }
   
 </script>

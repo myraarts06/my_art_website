@@ -43,11 +43,8 @@
 
     /* ===== PAGE SYSTEM ===== */
 
-    .page {
+   .page {
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   min-height: 100vh;
   background: black;
@@ -61,6 +58,7 @@
 #home.page.active {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
     
     /* ===== TITLE ===== */
@@ -151,9 +149,10 @@
 }
 
 #home {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
 }
 
 /* TOP */
@@ -166,7 +165,6 @@
 /* CENTER AREA (FULL HEIGHT DISTRIBUTION ZONE) */
 
 .home-center {
-  transform: translateY(-60px);
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -201,7 +199,6 @@ html, body {
 }
     /* ===== SOCIAL ===== */
   .social {
-  transform: translateY(-60px);
   flex: 0 0 auto;
   display: flex;
   justify-content: center;

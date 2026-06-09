@@ -480,9 +480,13 @@
   text-justify: inter-word;
 }
 
-    .about-container {
-  position: relative; /* IMPORTANT */
+  .about-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 140px 120px 140px 120px;
+  overflow: hidden; /* prevents visual collision outside bounds */
 }
+    
     
     /* ===== CONTACT FORM ===== */
     .contact-container {
@@ -692,6 +696,24 @@
   display: block;
 }
 
+    .top-right {
+  top: 140px;
+  right: 80px;
+}
+
+.bottom-left {
+  bottom: 120px;
+  left: 80px;
+}
+
+    .top-right {
+  transform: translate(20px, -10px);
+}
+
+.bottom-left {
+  transform: translate(-20px, 10px);
+}
+    
     /* ===== SHOP GALLERY ===== */
 
 #shopGalleryModal {

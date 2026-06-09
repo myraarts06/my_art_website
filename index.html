@@ -1105,21 +1105,23 @@ document.getElementById("entryScreen").addEventListener("click", async () => {
   startHomeAnimation();
 });
 
-   function startHomeAnimation() {
+  function startHomeAnimation() {
   const home = document.getElementById("home");
   const title = document.querySelector("#home .title");
   const subtitle = document.getElementById("subtitle");
+
+  const text = "MYRA ARTS"; // ✅ ADD THIS
 
   title.style.visibility = "visible";
   subtitle.style.visibility = "visible";
 
   home.classList.remove("reveal-body");
 
-  animateTitle(text).then(() => {
-    return animateSubtitle("by Pradeep Krishna");
-  }).then(() => {
-    home.classList.add("reveal-body");
-  });
+  animateTitle(text)
+    .then(() => animateSubtitle("by Pradeep Krishna"))
+    .then(() => {
+      home.classList.add("reveal-body");
+    });
 }
 
   function animateTitle(text) {
@@ -1593,6 +1595,13 @@ function closeShopGallery() {
   }, 100);
 });
 
+  window.addEventListener("error", (e) => {
+  console.log("JS Error:", e.message);
+
+  document.querySelector("#home .title").style.visibility = "visible";
+  document.getElementById("subtitle").style.visibility = "visible";
+});
+  
 </script>
   
 

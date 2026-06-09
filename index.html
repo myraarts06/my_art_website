@@ -257,17 +257,28 @@ html, body {
 
     /* ===== PORTFOLIO ===== */
     .portfolio-options {
-      margin-top: 40px;
-    }
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
     .portfolio-btn {
-      padding: 10px 20px;
-      border: 1px solid white;
-      background: none;
-      color: white;
-      margin: 10px;
-      cursor: pointer;
-    }
+  padding: 10px 22px;
+  border: 1px solid white;
+  background: none;
+  color: white;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: 0.3s ease;
+}
+
+.portfolio-btn:hover {
+  background: white;
+  color: black;
+}
 
     .portfolio-content {
       display: none;

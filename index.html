@@ -421,25 +421,34 @@ html, body {
     }
 
     /* ===== ABOUT ME ===== */
+
     .about-container {
   width: 100%;
   min-height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 120px 60px 60px 60px;
+
+  padding: 120px 100px 60px 100px; /* increased from 60px */
   box-sizing: border-box;
 }
 
     .about-top-left {
-  max-width: 420px;
+  max-width: 600px;
   align-self: flex-start;
 }
 
 .about-bottom-right {
-  max-width: 420px;
+  max-width: 600px;
   align-self: flex-end;
   text-align: right;
+}
+
+    .about-top-left p,
+.about-bottom-right p {
+  line-height: 1.6;
+  font-size: 16px;
+  letter-spacing: 0.3px;
 }
     
     .about-subheading {

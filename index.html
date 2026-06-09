@@ -192,12 +192,15 @@
   padding: 2px 0;     /* reduced from 5px */
 }
     
-html, body {
+
+    html, body {
   height: 100%;
   margin: 0;
   overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
-
+    
     #home .home-center,
 #home .social {
   opacity: 0;
@@ -728,6 +731,10 @@ html, body {
   color: white;
   cursor: pointer;
 }
+
+    body {
+  overscroll-behavior: none;
+}
   </style>
 </head>
 
@@ -1050,6 +1057,8 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
   document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("cartIcon").style.display = "none";
 });
+
+  let homeAnimationPlayed = false;
   
   let cart = [];
   const shopData = {
@@ -1245,13 +1254,9 @@ function toggleMenu() {
   window.scrollTo(0, 0);
 
   if (id === "home") {
-    const title = document.querySelector("#home .title");
-
-    if (title.innerHTML.trim() === "") {
-      setTimeout(() => {
-        startHomeAnimation();
-      }, 50);
-    }
+  if (!homeAnimationPlayed) {
+    homeAnimationPlayed = true;
+    setTimeout(startHomeAnimation, 50);
   }
 }
  

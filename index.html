@@ -1453,23 +1453,31 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
     </div>
   </div>
 
-  <!-- BACK BUTTON -->
+  <!-- BACK BUTTON (inside project page layout) -->
+<div style="
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 40px;
+  box-sizing: border-box;
+">
   <button
     onclick="openPage('portfolio'); showPortfolio('projects');"
     style="
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
       padding: 12px 22px;
       background: black;
       color: white;
       border: 1px solid white;
       cursor: pointer;
-      z-index: 1000;
+      letter-spacing: 1px;
+      transition: 0.3s;
     "
+    onmouseover="this.style.background='white'; this.style.color='black'"
+    onmouseout="this.style.background='black'; this.style.color='white'"
   >
     ← Back to Projects
   </button>
+</div>
 
 </div>
   

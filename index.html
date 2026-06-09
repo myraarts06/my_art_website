@@ -1073,27 +1073,28 @@ document.getElementById("entryScreen").addEventListener("click", async () => {
   startHomeAnimation();
 });
 
-function startHomeAnimation() {
+  function startHomeAnimation() {
   const title = document.querySelector("#home .title");
   const subtitle = document.querySelector("#subtitle");
+
   const text = title.getAttribute("data-text");
 
   title.innerHTML = "";
   subtitle.innerHTML = "";
-   let lastIndex = text.length - 1;
+
+  let lastIndex = text.length - 1;
 
   text.split("").forEach((char, i) => {
     const span = document.createElement("span");
     span.classList.add("letter");
     span.innerHTML = char === " " ? "&nbsp;" : char;
-     setTimeout(() => {
+
+    setTimeout(() => {
       span.classList.add("drop");
 
-      // AFTER LAST LETTER → trigger subtitle
       if (i === lastIndex) {
         setTimeout(() => startSubtitleAnimation(), 400);
       }
-
     }, i * 120);
 
     title.appendChild(span);
@@ -1166,6 +1167,23 @@ function toggleMenu() {
 
   updateCartVisibility(id);
 
+
+     if (id === "home") {
+  const home = document.getElementById("home");
+
+  home.classList.remove("reveal-body");
+
+  const title = document.querySelector("#home .title");
+  const subtitle = document.getElementById("subtitle");
+
+  title.innerHTML = "";
+  subtitle.innerHTML = "";
+
+  setTimeout(() => {
+    startHomeAnimation();
+  }, 50);
+}
+      
   window.scrollTo(0, 0);
 
   if (id === "home") {

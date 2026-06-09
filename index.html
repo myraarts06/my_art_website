@@ -1110,7 +1110,7 @@ document.getElementById("entryScreen").addEventListener("click", async () => {
   const title = document.querySelector("#home .title");
   const subtitle = document.getElementById("subtitle");
 
-  const text = "MYRA ARTS"; // ✅ ADD THIS
+  const text = "MYRA ARTS"; // <-- ADD THIS
 
   title.style.visibility = "visible";
   subtitle.style.visibility = "visible";
@@ -1580,21 +1580,6 @@ function openShopGallery(mediaArray) {
 function closeShopGallery() {
   document.getElementById("shopGalleryModal").style.display = "none";
 }
-
-  window.addEventListener("load", () => {
-  document.querySelectorAll(".page").forEach(p => {
-    p.style.display = "none";
-    p.classList.remove("active");
-  });
-
-  const home = document.getElementById("home");
-  home.style.display = "flex";
-  home.classList.add("active");
-
-  setTimeout(() => {
-    startHomeAnimation();
-  }, 100);
-});
 
   window.addEventListener("error", (e) => {
   console.log("JS Error:", e.message);

@@ -569,6 +569,64 @@
   border-radius: 10px;
   display: block;
 }
+
+    .read-more-btn {
+  margin-top: 40px;
+  padding: 12px 20px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.read-more-btn:hover {
+  background: white;
+  color: black;
+}
+
+/* hidden by default */
+.read-more-section {
+  display: none;
+  margin-top: 30px;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  white-space: nowrap;
+}
+
+/* show state */
+.read-more-section.active {
+  display: flex;
+}
+
+/* each card */
+.mini-card {
+  width: 220px;
+  flex: 0 0 auto;
+  text-align: center;
+  color: #ccc;
+}
+
+.mini-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.mini-card h4 {
+  margin: 5px 0;
+  font-size: 16px;
+  color: white;
+}
+
+.mini-card p {
+  font-size: 13px;
+  color: #aaa;
+}
     
     /* ===== MODAL (NEW SPA VIEW) ===== */
 
@@ -1348,6 +1406,44 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
   <div class="project-right">
  <div class="inverted-t-layout">
 
+   <button class="read-more-btn" onclick="toggleReadMore()">
+  Click to read more
+</button>
+
+   <div id="readMoreSection" class="read-more-section">
+  
+  <div class="mini-card">
+    <img src="images/3 Guṇas - Ahambrahmasmi.jpg">
+    <h4>3 Guṇas - Ahambrahmasmi</h4>
+    <p>Description coming soon</p>
+  </div>
+
+  <div class="mini-card">
+    <img src="images/placeholder.jpg">
+    <h4>Top Box 2</h4>
+    <p>Work in development</p>
+  </div>
+
+  <div class="mini-card">
+    <img src="images/placeholder.jpg">
+    <h4>Box 1</h4>
+    <p>Work in development</p>
+  </div>
+
+  <div class="mini-card">
+    <img src="images/placeholder.jpg">
+    <h4>Box 2</h4>
+    <p>Work in development</p>
+  </div>
+
+  <div class="mini-card">
+    <img src="images/placeholder.jpg">
+    <h4>Box 3</h4>
+    <p>Work in development</p>
+  </div>
+
+</div>
+
   <!-- TOP COLUMN (2 boxes above middle) -->
   <div class="top-column">
     <div class="top-box">
@@ -2026,6 +2122,13 @@ function openProjectPage(title, img) {
   document.getElementById("projectHeroImage").src = img;
   document.getElementById("centerProjectImage").src = img;
 }
+
+
+  function toggleReadMore() {
+  const section = document.getElementById("readMoreSection");
+  section.classList.toggle("active");
+}
+
   
 </script>
   

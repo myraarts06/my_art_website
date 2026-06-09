@@ -194,11 +194,19 @@
     
 
     html, body {
-  height: 100%;
   margin: 0;
-  overflow-x: hidden;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+    .page {
+  height: 100vh;
   overflow-y: auto;
-  scrollbar-gutter: stable;
+}
+
+    #home .title,
+#home .subtitle {
+  visibility: hidden;
 }
     
     #home .home-center,
@@ -1097,15 +1105,13 @@ document.getElementById("entryScreen").addEventListener("click", async () => {
   startHomeAnimation();
 });
 
- function startHomeAnimation() {
+   function startHomeAnimation() {
   const home = document.getElementById("home");
   const title = document.querySelector("#home .title");
   const subtitle = document.getElementById("subtitle");
 
-  const text = title.getAttribute("data-text");
-
-  title.innerHTML = "";
-  subtitle.innerHTML = "";
+  title.style.visibility = "visible";
+  subtitle.style.visibility = "visible";
 
   home.classList.remove("reveal-body");
 
@@ -1574,15 +1580,17 @@ function closeShopGallery() {
 
   window.addEventListener("load", () => {
   document.querySelectorAll(".page").forEach(p => {
-    p.classList.remove("active");
     p.style.display = "none";
+    p.classList.remove("active");
   });
 
   const home = document.getElementById("home");
-  home.classList.add("active");
   home.style.display = "flex";
+  home.classList.add("active");
 
-  startHomeAnimation();
+  setTimeout(() => {
+    startHomeAnimation();
+  }, 100);
 });
 
 </script>

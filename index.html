@@ -1105,7 +1105,7 @@
   </div>
 </div>
 
-    <!-- PROJECT DETAIL PAGE (HIDDEN ROUTE) -->
+<!-- PROJECT DETAIL PAGE -->
 <div id="projectView" class="page">
 
   <div class="title">PROJECT</div>
@@ -1117,11 +1117,13 @@
     padding: 80px 20px;
   ">
 
+    <!-- IMAGE -->
     <img id="projectImage" style="
       max-width: 80%;
       border-radius: 10px;
     ">
 
+    <!-- TITLE (UNDER IMAGE) -->
     <h2 id="projectTitle" style="
       margin-top: 15px;
       font-size: 22px;
@@ -1130,8 +1132,20 @@
       text-align: center;
     "></h2>
 
-  </div>
+    <!-- BACK BUTTON -->
+    <button onclick="backToProjects()" style="
+      margin-top: 30px;
+      padding: 10px 18px;
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    ">
+      ← Back to Projects
+    </button>
 
+  </div>
 </div>
   </div>
   
@@ -1820,6 +1834,12 @@ function closeShopGallery() {
   document.getElementById("projectTitle").innerText = title;
 }
 
+  function backToProjects() {
+  openPage("portfolio");
+
+  // ensure Projects tab is active
+  showPortfolio("projects");
+}
   
 </script>
   

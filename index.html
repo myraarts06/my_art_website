@@ -1393,32 +1393,49 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
 
 
 <!-- PROJECT SUBPAGE (SIMPLIFIED) -->
-<div id="gunaProject" class="page">
+    <div id="gunaProject" class="page">
 
   <h1 id="projectMainTitle" style="
     text-align:center;
-    margin-top:80px;
+    margin-top:60px;
     font-size:32px;
     letter-spacing:2px;
     color:silver;
   "></h1>
 
-  <div style="
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    height:60vh;
-  ">
+  <div class="project-layout">
 
-    <img id="projectHeroImage"
-      style="max-width:400px; border-radius:10px; display:none;"
-    >
+    <!-- LEFT SIDE (empty for now / future text) -->
+    <div class="project-left">
+      <p style="color:#777; text-align:center; margin-top:40px;">
+        <!-- intentionally empty -->
+      </p>
+    </div>
 
-    <p style="color:#888; margin-top:20px;">
-      <!-- intentionally empty -->
-    </p>
+    <!-- RIGHT SIDE (WIDER + INVERTED T STRUCTURE) -->
+    <div class="project-right">
 
+      <div class="inverted-t-layout">
+
+        <!-- TOP COLUMN (CENTERED ABOVE MIDDLE BOX) -->
+        <div class="top-column">
+
+          <div class="top-box middle-box">
+            <img id="projectHeroImage" src="" alt="project image">
+          </div>
+
+        </div>
+
+        <!-- BOTTOM ROW -->
+        <div class="bottom-row">
+
+          <div class="bottom-box">Coming soon</div>
+          <div class="bottom-box">Coming soon</div>
+
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <!-- BACK BUTTON -->
@@ -1440,7 +1457,6 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
   </button>
 
 </div>
-  
   
 <!-- CONTACT -->
 <div id="contact" class="page">
@@ -2065,11 +2081,10 @@ function closeShopGallery() {
   showPortfolio("projects");
 }
 
-  function openProjectPage(title, img) {
+ function openProjectPage(title, img) {
   openPage('gunaProject');
 
   const cleanTitle = title.split('-')[0].trim();
-
   document.getElementById("projectMainTitle").innerText = cleanTitle;
 
   const hero = document.getElementById("projectHeroImage");

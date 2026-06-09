@@ -51,6 +51,11 @@
   display: block;
 }
 
+/* HOME must remain flex */
+#home.page.active {
+  display: flex;
+}
+    
     /* ===== TITLE ===== */
     .title {
       font-size: 60px;
@@ -213,18 +218,18 @@ html, body {
       margin: 6px 0;
     }
 
+    
     .sidepanel {
-      z-index: 100001; /* IMPORTANT: higher than modals */
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 250px;
-      height: 100vh;
-      background: #111;
-      padding-top: 80px;
-      transition: 0.4s;
-      z-index: 9999;
-    }
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 250px;
+  height: 100vh;
+  background: #111;
+  padding-top: 80px;
+  transition: 0.4s;
+  z-index: 100001;
+}
 
     .sidepanel.open {
       right: 0;
@@ -1021,15 +1026,20 @@ function toggleMenu() {
   updateCartVisibility(id);
 
   window.scrollTo(0, 0); // 🔥 FIX
+if (id === "home") {
 
-  if (id === "home") {
-    const title = document.querySelector("#home .title");
-    title.innerHTML = "";
+  const title = document.querySelector("#home .title");
+
+  // Prevent duplicate rebuilds
+  if (title.innerHTML.trim() === "") {
 
     setTimeout(() => {
       startHomeAnimation();
     }, 50);
+
   }
+}
+ 
 }
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));

@@ -1202,6 +1202,7 @@ html, body {
     Artist's Instagram page opens best when you are logged in
   </span>
 </div>
+  </div>
 
   
 <!-- PORTFOLIO -->
@@ -1706,28 +1707,21 @@ function toggleMenu() {
 
   activePage.classList.add("active");
 
-  window.scrollTo(0, 0);
+  if (id === "portfolio") {
+    showPortfolio("photo");
+  }
 
-  const menu = document.getElementById("menu");
-  if (menu) menu.classList.remove("open");
+  window.scrollTo(0,0);
+
+  document.getElementById("menu").classList.remove("open");
 
   try { closePainting(); } catch(e) {}
   try { closeCart(); } catch(e) {}
   try { closeShopGallery(); } catch(e) {}
 
   updateCartVisibility(id);
-
-  if (id === "home") {
-    const title = document.querySelector("#home .title");
-    const subtitle = document.getElementById("subtitle");
-
-    if (title) title.innerHTML = "";
-    if (subtitle) subtitle.innerHTML = "";
-
-    setTimeout(() => startHomeAnimation(), 50);
-  }
 }
-  
+
 
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));

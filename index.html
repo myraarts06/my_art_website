@@ -1234,8 +1234,7 @@ function toggleMenu() {
 
   updateCartVisibility(id);
 
-
-     if (id === "home") {
+if (id === "home") {
   const home = document.getElementById("home");
 
   home.classList.remove("reveal-body");
@@ -1250,16 +1249,9 @@ function toggleMenu() {
     startHomeAnimation();
   }, 50);
 }
-      
+}      
   window.scrollTo(0, 0);
 
-  if (id === "home") {
-  if (!homeAnimationPlayed) {
-    homeAnimationPlayed = true;
-    setTimeout(startHomeAnimation, 50);
-  }
-}
- 
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -1581,7 +1573,16 @@ function closeShopGallery() {
 }
 
   window.addEventListener("load", () => {
-  openPage("home");
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+    p.style.display = "none";
+  });
+
+  const home = document.getElementById("home");
+  home.classList.add("active");
+  home.style.display = "flex";
+
+  startHomeAnimation();
 });
 
 </script>

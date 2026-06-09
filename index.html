@@ -1112,7 +1112,11 @@ function toggleMenu() {
 
   const activePage = document.getElementById(id);
   activePage.classList.add("active");
+      if (id === "home") {
+  activePage.style.display = "flex";
+} else {
   activePage.style.display = "block";
+}
 
   document.getElementById("menu").classList.remove("open");
 

@@ -673,7 +673,7 @@
   }
 }
 
-    .floating-img {
+.floating-img {
   position: absolute;
   width: 260px;
   height: auto;
@@ -681,31 +681,27 @@
   border-radius: 12px;
   transition: transform 0.3s ease, opacity 0.3s ease;
   z-index: 1;
-  pointer-events: none; /* IMPORTANT: text stays clickable */
+  pointer-events: none;
 }
 
-/* Top right image */
+/* Top right */
 .top-right {
   top: 120px;
   right: 60px;
 }
 
-/* Bottom left image */
+/* Bottom left */
 .bottom-left {
   bottom: 80px;
   left: 60px;
 }
 
-/* subtle interactive feel */
+/* hover effect */
 .floating-img:hover {
   transform: scale(1.05);
   opacity: 0.9;
 }
 
-    .floating-img {
-    display: none; /* prevents clutter on mobile */
-  }
-}
     /* ===== SHOP GALLERY ===== */
 
 #shopGalleryModal {

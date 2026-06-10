@@ -450,11 +450,47 @@ html, body {
   font-weight: normal;
 }
 
-    .project-layout {
+   .project-layout {
   display: flex;
-  min-height: 100vh;
-  padding: 40px;
+  flex-direction: row;
+  align-items: flex-start;
   gap: 40px;
+
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+    .project-left {
+  flex: 0 0 45%;
+  max-width: 45%;
+
+  padding-right: 40px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+
+  box-sizing: border-box;
+}
+
+.project-right {
+  flex: 0 0 55%;
+  max-width: 55%;
+
+  padding-left: 40px;
+  box-sizing: border-box;
+}
+
+    .project-left-content {
+  width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.project-section p,
+.project-section li {
+  line-height: 1.7;
+  text-align: justify;
 }
 
 /* invisible divider feel */
@@ -752,6 +788,11 @@ html, body {
 
 .guna-list li {
   margin-bottom: 8px;
+}
+
+    .project-left,
+.project-right {
+  min-width: 0;
 }
     
     /* ===== MODAL (NEW SPA VIEW) ===== */

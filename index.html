@@ -462,6 +462,9 @@ html, body {
   flex: 1;
   padding-right: 40px;
   border-right: 1px solid rgba(255,255,255,0.1);
+
+  display: flex;
+  flex-direction: column;
 }
 
 .project-right {
@@ -1426,23 +1429,27 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
     margin-top: 40px;
     padding-right: 20px;
   ">
-    <button
-      onclick="openPage('portfolio'); showPortfolio('projects');"
-      style="
-        padding: 12px 22px;
-        background: black;
-        color: white;
-        border: 1px solid white;
-        cursor: pointer;
-        letter-spacing: 1px;
-      "
-      onmouseover="this.style.background='white'; this.style.color='black'"
-      onmouseout="this.style.background='black'; this.style.color='white'"
-    >
-      ← Back to Projects
-    </button>
-  </div> 
+    <div class="project-back-btn">
+  <button
+    onclick="openPage('portfolio'); showPortfolio('projects');"
+    style="
+      padding: 12px 22px;
+      background: black;
+      color: white;
+      border: 1px solid white;
+      cursor: pointer;
+      letter-spacing: 1px;
+    "
+    onmouseover="this.style.background='white'; this.style.color='black'"
+    onmouseout="this.style.background='black'; this.style.color='white'"
+  >
+    ← Back to Projects
+  </button>
+</div> 
     </div>
+       </div>
+     </div>
+       </div>
 
     <!-- RIGHT SIDE (WIDER + INVERTED T STRUCTURE) -->
     <div class="project-right">

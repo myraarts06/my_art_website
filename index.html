@@ -658,6 +658,21 @@ html, body {
     .project-left-content {
   flex: 1;
 }
+
+    #gunaReadMore {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#gunaReadMore .readmore-content {
+  flex: 1;
+}
+
+#gunaReadMore .readmore-back-btn {
+  margin-top: auto;
+  padding: 0 0 40px 40px;
+}
     
     /* ===== MODAL (NEW SPA VIEW) ===== */
 
@@ -1500,51 +1515,39 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
 
   <!-- gunaProject subpage -->
   
-  <div id="gunaReadMore" class="page">
+<div id="gunaReadMore" class="page">
 
-  <h1 style="
-    text-align:center;
-    margin-top:60px;
-    color:silver;
-    letter-spacing:2px;
-  ">
-    3 Guṇas - Ahambrahmasmi
-  </h1>
+  <div class="readmore-content">
 
-  <div style="
-    max-width:1000px;
-    margin:60px auto;
-    padding:0 30px;
-    color:#ccc;
-    line-height:1.8;
-  ">
+    <h1 style="
+      text-align:center;
+      margin-top:60px;
+      color:silver;
+      letter-spacing:2px;
+    ">
+      3 Guṇas - Ahambrahmasmi
+    </h1>
 
-    <p>
-      This is where the extended project content will go.
-    </p>
-
-    <p>
-      Artist statement, research, process images,
-      videos, installation plans, essays, publications,
-      and other material can be added here later.
-    </p>
+    <div style="
+      max-width:1000px;
+      margin:60px auto;
+      padding:0 30px;
+      color:#ccc;
+      line-height:1.8;
+    ">
+      <p>This is where the extended project content will go.</p>
+    </div>
 
   </div>
 
-  <div style="
-  display:flex;
-  justify-content:flex-start;
-  margin-top:60px;
-  padding-left:40px;
-  padding-bottom:40px;
-">
-  <button
-    onclick="openPage('gunaProject')"
-    class="read-more-btn"
-  >
-    ← Back to Current Project
-  </button>
-</div>
+  <div class="readmore-back-btn">
+    <button
+      onclick="openPage('gunaProject')"
+      class="read-more-btn"
+    >
+      ← Back to Current Project
+    </button>
+  </div>
 
 </div>
     

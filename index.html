@@ -659,20 +659,65 @@ html, body {
   flex: 1;
 }
 
-    #gunaReadMore {
+ /* ===== GUNA READ MORE ===== */
+
+.guna-cards {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+
+  max-width: 1800px;
+  margin: 60px auto;
+
+  padding: 0 40px;
+}
+
+.guna-card {
+  width: 260px;
+  text-align: center;
+}
+
+.guna-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+
+  transition: 0.3s ease;
+}
+
+.guna-card img:hover {
+  transform: scale(1.03);
+}
+
+.guna-card h3 {
+  margin-top: 15px;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.guna-card p {
+  margin-top: 10px;
+  color: #aaa;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* keep back button bottom-left */
+
+#gunaReadMore {
+  position: relative;
   min-height: 100vh;
 }
 
-#gunaReadMore .readmore-content {
-  flex: 1;
+.readmore-back-btn {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
 }
 
-#gunaReadMore .readmore-back-btn {
-  margin-top: auto;
-  padding: 0 0 40px 40px;
-}
     
     /* ===== MODAL (NEW SPA VIEW) ===== */
 
@@ -1513,8 +1558,8 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
       </div> <!-- project-layout -->
 </div>   <!-- gunaProject -->
 
-  <!-- gunaProject subpage -->
-  
+  <!-- gunaReadMore subpage -->
+
 <div id="gunaReadMore" class="page">
 
   <div class="readmore-content">
@@ -1528,14 +1573,63 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
       3 Guṇas - Ahambrahmasmi
     </h1>
 
-    <div style="
-      max-width:1000px;
-      margin:60px auto;
-      padding:0 30px;
-      color:#ccc;
-      line-height:1.8;
-    ">
-      <p>This is where the extended project content will go.</p>
+    <div class="guna-cards">
+
+      <!-- CARD 1 -->
+      <div class="guna-card">
+        <img src="images/3 Guṇas - Ahambrahmasmi.jpg">
+
+        <h3>Ahambrahmasmi</h3>
+
+        <p>
+          Add description here.
+        </p>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="guna-card">
+        <img src="images/image2.jpg">
+
+        <h3>Title 2</h3>
+
+        <p>
+          Add description here.
+        </p>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="guna-card">
+        <img src="images/image3.jpg">
+
+        <h3>Title 3</h3>
+
+        <p>
+          Add description here.
+        </p>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="guna-card">
+        <img src="images/image4.jpg">
+
+        <h3>Title 4</h3>
+
+        <p>
+          Add description here.
+        </p>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="guna-card">
+        <img src="images/image5.jpg">
+
+        <h3>Title 5</h3>
+
+        <p>
+          Add description here.
+        </p>
+      </div>
+
     </div>
 
   </div>
@@ -1550,7 +1644,6 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
   </div>
 
 </div>
-    
   
 <!-- CONTACT -->
 <div id="contact" class="page">

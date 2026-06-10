@@ -526,11 +526,8 @@ html, body {
   flex-direction: column;
   gap: 20px;
   align-items: center;
-
-  /* IMPORTANT: align directly above middle box */
-  transform: translateX(0);
 }
-
+    
 /* BOTTOM ROW */
 .bottom-row {
   display: flex;
@@ -1463,8 +1460,41 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
     <!-- RIGHT SIDE -->
      <div class="project-right">
 
-    <!-- project content here -->
-       </div>
+  <div class="inverted-t-layout">
+
+    <!-- TOP COLUMN -->
+    <div class="top-column">
+
+      <div class="top-box">
+        Box 1
+      </div>
+
+      <div class="top-box middle-box">
+        Box 2
+      </div>
+
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="bottom-row">
+
+      <div class="bottom-box">
+        Box 3
+      </div>
+
+      <div class="bottom-box">
+        Box 4
+      </div>
+
+      <div class="bottom-box">
+        Box 5
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
       </div> <!-- project-layout -->
 </div>   <!-- gunaProject -->
 
@@ -2087,11 +2117,7 @@ function closeShopGallery() {
 
   const cleanTitle = title.split('-')[0].trim();
   document.getElementById("projectMainTitle").innerText = cleanTitle;
-
-  const hero = document.getElementById("projectHeroImage");
-  hero.src = img;
-  hero.style.display = "block";
-}
+ }
 
 
   function toggleReadMore() {

@@ -743,18 +743,23 @@ html, body {
   background: rgba(255,255,255,0.02);
 }
 
-   @keyframes doorwayEnter {
+ .project-expand {
+  position: fixed !important;
+  z-index: 999999;
+  animation: expandToScreen 1s ease forwards;
+}
+
+@keyframes expandToScreen {
   0% {
     transform: scale(1);
     opacity: 1;
   }
 
   100% {
-    transform: scale(12);
-    opacity: 0;
+    transform: scale(15);
+    opacity: 1;
   }
-}
-    
+} 
     /* ===== MODAL (NEW SPA VIEW) ===== */
 
     #paintingModal {
@@ -1426,7 +1431,7 @@ html, body {
   onclick="openProjectPage('3 Guṇas - Ahambrahmasmi', 'images/3 Guṇas - Ahambrahmasmi.jpg')">
 
     <img 
-       id="projectDoorwayImage"
+        id="projectDoorwayImage"
       src="images/3 Guṇas - Ahambrahmasmi.jpg"
       style="
         width:320px;
@@ -2313,18 +2318,18 @@ function closeShopGallery() {
 
   const image = document.getElementById("projectDoorwayImage");
 
-  image.classList.add("project-enter");
+  image.classList.add("project-expand");
 
   setTimeout(() => {
 
-    image.classList.remove("project-enter");
+    image.classList.remove("project-expand");
 
     openPage("gunaProject");
 
     const cleanTitle = title.split("-")[0].trim();
     document.getElementById("projectMainTitle").innerText = cleanTitle;
 
-  }, 1200);
+  }, 1000);
 }
 
   function toggleReadMore() {

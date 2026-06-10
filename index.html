@@ -2310,13 +2310,22 @@ function closeShopGallery() {
   showPortfolio("projects");
 }
 
- function openProjectPage(title, img) {
+  function openProjectPage(title, img) {
+
   openPage('gunaProject');
+
+  const projectPage = document.getElementById('gunaProject');
+
+  projectPage.classList.remove('page-transition');
+
+  void projectPage.offsetWidth; // restart animation
+
+  projectPage.classList.add('page-transition');
 
   const cleanTitle = title.split('-')[0].trim();
   document.getElementById("projectMainTitle").innerText = cleanTitle;
- }
-
+}
+  
 
   function toggleReadMore() {
   const section = document.getElementById("readMoreSection");

@@ -1485,9 +1485,12 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
   </div>
 
   <!-- BUTTON -->
-  <button class="read-more-btn">
-    Click to Read More
-  </button>
+  <button
+  class="read-more-btn"
+  onclick="openPage('gunaReadMore')"
+>
+  Click to Read More
+</button>
 
 </div>
 
@@ -1495,7 +1498,55 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
       </div> <!-- project-layout -->
 </div>   <!-- gunaProject -->
 
+  <!-- gunaProject subpage -->
   
+  <div id="gunaReadMore" class="page">
+
+  <h1 style="
+    text-align:center;
+    margin-top:60px;
+    color:silver;
+    letter-spacing:2px;
+  ">
+    3 Guṇas - Ahambrahmasmi
+  </h1>
+
+  <div style="
+    max-width:1000px;
+    margin:60px auto;
+    padding:0 30px;
+    color:#ccc;
+    line-height:1.8;
+  ">
+
+    <p>
+      This is where the extended project content will go.
+    </p>
+
+    <p>
+      Artist statement, research, process images,
+      videos, installation plans, essays, publications,
+      and other material can be added here later.
+    </p>
+
+  </div>
+
+  <div style="
+  display:flex;
+  justify-content:flex-start;
+  margin-top:60px;
+  padding-left:40px;
+  padding-bottom:40px;
+">
+  <button
+    onclick="openPage('gunaProject')"
+    class="read-more-btn"
+  >
+    ← Back to Current Project
+  </button>
+</div>
+
+</div>
     
   
 <!-- CONTACT -->

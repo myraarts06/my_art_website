@@ -743,24 +743,17 @@ html, body {
   background: rgba(255,255,255,0.02);
 }
 
-   .project-enter {
-  position: relative;
-  z-index: 99999;
-
-  animation: doorwayEnter 1.2s ease forwards;
-}
-
-@keyframes doorwayEnter {
-
+   @keyframes doorwayEnter {
   0% {
     transform: scale(1);
+    opacity: 1;
   }
 
   100% {
-    transform: scale(8);
+    transform: scale(12);
+    opacity: 0;
   }
 }
-
     
     /* ===== MODAL (NEW SPA VIEW) ===== */
 
@@ -1433,6 +1426,7 @@ html, body {
   onclick="openProjectPage('3 Guṇas - Ahambrahmasmi', 'images/3 Guṇas - Ahambrahmasmi.jpg')">
 
     <img 
+       id="projectDoorwayImage"
       src="images/3 Guṇas - Ahambrahmasmi.jpg"
       style="
         width:320px;
@@ -2315,22 +2309,23 @@ function closeShopGallery() {
   showPortfolio("projects");
 }
 
-  function openProjectPage(title, img) {
+ function openProjectPage(title, img) {
 
-  openPage('gunaProject');
+  const image = document.getElementById("projectDoorwayImage");
 
-  const projectPage = document.getElementById('gunaProject');
+  image.classList.add("project-enter");
 
-  projectPage.classList.remove('page-transition');
+  setTimeout(() => {
 
-  void projectPage.offsetWidth; // restart animation
+    image.classList.remove("project-enter");
 
-  projectPage.classList.add('page-transition');
+    openPage("gunaProject");
 
-  const cleanTitle = title.split('-')[0].trim();
-  document.getElementById("projectMainTitle").innerText = cleanTitle;
+    const cleanTitle = title.split("-")[0].trim();
+    document.getElementById("projectMainTitle").innerText = cleanTitle;
+
+  }, 1200);
 }
-  
 
   function toggleReadMore() {
   const section = document.getElementById("readMoreSection");

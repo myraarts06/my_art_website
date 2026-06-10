@@ -502,10 +502,6 @@ html, body {
   min-height: calc(100vh - 180px);
 }
 
-.project-left-content {
-  flex: none;
-}
-
 .project-back-btn {
   padding-bottom: 40px;
 }
@@ -690,13 +686,15 @@ html, body {
   align-items: flex-start;
 }
 
-    .project-back-btn {
-  margin-top: auto;
-  padding-bottom: 40px;
+   .project-back-btn {
+  position: fixed;
+  left: 40px;
+  bottom: 40px;
+  z-index: 1000;
 }
 
     .project-left-content {
-  flex: 1;
+  flex: none;
 }
 
  /* ===== GUNA READ MORE ===== */

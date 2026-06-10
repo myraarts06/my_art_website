@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html><div class="project-right">
 <head>
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -467,6 +467,14 @@ html, body {
   flex-direction: column;
 }
 
+.project-left-content {
+  flex: 1;
+}
+
+.project-back-btn {
+  padding-bottom: 40px;
+}
+
 .project-right {
   flex: 1.3; /* right slightly wider */
   padding-left: 40px;
@@ -646,6 +654,10 @@ html, body {
     .project-back-btn {
   margin-top: auto;
   padding-bottom: 40px;
+}
+
+    .project-left-content {
+  flex: 1;
 }
     
     /* ===== MODAL (NEW SPA VIEW) ===== */
@@ -1421,61 +1433,30 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
 
   <div class="project-layout">
 
-    <!-- LEFT SIDE (empty for now / future text) -->
-    <div class="project-left">
-      <p style="color:#777; text-align:center; margin-top:40px;">
-        <!-- intentionally empty -->
-      </p>
-        <!-- ✅ BACK BUTTON (NOW INSIDE RIGHT PANEL FLOW) -->
-  <div style="
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 40px;
-    padding-right: 20px;
-  ">
-    <div class="project-back-btn">
-  <button
-    onclick="openPage('portfolio'); showPortfolio('projects');"
-    style="
-      padding: 12px 22px;
-      background: black;
-      color: white;
-      border: 1px solid white;
-      cursor: pointer;
-      letter-spacing: 1px;
-    "
-    onmouseover="this.style.background='white'; this.style.color='black'"
-    onmouseout="this.style.background='black'; this.style.color='white'"
-  >
-    ← Back to Projects
-  </button>
-</div> 
-    </div>
-       </div>
-     </div>
-       </div>
+    <!-- LEFT SIDE -->
+<div class="project-left">
 
-    <!-- RIGHT SIDE (WIDER + INVERTED T STRUCTURE) -->
-    <div class="project-right">
+  <div class="project-left-content"></div>
 
-  <div class="inverted-t-layout">
-    <!-- TOP COLUMN -->
-    <div class="top-column">
-      <div class="top-box middle-box">
-        <img id="projectHeroImage" src="" alt="project image">
-      </div>
-    </div>
-
-    <!-- BOTTOM ROW -->
-    <div class="bottom-row">
-      <div class="bottom-box">Coming soon</div>
-      <div class="bottom-box">Coming soon</div>
-    </div>
+  <div class="project-back-btn">
+    <button
+      onclick="openPage('portfolio'); showPortfolio('projects');"
+      style="
+        padding: 12px 22px;
+        background: black;
+        color: white;
+        border: 1px solid white;
+        cursor: pointer;
+        letter-spacing: 1px;
+      "
+      onmouseover="this.style.background='white'; this.style.color='black'"
+      onmouseout="this.style.background='black'; this.style.color='white'"
+    >
+      ← Back to Projects
+    </button>
   </div>
 
-      </div> <!-- end project-right -->
-</div> <!-- end project-layout -->
-</div> <!-- end gunaProject page -->
+</div>
     
   
 <!-- CONTACT -->

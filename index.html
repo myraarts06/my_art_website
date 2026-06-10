@@ -743,48 +743,7 @@ html, body {
   background: rgba(255,255,255,0.02);
 }
 
- #curtain {
-  position: fixed;
-  top: -100%;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      #1a0000,
-      #3a0000,
-      #1a0000
-    );
-
-  z-index: 999999;
-  pointer-events: none;
-}
-
-#curtain.active {
-  animation: curtainDrop 1.2s forwards;
-}
-
-@keyframes curtainDrop {
-
-  0% {
-    top: -100%;
-    transform: scaleY(1.1);
-  }
-
-  50% {
-    top: 0;
-    transform: scaleY(1);
-  }
-
-  100% {
-    top: 100%;
-    transform: scaleY(0.9);
-  }
-
-}
+    
     /* ===== MODAL (NEW SPA VIEW) ===== */
 
     #paintingModal {
@@ -1456,7 +1415,6 @@ html, body {
   onclick="openProjectPage('3 Guṇas - Ahambrahmasmi', 'images/3 Guṇas - Ahambrahmasmi.jpg')">
 
     <img 
-        id="projectDoorwayImage"
       src="images/3 Guṇas - Ahambrahmasmi.jpg"
       style="
         width:320px;
@@ -2340,25 +2298,13 @@ function closeShopGallery() {
 }
 
  function openProjectPage(title, img) {
+  openPage('gunaProject');
 
-  const curtain =
-    document.getElementById("curtain");
+  const cleanTitle = title.split('-')[0].trim();
+  document.getElementById("projectMainTitle").innerText = cleanTitle;
+ }
 
-  curtain.classList.add("active");
 
-  setTimeout(() => {
-
-  openPage("gunaProject");
-
-  const cleanTitle =
-    title.split("-")[0].trim();
-
-  document.getElementById("projectMainTitle")
-    .innerText = cleanTitle;
-
-}, 1100);
-
-  
   function toggleReadMore() {
   const section = document.getElementById("readMoreSection");
   section.classList.toggle("active");
@@ -2388,11 +2334,5 @@ function closeShopGallery() {
 
 </div>
 
-  <!-- CURTAIN -->
-<div id="curtain"></div>
-
-
 </body>
 </html>
-
-

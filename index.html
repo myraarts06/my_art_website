@@ -474,13 +474,9 @@ html, body {
 }
 
 .project-right {
-  width: 55%;
-  flex: 0 0 55%;
-
+  flex: 1;
   padding-left: 40px;
-  box-sizing: border-box;
 }
-
     .project-left-content {
   width: 100%;
   overflow-wrap: break-word;
@@ -816,6 +812,29 @@ html, body {
     position: static;
     margin-top: 30px;
   }
+}
+
+    .project-left {
+  width: 45%;
+  flex: 0 0 45%;
+
+  padding-left: 40px;   /* ADD THIS */
+  padding-right: 40px;
+
+  box-sizing: border-box;
+}
+
+    .project-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  box-sizing: border-box;
 }
     
     /* ===== MODAL (NEW SPA VIEW) ===== */

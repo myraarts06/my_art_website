@@ -743,16 +743,21 @@ html, body {
   background: rgba(255,255,255,0.02);
 }
 
-    .page-transition {
-  animation: crossFade 0.7s ease;
+   .project-enter {
+  position: relative;
+  z-index: 99999;
+
+  animation: doorwayEnter 1.2s ease forwards;
 }
 
-@keyframes crossFade {
-  from {
-    opacity: 0;
+@keyframes doorwayEnter {
+
+  0% {
+    transform: scale(1);
   }
-  to {
-    opacity: 1;
+
+  100% {
+    transform: scale(8);
   }
 }
 

@@ -758,15 +758,14 @@ html, body {
   margin-top: auto;
 }
 
-    #gunaReadMore {
-  display: flex;
+   #gunaReadMore {
+  display: none;           /* default hidden */
   flex-direction: column;
   min-height: 100vh;
 }
 
-
-.page.active {
-  display: block;
+#gunaReadMore.active {
+  display: flex;           /* only show when active */
 }
     
    .wip-box {

@@ -759,6 +759,18 @@ html, body {
   min-height: 100vh;
 }
 
+    .page {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  background: black;
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+    
    .wip-box {
   width: 100%;
   height: 260px;

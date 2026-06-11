@@ -683,11 +683,10 @@ html, body {
   overflow-y: auto;
 }
 
-   .project-back-btn {
-  position: fixed;
-  left: 40px;
-  bottom: 40px;
-  z-index: 1000;
+  .project-back-btn {
+  margin-top: var(--space-4);
+  display: flex;
+  justify-content: flex-start;
 }
 
     .project-left-content {
@@ -806,10 +805,9 @@ html, body {
   }
 
   .project-back-btn {
-  position: static;
-  margin-top: 40px;
+  margin-top: var(--space-4);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 }
 
@@ -833,6 +831,14 @@ html, body {
   padding: 20px;
 
   box-sizing: border-box;
+}
+
+    @media (min-width: 901px) {
+  .project-back-btn {
+    position: sticky;
+    bottom: 20px;
+    align-self: flex-start;
+  }
 }
     
     /* ===== MODAL (NEW SPA VIEW) ===== */

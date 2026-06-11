@@ -747,9 +747,16 @@ html, body {
 }
 
 .readmore-back-btn {
-  position: absolute;
-  left: 40px;
-  bottom: 40px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 40px;
+  margin-top: auto;
+}
+
+    #gunaReadMore {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
    .wip-box {
@@ -786,6 +793,10 @@ html, body {
   min-width: 0;
 }
 
+    .readmore-content {
+  flex: 1;
+}
+
     @media (max-width: 900px) {
 
   .project-layout {
@@ -805,7 +816,7 @@ html, body {
   }
 
   .project-back-btn {
-  margin-top: var(--space-4);
+  margin-top: 40px;
   display: flex;
   justify-content: flex-start;
 }
@@ -831,14 +842,6 @@ html, body {
   padding: 20px;
 
   box-sizing: border-box;
-}
-
-    @media (min-width: 901px) {
-  .project-back-btn {
-    position: sticky;
-    bottom: 20px;
-    align-self: flex-start;
-  }
 }
     
     /* ===== MODAL (NEW SPA VIEW) ===== */
@@ -1641,7 +1644,7 @@ The aim of my practice is not to resolve inquiry, but to sustain it — allowing
     <!-- LEFT SIDE -->
 <div class="project-left">
 
-<div class="project-left-content">
+  <div class="project-left-content">
 
   <div class="project-section">
     <h2>PROJECT OVERVIEW</h2>

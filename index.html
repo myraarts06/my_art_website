@@ -1922,8 +1922,6 @@ Rather than depicting a philosophical conclusion, the painting functions as a vi
   document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("cartIcon").style.display = "none";
 });
-
-  let homeAnimationPlayed = false;
   
   let cart = [];
   const shopData = {
@@ -2005,34 +2003,6 @@ document.getElementById("entryScreen").addEventListener("click", async () => {
         }
       }, i * 120);
     });
-  });
-}
-    
-  function startSubtitleAnimation() {
-  const subtitle = document.getElementById("subtitle");
-
-  const text = "by Pradeep Krishna";
-
-  subtitle.innerHTML = "";
-
-  text.split("").forEach((char, i) => {
-    const span = document.createElement("span");
-    span.classList.add("letter");
-    span.innerHTML = char === " " ? "&nbsp;" : char;
-
-    setTimeout(() => {
-      span.classList.add("drop");
-
-      // AFTER LAST LETTER → reveal body + insta
-      if (i === text.length - 1) {
-        setTimeout(() => {
-          document.getElementById("home").classList.add("reveal-body");
-        }, 600);
-      }
-
-    }, i * 80);
-
-    subtitle.appendChild(span);
   });
 }
 
@@ -2450,12 +2420,6 @@ function closeShopGallery() {
   document.querySelector("#home .title").style.visibility = "visible";
   document.getElementById("subtitle").style.visibility = "visible";
 });
-
-  function openInsta() {
-  setTimeout(() => {
-    window.open("https://www.instagram.com/myraarts06/", "_blank");
-  }, 50);
-}
 
   function backToProjects() {
   openPage("portfolio");

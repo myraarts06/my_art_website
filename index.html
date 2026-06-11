@@ -56,13 +56,6 @@ html, body {
 
     /* ===== PAGE SYSTEM ===== */
 
-   .page {
-  display: none;
-  width: 100%;
-  min-height: 100vh;
-  background: black;
-  overflow-x: hidden;
-}
 
 .page.active {
   display: block;
@@ -104,6 +97,19 @@ html, body {
 
 .subtitle .drop {
   animation: drop 0.8s forwards;
+}
+
+    .page {
+  display: none;
+  width: 100%;
+  min-height: 100vh;
+  background: black;
+  overflow-y: auto;
+}
+
+.page.active {
+  display: block;
+  position: relative;
 }
     
     /* ===== ONLY HOME ANIMATION ===== */
@@ -238,10 +244,7 @@ html, body {
   overflow-x: hidden;
   overflow-y: auto;
 }
-    .page {
-  height: 100vh;
-  overflow-y: auto;
-}
+    
 
     #home .title,
 #home .subtitle {
@@ -761,13 +764,6 @@ html, body {
   min-height: 100vh;
 }
 
-    .page {
-  position: absolute;
-  inset: 0;
-  overflow-y: auto;
-  background: black;
-  display: none;
-}
 
 .page.active {
   display: block;
@@ -1143,9 +1139,6 @@ html, body {
 
 @media screen and (max-width: 768px) {
 
-  .page {
-    padding: 20px;
-  }
 
   .title {
     font-size: clamp(36px, 6vw, 60px);

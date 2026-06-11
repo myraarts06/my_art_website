@@ -16,10 +16,6 @@
   box-sizing: border-box;
 }
 
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
     body {
   margin: 0;
   background: black;
@@ -64,8 +60,7 @@ html, body {
 #home.page.active {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
 }
     
     /* ===== TITLE ===== */
@@ -238,15 +233,7 @@ html, body {
   line-height: 1.3;   /* slightly tighter */
   padding: 2px 0;     /* reduced from 5px */
 }
-    
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-    
+     
 
     #home .title,
 #home .subtitle {
@@ -466,6 +453,7 @@ html, body {
 .project-left {
   width: 45%;
   flex: 0 0 45%;
+  position: relative;
 
   padding-right: 40px;
   border-right: 1px solid rgba(255,255,255,0.1);
@@ -496,12 +484,18 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 180px);
+  position: relative;
 }
   
 .project-back-btn {
   position: absolute;
-  bottom: 30px;
-  left: 30px;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 40px;
+  box-sizing: border-box;
 }
 
 .project-right {
@@ -684,10 +678,15 @@ html, body {
   overflow-y: auto;
 }
 
-  .project-back-btn {
-  margin-top: var(--space-4);
+ .project-back-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
+  padding-left: 40px;
+  box-sizing: border-box;
 }
 
     .project-left-content {
@@ -821,9 +820,14 @@ html, body {
   }
 
   .project-back-btn {
-  margin-top: 40px;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
+  padding-left: 40px;
+  box-sizing: border-box;
 }
 }
 
@@ -833,6 +837,7 @@ html, body {
 
   padding-left: 40px;   /* ADD THIS */
   padding-right: 40px;
+  position: relative;
 
   box-sizing: border-box;
 }
@@ -843,7 +848,7 @@ html, body {
   position: relative;
 
   width: 100%;
-  max-width: 1800px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
 
@@ -1329,19 +1334,16 @@ html, body {
     body {
   overscroll-behavior: none;
 }
+    
 
-    html, body {
-  overflow-x: hidden;
-}
-
-    html, body {
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
-  overflow-x: hidden; /* for home SPA feel */
-}
-
+  min-height: 100%;
+  overflow-x: hidden;
+} 
+    
     .page {
   overflow-y: auto;
   overflow-x: hidden;

@@ -171,11 +171,13 @@
 /* BOTTOM */
 .social {
   width: 100%;
+  flex: 0 0 auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 8px;
   padding-bottom: 25px;
-  font-size: 26px;
 }
 
 .social a {
@@ -190,9 +192,12 @@
 }
 
 .social {
+  width: 100%;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding-bottom: 25px;
 }
@@ -244,11 +249,16 @@ html, body {
 }
     /* ===== SOCIAL ===== */
   .social {
+  width: 100%;
   flex: 0 0 auto;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  gap: 8px;
   padding-bottom: 25px;
 }
+    
     .insta-link {
   position: relative;
   display: inline-flex;

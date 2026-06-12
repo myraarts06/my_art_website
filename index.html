@@ -75,11 +75,11 @@
     /* ===== TITLE ===== */
     .title {
       font-size: var(--title-size);
-      letter-spacing: 8px;
+      letter-spacing: clamp(1px, 0.5vw, 8px);
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: clamp(1px, 0.5vw, 10px);
       color: silver;
       margin-top: 80px;
       position: relative;
@@ -1138,9 +1138,9 @@ html, body {
 
   .title {
     font-size: clamp(36px, 6vw, 60px);
-    letter-spacing: 4px;
+    letter-spacing: clamp(1px, 0.5vw, 8px);
     margin-top: 50px;
-     gap: 2px;
+     gap: clamp(1px, 0.5vw, 10px);
   letter-spacing: 2px;
   }
 

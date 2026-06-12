@@ -232,8 +232,8 @@ html, body {
   overflow-y: auto;
 }
     .page {
-  height: 100vh;
-  overflow-y: auto;
+  min-height: 100vh;
+  overflow-y: visible;
 }
 
     #home .title,
@@ -967,8 +967,8 @@ html, body {
   .about-container {
   position: relative;
   min-height: 100vh;
-  padding: 140px 120px 140px 120px;
-  overflow: hidden; /* prevents visual collision outside bounds */
+  padding: clamp(40px, 6vw, 120px);
+  overflow: visible; /* prevents visual collision outside bounds */
 }
 
     .about-top-left {

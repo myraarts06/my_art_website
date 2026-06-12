@@ -503,13 +503,6 @@ html, body {
 
 /* invisible divider feel */
 
-    .project-back-btn {
-  position: fixed !important;
-  left: 30px !important;
-  bottom: 30px !important;
-  z-index: 999999 !important;
-  background: red !important;
-}
 
     .project-left {
   flex: none;
@@ -517,14 +510,6 @@ html, body {
   border-right: 1px solid rgba(255,255,255,0.1);
   display: flex;
   flex-direction: column;
-}
-
-.project-back-btn {
-  position: static;
-  left: 30px;
-  bottom: 30px;
-  z-index: 1000;
-  margin-top: 40px;
 }
     
 .project-right {
@@ -713,7 +698,7 @@ html, body {
   position: fixed;
   left: 30px;
   bottom: 30px;
-  z-index: 1000;
+  z-index: 999999;
 }
 
     .project-left-content {
@@ -739,14 +724,9 @@ html, body {
     padding-left: 0;
   }
 
-  .project-back-btn {
-
+      .project-back-btn {
     position: static;
-
-    margin-top: 40px;
-
-    display: flex;
-    justify-content: center;
+    margin-top: 30px;
   }
 
 }
@@ -860,11 +840,6 @@ html, body {
     flex: none;
     padding: 0;
     border: none;
-  }
-
-  .project-back-btn {
-    position: static;
-    margin-top: 30px;
   }
 }
 

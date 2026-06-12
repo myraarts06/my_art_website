@@ -394,14 +394,10 @@ html, body {
       display: block;
     }
 
-    .product-grid {
+   .product-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(250px, 1fr));
-
-  gap: 40px;
-
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
   justify-items: center;
   align-items: start;
 }
@@ -1158,8 +1154,8 @@ html, body {
 
  .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
+  grid-template-columns: 1fr;
+  gap: 30px;
 }
 
   .product img {
@@ -1264,6 +1260,13 @@ html, body {
 
 .bottom-left {
   transform: translate(-20px, 10px);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
     
     /* ===== SHOP GALLERY ===== */

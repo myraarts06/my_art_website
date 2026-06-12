@@ -461,20 +461,59 @@ html, body {
   font-weight: normal;
 }
 
-    @media (max-width: 900px) {
-   .project-layout {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 40px;
+   .@media (max-width: 900px) {
 
-  width: 100%;
-  max-width: 1800px;
-  margin: 0 auto;
-  padding: 20px;
-  box-sizing: border-box;
+  .project-layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .project-left,
+  .project-right {
+    width: 100%;
+    padding: 0;
+    border: none;
+  }
+
+  /* Put artwork section above text */
+  .project-right {
+    order: 1;
+  }
+
+  .project-left {
+    order: 2;
+  }
+
 }
-    }
+   
+
+
+    @media (max-width: 900px) {
+
+  .inverted-t-layout {
+    gap: 20px;
+  }
+
+  .top-column {
+    width: 100%;
+  }
+
+  .bottom-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .top-box,
+  .bottom-box {
+    width: 100%;
+    max-width: 320px;
+  }
+
+}
+
+    
+    
     .project-left {
        min-height: auto;
   width: 45%;

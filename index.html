@@ -571,7 +571,7 @@ html, body {
 /* BOTTOM ROW */
 .bottom-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 20px;
   justify-content: center;
   align-items: stretch;
@@ -581,8 +581,7 @@ html, body {
 /* BOX STYLE (shared) */
 .top-box,
 .bottom-box {
-  width: 100%;
-  max-width: 280px;
+   width: clamp(160px, 18vw, 280px);
    aspect-ratio: 1/1;
   height: auto;
   border: 1px solid rgba(255,255,255,0.2);
@@ -709,6 +708,37 @@ html, body {
 
     .project-left-content {
   flex: none;
+}
+
+    @media (max-width: 900px) {
+
+  .project-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-left {
+    width: 100%;
+    order: 1;
+  }
+
+  .project-right {
+    width: 100%;
+    order: 2;
+
+    padding-left: 0;
+  }
+
+  .project-back-btn {
+
+    position: static;
+
+    margin-top: 40px;
+
+    display: flex;
+    justify-content: center;
+  }
+
 }
 
  /* ===== GUNA READ MORE ===== */

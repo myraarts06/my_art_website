@@ -11,6 +11,32 @@
 
   <style>
 
+     /* ULTRA WIDE SCREEN SAFETY */
+@media screen and (min-width: 1600px) {
+
+  .page,
+  .home-center,
+  .about-container,
+  .project-layout,
+  .guna-cards {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  body {
+    font-size: 18px;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
     :root {
 
   --title-size: clamp(2.5rem, 5vw, 4.5rem);
@@ -29,6 +55,8 @@
   position: relative;
   min-height: 100vh;
 }
+
+    
 
     /* ===== ENTRY SCREEN ===== */
     #entryScreen {

@@ -345,7 +345,8 @@ function proceedToPayment() {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      cart: cart
+    cart: cart,
+    shipping: shippingInfo
     })
   })
   .then(async (res) => {

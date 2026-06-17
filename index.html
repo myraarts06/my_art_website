@@ -1213,6 +1213,54 @@ html, body {
     position: static;
   }
 
+
+ 
+/* make container a flex column */
+.about-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* reset any desktop positioning conflicts */
+.about-top-left,
+.about-top-right,
+.about-bottom-left,
+.about-bottom-right {
+  position: static !important;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* enforce vertical order: TEXT → IMAGE → TEXT → IMAGE */
+.about-top-left {
+  order: 1;
+}
+
+.about-top-right {
+  order: 2;
+  margin: 20px 0;
+}
+
+.about-bottom-right {
+  order: 3;
+}
+
+.about-bottom-left {
+  order: 4;
+  margin: 20px 0;
+}
+
+/* image styling consistency */
+.about-container img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+  
+
   /* SHOP */
   .shop-list {
     grid-template-columns: 1fr;

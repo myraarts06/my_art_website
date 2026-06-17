@@ -1238,8 +1238,29 @@ html, body {
   gap: 30px;
 }
 
-  .modal {
+  modal-wrapper {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 95vw;
+    max-height: 90vh;
     overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .modal-left img {
+    max-width: 90vw;
+    max-height: 50vh;
+    object-fit: contain;
+  }
+
+  .modal-right {
+    max-width: 90vw;
+    border-left: none;
+    border-top: 1px solid #333;
+    padding-left: 0;
+    padding-top: 20px;
   }
 
   .product img {
@@ -1255,26 +1276,7 @@ html, body {
     width: 90%;
   }
 
-  .modal-wrapper {
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .modal-left img {
-    max-width: 90vw;
-    max-height: 60vh;
-  }
-
-  .modal-right {
-    max-width: 90%;
-    border-left: none;
-    border-top: 1px solid #333;
-    padding-left: 0;
-    padding-top: 20px;
-    text-align: left;
-  }
-
+  
   .hamburger {
     top: 15px;
     right: 15px;

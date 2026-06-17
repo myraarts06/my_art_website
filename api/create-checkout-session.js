@@ -7,7 +7,6 @@ module.exports = async (req, res) => {
 
   try {
    const { cart, shipping } = req.body;
-    console.log(shipping);
 
     if (!cart || !Array.isArray(cart) || cart.length === 0) {
       return res.status(400).json({ error: "Cart is empty" });

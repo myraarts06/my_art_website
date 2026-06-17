@@ -1179,6 +1179,37 @@ html, body {
   display: flex;
 }
 
+  /* ===== FIX: INVERTED T MOBILE FIT ===== */
+
+.inverted-t-layout {
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+/* TOP + BOTTOM BOX SIZING */
+.top-box,
+.bottom-box {
+  width: clamp(80px, 22vw, 120px);
+  height: clamp(80px, 22vw, 120px);
+}
+
+/* BOTTOM ROW MUST NEVER OVERFLOW */
+.bottom-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  overflow: visible;
+}
+
+/* prevent horizontal cutoff */
+.project-right {
+  overflow: visible;
+}
+
 .top-column {
   gap: 15px;
 }

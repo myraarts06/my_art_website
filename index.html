@@ -17,8 +17,6 @@
   --body-size: clamp(1rem, 1.2vw, 1.25rem);
 
 }
-      
-}
     body {
   margin: 0;
   background: black;
@@ -1322,6 +1320,13 @@ html, body {
 
 .bottom-left {
   transform: translate(-20px, 10px);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
     
     /* ===== SHOP GALLERY ===== */

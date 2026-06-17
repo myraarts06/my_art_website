@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { cart } = req.body;
+   const { cart, shipping } = req.body;
 
     if (!cart || !Array.isArray(cart) || cart.length === 0) {
       return res.status(400).json({ error: "Cart is empty" });
@@ -31,6 +31,19 @@ module.exports = async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
+
+      metadata: {
+  fullName: shipping.fullName,
+  email: shipping.email,
+  address1: shipping.address1,
+  address2: shipping.address2 || "",
+  city: shipping.city,
+  state: shipping.state,
+  postal: shipping.postal,
+  country: shipping.country,
+  collectorName: shipping.collectorName,
+  notes: shipping.notes || ""
+},
 
       success_url: "https://myra-arts.vercel.app/success.html",
       cancel_url: "https://myra-arts.vercel.app/cancel.html",

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -461,58 +464,6 @@ html, body {
   font-weight: normal;
 }
 
-   .@media (max-width: 900px) {
-
-  .project-layout {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .project-left,
-  .project-right {
-    width: 100%;
-    padding: 0;
-    border: none;
-  }
-
-  /* Put artwork section above text */
-  .project-right {
-    order: 1;
-  }
-
-  .project-left {
-    order: 2;
-  }
-
-}
-   
-
-
-    @media (max-width: 900px) {
-
-  .inverted-t-layout {
-    gap: 20px;
-  }
-
-  .top-column {
-    width: 100%;
-  }
-
-  .bottom-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .top-box,
-  .bottom-box {
-    width: 100%;
-    max-width: 320px;
-  }
-
-}
-
-    
     
     .project-left {
        min-height: auto;
@@ -745,32 +696,6 @@ html, body {
   flex: none;
 }
 
-    @media (max-width: 900px) {
-
-  .project-layout {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .project-left {
-    width: 100%;
-    order: 1;
-  }
-
-  .project-right {
-    width: 100%;
-    order: 2;
-
-    padding-left: 0;
-  }
-
-      .project-back-btn {
-    position: static;
-    margin-top: 30px;
-  }
-
-}
-
  /* ===== GUNA READ MORE ===== */
 
 .guna-cards {
@@ -864,25 +789,6 @@ html, body {
     .project-left,
 .project-right {
   min-width: 0;
-}
-
-    @media (max-width: 900px) {
-
-  .project-layout {
-    flex-direction: column;
-    gap: 40px;
-    padding: 20px;
-  }
-
-  .project-left,
-  .project-right {
-     padding-left: 10px;
-    padding-right: 10px;
-    width: 100%;
-    flex: none;
-    padding: 0;
-    border: none;
-  }
 }
 
     .project-left {
@@ -1071,29 +977,6 @@ html, body {
   border-radius: 12px;
   object-fit: cover;
 }
-
-    @media (max-width: 900px) {
-
-  .about-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-
-  .about-top-left,
-  .about-top-right,
-  .about-bottom-left,
-  .about-bottom-right {
-    grid-column: auto;
-    grid-row: auto;
-    max-width: 100%;
-    text-align: left;
-  }
-
-  .about-top-right img,
-  .about-bottom-left img {
-    max-width: 100%;
-  }
-}
     
     /* ===== CONTACT FORM ===== */
     .contact-container {
@@ -1189,39 +1072,272 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
-    /* ===== MOBILE RESPONSIVE ===== */
+   /* ===== MOBILE / TABLET RESPONSIVE ===== */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
 
+  /* GENERAL PAGE */
   .page {
     padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .home-center {
+    justify-content: flex-start;
+    padding-top: 40px;
   }
 
   .title {
     font-size: clamp(36px, 6vw, 60px);
-    letter-spacing: clamp(1px, 0.5vw, 8px);
+    letter-spacing: 2px;
     margin-top: 50px;
-     gap: clamp(1px, 0.5vw, 10px);
-  letter-spacing: 2px;
-     overflow: visible;
+    overflow: visible;
   }
 
+    .music-btn {
+    position: fixed !important;
+    bottom: calc(env(safe-area-inset-bottom, 15px));
+    right: 15px;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    z-index: 99999;
+  }
+
+  .home-center {
+    padding-bottom: 80px; /* creates breathing space above insta icon */
+  }
+
+  .insta-icon {
+    bottom: calc(env(safe-area-inset-bottom, 20px) + 20px);
+    right: 20px;
+  }
+
+    .insta-note {
+    font-size: 11px !important;
+    line-height: 1.3;
+    opacity: 0.85;
+  }
+
+  /* PORTFOLIO */
   .portfolio-btn {
     padding: 8px 14px;
     margin: 5px;
     font-size: 14px;
   }
 
- .product-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-}
+  .portfolio-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* PRODUCTS */
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 
   .product img {
     max-width: 85vw;
   }
 
+  /* MODAL */
+  #paintingModal {
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: 40px 0;
+    box-sizing: border-box;
+  }
+
+  .modal-wrapper {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .modal-left img {
+    max-width: 90vw;
+    max-height: 60vh;
+  }
+
+  .modal-right {
+    max-width: 90vw;
+    border-left: none;
+    border-top: 1px solid #333;
+    padding: 20px 0 0;
+    text-align: left;
+  }
+
+  /* ===== PROJECT PAGE ===== */
+
+  .project-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-right {
+    order: 1;
+    width: 100%;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .project-left {
+    order: 2;
+    width: 100%;
+    padding: 20px;
+    border-right: none;
+  }
+
+  .inverted-t-layout {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .top-column {
+    gap: 15px;
+  }
+
+  /* T STRUCTURE SIZING (FIXED CONSISTENT SCALE) */
+  .top-box,
+  .bottom-box {
+    width: clamp(80px, 20vw, 95px);
+    height: clamp(80px, 20vw, 95px);
+  }
+
+  .bottom-row {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .middle-box,
+  .bottom-row {
+    display: flex;
+  }
+
+  .read-more-btn {
+    margin-top: 10px;
+    width: 220px;
+  }
+
+  .project-back-btn {
+    margin: 40px 0;
+    text-align: center;
+    position: static;
+  }
+
+  /* ===== GUNA READMORE MOBILE LAYOUT FIX ===== */
+
+.readmore-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* stack all cards vertically */
+.guna-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* each card becomes strict vertical flow */
+.guna-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* enforce order: image → title → text */
+.guna-card img {
+  order: 1;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+.guna-card h3 {
+  order: 2;
+  margin-top: 12px;
+}
+
+.guna-card p {
+  order: 3;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* WIP box stays on top if present */
+.wip-box {
+  order: 0;
+  margin-bottom: 10px;
+}
+
+/* back button stays last */
+.readmore-back-btn {
+  margin: 50px auto 40px;
+  text-align: center;
+}
+
+ 
+/* make container a flex column */
+.about-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* reset any desktop positioning conflicts */
+.about-top-left,
+.about-top-right,
+.about-bottom-left,
+.about-bottom-right {
+  position: static !important;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* enforce vertical order: TEXT → IMAGE → TEXT → IMAGE */
+.about-top-left {
+  order: 1;
+}
+
+.about-top-right {
+  order: 2;
+  margin: 20px 0;
+}
+
+.about-bottom-right {
+  order: 3;
+}
+
+.about-bottom-left {
+  order: 4;
+  margin: 20px 0;
+}
+
+/* image styling consistency */
+.about-container img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+  /* SHOP */
   .shop-list {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -1231,26 +1347,7 @@ html, body {
     width: 90%;
   }
 
-  .modal-wrapper {
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .modal-left img {
-    max-width: 90vw;
-    max-height: 60vh;
-  }
-
-  .modal-right {
-    max-width: 90%;
-    border-left: none;
-    border-top: 1px solid #333;
-    padding-left: 0;
-    padding-top: 20px;
-    text-align: left;
-  }
-
+  /* UI BUTTONS */
   .hamburger {
     top: 15px;
     right: 15px;
@@ -1270,6 +1367,7 @@ html, body {
     font-size: 16px;
   }
 
+  /* CONTACT */
   .contact-form {
     width: 100%;
   }
@@ -1279,6 +1377,7 @@ html, body {
     font-size: 16px;
   }
 
+  /* ABOUT PAGE */
   .about-top-left,
   .about-bottom-right {
     position: static;
@@ -1286,47 +1385,35 @@ html, body {
     margin: 20px auto;
     text-align: center;
   }
+
+  /* FLOATING IMAGES */
+  .floating-img {
+    position: static;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border-radius: 12px;
+    opacity: 0.9;
+    display: block;
+    margin: 20px 0;
+  }
+
+  #about.active .floating-img {
+    display: block;
+  }
 }
 
-    .floating-img {
-  position: static;      /* IMPORTANT */
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  border-radius: 12px;
-  opacity: 0.9;
-  display: block;
-  margin: 20px 0;
-}
-
-/* Only show when inside ACTIVE About page */
-#about.active .floating-img {
-  display: block;
-}
-
-    .top-right {
+/* OUTSIDE MEDIA QUERY FIX (kept intentional) */
+.top-right {
   top: 140px;
   right: 80px;
+  transform: translate(20px, -10px);
 }
 
 .bottom-left {
   bottom: 120px;
   left: 80px;
-}
-
-    .top-right {
-  transform: translate(20px, -10px);
-}
-
-.bottom-left {
   transform: translate(-20px, 10px);
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
     
     /* ===== SHOP GALLERY ===== */

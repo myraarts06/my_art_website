@@ -1104,14 +1104,19 @@ html, body {
     z-index: 99999;
   }
 
-  .insta-icon {
-    bottom: 30px;   /* increase spacing from bottom */
-    right: 30px;    /* increase spacing from right */
+  .home-center {
+    padding-bottom: 80px; /* creates breathing space above insta icon */
   }
 
-   .insta-note {
-    font-size: 12px;
+  .insta-icon {
+    bottom: calc(env(safe-area-inset-bottom, 20px) + 20px);
+    right: 20px;
+  }
+
+    .insta-note {
+    font-size: 11px !important;
     line-height: 1.3;
+    opacity: 0.85;
   }
 
   /* PORTFOLIO */

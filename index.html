@@ -1094,13 +1094,14 @@ html, body {
     overflow: visible;
   }
 
-   .music-btn {
+    .music-btn {
     position: fixed !important;
-    bottom: 15px;
+    bottom: calc(env(safe-area-inset-bottom, 15px));
     right: 15px;
-    left: auto;
-    top: auto;
-    z-index: 9999;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    z-index: 99999;
   }
 
   /* PORTFOLIO */

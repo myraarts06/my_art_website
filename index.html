@@ -1213,6 +1213,58 @@ html, body {
     position: static;
   }
 
+  /* ===== GUNA READMORE MOBILE LAYOUT FIX ===== */
+
+.readmore-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* stack all cards vertically */
+.guna-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* each card becomes strict vertical flow */
+.guna-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* enforce order: image → title → text */
+.guna-card img {
+  order: 1;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+.guna-card h3 {
+  order: 2;
+  margin-top: 12px;
+}
+
+.guna-card p {
+  order: 3;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* WIP box stays on top if present */
+.wip-box {
+  order: 0;
+  margin-bottom: 10px;
+}
+
+/* back button stays last */
+.readmore-back-btn {
+  margin: 50px auto 40px;
+  text-align: center;
+}
 
  
 /* make container a flex column */
@@ -1259,7 +1311,6 @@ html, body {
   margin: 0 auto;
 }
 
-  
 
   /* SHOP */
   .shop-list {

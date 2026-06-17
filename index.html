@@ -1194,12 +1194,18 @@ html, body {
 
     /* ===== MOBILE RESPONSIVE ===== */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width:1024px) {
 
   .page {
     padding: 20px;
      box-sizing: border-box;
   }
+
+  .home-center {
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
+
 
   .title {
     font-size: clamp(36px, 6vw, 60px);
@@ -1325,14 +1331,6 @@ html, body {
 .bottom-left {
   transform: translate(-20px, 10px);
 }
-
-/* Tablet */
-@media (min-width: 769px) and (max-width: 1024px) {
-
-  .page {
-    padding: 20px;
-    box-sizing: border-box;
-  }
 
 }
     

@@ -7,6 +7,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+
+    :root {
+
+  --title-size: clamp(2.5rem, 5vw, 4.5rem);
+
+  --subtitle-size: clamp(0.9rem, 1.5vw, 1.2rem);
+
+  --body-size: clamp(1rem, 1.2vw, 1.25rem);
+
+}
     body {
   margin: 0;
   background: black;
@@ -64,20 +74,21 @@
     
     /* ===== TITLE ===== */
     .title {
-      font-size: 60px;
-      letter-spacing: 8px;
+      font-size: var(--title-size);
+      letter-spacing: clamp(1px, 0.5vw, 8px);
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: clamp(1px, 0.5vw, 10px);
       color: silver;
       margin-top: 80px;
       position: relative;
+       overflow: visible;
     }
 
     .subtitle {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: var(--subtitle-size);
   color: #aaa;
   letter-spacing: 2px;
   display: flex;
@@ -205,7 +216,7 @@
 }
     
  .body-line {
-   font-size: clamp(16px, 1.4vw, 22px);
+  font-size: var(--body-size);
   color: #aaa;
   text-align: center;
   letter-spacing: 1px;
@@ -221,8 +232,8 @@ html, body {
   overflow-y: auto;
 }
     .page {
-  height: 100vh;
-  overflow-y: auto;
+  min-height: 100vh;
+  overflow-y: visible;
 }
 
     #home .title,
@@ -450,21 +461,61 @@ html, body {
   font-weight: normal;
 }
 
-    @media (max-width: 900px) {
-   .project-layout {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 40px;
+   .@media (max-width: 900px) {
 
-  width: 100%;
-  max-width: 1800px;
-  margin: 0 auto;
-  padding: 20px;
-  box-sizing: border-box;
+  .project-layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .project-left,
+  .project-right {
+    width: 100%;
+    padding: 0;
+    border: none;
+  }
+
+  /* Put artwork section above text */
+  .project-right {
+    order: 1;
+  }
+
+  .project-left {
+    order: 2;
+  }
+
 }
-    }
+   
+
+
+    @media (max-width: 900px) {
+
+  .inverted-t-layout {
+    gap: 20px;
+  }
+
+  .top-column {
+    width: 100%;
+  }
+
+  .bottom-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .top-box,
+  .bottom-box {
+    width: 100%;
+    max-width: 320px;
+  }
+
+}
+
+    
+    
     .project-left {
+       min-height: auto;
   width: 45%;
   flex: 0 0 45%;
 
@@ -490,19 +541,16 @@ html, body {
 }
 
 /* invisible divider feel */
-.project-left {
+
+
+    .project-left {
   flex: none;
   padding-right: 40px;
   border-right: 1px solid rgba(255,255,255,0.1);
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 180px);
 }
-
-.project-back-btn {
-  padding-bottom: 40px;
-}
-
+    
 .project-right {
   flex: 1.3; /* right slightly wider */
   padding-left: 40px;
@@ -557,7 +605,7 @@ html, body {
 /* BOTTOM ROW */
 .bottom-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 20px;
   justify-content: center;
   align-items: stretch;
@@ -567,8 +615,7 @@ html, body {
 /* BOX STYLE (shared) */
 .top-box,
 .bottom-box {
-  width: 100%;
-  max-width: 280px;
+   width: clamp(160px, 18vw, 280px);
    aspect-ratio: 1/1;
   height: auto;
   border: 1px solid rgba(255,255,255,0.2);
@@ -687,14 +734,41 @@ html, body {
 }
 
    .project-back-btn {
-  position: fixed;
-  left: 40px;
-  bottom: 40px;
-  z-index: 1000;
+  position: relative;
+  margin-top: 80px;
+  left: 30px;
+  bottom: 30px;
+  z-index: 999999;
 }
 
     .project-left-content {
   flex: none;
+}
+
+    @media (max-width: 900px) {
+
+  .project-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-left {
+    width: 100%;
+    order: 1;
+  }
+
+  .project-right {
+    width: 100%;
+    order: 2;
+
+    padding-left: 0;
+  }
+
+      .project-back-btn {
+    position: static;
+    margin-top: 30px;
+  }
+
 }
 
  /* ===== GUNA READ MORE ===== */
@@ -748,12 +822,14 @@ html, body {
 #gunaReadMore {
   position: relative;
   min-height: 100vh;
+  overflow-y: visible;
 }
 
-.readmore-back-btn {
-  position: absolute;
-  left: 40px;
-  bottom: 40px;
+    .readmore-back-btn {
+  position: relative;
+  margin-top: 100px;   /* adjust as needed */
+  margin-left: 40px;
+  margin-bottom: 40px;
 }
 
    .wip-box {
@@ -806,11 +882,6 @@ html, body {
     flex: none;
     padding: 0;
     border: none;
-  }
-
-  .project-back-btn {
-    position: static;
-    margin-top: 30px;
   }
 }
 
@@ -956,8 +1027,8 @@ html, body {
   .about-container {
   position: relative;
   min-height: 100vh;
-  padding: 140px 120px 140px 120px;
-  overflow: hidden; /* prevents visual collision outside bounds */
+  padding: clamp(40px, 6vw, 120px);
+  overflow: visible; /* prevents visual collision outside bounds */
 }
 
     .about-top-left {
@@ -1128,8 +1199,11 @@ html, body {
 
   .title {
     font-size: clamp(36px, 6vw, 60px);
-    letter-spacing: 4px;
+    letter-spacing: clamp(1px, 0.5vw, 8px);
     margin-top: 50px;
+     gap: clamp(1px, 0.5vw, 10px);
+  letter-spacing: 2px;
+     overflow: visible;
   }
 
   .portfolio-btn {
@@ -1140,8 +1214,8 @@ html, body {
 
  .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
+  grid-template-columns: 1fr;
+  gap: 30px;
 }
 
   .product img {
@@ -1247,6 +1321,13 @@ html, body {
 .bottom-left {
   transform: translate(-20px, 10px);
 }
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
     
     /* ===== SHOP GALLERY ===== */
 
@@ -1319,9 +1400,10 @@ html, body {
   cursor: pointer;
 }
 
-    body {
-  overscroll-behavior: none;
+body {
+  overscroll-behavior-y: auto;
 }
+    
   </style>
 </head>
 
@@ -1683,6 +1765,7 @@ Rather than approaching these concepts as philosophical abstractions, the projec
 
   <div class="project-back-btn">
     <button
+      class="project-back-btn"
       onclick="openPage('portfolio'); showPortfolio('projects');"
       style="
         padding: 12px 22px;

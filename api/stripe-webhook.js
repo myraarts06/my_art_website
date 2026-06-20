@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
         html: `
           <h2>New Paid Artwork Order</h2>
 
+          <p><strong>Artwork Purchased:</strong> ${md.paintings}</p>
           <p><strong>Collector Name:</strong> ${md.collectorName}</p>
           <p><strong>Customer Email:</strong> ${md.email}</p>
 

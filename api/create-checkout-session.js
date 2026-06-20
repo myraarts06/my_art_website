@@ -43,6 +43,8 @@ module.exports = async (req, res) => {
   country: shipping.country,
   collectorName: shipping.collectorName,
   notes: shipping.notes || ""
+
+paintings: cart.map(item => item.name).join(", ")
 },
 
       success_url: "https://myra-arts.vercel.app/success.html",

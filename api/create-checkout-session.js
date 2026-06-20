@@ -42,8 +42,7 @@ module.exports = async (req, res) => {
   postal: shipping.postal,
   country: shipping.country,
   collectorName: shipping.collectorName,
-  notes: shipping.notes || ""
-
+  notes: shipping.notes || "",
 paintings: cart.map(item => item.name).join(", ")
 },
 

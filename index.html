@@ -364,6 +364,13 @@ html, body {
     }
 
     /* ===== PORTFOLIO ===== */
+
+    img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+    
     .portfolio-options {
   margin-top: 40px;
   display: flex;
@@ -1617,6 +1624,14 @@ body {
   </div>
 
    <div class="product">
+    <img src="photos/Day Dreaming.jpg" onclick="openPhoto('Day Dreaming', 'photos/Day Dreaming.jpg')">
+  </div>
+
+   <div class="product">
+    <img src="photos/Face To Face.jpg" onclick="openPhoto('Face To Face', 'photos/Face To Face.jpg')">
+  </div>
+
+   <div class="product">
     <img src="photos/Konstanz.jpg" onclick="openPhoto('Konstanz', 'photos/Konstanz.jpg')">
   </div>
 
@@ -2090,6 +2105,24 @@ Rather than depicting a philosophical conclusion, the painting functions as a vi
   
 <script>
 
+  // Disable right-click context menu
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+});
+
+  document.addEventListener("keydown", function(e) {
+
+  if (
+    e.key === "F12" ||
+    (e.ctrlKey && e.shiftKey && e.key === "I") ||
+    (e.ctrlKey && e.shiftKey && e.key === "J") ||
+    (e.ctrlKey && e.key === "U")
+  ) {
+    e.preventDefault();
+  }
+
+});
+
   document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("cartIcon").style.display = "none";
 });
@@ -2287,7 +2320,6 @@ function toggleMenu() {
   }
 }
 
-  
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");

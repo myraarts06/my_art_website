@@ -2098,6 +2098,11 @@ Rather than depicting a philosophical conclusion, the painting functions as a vi
   
 <script>
 
+  // Disable right-click context menu
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+});
+
   document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("cartIcon").style.display = "none";
 });
@@ -2295,7 +2300,6 @@ function toggleMenu() {
   }
 }
 
-  
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
   document.getElementById(id).classList.add("active");

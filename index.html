@@ -1080,6 +1080,38 @@ html, body {
   border-radius: 12px;
   object-fit: cover;
 }
+
+    .about-substack {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.substack-about-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #ccc;
+  gap: 10px;
+  transition: 0.3s ease;
+}
+
+.substack-about-icon {
+  font-size: 34px;
+  color: #ff6719; /* Substack-like orange */
+  transition: transform 0.3s ease;
+}
+
+.substack-about-link:hover .substack-about-icon {
+  transform: scale(1.15);
+}
+
+.substack-about-link span {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #aaa;
+}
     
     /* ===== CONTACT FORM ===== */
     .contact-container {
@@ -2015,6 +2047,17 @@ Across all mediums, I work with formal elements such as rhythm, density, fragmen
 The viewer is not positioned as a passive observer, but as part of the perceptual system that the work activates. Meaning emerges through the act of encountering the work rather than being contained within it.
 The aim of my practice is not to resolve inquiry, but to sustain it — allowing perception itself to remain active, unstable, and open within the experience of the work.
     </div>
+
+    <div class="about-substack">
+  <a href="https://substack.com/@pradeepkrishna"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="substack-about-link">
+
+    <i class="fa-solid fa-envelope substack-about-icon"></i>
+    <span>Artist's Substack Profile</span>
+  </a>
+</div>
     
   </div>
 </div>

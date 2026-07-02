@@ -2,7 +2,7 @@
 <html>
 <head>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Myra Arts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1253,22 +1253,6 @@ html, body {
     opacity: 0.85;
   }
 
-  .social {
-  flex-direction: column !important;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  padding-bottom: 50px;
-}
-
-  .social-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 6px;
-}
-
   /* PORTFOLIO */
   .portfolio-btn {
     padding: 8px 14px;
@@ -1551,7 +1535,7 @@ html, body {
   #about.active .floating-img {
     display: block;
   }
-
+}
 
 /* OUTSIDE MEDIA QUERY FIX (kept intentional) */
 .top-right {
@@ -1641,7 +1625,7 @@ body {
   overscroll-behavior-y: auto;
 }
 
-/* ===== FAQ ===== */
+    /* ===== FAQ ===== */
 
 .faq-container{
     max-width:900px;
@@ -1650,7 +1634,7 @@ body {
 }
 
 .faq-item{
-    border-bottom:1px solid rgba(255,255,255,.15);
+    border-bottom:1px solid rgba(255,255,255,0.15);
 }
 
 .faq-question{
@@ -1658,22 +1642,45 @@ body {
     background:none;
     border:none;
     color:silver;
+    font-size:20px;
+    letter-spacing:1px;
+    text-align:left;
+    padding:22px 0;
     cursor:pointer;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    text-align:left;
-    padding:20px 0;
-    font-size:20px;
-    letter-spacing:1px;
-    transition:.3s;
+
+    transition:0.3s;
 }
 
 .faq-question:hover{
     color:white;
 }
 
-.faq-icon{
+.faq-question span{
+    font-size:28px;
+    transition:0.3s;
+}
+
+.faq-answer{
+    max-height:0;
+    overflow:hidden;
+    color:#bbb;
+    line-height:1.8;
+    transition:max-height .4s ease;
+}
+
+.faq-answer p{
+    margin:0 0 20px 0;
+}
+
+.faq-item.active .faq-answer{
+    max-height:500px;
+}
+
+    .faq-icon{
     font-size:28px;
     transition:transform .3s ease;
 }
@@ -1682,55 +1689,14 @@ body {
     transform:rotate(45deg);
 }
 
-.faq-answer{
-    max-height:0;
-    overflow:hidden;
-    color:#bbb;
-    line-height:1.7;
-    transition:max-height .4s ease;
+    .faq-container a,
+.faq-container a:link,
+.faq-container a:visited,
+.faq-container a:hover,
+.faq-container a:active {
+  color: white;
+  text-decoration: none;
 }
-
-.faq-answer p{
-    margin:0 0 20px;
-}
-
-.faq-item.active .faq-answer{
-    max-height:700px;
-}
-
-.faq-container a,
-.faq-container a:visited{
-    color:#fff;
-    text-decoration:none;
-}
-
-.faq-container a:hover{
-    text-decoration:underline;
-}
-
-/* Mobile */
-
-@media (max-width:768px){
-
-    .faq-question{
-        font-size:16px;
-        padding:18px 0;
-    }
-
-    .faq-answer,
-    .faq-answer p,
-    .faq-answer li,
-    .faq-answer a{
-        font-size:14px;
-        line-height:1.6;
-    }
-
-    .faq-icon{
-        font-size:22px;
-    }
-
-}
-
   
     
   </style>

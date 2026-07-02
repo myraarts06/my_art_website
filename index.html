@@ -1025,6 +1025,68 @@ html, body {
     margin-bottom:10px;
 }
 
+     .commission-form{
+    max-width:700px;
+    margin:60px auto;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.commission-form input,
+.commission-form textarea{
+    background:transparent;
+    border:1px solid rgba(255,255,255,.25);
+    color:white;
+    padding:14px;
+    font-size:15px;
+    border-radius:4px;
+    outline:none;
+}
+
+.commission-form textarea{
+    resize:vertical;
+}
+
+.commission-form input::placeholder,
+.commission-form textarea::placeholder{
+    color:#888;
+}
+
+.form-label{
+    color:#ccc;
+    margin-top:10px;
+}
+
+.radio-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.radio-group label{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#ccc;
+}
+
+.commission-form button{
+    margin-top:20px;
+    padding:14px;
+    border:1px solid white;
+    background:white;
+    color:black;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.commission-form button:hover{
+    background:#ddd;
+}
+
+     
+
     /* ===== ABOUT ME ===== */
 
   .about-container {
@@ -2100,37 +2162,54 @@ body {
 
     <div class="title">Commissions</div>
 
-    <div class="commission-container">
+   <div class="commission-form">
 
-        <h2>Commission an Artwork</h2>
+  <h2>Commission Enquiry</h2>
 
-        <p>
-            Thank you for your interest in commissioning an artwork.
-            Every commission begins with a conversation about your ideas,
-            intended space, size, medium, timeline, and budget.
-        </p>
+  <input type="text" placeholder="Name" required>
 
-        <p>
-            I welcome commissions for collectors, institutions,
-            researchers, and individuals interested in original
-            artworks that resonate with my artistic practice.
-        </p>
+  <input type="email" placeholder="E-mail address" required>
 
-        <h3>How it works</h3>
+  <input type="tel" placeholder="Phone number">
 
-        <ol>
-            <li>Submit your enquiry.</li>
-            <li>We discuss your ideas and requirements.</li>
-            <li>A quotation and timeline are provided.</li>
-            <li>Once approved, work begins.</li>
-            <li>The completed artwork is carefully packed and shipped.</li>
-        </ol>
+  <input type="text" placeholder="What size/format did you have in mind?">
 
-       
-        <button class="portfolio-btn"
-                onclick="openPage('contact')">
-            Request a Commission
-        </button>
+  <textarea placeholder="What colours do you like?" rows="3"></textarea>
+
+  <textarea placeholder="What do you dislike?" rows="3"></textarea>
+
+  <textarea placeholder="How should your picture be refined?" rows="4"></textarea>
+
+  <label class="form-label">
+    Do you want your work to be embedded in a floater frame?
+  </label>
+
+  <div class="radio-group">
+    <label><input type="radio" name="frame" value="Yes"> Yes</label>
+    <label><input type="radio" name="frame" value="No"> No</label>
+  </div>
+
+  <label class="form-label">
+    If yes, what colour should the floater frame be?
+  </label>
+
+  <div class="radio-group">
+    <label><input type="radio" name="framecolour" value="White"> White</label>
+    <label><input type="radio" name="framecolour" value="Black"> Black</label>
+    <label><input type="radio" name="framecolour" value="Black with gold edge"> Black with gold edge</label>
+    <label><input type="radio" name="framecolour" value="Gold"> Gold</label>
+    <label><input type="radio" name="framecolour" value="Natural"> Natural</label>
+  </div>
+
+  <textarea rows="6"
+    placeholder="Anything else I should consider? Are there any styles from previous works that you particularly like? Feel free to include links or references.">
+  </textarea>
+
+  <input type="file" multiple>
+
+  <button type="submit">Submit Commission Request</button>
+
+</div>
 
     </div>
 

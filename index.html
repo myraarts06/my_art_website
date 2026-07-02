@@ -2763,55 +2763,24 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-
-  function openPage(id) {
-
-    const pages = document.querySelectorAll(".page");
-    pages.forEach(p => p.classList.remove("active"));
-
-    const activePage = document.getElementById(id);
-
-    if (!activePage) {
-      console.warn("Page not found:", id);
-      return;
-    }
-
-    activePage.classList.add("active");
-
-    if (id === "portfolio") {
-      document.querySelectorAll(".portfolio-content")
-        .forEach(el => el.classList.remove("active"));
-    }
-
-    history.pushState({ page: id }, "", "#" + id);
-  }
-
-  window.openPage = openPage; // IMPORTANT if used in HTML onclick
-
-  window.addEventListener("popstate", (event) => {
-    const id = event.state?.page || "home";
-
-    document.querySelectorAll(".page").forEach(p => {
-      p.classList.remove("active");
-    });
-
-    const activePage = document.getElementById(id);
-    if (activePage) activePage.classList.add("active");
-  });
-
-  // initial load
-  const id = location.hash.replace("#", "") || "home";
+ function openPage(id) {
 
   document.querySelectorAll(".page").forEach(p => {
     p.classList.remove("active");
   });
 
   const activePage = document.getElementById(id);
-  if (activePage) activePage.classList.add("active");
+  if (!activePage) return;
 
-  window.scrollTo(0, 0);
-});
+  activePage.classList.add("active");
+
+   if (id === "portfolio") {
+  document.querySelectorAll(".portfolio-content")
+    .forEach(el => el.classList.remove("active"));
+}
+
+  window.scrollTo(0,0);
+
   const menu = document.getElementById("menu");
   if (menu) menu.classList.remove("open");
 
@@ -2831,6 +2800,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => startHomeAnimation(), 50);
   }
 }
+
 
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));

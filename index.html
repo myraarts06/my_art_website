@@ -988,6 +988,43 @@ html, body {
       z-index: 10000;
     }
 
+
+     /* ===== COMMISSIONS ===== */
+
+.commission-container{
+    max-width:900px;
+    margin:60px auto;
+    padding:0 30px 80px;
+    color:#bbb;
+}
+
+.commission-container h2{
+    color:white;
+    margin-bottom:20px;
+    letter-spacing:1px;
+}
+
+.commission-container h3{
+    color:silver;
+    margin-top:40px;
+    margin-bottom:15px;
+}
+
+.commission-container p{
+    line-height:1.8;
+    text-align:justify;
+    margin-bottom:20px;
+}
+
+.commission-container ol{
+    padding-left:22px;
+    line-height:1.8;
+}
+
+.commission-container li{
+    margin-bottom:10px;
+}
+
     /* ===== ABOUT ME ===== */
 
   .about-container {
@@ -1772,6 +1809,7 @@ body {
 <div id="menu" class="sidepanel">
   <button onclick="openPage('home')">Home</button>
   <button onclick="openPage('portfolio')">Portfolio</button>
+  <button onclick="openPage('commission')">Commissions</button>
   <button onclick="openPage('about')">About Me</button>
   <button onclick="openPage('contact')">Contact</button>
   <button onclick="openPage('payment')">Shop</button>
@@ -2019,6 +2057,47 @@ body {
   </div>
 
   <div class="close-btn" onclick="closePainting()">×</div>
+</div>
+
+   <!-- COMMISSIONS PAGE -->
+<div id="commission" class="page">
+
+    <div class="title">Commissions</div>
+
+    <div class="commission-container">
+
+        <h2>Commission an Artwork</h2>
+
+        <p>
+            Thank you for your interest in commissioning an artwork.
+            Every commission begins with a conversation about your ideas,
+            intended space, size, medium, timeline, and budget.
+        </p>
+
+        <p>
+            I welcome commissions for collectors, institutions,
+            researchers, and individuals interested in original
+            artworks that resonate with my artistic practice.
+        </p>
+
+        <h3>How it works</h3>
+
+        <ol>
+            <li>Submit your enquiry.</li>
+            <li>We discuss your ideas and requirements.</li>
+            <li>A quotation and timeline are provided.</li>
+            <li>Once approved, work begins.</li>
+            <li>The completed artwork is carefully packed and shipped.</li>
+        </ol>
+
+       
+        <button class="portfolio-btn"
+                onclick="openPage('contact')">
+            Request a Commission
+        </button>
+
+    </div>
+
 </div>
 
 <!-- ABOUT -->
@@ -2484,7 +2563,7 @@ Rather than depicting a philosophical conclusion, the painting functions as a vi
 
             <div class="faq-answer">
                 <p>
-                Yes. I do. Please refer to the Commissions page to fill in details about any specific idea you may have. We can work it out together 😊
+                Yes. I do. Please refer to the <a href="#" onclick="openPage('commission'); return false;">Commissions</a> page to fill in details about any specific idea you may have. We can work it out together 😊
                 </p>
             </div>
         </div>

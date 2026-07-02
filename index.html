@@ -1081,25 +1081,10 @@ html, body {
   object-fit: cover;
 }
 
-    .about-substack {
-  margin-top: 60px;
-  display: flex;
-  justify-content: center;
-}
-
-.substack-about-link {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  color: #ccc;
-  gap: 10px;
-  transition: 0.3s ease;
-}
-
 .substack-about-icon {
-  font-size: 34px;
-  color: #ff6719; /* Substack-like orange */
+  width: 52px;     /* bigger since it's a featured About page element */
+  height: 52px;
+  color: #ff6719;  /* Substack orange */
   transition: transform 0.3s ease;
 }
 
@@ -1107,10 +1092,27 @@ html, body {
   transform: scale(1.15);
 }
 
-.substack-about-link span {
-  font-size: 14px;
-  letter-spacing: 1px;
-  color: #aaa;
+.about-substack {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.substack-about-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  gap: 10px;
+  color: #ccc;
+}
+
+    #about .about-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
     
     /* ===== CONTACT FORM ===== */
@@ -1833,8 +1835,14 @@ body {
      href="https://myraarts.substack.com/"
      target="_blank"
      rel="noopener noreferrer">
-    <i class="fa-solid fa-envelope substack-icon"></i>
+
+    <!-- Substack SVG icon -->
+    <svg class="substack-icon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M2 4h20v3H2V4zm0 5h20v3H2V9zm0 5h20v6l-10-5-10 5v-6z"/>
+    </svg>
+
   </a>
+
   <span class="substack-note">
     Substack newsletter & updates
   </span>
@@ -2048,14 +2056,18 @@ The viewer is not positioned as a passive observer, but as part of the perceptua
 The aim of my practice is not to resolve inquiry, but to sustain it — allowing perception itself to remain active, unstable, and open within the experience of the work.
     </div>
 
-    <div class="about-substack">
+  <div class="about-substack">
   <a href="https://substack.com/@pradeepkrishna"
      target="_blank"
      rel="noopener noreferrer"
      class="substack-about-link">
 
-    <i class="fa-solid fa-envelope substack-about-icon"></i>
-    <span>Artist's Substack Profile</span>
+    <!-- Substack SVG icon -->
+    <svg class="substack-about-icon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M2 4h20v3H2V4zm0 5h20v3H2V9zm0 5h20v6l-10-5-10 5v-6z"/>
+    </svg>
+
+    <span>Artist’s Substack Profile</span>
   </a>
 </div>
     

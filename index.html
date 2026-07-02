@@ -990,19 +990,59 @@ html, body {
 
     /* ===== ABOUT ME ===== */
 
-.about-container {
+  .about-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
   gap: 40px;
   padding: 80px 40px;
-
   align-items: start;
-  position: relative;
+}
+    .about-top-left {
+  max-width: 1000px;
+  align-self: flex-start;
 }
 
-/* GRID POSITIONS (force original structure) */
-.about-top-left {
+.about-bottom-right {
+  max-width: 1000px;
+  align-self: flex-end;
+  text-align: right;
+}
+
+    .about-top-left p,
+.about-bottom-right p {
+  line-height: 1.6;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+}
+    
+    .about-subheading {
+  font-size: 25px;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+    
+ #about.page.active {
+  display: flex;
+  flex-direction: column;
+}
+
+    .about-top-left p,
+.about-bottom-right p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+  .about-container {
+  position: relative;
+  min-height: 100vh;
+  padding: clamp(40px, 6vw, 120px);
+  overflow: visible; /* prevents visual collision outside bounds */
+}
+
+    .about-top-left {
   grid-column: 1;
   grid-row: 1;
 }
@@ -1021,15 +1061,26 @@ html, body {
   grid-column: 2;
   grid-row: 2;
 }
-
-/* SAFETY RESET (removes flex overrides from earlier fixes) */
-.about-container,
-.about-top-left,
-.about-top-right,
-.about-bottom-left,
+    .about-top-left,
 .about-bottom-right {
-  position: static !important;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.about-top-right,
+.about-bottom-left {
+  width: 100%;
+  max-width: 420px;
+  justify-self: center;
+}
+    .about-top-right img,
+.about-bottom-left img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
   display: block;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
     .about-substack {

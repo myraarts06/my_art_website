@@ -2178,7 +2178,15 @@ body {
 
   <textarea placeholder="What do you dislike?" rows="3"></textarea>
 
-  <textarea placeholder="How should your picture be refined?" rows="4"></textarea>
+   <label class="form-label">
+   How should your picture be refined?
+  </label>
+
+<div class="checkbox-group">
+   <label><input type="checkbox" name="frame" value="Yes"> Gold</label>
+   <label><input type="checkbox" name="frame" value="No"> Rose Gold</label>
+   <label><input type="checkbox" name="frame" value="No"> Silver</label>
+</div>
 
   <label class="form-label">
     Do you want your work to be embedded in a floater frame?
@@ -2201,9 +2209,14 @@ body {
     <label><input type="radio" name="framecolour" value="Natural"> Natural</label>
   </div>
 
-  <textarea rows="6"
-    placeholder="Anything else I should consider? Are there any styles from previous works that you particularly like? Feel free to include links or references.">
-  </textarea>
+ <textarea rows="8">
+Anything else I should consider?
+
+Are there any styles from previous works that you particularly like?
+(Feel free to attach pictures/links.)
+
+Any other comments?
+</textarea>
 
   <input type="file" multiple>
 

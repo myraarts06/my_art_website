@@ -2157,76 +2157,86 @@ body {
   <div class="close-btn" onclick="closePainting()">×</div>
 </div>
 
-   <!-- COMMISSIONS PAGE -->
+   
+<!-- COMMISSIONS PAGE -->
 <div id="commission" class="page">
 
     <div class="title">Commissions</div>
 
-   <div class="commission-form">
+    <form class="commission-form">
 
-  <h2>Commission Enquiry</h2>
+        <h2>Commission Enquiry</h2>
 
-  <input type="text" placeholder="Name" required>
+        <input type="text" placeholder="Name" required>
 
-  <input type="email" placeholder="E-mail address" required>
+        <input type="email" placeholder="E-mail address" required>
 
-  <input type="tel" placeholder="Phone number">
+        <input type="tel" placeholder="Phone number" required>
 
-  <input type="text" placeholder="What size/format did you have in mind?">
+        <input type="text"
+               placeholder="What size/format did you have in mind?"
+               required>
 
-  <textarea placeholder="What colours do you like?" rows="3"></textarea>
+        <textarea placeholder="What colours do you like?"
+                  rows="3"
+                  required></textarea>
 
-  <textarea placeholder="What do you dislike?" rows="3"></textarea>
+        <textarea placeholder="What do you dislike?"
+                  rows="3"
+                  required></textarea>
 
-   <label class="form-label">
-   How should your picture be refined?
-  </label>
+        <label class="form-label">
+            How should your picture be refined?
+        </label>
 
-<div class="checkbox-group">
-   <label><input type="checkbox" name="frame" value="Yes"> Gold</label>
-   <label><input type="checkbox" name="frame" value="No"> Rose Gold</label>
-   <label><input type="checkbox" name="frame" value="No"> Silver</label>
-</div>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="refinement[]" value="Gold"> Gold</label>
+            <label><input type="checkbox" name="refinement[]" value="Rose Gold"> Rose Gold</label>
+            <label><input type="checkbox" name="refinement[]" value="Silver"> Silver</label>
+        </div>
 
-  <label class="form-label">
-    Do you want your work to be embedded in a floater frame?
-  </label>
+        <label class="form-label">
+            Do you want your work to be embedded in a floater frame?
+        </label>
 
-  <div class="radio-group">
-    <label><input type="radio" name="frame" value="Yes"> Yes</label>
-    <label><input type="radio" name="frame" value="No"> No</label>
-  </div>
+        <div class="radio-group">
+            <label><input type="radio" name="frame" value="Yes" required> Yes</label>
+            <label><input type="radio" name="frame" value="No"> No</label>
+        </div>
 
-  <label class="form-label">
-    If yes, what colour should the floater frame be?
-  </label>
+        <label class="form-label">
+            If yes, what colour should the floater frame be?
+        </label>
 
-  <div class="radio-group">
-    <label><input type="radio" name="framecolour" value="White"> White</label>
-    <label><input type="radio" name="framecolour" value="Black"> Black</label>
-    <label><input type="radio" name="framecolour" value="Black with gold edge"> Black with gold edge</label>
-    <label><input type="radio" name="framecolour" value="Gold"> Gold</label>
-    <label><input type="radio" name="framecolour" value="Natural"> Natural</label>
-  </div>
+        <div class="radio-group">
+            <label><input type="radio" name="framecolour" value="White" required> White</label>
+            <label><input type="radio" name="framecolour" value="Black"> Black</label>
+            <label><input type="radio" name="framecolour" value="Black with gold edge"> Black with gold edge</label>
+            <label><input type="radio" name="framecolour" value="Gold"> Gold</label>
+            <label><input type="radio" name="framecolour" value="Natural"> Natural</label>
+        </div>
 
- <textarea rows="8">
-Anything else I should consider?
+        <textarea
+            placeholder="Anything else I should consider?
 
 Are there any styles from previous works that you particularly like?
+
 (Feel free to attach pictures/links.)
 
-Any other comments?
-</textarea>
+Any other comments?"
+            rows="10"></textarea>
 
-  <input type="file" multiple>
+        <input type="file" multiple>
 
-  <button type="submit">Submit Commission Request</button>
+        <button type="submit">
+            Submit Commission Request
+        </button>
+
+    </form>
 
 </div>
 
-    </div>
 
-</div>
 
 <!-- ABOUT -->
 <div id="about" class="page">

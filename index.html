@@ -188,9 +188,22 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+.social-item {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding-bottom: 25px;
-  font-size: 26px;
+  text-align: center;
+}
+
+.social-item span {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #777;
+  opacity: 0.85;
 }
 
 .social a {
@@ -204,19 +217,22 @@
   opacity: 1;
 }
 
-.social {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding-bottom: 25px;
-}
-
 .insta-note {
+  margin-top: 6px;
   font-size: 12px;
   color: #777;
   letter-spacing: 0.5px;
   opacity: 0.8;
+  max-width: 140px;
+}
+
+    .facebook-note {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #777;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+  max-width: 140px;
 }
     
  .body-line {
@@ -271,6 +287,13 @@ html, body {
   align-items: center;
 }
 
+     .facebook-link {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Instagram gradient icon */
     .insta-icon {
   font-size: 38px; /* increased from 30px */
@@ -313,6 +336,80 @@ html, body {
 
 .insta-link:hover::after {
   opacity: 1;
+}
+
+
+    /* Facebook gradient icon */
+    .facebook-icon {
+  font-size: 38px; /* increased from 30px */
+  color: #1877F2; /* official Facebook blue */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.facebook-icon:hover {
+  transform: scale(1.2);
+  color: #145dbf; /* darker blue on hover */
+}
+
+    .facebook-link::after {
+  content: "Follow on Facebook";
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.facebook-link:hover::after {
+  opacity: 1;
+}
+
+    .linkedin-icon {
+  font-size: 38px;
+  color: #0A66C2; /* LinkedIn blue */
+  transition: transform 0.3s ease;
+}
+
+.linkedin-icon:hover {
+  transform: scale(1.2);
+  color: #084b91;
+}
+
+.substack-icon {
+  width: 38px;      /* SAME scale as other icons */
+  height: 38px;
+  color: #ff6719;   /* Substack orange */
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.substack-icon:hover {
+  transform: scale(1.15);
+}
+
+    .wrap-note span {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #777;
+  opacity: 0.85;
+
+  width: 120px;
+  text-align: center;
+  line-height: 1.3;
+
+  word-wrap: break-word;
 }
 
     
@@ -985,6 +1082,20 @@ html, body {
   border-radius: 12px;
   object-fit: cover;
 }
+
+    .about-substack {
+  color: #FF6719; /* Substack-style orange */
+  text-decoration: none;
+  margin-top: 80px;
+  padding-bottom: 60px; /* this creates breathing space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+    a:visited {
+  color: inherit;
+}
     
     /* ===== CONTACT FORM ===== */
     .contact-container {
@@ -1122,6 +1233,21 @@ html, body {
   }
 
     .insta-note {
+    font-size: 11px !important;
+    line-height: 1.3;
+    opacity: 0.85;
+  }
+
+   .home-center {
+    padding-bottom: 80px; /* creates breathing space above facebook icon */
+  }
+
+  .facebook-icon {
+    bottom: calc(env(safe-area-inset-bottom, 20px) + 20px);
+    right: 20px;
+  }
+
+    .facebook-note {
     font-size: 11px !important;
     line-height: 1.3;
     opacity: 0.85;
@@ -1562,6 +1688,15 @@ body {
 .faq-item.active .faq-icon{
     transform:rotate(45deg);
 }
+
+    .faq-container a,
+.faq-container a:link,
+.faq-container a:visited,
+.faq-container a:hover,
+.faq-container a:active {
+  color: white;
+  text-decoration: none;
+}
     
   </style>
 </head>
@@ -1645,23 +1780,69 @@ body {
 </div>
 
    <!-- BOTTOM -->
-      <div class="social">
-  <a
-    class="insta-link"
-    href="https://www.instagram.com/myraarts_by_pradeepkrishna/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
+     <div class="social">
+
+       <div class="social-item">
+  <a class="insta-link"
+     href="https://www.instagram.com/myraarts_by_pradeepkrishna/"
+     target="_blank"
+     rel="noopener noreferrer">
     <i class="fa-brands fa-instagram insta-icon"></i>
   </a>
-
   <span class="insta-note">
-    Artist's Instagram page opens best when you are logged in
+    Artist’s Instagram page opens best when you are logged in
   </span>
 </div>
-  </div>
 
-  
+<div class="social-item">
+  <a class="facebook-link"
+     href="https://www.facebook.com/share/1GKymnhGvz/?mibextid=wwXIfr"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fa-brands fa-facebook facebook-icon"></i>
+  </a>
+  <span class="facebook-note">
+    Artist’s Facebook page opens best when you are logged in
+  </span>
+</div>
+
+<div class="social-item wrap-note">
+  <a class="linkedin-link"
+     href="https://www.linkedin.com/in/pradeepkrishnachintapalli/"
+     target="_blank"
+     rel="noopener noreferrer">
+    <i class="fa-brands fa-linkedin linkedin-icon"></i>
+  </a>
+
+  <span class="linkedin-note">
+   Artist’s LinkedIn page<br>
+  opens best when you<br>
+  are logged in
+  </span>
+</div>
+
+<div class="social-item">
+  <a class="substack-link"
+     href="https://myraarts.substack.com/"
+     target="_blank"
+     rel="noopener noreferrer">
+
+    <!-- Substack SVG icon -->
+    <svg class="substack-icon" viewBox="0 0 24 24">
+  <path fill="currentColor"
+    d="M2 4h20v3H2V4zm0 5h20v3H2V9zm0 5h20v6l-10-5-10 5v-6z"/>
+</svg>
+
+  </a>
+
+  <span class="substack-note">
+    Substack newsletter & updates
+  </span>
+</div>
+
+</div>
+</div>   
+
 <!-- PORTFOLIO -->
   <div id="portfolio" class="page">
   <div class="title">PORTFOLIO</div>
@@ -1866,8 +2047,24 @@ Across all mediums, I work with formal elements such as rhythm, density, fragmen
 The viewer is not positioned as a passive observer, but as part of the perceptual system that the work activates. Meaning emerges through the act of encountering the work rather than being contained within it.
 The aim of my practice is not to resolve inquiry, but to sustain it — allowing perception itself to remain active, unstable, and open within the experience of the work.
     </div>
-    
-  </div>
+
+      </div>
+
+  <div class="about-substack">
+  <a href="https://substack.com/@pradeepkrishna"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="substack-about-link">
+
+    <!-- Substack SVG icon -->
+    <svg class="substack-about-icon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M2 4h20v3H2V4zm0 5h20v3H2V9zm0 5h20v6l-10-5-10 5v-6z"/>
+    </svg>
+
+    <span>Artist’s Substack Profile</span>
+  </a>
+</div>
+  
 </div>
 
 
@@ -2178,32 +2375,211 @@ Rather than depicting a philosophical conclusion, the painting functions as a vi
 
         <div class="faq-item">
             <button class="faq-question">
-                <span>What inspires your work?</span>
+                <span>Are the works available for purchase? </span>
                 <span>+</span>
             </button>
 
             <div class="faq-answer">
                 <p>
-                    My work explores questions of self, perception, and consciousness through
-                    painting, photography, and installation while drawing from Indian Knowledge Systems.
+                  Yes. Please refer to the <a href="#" onclick="openPage('payment'); return false;">Shop</a> to see selected works for purchase. 
                 </p>
             </div>
         </div>
 
         <div class="faq-item">
             <button class="faq-question">
-                <span>Are the artworks available for purchase?</span>
+                <span>Are the paintings/photographs framed?</span>
                 <span>+</span>
             </button>
 
             <div class="faq-answer">
                 <p>
-                    Selected works are available for acquisition. Please visit the Shop page or use the
-                    Contact page for enquiries.
+                  No. All the selected works come without frames.
+                </p>
+            </div>
+        </div>
+      
+            <div class="faq-item">
+            <button class="faq-question">
+                <span>Is the shipping fee included in the total cost?</span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+                  Yes. 
                 </p>
             </div>
         </div>
 
+
+            <div class="faq-item">
+            <button class="faq-question">
+                <span>What is included with the works?</span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+                For the original piece purchase, Artwork information sheet, Certificate of Authenticity, Installation/Hanging Information sheet, Invoice/Proof of Sale, Privacy Policy Note, and Terms & Conditions Document are included. 
+                </p>
+
+               <p>
+              For prints, Invoice/Proof of Sale
+               </p>  
+            </div>
+        </div>
+
+
+            <div class="faq-item">
+            <button class="faq-question">
+                <span>Are prints available? </span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+                Yes. Selected works are available as print-on-demand editions. Please get in touch or visit the <a href="#" onclick="openPage('payment'); return false;">Shop</a> for current availability.
+                </p>
+            </div>
+        </div>
+
+
+            <div class="faq-item">
+            <button class="faq-question">
+                <span>How are artworks shipped? </span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+                Original artworks and prints are carefully packaged and shipped worldwide using trusted carriers. Shipping methods vary depending on the artwork and destination.
+                </p>
+            </div>
+        </div>
+
+
+       <div class="faq-item">
+            <button class="faq-question">
+                <span>Do you accept commissions? </span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+                Yes. I do. Please refer to the Commissions page to fill in details about any specific idea you may have. We can work it out together 😊
+                </p>
+            </div>
+        </div>
+
+
+  <div class="faq-item">
+            <button class="faq-question">
+                <span>What if I like something from the Portfolio but not listed in the Shop? </span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+                In that case, please reach out to me with the details (Piece title, preferred print size, and shipping address) to enquire about availability and price. We can figure that out 😊
+                </p>
+            </div>
+        </div>
+
+
+       <div class="faq-item">
+            <button class="faq-question">
+                <span>How can I contact you? </span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+                Please use the <a href="#" onclick="openPage('contact'); return false;">Contact</a>
+                or write to us at
+                <a href="mailto:myraarts06@gmail.com">myraarts06@gmail.com</a>.
+                </p>
+            </div>
+        </div>
+
+
+
+       <div class="faq-item">
+            <button class="faq-question">
+                <span>Which social media platforms are you active on? </span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+    I am active on
+    <a href="https://www.instagram.com/myraarts_by_pradeepkrishna/" target="_blank" rel="noopener noreferrer">Instagram</a>,
+    <a href="https://www.facebook.com/share/1GKymnhGvz/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">Facebook</a>,
+    <a href="https://substack.com/@pradeepkrishna" target="_blank" rel="noopener noreferrer">Substack</a>,
+    and
+    <a href="https://www.linkedin.com/in/pradeepkrishnachintapalli/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+    I regularly share essays, reflections, and behind-the-scenes insights into my artistic practice on Substack through the
+    <a href=https://myraarts.substack.com/" target="_blank" rel="noopener noreferrer"><em>Studio Journal</em></a>.
+    Please follow me to receive updates and news about my work.
+                </p>
+            </div>
+        </div>
+
+
+      <div class="faq-item">
+            <button class="faq-question">
+                <span>What are the modes of payment? </span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+               You can pay with any card (Visa, Mastercard, American Express, etc) that has a CVV. You can pay using our online payment gateway (Stripe). You can also pay using Amazon Pay and Klarna. Further payment options are available on the checkout page. If you want to pay via PayPal, please contact us using the contact form. 
+                </p>
+            </div>
+        </div>
+      
+
+            <div class="faq-item">
+            <button class="faq-question">
+                <span>Are you open to exhibitions? </span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+             Yes. I welcome exhibition opportunities that align with my artistic practice and the questions explored through my work.
+                </p>
+            </div>
+        </div>
+
+           <div class="faq-item">
+            <button class="faq-question">
+                <span>Can institutions borrow or exhibit existing works?  </span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+             Yes. Museums, galleries, universities, and cultural institutions are welcome to get in touch to discuss exhibiting or borrowing available works.
+                </p>
+            </div>
+        </div>
+
+
+      <div class="faq-item">
+            <button class="faq-question">
+                <span>Are you open to collaborations?  </span>
+                <span>+</span>
+            </button>
+
+            <div class="faq-answer">
+                <p>
+           Yes. I am interested in collaborations that foster meaningful inquiry across disciplines, particularly with artists, scientists, researchers, filmmakers, architects, musicians, and cultural institutions. I welcome conversations with researchers interested in intersections between art, science, philosophy, perception, and Indian knowledge systems.
+                </p>
+            </div>
+        </div>
+      
     </div>
 
 </div>
@@ -2424,6 +2800,7 @@ function toggleMenu() {
     setTimeout(() => startHomeAnimation(), 50);
   }
 }
+
 
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
@@ -2762,6 +3139,12 @@ function closeShopGallery() {
   function openInsta() {
   setTimeout(() => {
     window.open("https://www.instagram.com/myraarts_by_pradeepkrishna/", "_blank");
+  }, 50);
+}
+
+   function openFacebook() {
+  setTimeout(() => {
+    window.open("https://www.facebook.com/share/1GKymnhGvz/?mibextid=wwXIfr", "_blank");
   }, 50);
 }
 

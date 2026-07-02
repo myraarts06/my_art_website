@@ -2774,10 +2774,47 @@ function toggleMenu() {
 
   activePage.classList.add("active");
 
-   if (id === "portfolio") {
-  document.querySelectorAll(".portfolio-content")
-    .forEach(el => el.classList.remove("active"));
+  // keep your existing portfolio logic
+  if (id === "portfolio") {
+    document.querySelectorAll(".portfolio-content")
+      .forEach(el => el.classList.remove("active"));
+  }
+
+  // ✅ ADD THIS: update browser history
+  history.pushState({ page: id }, "", "#" + id);
 }
+
+  window.addEventListener("popstate", (event) => {
+  const id = event.state?.page || "home";
+
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
+
+  const activePage = document.getElementById(id);
+  if (activePage) {
+    activePage.classList.add("active");
+  }
+
+  // optional: re-run portfolio reset if needed
+  if (id === "portfolio") {
+    document.querySelectorAll(".portfolio-content")
+      .forEach(el => el.classList.remove("active"));
+  }
+});
+
+  window.addEventListener("load", () => {
+  const id = location.hash.replace("#", "") || "home";
+
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
+
+  const activePage = document.getElementById(id);
+  if (activePage) {
+    activePage.classList.add("active");
+  }
+});
 
   window.scrollTo(0,0);
 

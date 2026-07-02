@@ -2763,50 +2763,44 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-function openPage(id) {
+document.addEventListener("DOMContentLoaded", () => {
 
-  const pages = document.querySelectorAll(".page");
-  if (!pages.length) return;
+  function openPage(id) {
 
-  pages.forEach(p => p.classList.remove("active"));
+    const pages = document.querySelectorAll(".page");
+    pages.forEach(p => p.classList.remove("active"));
 
-  const activePage = document.getElementById(id);
+    const activePage = document.getElementById(id);
 
-  if (!activePage) {
-    console.warn("Page not found:", id);
-    return;
-  }
+    if (!activePage) {
+      console.warn("Page not found:", id);
+      return;
+    }
 
-  activePage.classList.add("active");
-
-  if (id === "portfolio") {
-    document.querySelectorAll(".portfolio-content")
-      .forEach(el => el.classList.remove("active"));
-  }
-
-  // safe history update
-  try {
-    history.pushState({ page: id }, "", "#" + id);
-  } catch (e) {
-    console.warn("History update failed:", e);
-  }
-}
-
- window.addEventListener("popstate", (event) => {
-  const id = event.state?.page || "home";
-
-  const pages = document.querySelectorAll(".page");
-  if (!pages.length) return;
-
-  pages.forEach(p => p.classList.remove("active"));
-
-  const activePage = document.getElementById(id);
-  if (activePage) {
     activePage.classList.add("active");
-  }
-});
 
-  window.addEventListener("load", () => {
+    if (id === "portfolio") {
+      document.querySelectorAll(".portfolio-content")
+        .forEach(el => el.classList.remove("active"));
+    }
+
+    history.pushState({ page: id }, "", "#" + id);
+  }
+
+  window.openPage = openPage; // IMPORTANT if used in HTML onclick
+
+  window.addEventListener("popstate", (event) => {
+    const id = event.state?.page || "home";
+
+    document.querySelectorAll(".page").forEach(p => {
+      p.classList.remove("active");
+    });
+
+    const activePage = document.getElementById(id);
+    if (activePage) activePage.classList.add("active");
+  });
+
+  // initial load
   const id = location.hash.replace("#", "") || "home";
 
   document.querySelectorAll(".page").forEach(p => {
@@ -2814,13 +2808,10 @@ function openPage(id) {
   });
 
   const activePage = document.getElementById(id);
-  if (activePage) {
-    activePage.classList.add("active");
-  }
+  if (activePage) activePage.classList.add("active");
+
+  window.scrollTo(0, 0);
 });
-
-  window.scrollTo(0,0);
-
   const menu = document.getElementById("menu");
   if (menu) menu.classList.remove("open");
 

@@ -2763,43 +2763,46 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
- function openPage(id) {
+function openPage(id) {
 
-  document.querySelectorAll(".page").forEach(p => {
-    p.classList.remove("active");
-  });
+  const pages = document.querySelectorAll(".page");
+  if (!pages.length) return;
+
+  pages.forEach(p => p.classList.remove("active"));
 
   const activePage = document.getElementById(id);
-  if (!activePage) return;
+
+  if (!activePage) {
+    console.warn("Page not found:", id);
+    return;
+  }
 
   activePage.classList.add("active");
 
-  // keep your existing portfolio logic
   if (id === "portfolio") {
     document.querySelectorAll(".portfolio-content")
       .forEach(el => el.classList.remove("active"));
   }
 
-  // ✅ ADD THIS: update browser history
-  history.pushState({ page: id }, "", "#" + id);
+  // safe history update
+  try {
+    history.pushState({ page: id }, "", "#" + id);
+  } catch (e) {
+    console.warn("History update failed:", e);
+  }
 }
 
-  window.addEventListener("popstate", (event) => {
+ window.addEventListener("popstate", (event) => {
   const id = event.state?.page || "home";
 
-  document.querySelectorAll(".page").forEach(p => {
-    p.classList.remove("active");
-  });
+  const pages = document.querySelectorAll(".page");
+  if (!pages.length) return;
+
+  pages.forEach(p => p.classList.remove("active"));
 
   const activePage = document.getElementById(id);
   if (activePage) {
     activePage.classList.add("active");
-  }
-
-  // optional: re-run portfolio reset if needed
-  if (id === "portfolio") {
-    document.querySelectorAll(".portfolio-content")
-      .forEach(el => el.classList.remove("active"));
   }
 });
 

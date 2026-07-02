@@ -2763,23 +2763,24 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
- function openPage(id) {
+function openPage(id, addHistory = true) {
 
   document.querySelectorAll(".page").forEach(p => {
     p.classList.remove("active");
   });
 
   const activePage = document.getElementById(id);
+
   if (!activePage) return;
 
   activePage.classList.add("active");
 
-   if (id === "portfolio") {
-  document.querySelectorAll(".portfolio-content")
-    .forEach(el => el.classList.remove("active"));
-}
+  if (id === "portfolio") {
+    document.querySelectorAll(".portfolio-content")
+      .forEach(el => el.classList.remove("active"));
+  }
 
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 
   const menu = document.getElementById("menu");
   if (menu) menu.classList.remove("open");
@@ -2789,6 +2790,11 @@ function toggleMenu() {
   try { closeShopGallery(); } catch(e) {}
 
   updateCartVisibility(id);
+
+  // ✅ ONLY push history when user clicks navigation
+  if (addHistory) {
+    history.pushState({ page: id }, "", "#" + id);
+  }
 
   if (id === "home") {
     const title = document.querySelector("#home .title");
@@ -2801,6 +2807,41 @@ function toggleMenu() {
   }
 }
 
+  window.addEventListener("popstate", (event) => {
+
+  const id = event.state?.page || location.hash.replace("#", "") || "home";
+
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
+
+  const activePage = document.getElementById(id);
+
+  if (activePage) {
+    activePage.classList.add("active");
+  }
+
+  updateCartVisibility(id);
+});
+
+  window.addEventListener("load", () => {
+
+  const id = location.hash.replace("#", "") || "home";
+
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
+
+  const activePage = document.getElementById(id);
+
+  if (activePage) {
+    activePage.classList.add("active");
+  }
+
+  history.replaceState({ page: id }, "", "#" + id);
+
+  updateCartVisibility(id);
+});
 
 function showPortfolio(id) {
   document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));

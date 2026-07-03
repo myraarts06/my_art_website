@@ -482,7 +482,9 @@ html, body {
     margin:0 auto 80px;
     display:flex;
     flex-direction:column;
-    gap:20px;
+    gap:15px;
+    align-items:center;
+   margin-top:40px;
 }
 
 .photo-category{
@@ -2058,27 +2060,29 @@ body {
      <!-- PHOTOGRAPHY -->
 <div id="photo" class="portfolio-content">
 
-    <div class="photo-category-grid">
+       <div class="photo-category-grid">
 
-        <div class="photo-category" onclick="openPage('nature')">
-            <h3>Wildlife</h3>
-        </div>
+    <button class="portfolio-btn" onclick="openPage('nature')">
+        Wildlife
+    </button>
 
-        <div class="photo-category" onclick="openPage('wildlife')">
-            <h3>Lanscapes</h3>
-        </div>
+    <button class="portfolio-btn" onclick="openPage('wildlife')">
+      Landscapes
+    </button>
 
-        <div class="photo-category" onclick="openPage('street')">
-            <h3>Events</h3>
-        </div>
+    <button class="portfolio-btn" onclick="openPage('street')">
+        Events
+    </button>
 
-        <div class="photo-category" onclick="openPage('architecture')">
-            <h3>Science Communication</h3>
-        </div>
+    <button class="portfolio-btn" onclick="openPage('architecture')">
+        Science Communication
+    </button>
 
-        <div class="photo-category" onclick="openPage('abstract')">
-            <h3>Others</h3>
-        </div>
+    <button class="portfolio-btn" onclick="openPage('abstract')">
+        Others
+    </button>
+
+</div>
 
     </div>
 

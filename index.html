@@ -3141,27 +3141,22 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-function openPage(id, addHistory = true) {
+function openPage(id) {
 
-  console.log("openPage called with:", id); // DEBUG
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active");
+  });
 
-  const pages = document.querySelectorAll(".page");
-  pages.forEach(p => p.classList.remove("active"));
+  let page = document.getElementById(id);
 
-  let activePage = document.getElementById(id);
-
-  // 🔴 SAFETY FALLBACK
-  if (!activePage) {
-    console.warn("Invalid page id:", id);
-    activePage = document.getElementById("home") 
-              || document.getElementById("portfolio");
+  // 🔴 NEVER ALLOW BLANK STATE
+  if (!page) {
+    console.warn("Invalid page:", id);
+    page = document.getElementById("portfolio")
+        || document.getElementById("home");
   }
 
-  activePage.classList.add("active");
-
-  if (id === "portfolio") {
-    resetPhotography();
-  }
+  page.classList.add("active");
 
   window.scrollTo(0, 0);
 }

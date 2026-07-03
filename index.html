@@ -3279,22 +3279,25 @@ function openPage(id, addHistory = true) {
   updateCartVisibility(id);
 });
 
-function showPhotoMenu() {
-    document.querySelectorAll('.portfolio-content').forEach(el => {
-        el.classList.remove('active');
-    });
+function showPortfolio(id) {
+  document.querySelectorAll(".portfolio-content")
+    .forEach(el => el.classList.remove("active"));
 
-    document.getElementById('photo').classList.add('active');
+  document.getElementById(id).classList.add("active");
 }
 
-   function showPhotoSection(id) {
+ function showPortfolio(id) {
+
+    // hide all portfolio sections
     document.querySelectorAll('.portfolio-content').forEach(el => {
         el.classList.remove('active');
     });
 
+    // show selected section
     const target = document.getElementById(id);
-    if (target) target.classList.add('active');
-}
+    if (target) {
+        target.classList.add('active');
+    } 
 
   function openPhoto(title, img) {
   const modal = document.getElementById("paintingModal");

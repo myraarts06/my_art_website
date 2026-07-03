@@ -3149,16 +3149,12 @@ function openPage(id) {
 
   let page = document.getElementById(id);
 
-  // 🔴 NEVER ALLOW BLANK STATE
   if (!page) {
-    console.warn("Invalid page:", id);
     page = document.getElementById("portfolio")
         || document.getElementById("home");
   }
 
   page.classList.add("active");
-
-  window.scrollTo(0, 0);
 }
 
 function resetPhotography() {

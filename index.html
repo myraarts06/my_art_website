@@ -3143,21 +3143,22 @@ function toggleMenu() {
 
 function openPage(id, addHistory = true) {
 
-  document.querySelectorAll(".page").forEach(p => {
-    p.classList.remove("active");
-  });
+  console.log("openPage called with:", id); // DEBUG
 
-  const activePage = document.getElementById(id);
+  const pages = document.querySelectorAll(".page");
+  pages.forEach(p => p.classList.remove("active"));
 
-  // 🔴 SAFETY NET (prevents blank screen)
+  let activePage = document.getElementById(id);
+
+  // 🔴 SAFETY FALLBACK
   if (!activePage) {
-    document.getElementById("home")?.classList.add("active");
-    return;
+    console.warn("Invalid page id:", id);
+    activePage = document.getElementById("home") 
+              || document.getElementById("portfolio");
   }
 
   activePage.classList.add("active");
 
-  // reset portfolio safely
   if (id === "portfolio") {
     resetPhotography();
   }

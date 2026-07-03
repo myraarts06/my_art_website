@@ -3156,6 +3156,9 @@ function openPage(id, addHistory = true) {
   if (id === "portfolio") {
     document.querySelectorAll(".portfolio-content")
       .forEach(el => el.classList.remove("active"));
+
+     // 🔥 ADD THIS LINE
+  document.getElementById("photo").classList.add("active");
   }
 
   window.scrollTo(0, 0);

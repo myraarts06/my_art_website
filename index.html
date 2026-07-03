@@ -3279,25 +3279,21 @@ function openPage(id, addHistory = true) {
   updateCartVisibility(id);
 });
 
-function showPortfolio(id) {
-  document.querySelectorAll(".portfolio-content")
-    .forEach(el => el.classList.remove("active"));
-
-  document.getElementById(id).classList.add("active");
-}
-
- function showPortfolio(id) {
-
-    // hide all portfolio sections
+function showPhotoMenu() {
     document.querySelectorAll('.portfolio-content').forEach(el => {
         el.classList.remove('active');
     });
 
-    // show selected section
+    document.getElementById('photo').classList.add('active');
+}
+
+   function showPhotoSection(id) {
+    document.querySelectorAll('.portfolio-content').forEach(el => {
+        el.classList.remove('active');
+    });
+
     const target = document.getElementById(id);
-    if (target) {
-        target.classList.add('active');
-    }
+    if (target) target.classList.add('active');
 }
 
   function openPhoto(title, img) {

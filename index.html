@@ -3141,28 +3141,23 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-function openPage(id) {
+function openPage(id, addHistory = true) {
 
   document.querySelectorAll(".page").forEach(p => {
     p.classList.remove("active");
   });
 
-  let page = document.getElementById(id);
+  const activePage = document.getElementById(id);
 
-  if (!page) {
-    page = document.getElementById("portfolio")
-        || document.getElementById("home");
+  if (!activePage) return;
+
+  activePage.classList.add("active");
+
+  if (id === "portfolio") {
+    document.querySelectorAll(".portfolio-content")
+      .forEach(el => el.classList.remove("active"));
   }
 
-  page.classList.add("active");
-}
-
-function resetPhotography() {
-  document.querySelectorAll(".portfolio-content")
-    .forEach(el => el.classList.remove("active"));
-
-  document.getElementById("photo").classList.add("active");
-}
   window.scrollTo(0, 0);
 
   const menu = document.getElementById("menu");

@@ -460,6 +460,56 @@ html, body {
       background: #222;
     }
 
+     /* ===== Photography Landing Page ===== */
+
+.photo-heading{
+    text-align:center;
+    color:silver;
+    letter-spacing:3px;
+    margin-top:40px;
+    font-size:36px;
+}
+
+.photo-subtitle{
+    text-align:center;
+    color:#888;
+    margin-bottom:50px;
+    letter-spacing:1px;
+}
+
+.photo-category-grid{
+    width:min(800px,90%);
+    margin:0 auto 80px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.photo-category{
+    height:90px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:10px;
+
+    color:silver;
+    font-size:26px;
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+}
+
+.photo-category:hover{
+    border-color:white;
+    background:rgba(255,255,255,0.05);
+    transform:translateY(-3px);
+}
+
     /* ===== PORTFOLIO ===== */
 
     img {
@@ -2005,64 +2055,35 @@ body {
     <button class="portfolio-btn" onclick="showPortfolio('licensing')">Works for Licensing</button>
   </div>
 
-  <!-- PHOTO -->
-  <div id="photo" class="portfolio-content">
-<div class="product-grid">
+     <!-- PHOTOGRAPHY -->
+<div id="photo" class="portfolio-content">
 
-  <div class="product">
-    <img src="photos/An Elegant Pose.jpg" onclick="openPhoto('An Elegant Pose', 'photos/An Elegant Pose.jpg')">
-  </div>
+    <div class="photo-category-grid">
 
-  <div class="product">
-    <img src="photos/An Evening Walk.jpg" onclick="openPhoto('An Evening Walk', 'photos/An Evening Walk.jpg')">
-  </div>
+        <div class="photo-category" onclick="openPage('nature')">
+            <h3>Wildlife</h3>
+        </div>
 
-  <div class="product">
-    <img src="photos/Blue Sky Butterfly.jpg" onclick="openPhoto('Blue Sky Butterfly', 'photos/Blue Sky Butterfly.jpg')">
-  </div>
+        <div class="photo-category" onclick="openPage('wildlife')">
+            <h3>Lanscapes</h3>
+        </div>
 
-   <div class="product">
-    <img src="photos/Day Dreaming.jpg" onclick="openPhoto('Day Dreaming', 'photos/Day Dreaming.jpg')">
-  </div>
+        <div class="photo-category" onclick="openPage('street')">
+            <h3>Events</h3>
+        </div>
 
-   <div class="product">
-    <img src="photos/Face To Face.jpg" onclick="openPhoto('Face To Face', 'photos/Face To Face.jpg')">
-  </div>
+        <div class="photo-category" onclick="openPage('architecture')">
+            <h3>Science Communication</h3>
+        </div>
 
-   <div class="product">
-    <img src="photos/Konstanz.jpg" onclick="openPhoto('Konstanz', 'photos/Konstanz.jpg')">
-  </div>
+        <div class="photo-category" onclick="openPage('abstract')">
+            <h3>Others</h3>
+        </div>
 
-   <div class="product">
-    <img src="photos/The Vulture.jpg" onclick="openPhoto('The Vulture', 'photos/The Vulture.jpg')">
-  </div> 
+    </div>
 
-  <div class="product">
-    <img src="photos/One Step At a Time.jpg" onclick="openPhoto('One Step At a Time', 'photos/One Step At a Time.jpg')">
-  </div>
-
-  <div class="product">
-    <img src="photos/Serene.jpg" onclick="openPhoto('Serene', 'photos/Serene.jpg')">
-  </div>
-
-  <div class="product">
-    <img src="photos/The Spiny Chuckwalla - Sauromalus hispidus.jpg" onclick="openPhoto('The Spiny Chuckwalla - Sauromalus hispidus', 'photos/The Spiny Chuckwalla - Sauromalus hispidus.jpg')">
-  </div>
-
-  
-  <div class="product">
-    <img src="photos/The Slow Walking Snail.jpg" onclick="openPhoto('The Slow Walking Snail', 'photos/The Slow Walking Snail.jpg')">
-  </div>
-
-     <div class="product">
-    <img src="photos/The Swan.jpg" onclick="openPhoto('The Swan', 'photos/The Swan.jpg')">
-  </div>
-
-    <div class="product">
-    <img src="photos/Mysterious.jpg" onclick="openPhoto('Mysterious', 'photos/Mysterious.jpg')">
-  </div>
 </div>
-</div>
+
     
   <!-- PAINTINGS -->
   <div id="paint" class="portfolio-content">

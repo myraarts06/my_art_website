@@ -3286,13 +3286,18 @@ function showPortfolio(id) {
   document.getElementById(id).classList.add("active");
 }
 
-   function resetPortfolioHome() {
-  document.querySelectorAll(".portfolio-content")
-    .forEach(el => el.classList.remove("active"));
+ function showPortfolio(id) {
 
-  // ❗ IMPORTANT: portfolio default view = MAIN 4 OPTIONS
-  const photoMenu = document.getElementById("photo");
-  if (photoMenu) photoMenu.classList.remove("active");
+    // hide all portfolio sections
+    document.querySelectorAll('.portfolio-content').forEach(el => {
+        el.classList.remove('active');
+    });
+
+    // show selected section
+    const target = document.getElementById(id);
+    if (target) {
+        target.classList.add('active');
+    }
 }
 
   function openPhoto(title, img) {

@@ -3154,13 +3154,9 @@ function openPage(id, addHistory = true) {
   activePage.classList.add("active");
 
  if (id === "portfolio") {
-  document.querySelectorAll(".portfolio-content")
-    .forEach(el => el.classList.remove("active"));
-
-  // 🔥 IMPORTANT: restore default view
-  const photo = document.getElementById("photo");
-  if (photo) photo.classList.add("active");
-}
+    document.querySelectorAll(".portfolio-content")
+      .forEach(el => el.classList.remove("active"));
+  }
 
   window.scrollTo(0, 0);
 

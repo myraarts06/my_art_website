@@ -3153,14 +3153,19 @@ function openPage(id, addHistory = true) {
 
   activePage.classList.add("active");
 
-  if (id === "portfolio") {
-    document.querySelectorAll(".portfolio-content")
-      .forEach(el => el.classList.remove("active"));
-
+ if (id === "portfolio") {
+  resetPhotography();
+}
      // 🔥 ADD THIS LINE
   document.getElementById("photo").classList.add("active");
   }
 
+function resetPhotography() {
+  document.querySelectorAll(".portfolio-content")
+    .forEach(el => el.classList.remove("active"));
+
+  document.getElementById("photo").classList.add("active");
+}
   window.scrollTo(0, 0);
 
   const menu = document.getElementById("menu");

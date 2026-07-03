@@ -3149,16 +3149,21 @@ function openPage(id, addHistory = true) {
 
   const activePage = document.getElementById(id);
 
-  if (!activePage) return;
+  // 🔴 SAFETY NET (prevents blank screen)
+  if (!activePage) {
+    document.getElementById("home")?.classList.add("active");
+    return;
+  }
 
   activePage.classList.add("active");
 
- if (id === "portfolio") {
-  resetPhotography();
-}
-     // 🔥 ADD THIS LINE
-  document.getElementById("photo").classList.add("active");
+  // reset portfolio safely
+  if (id === "portfolio") {
+    resetPhotography();
   }
+
+  window.scrollTo(0, 0);
+}
 
 function resetPhotography() {
   document.querySelectorAll(".portfolio-content")

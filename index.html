@@ -3154,9 +3154,8 @@ function openPage(id, addHistory = true) {
   activePage.classList.add("active");
 
  if (id === "portfolio") {
-    document.querySelectorAll(".portfolio-content")
-      .forEach(el => el.classList.remove("active"));
-  }
+  resetPortfolioHome();
+}
 
   window.scrollTo(0, 0);
 
@@ -3222,8 +3221,19 @@ function openPage(id, addHistory = true) {
 });
 
 function showPortfolio(id) {
-  document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
+  document.querySelectorAll(".portfolio-content")
+    .forEach(el => el.classList.remove("active"));
+
   document.getElementById(id).classList.add("active");
+}
+
+   function resetPortfolioHome() {
+  document.querySelectorAll(".portfolio-content")
+    .forEach(el => el.classList.remove("active"));
+
+  // ❗ IMPORTANT: portfolio default view = MAIN 4 OPTIONS
+  const photoMenu = document.getElementById("photo");
+  if (photoMenu) photoMenu.classList.remove("active");
 }
 
   function openPhoto(title, img) {

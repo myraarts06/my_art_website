@@ -2147,7 +2147,7 @@ body {
     <br><br>
 
     <div style="text-align:center;"margin-bottom: 120px;">
-        <button class="portfolio-btn" onclick="openPage('photo')">
+        <button class="portfolio-btn" onclick="openPage('portfolio'); showPortfolio('photo')">
             ← Back to Photography
         </button>
     </div>
@@ -3154,7 +3154,13 @@ function openPage(id, addHistory = true) {
   activePage.classList.add("active");
 
  if (id === "portfolio") {
-  resetPortfolioHome();
+
+  document.querySelectorAll(".portfolio-content")
+    .forEach(el => el.classList.remove("active"));
+
+  // 🔥 ALWAYS restore default state
+  const photo = document.getElementById("photo");
+  if (photo) photo.classList.add("active");
 }
 
   window.scrollTo(0, 0);

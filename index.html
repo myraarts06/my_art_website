@@ -3280,24 +3280,15 @@ function openPage(id, addHistory = true) {
 });
 
 function showPortfolio(id) {
-  document.querySelectorAll(".portfolio-content")
-    .forEach(el => el.classList.remove("active"));
-
-  document.getElementById(id).classList.add("active");
-}
-
- function showPortfolio(id) {
-
-    // hide all portfolio sections
     document.querySelectorAll('.portfolio-content').forEach(el => {
         el.classList.remove('active');
     });
 
-    // show selected section
     const target = document.getElementById(id);
     if (target) {
         target.classList.add('active');
-    } 
+    }
+}
 
   function openPhoto(title, img) {
   const modal = document.getElementById("paintingModal");

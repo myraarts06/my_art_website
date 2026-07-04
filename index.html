@@ -1754,6 +1754,77 @@ html, body {
   #about.active .floating-img {
     display: block;
   }
+
+   .faq-container{
+    max-width:900px;
+    margin:60px auto;
+    padding:0 30px 80px;
+}
+
+.faq-item{
+    border-bottom:1px solid rgba(255,255,255,0.15);
+}
+
+.faq-question{
+    width:100%;
+    background:none;
+    border:none;
+    color:silver;
+    font-size:20px;
+    letter-spacing:1px;
+    text-align:left;
+    padding:22px 0;
+    cursor:pointer;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    transition:0.3s;
+}
+
+.faq-question:hover{
+    color:white;
+}
+
+.faq-question span{
+    font-size:16px;
+    transition:0.3s;
+}
+
+.faq-answer{
+    max-height:0;
+    overflow:hidden;
+    color:#bbb;
+    line-height:1.8;
+    transition:max-height .4s ease;
+}
+
+.faq-answer p{
+    margin:0 0 20px 0;
+}
+
+.faq-item.active .faq-answer{
+    max-height:500px;
+}
+
+    .faq-icon{
+    font-size:28px;
+    transition:transform .3s ease;
+}
+
+.faq-item.active .faq-icon{
+    transform:rotate(45deg);
+}
+
+    .faq-container a,
+.faq-container a:link,
+.faq-container a:visited,
+.faq-container a:hover,
+.faq-container a:active {
+  color: white;
+  text-decoration: none;
+}
 }
 
 /* OUTSIDE MEDIA QUERY FIX (kept intentional) */

@@ -1177,11 +1177,17 @@ html, body {
     margin-bottom:40px;
 }
 
-     .upload-btn {
+   #file-upload {
+    display: none;
+}
+
+.upload-btn {
     display: inline-block;
     padding: 12px 20px;
-    border: 1px solid #000;
+    border: 1px solid white;
+    color: white;
     cursor: pointer;
+    text-align: center;
 }
   
 
@@ -2430,16 +2436,12 @@ Are there any styles from previous works that you particularly like?
 
 (Feel free to attach pictures/links.)"
           rows="10"></textarea>
-
-        <input type="file" multiple>
-       display: none;
-}
-
-      <label for="file-upload" class="upload-btn">
+      
+<label for="file-upload" class="upload-btn">
     Attach Files
 </label>
 
-<input id="file-upload" type="file" multiple hidden>
+<input id="file-upload" type="file" name="attachments" multiple hidden>
 
 <span id="file-status">No files selected</span>
 

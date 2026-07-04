@@ -115,98 +115,7 @@
 }
     
     /* ===== ONLY HOME ANIMATION ===== */
-     
-    /* ==========================
-   Stage Lighting Effect
-========================== */
 
-.stage-lights {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.light {
-    position: absolute;
-    width: 1200px;
-    height: 1200px;
-    opacity: 0.45;
-    filter: blur(12px);
-    animation: pulse 6s ease-in-out infinite alternate;
-}
-
-/* Top Left */
-.left-light {
-    top: -100px;
-    left: -100px;
-    background: conic-gradient(
-        from 45deg,
-        transparent 0deg,
-        rgba(255,255,255,0.45) 18deg,
-        rgba(255,255,255,0.15) 40deg,
-        transparent 65deg
-    );
-}
-
-/* Top Right */
-.right-light {
-    top: -100px;
-    right: -100px;
-    transform: scaleX(-1);
-    background: conic-gradient(
-        from 45deg,
-        transparent 0deg,
-        rgba(255,255,255,0.45) 18deg,
-        rgba(255,255,255,0.15) 40deg,
-        transparent 65deg
-    );
-}
-
-@keyframes pulse {
-    from {
-        opacity: 0.35;
-    }
-    to {
-        opacity: 0.6;
-    }
-}
-
-     body::after {
-    content: "";
-    position: fixed;
-    left: 50%;
-    top: 45%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(
-        circle,
-        rgba(255,255,255,0.12) 0%,
-        rgba(255,255,255,0.05) 35%,
-        transparent 75%
-    );
-    filter: blur(30px);
-    pointer-events: none;
-    z-index: 1;
-}
-
-@keyframes spotlight {
-    0% {
-        opacity: 0.45;
-        filter: blur(10px);
-    }
-
-    50% {
-        opacity: 0.65;
-        filter: blur(6px);
-    }
-
-    100% {
-        opacity: 0.5;
-        filter: blur(10px);
-    }
-}
      #home .letter {
       opacity: 0;
       transform: translateY(-200px);
@@ -2148,12 +2057,6 @@ body {
 </div>
 
 <!-- HOME -->
-
-   <!-- Stage Lights -->
-<div class="stage-lights">
-    <div class="light left-light"></div>
-    <div class="light right-light"></div>
-</div>
    
 <div id="home" class="page active">
 

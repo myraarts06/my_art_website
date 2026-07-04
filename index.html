@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+   
   <style>
     :root {
 
@@ -63,10 +63,16 @@
   min-height: 100vh;
   background: black;
   overflow-x: hidden;
+  padding: 40px 20px 120px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .page.active {
   display: block;
+  min-height: 100vh;
+  opacity: 1 !important;
+  visibility: visible !important;  
 }
 
 #home.page.active {
@@ -459,6 +465,58 @@ html, body {
     .sidepanel button:hover {
       background: #222;
     }
+
+     /* ===== Photography Landing Page ===== */
+
+.photo-heading{
+    text-align:center;
+    color:silver;
+    letter-spacing:3px;
+    margin-top:40px;
+    font-size:36px;
+}
+
+.photo-subtitle{
+    text-align:center;
+    color:#888;
+    margin-bottom:50px;
+    letter-spacing:1px;
+}
+
+.photo-category-grid{
+    width:min(800px,90%);
+    margin:0 auto 80px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    align-items:center;
+   margin-top:40px;
+}
+
+.photo-category{
+    height:90px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:10px;
+
+    color:silver;
+    font-size:26px;
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+}
+
+.photo-category:hover{
+    border-color:white;
+    background:rgba(255,255,255,0.05);
+    transform:translateY(-3px);
+}
 
     /* ===== PORTFOLIO ===== */
 
@@ -987,6 +1045,151 @@ html, body {
       cursor: pointer;
       z-index: 10000;
     }
+
+
+     /* ===== COMMISSIONS ===== */
+
+.commission-container{
+    max-width:900px;
+    margin:60px auto;
+    padding:0 30px 80px;
+    color:#bbb;
+}
+
+.commission-container h2{
+    color:white;
+    margin-bottom:20px;
+    letter-spacing:1px;
+}
+
+.commission-container h3{
+    color:silver;
+    margin-top:40px;
+    margin-bottom:15px;
+}
+
+.commission-container p{
+    line-height:1.8;
+    text-align:justify;
+    margin-bottom:20px;
+}
+
+.commission-container ol{
+    padding-left:22px;
+    line-height:1.8;
+}
+
+.commission-container li{
+    margin-bottom:10px;
+}
+
+     .commission-form{
+    max-width:700px;
+    margin:60px auto;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.commission-form input,
+.commission-form textarea{
+    background:transparent;
+    border:1px solid rgba(255,255,255,.25);
+    color:white;
+    padding:14px;
+    font-size:15px;
+    border-radius:4px;
+    outline:none;
+}
+
+.commission-form textarea{
+    resize:vertical;
+}
+
+.commission-form input::placeholder,
+.commission-form textarea::placeholder{
+    color:#888;
+}
+
+.form-label{
+    color:#ccc;
+    margin-top:10px;
+}
+
+.radio-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.radio-group label{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    color:#ccc;
+}
+
+.commission-form button{
+    margin-top:20px;
+    padding:14px;
+    border:1px solid white;
+    background:white;
+    color:black;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.commission-form button:hover{
+    background:#ddd;
+}
+
+     .commission-form textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: 14px;
+    box-sizing: border-box;
+    resize: vertical; /* user can make it taller */
+}
+
+     .commission-intro-card{
+    max-width:700px;
+    margin:0 auto 30px;
+    padding:20px 22px;
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:8px;
+    background:rgba(255,255,255,0.03);
+    color:#ccc;
+}
+
+.commission-intro-card h3{
+    margin:0 0 10px;
+    color:white;
+    letter-spacing:0.5px;
+}
+
+.commission-intro-card p{
+    margin:8px 0;
+    line-height:1.6;
+    color:#bbb;
+}
+
+     #commission .title{
+    margin-bottom:40px;
+}
+
+   #file-upload {
+    display: none;
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+  
 
     /* ===== ABOUT ME ===== */
 
@@ -1551,6 +1754,79 @@ html, body {
   #about.active .floating-img {
     display: block;
   }
+
+     /* FAQs for SMALL SCREENS */
+
+   .faq-container{
+    max-width:900px;
+    margin:60px auto;
+    padding:0 30px 80px;
+}
+
+.faq-item{
+    border-bottom:1px solid rgba(255,255,255,0.15);
+}
+
+.faq-question{
+    width:100%;
+    background:none;
+    border:none;
+    color:silver;
+    font-size:16px !important;
+    letter-spacing:1px;
+    text-align:left;
+    padding:22px 0;
+    cursor:pointer;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    transition:0.3s;
+}
+
+.faq-question:hover{
+    color:white;
+}
+
+.faq-question span{
+    font-size:16px !important;
+    transition:0.3s;
+}
+
+.faq-answer{
+    max-height:0;
+    overflow:hidden;
+    color:#bbb;
+    line-height:1.8;
+    transition:max-height .4s ease;
+}
+
+.faq-answer p{
+    margin:0 0 20px 0;
+}
+
+.faq-item.active .faq-answer{
+    max-height:500px;
+}
+
+    .faq-icon{
+    font-size:28px;
+    transition:transform .3s ease;
+}
+
+.faq-item.active .faq-icon{
+    transform:rotate(45deg);
+}
+
+    .faq-container a,
+.faq-container a:link,
+.faq-container a:visited,
+.faq-container a:hover,
+.faq-container a:active {
+  color: white;
+  text-decoration: none;
+}
 }
 
 /* OUTSIDE MEDIA QUERY FIX (kept intentional) */
@@ -1772,6 +2048,7 @@ body {
 <div id="menu" class="sidepanel">
   <button onclick="openPage('home')">Home</button>
   <button onclick="openPage('portfolio')">Portfolio</button>
+  <button onclick="openPage('commission')">Commissions</button>
   <button onclick="openPage('about')">About Me</button>
   <button onclick="openPage('contact')">Contact</button>
   <button onclick="openPage('payment')">Shop</button>
@@ -1867,67 +2144,184 @@ body {
   <div class="portfolio-options">
     <button class="portfolio-btn" onclick="showPortfolio('photo')">Photography</button>
     <button class="portfolio-btn" onclick="showPortfolio('paint')">Paintings</button>
+    <button class="portfolio-btn" onclick="showPortfolio('drawing')">Drawings</button>
     <button class="portfolio-btn" onclick="showPortfolio('projects')">Projects</button>
+    <button class="portfolio-btn" onclick="showPortfolio('licensing')">Works for Licensing</button>
   </div>
 
-  <!-- PHOTO -->
-  <div id="photo" class="portfolio-content">
-<div class="product-grid">
+     <!-- PHOTOGRAPHY -->
+<div id="photo" class="portfolio-content">
 
-  <div class="product">
-    <img src="photos/An Elegant Pose.jpg" onclick="openPhoto('An Elegant Pose', 'photos/An Elegant Pose.jpg')">
-  </div>
+       <div class="photo-category-grid">
 
-  <div class="product">
-    <img src="photos/An Evening Walk.jpg" onclick="openPhoto('An Evening Walk', 'photos/An Evening Walk.jpg')">
-  </div>
+    <button class="portfolio-btn" onclick="showPortfolio('wildlife')">
+        Wildlife
+    </button>
 
-  <div class="product">
-    <img src="photos/Blue Sky Butterfly.jpg" onclick="openPhoto('Blue Sky Butterfly', 'photos/Blue Sky Butterfly.jpg')">
-  </div>
+    <button class="portfolio-btn" onclick="showPortfolio('landscapes')">
+      Landscapes
+    </button>
 
-   <div class="product">
-    <img src="photos/Day Dreaming.jpg" onclick="openPhoto('Day Dreaming', 'photos/Day Dreaming.jpg')">
-  </div>
+    <button class="portfolio-btn" onclick="showPortfolio('events')">
+        Events
+    </button>
 
-   <div class="product">
-    <img src="photos/Face To Face.jpg" onclick="openPhoto('Face To Face', 'photos/Face To Face.jpg')">
-  </div>
+    <button class="portfolio-btn" onclick="showPortfolio('science communication')">
+        Science Communication
+    </button>
 
-   <div class="product">
-    <img src="photos/Konstanz.jpg" onclick="openPhoto('Konstanz', 'photos/Konstanz.jpg')">
-  </div>
+    <button class="portfolio-btn" onclick="showPortfolio('others')">
+        Others
+    </button>
 
-   <div class="product">
-    <img src="photos/The Vulture.jpg" onclick="openPhoto('The Vulture', 'photos/The Vulture.jpg')">
-  </div> 
+</div>
 
-  <div class="product">
-    <img src="photos/One Step At a Time.jpg" onclick="openPhoto('One Step At a Time', 'photos/One Step At a Time.jpg')">
-  </div>
+    </div>
 
-  <div class="product">
+     <!-- WILDLIFE -->
+<div id="wildlife" class="portfolio-content">
+
+    <div class="product-grid">
+
+        <div class="product">
+            <img src="photos/An Elegant Pose.jpg" onclick="openPhoto('An Elegant Pose', 'photos/An Elegant Pose.jpg')">
+        </div>
+
+       <div class="product">
+            <img src="photos/Blue Sky Butterfly.jpg" onclick="openPhoto('Blue Sky Butterfly', 'photos/Blue Sky Butterfly.jpg')">
+        </div>
+
+       <div class="product">
+            <img src="photos/Day Dreaming.jpg" onclick="openPhoto('Day Dreaming','photos/Day Dreaming.jpg')">
+        </div>
+
+       <div class="product">
+            <img src="photos/Face To Face.jpg" onclick="openPhoto('Face To Face','photos/Face To Face.jpg')">
+        </div>
+
+       
+        <div class="product">
+            <img src="photos/The Vulture.jpg" onclick="openPhoto('The Vulture', 'photos/The Vulture.jpg')">
+        </div>
+
+       <div class="product">
+            <img src="photos/One Step At a Time.jpg" onclick="openPhoto('One Step At a Time' , 'photos/One Step At a Time.jpg')">
+        </div>
+
+       <div class="product">
+            <img src="photos/The Spiny Chuckwalla - Sauromalus hispidus.jpg" onclick="openPhoto('The Spiny Chuckwalla - Sauromalus hispidus','photos/The Spiny Chuckwalla - Sauromalus hispidus.jpg')">
+        </div>
+
+       <div class="product">
+            <img src="photos/The Slow Walking Snail.jpg" onclick="openPhoto('The Slow Walking Snail','photos/The Slow Walking Snail.jpg')">
+        </div>
+
+        <div class="product">
+            <img src="photos/The Swan.jpg" onclick="openPhoto('The Swan', 'photos/The Swan.jpg')">
+        </div>
+
+        <div class="product">
+            <img src="photos/Mysterious.jpg" onclick="openPhoto('Mysterious','photos/Mysterious.jpg')">
+        </div>
+
+    </div>
+
+    <br><br>
+
+    <div style="text-align:center;"margin-bottom: 120px;">
+        <button class="portfolio-btn" onclick="openPage('portfolio'); showPortfolio('photo')">
+            ← Back to Photography
+        </button>
+    </div>
+
+</div>
+
+
+     
+     <!--LANDSCAPES-->
+<div id="landscapes" class="portfolio-content">
+
+    <div class="product-grid">
+
+        <div class="product">
+            <img src="photos/Konstanz.jpg" onclick="openPhoto('Konstanz','photos/Konstanz.jpg')">
+        </div>
+
+        <div class="product">
     <img src="photos/Serene.jpg" onclick="openPhoto('Serene', 'photos/Serene.jpg')">
   </div>
 
-  <div class="product">
-    <img src="photos/The Spiny Chuckwalla - Sauromalus hispidus.jpg" onclick="openPhoto('The Spiny Chuckwalla - Sauromalus hispidus', 'photos/The Spiny Chuckwalla - Sauromalus hispidus.jpg')">
-  </div>
+    </div>
 
-  
-  <div class="product">
-    <img src="photos/The Slow Walking Snail.jpg" onclick="openPhoto('The Slow Walking Snail', 'photos/The Slow Walking Snail.jpg')">
-  </div>
+    <br><br>
 
-     <div class="product">
-    <img src="photos/The Swan.jpg" onclick="openPhoto('The Swan', 'photos/The Swan.jpg')">
-  </div>
+    <div style="text-align:center;"margin-bottom: 120px;">
+        <button class="portfolio-btn" onclick="openPage('portfolio'); showPortfolio('photo')">
+            ← Back to Photography
+        </button>
+    </div>
+
+</div>
+
+
+     <!--EVENTS-->
+<div id="events" class="portfolio-content">
+
+<h2 class="photo-heading">COMING SOON</h2>
+    <div class="product-grid">
+    </div>
+
+    <br><br>
+
+    <div style="text-align:center;"margin-bottom: 120px;">
+        <button class="portfolio-btn" onclick="openPage('portfolio'); showPortfolio('photo')">
+            ← Back to Photography
+        </button>
+    </div>
+
+</div>
+   
+
+          <!--SCIENCE COMMUNICATION-->
+<div id="science communication" class="portfolio-content">
+
+<h2 class="photo-heading">COMING SOON</h2>
+    <div class="product-grid">
+    </div>
+
+    <br><br>
+
+    <div style="text-align:center;"margin-bottom: 120px;">
+        <button class="portfolio-btn" onclick="openPage('portfolio'); showPortfolio('photo')">
+            ← Back to Photography
+        </button>
+    </div>
+
+</div>
+   
+
+       <!--OTHERS-->
+<div id="others" class="portfolio-content">
+   
+    <div class="product-grid">
 
     <div class="product">
-    <img src="photos/Mysterious.jpg" onclick="openPhoto('Mysterious', 'photos/Mysterious.jpg')">
-  </div>
+            <img src="photos/An Evening Walk.jpg" onclick="openPhoto('An Evening Walk', 'photos/An Evening Walk.jpg')">
+        </div>
+
+       </div>
+
+    <br><br>
+
+    <div style="text-align:center;"margin-bottom: 120px;">
+        <button class="portfolio-btn" onclick="openPage('portfolio'); showPortfolio('photo')">
+            ← Back to Photography
+        </button>
+    </div>
+
 </div>
-</div>
+   
+
     
   <!-- PAINTINGS -->
   <div id="paint" class="portfolio-content">
@@ -1953,7 +2347,16 @@ body {
         <img src="images/Karma Yogi.jpg" onclick="openPainting('Karma Yogi', 'images/Karma Yogi.jpg')">
       </div>
 
-      <div class="product">
+</div>
+</div>
+
+
+   <!-- DRAWINGS -->
+     <div id="drawing" class="portfolio-content">
+
+   <div class="product-grid">
+
+    <div class="product">
         <img src="images/Mother's Protection.jpg"
              onclick="openPainting('Mother\'s Protection', 'images/Mother\'s Protection.jpg')">
       </div>
@@ -1961,6 +2364,7 @@ body {
       <div class="product">
         <img src="images/Naked Truth.jpg" onclick="openPainting('Naked Truth', 'images/Naked Truth.jpg')">
       </div>
+        
 </div>
 </div>
 
@@ -1996,6 +2400,18 @@ body {
   </div>
 
 </div>
+
+     <!-- WORKS FOR LICENSING -->
+     <div id="licensing" class="portfolio-content">
+
+    <p class="portfolio-intro">
+        Selected artworks and photographs are available for editorial,
+        publishing, exhibition, commercial, educational, and institutional
+        licensing. If you are interested in licensing an existing work,
+        please get in touch with details about your intended use.
+    </p>
+
+</div>
     </div>
  
    <!-- MODAL -->
@@ -2019,6 +2435,97 @@ body {
   </div>
 
   <div class="close-btn" onclick="closePainting()">×</div>
+</div>
+
+   
+<!-- COMMISSIONS PAGE -->
+<div id="commission" class="page">
+
+    <div class="title">Commissions</div>
+
+   <div class="commission-intro-card">
+    <p>
+    In order for Pradeep Krishna to design a unique work of art for you, which is fully tailored to you and your individual ideas, information about your preferences is required.
+    </p>
+
+    <p>
+   If you are still unsure about answering certain questions, they can be clarified in a non-binding initial consultation.
+    </p>
+</div>
+   
+   <form class="commission-form" action="https://formspree.io/f/xbdvpalz"method="POST">
+
+        <input type="text" placeholder="Name" required>
+
+        <input type="email" placeholder="E-mail address" required>
+
+        <input type="tel" placeholder="Phone number" required>
+
+        <textarea placeholder="What size/format did you have in mind?"
+                  rows="3"
+                  required></textarea>
+
+        <textarea placeholder="What colours do you like?"
+                  rows="3"
+                  required></textarea>
+
+        <textarea placeholder="What do you dislike?"
+                  rows="3"
+                  required></textarea>
+
+        <label class="form-label">
+            How should your picture be refined?
+        </label>
+
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="refinement[]" value="Gold" required> Gold</label>
+            <label><input type="checkbox" name="refinement[]" value="Rose Gold"> Rose Gold</label>
+            <label><input type="checkbox" name="refinement[]" value="Silver"> Silver</label>
+        </div>
+
+        <label class="form-label">
+            Do you want your work to be embedded in a floater frame?
+        </label>
+
+        <div class="radio-group">
+            <label><input type="radio" name="frame" value="Yes" required> Yes</label>
+            <label><input type="radio" name="frame" value="No"> No</label>
+        </div>
+
+        <label class="form-label">
+            If yes, what colour should the floater frame be?
+        </label>
+
+        <div class="radio-group">
+            <label><input type="radio" name="framecolour" value="White" required> White</label>
+            <label><input type="radio" name="framecolour" value="Black"> Black</label>
+            <label><input type="radio" name="framecolour" value="Black with gold edge"> Black with gold edge</label>
+            <label><input type="radio" name="framecolour" value="Gold"> Gold</label>
+            <label><input type="radio" name="framecolour" value="Natural"> Natural</label>
+        </div>
+       
+   <textarea placeholder="Anything else I should consider?
+
+Are there any styles from previous works that you particularly like?
+
+(Feel free to attach pictures/links.)"
+          rows="10"></textarea>
+      
+<label for="file-upload" class="upload-btn">
+    Attach Files
+</label>
+
+<input id="file-upload" type="file" name="attachments" multiple hidden>
+
+<span id="file-status">No files selected</span>
+
+        <button type="submit">
+            Submit Commission Request
+        </button>
+
+    </form>
+
+</div>
 </div>
 
 <!-- ABOUT -->
@@ -2484,7 +2991,7 @@ Rather than depicting a philosophical conclusion, the painting functions as a vi
 
             <div class="faq-answer">
                 <p>
-                Yes. I do. Please refer to the Commissions page to fill in details about any specific idea you may have. We can work it out together 😊
+                Yes. I do. Please refer to the <a href="#" onclick="openPage('commission'); return false;">Commissions</a> page to fill in details about any specific idea you may have. We can work it out together 😊
                 </p>
             </div>
         </div>
@@ -2792,10 +3299,13 @@ function openPage(id, addHistory = true) {
 
   activePage.classList.add("active");
 
-  if (id === "portfolio") {
-    document.querySelectorAll(".portfolio-content")
-      .forEach(el => el.classList.remove("active"));
-  }
+if (id === "portfolio") {
+
+  // hide all portfolio content
+  document.querySelectorAll(".portfolio-content")
+    .forEach(el => el.classList.remove("active"));
+
+}
 
   window.scrollTo(0, 0);
 
@@ -2861,8 +3371,14 @@ function openPage(id, addHistory = true) {
 });
 
 function showPortfolio(id) {
-  document.querySelectorAll(".portfolio-content").forEach(el => el.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+    document.querySelectorAll('.portfolio-content').forEach(el => {
+        el.classList.remove('active');
+    });
+
+    const target = document.getElementById(id);
+    if (target) {
+        target.classList.add('active');
+    }
 }
 
   function openPhoto(title, img) {
@@ -2964,6 +3480,7 @@ Before the stillness, there must have been fire, an inner churning. In Telugu, w
 function closePainting() {
   document.getElementById("paintingModal").style.display = "none";
 }
+
 
   function addToCart(name, price, img, type, size, event) {
 
@@ -3244,6 +3761,19 @@ document.querySelectorAll(".faq-question").forEach(button => {
 
     });
 
+});
+
+   const input = document.getElementById("file-upload");
+const status = document.getElementById("file-status");
+
+input.addEventListener("change", () => {
+    if (input.files.length === 0) {
+        status.textContent = "No files selected";
+    } else if (input.files.length === 1) {
+        status.textContent = input.files[0].name;
+    } else {
+        status.textContent = `${input.files.length} files selected`;
+    }
 });
   
 </script>

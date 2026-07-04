@@ -115,7 +115,93 @@
 }
     
     /* ===== ONLY HOME ANIMATION ===== */
-    #home .letter {
+     
+    /* ==========================
+   Stage Lighting Effect
+========================== */
+
+.stage-lights {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.light {
+    position: absolute;
+    top: -120px;
+    width: 700px;
+    height: 1100px;
+    opacity: 0.55;
+    filter: blur(8px);
+    animation: spotlight 7s ease-in-out infinite alternate;
+}
+
+/* Left Spotlight */
+.left-light {
+    left: -280px;
+    transform: rotate(20deg);
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.65) 0%,
+        rgba(255,255,255,0.30) 20%,
+        rgba(255,255,255,0.10) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    clip-path: polygon(48% 0%, 58% 0%, 100% 100%, 0% 100%);
+}
+
+/* Right Spotlight */
+.right-light {
+    right: -280px;
+    transform: rotate(-20deg);
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.65) 0%,
+        rgba(255,255,255,0.30) 20%,
+        rgba(255,255,255,0.10) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    clip-path: polygon(42% 0%, 52% 0%, 100% 100%, 0% 100%);
+}
+
+     body::after {
+    content: "";
+    position: fixed;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(
+        circle,
+        rgba(255,255,255,0.12) 0%,
+        rgba(255,255,255,0.05) 35%,
+        transparent 75%
+    );
+    filter: blur(30px);
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes spotlight {
+    0% {
+        opacity: 0.45;
+        filter: blur(10px);
+    }
+
+    50% {
+        opacity: 0.65;
+        filter: blur(6px);
+    }
+
+    100% {
+        opacity: 0.5;
+        filter: blur(10px);
+    }
+}
+     #home .letter {
       opacity: 0;
       transform: translateY(-200px);
     }
@@ -2056,6 +2142,13 @@ body {
 </div>
 
 <!-- HOME -->
+
+   <!-- Stage Lights -->
+<div class="stage-lights">
+    <div class="light left-light"></div>
+    <div class="light right-light"></div>
+</div>
+   
 <div id="home" class="page active">
 
     <!-- TOP -->

@@ -3225,14 +3225,12 @@ function openPage(id, addHistory = true) {
 
   activePage.classList.add("active");
 
- if (id === "portfolio") {
+if (id === "portfolio") {
 
+  // hide all portfolio content
   document.querySelectorAll(".portfolio-content")
     .forEach(el => el.classList.remove("active"));
 
-  // 🔥 ALWAYS restore default state
-  const photo = document.getElementById("photo");
-  if (photo) photo.classList.add("active");
 }
 
   window.scrollTo(0, 0);

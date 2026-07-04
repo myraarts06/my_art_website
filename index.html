@@ -1176,6 +1176,13 @@ html, body {
      #commission .title{
     margin-bottom:40px;
 }
+
+     .upload-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
   
 
     /* ===== ABOUT ME ===== */
@@ -2425,6 +2432,16 @@ Are there any styles from previous works that you particularly like?
           rows="10"></textarea>
 
         <input type="file" multiple>
+       display: none;
+}
+
+      <label for="file-upload" class="upload-btn">
+    Attach Files
+</label>
+
+<input id="file-upload" type="file" multiple hidden>
+
+<span id="file-status">No files selected</span>
 
         <button type="submit">
             Submit Commission Request
@@ -3670,6 +3687,19 @@ document.querySelectorAll(".faq-question").forEach(button => {
 
     });
 
+});
+
+   const input = document.getElementById("file-upload");
+const status = document.getElementById("file-status");
+
+input.addEventListener("change", () => {
+    if (input.files.length === 0) {
+        status.textContent = "No files selected";
+    } else if (input.files.length === 1) {
+        status.textContent = input.files[0].name;
+    } else {
+        status.textContent = `${input.files.length} files selected`;
+    }
 });
   
 </script>

@@ -124,46 +124,52 @@
     position: fixed;
     inset: 0;
     pointer-events: none;
-    overflow: hidden;
     z-index: 0;
 }
 
 .light {
     position: absolute;
-    top: -120px;
-    width: 700px;
-    height: 1100px;
-    opacity: 0.55;
-    filter: blur(8px);
-    animation: spotlight 7s ease-in-out infinite alternate;
+    width: 1200px;
+    height: 1200px;
+    opacity: 0.45;
+    filter: blur(12px);
+    animation: pulse 6s ease-in-out infinite alternate;
 }
 
-/* Left Spotlight */
+/* Top Left */
 .left-light {
-    left: -280px;
-    transform: rotate(20deg);
-    background: linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.65) 0%,
-        rgba(255,255,255,0.30) 20%,
-        rgba(255,255,255,0.10) 50%,
-        rgba(255,255,255,0) 100%
+    top: -100px;
+    left: -100px;
+    background: conic-gradient(
+        from 45deg,
+        transparent 0deg,
+        rgba(255,255,255,0.45) 18deg,
+        rgba(255,255,255,0.15) 40deg,
+        transparent 65deg
     );
-    clip-path: polygon(48% 0%, 58% 0%, 100% 100%, 0% 100%);
 }
 
-/* Right Spotlight */
+/* Top Right */
 .right-light {
-    right: -280px;
-    transform: rotate(-20deg);
-    background: linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.65) 0%,
-        rgba(255,255,255,0.30) 20%,
-        rgba(255,255,255,0.10) 50%,
-        rgba(255,255,255,0) 100%
+    top: -100px;
+    right: -100px;
+    transform: scaleX(-1);
+    background: conic-gradient(
+        from 45deg,
+        transparent 0deg,
+        rgba(255,255,255,0.45) 18deg,
+        rgba(255,255,255,0.15) 40deg,
+        transparent 65deg
     );
-    clip-path: polygon(42% 0%, 52% 0%, 100% 100%, 0% 100%);
+}
+
+@keyframes pulse {
+    from {
+        opacity: 0.35;
+    }
+    to {
+        opacity: 0.6;
+    }
 }
 
      body::after {

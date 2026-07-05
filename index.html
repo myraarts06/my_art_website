@@ -2439,64 +2439,73 @@ body {
   <div class="close-btn" onclick="closePainting()">×</div>
 </div>
 
-   
-<!-- COMMISSIONS PAGE -->
-<div id="commission" class="page">
 
-    <div class="title">Commissions</div>
+   <!-- COMMISSIONS PAGE -->
+<form class="commission-form"
+      action="https://formspree.io/f/xbdvpalz"
+      method="POST"
+      enctype="multipart/form-data">
 
-   <div class="commission-intro-card">
-    <p>
-    In order for Pradeep Krishna to design a unique work of art for you, which is fully tailored to you and your individual ideas, information about your preferences is required.
-    </p>
+    <input type="text"
+           name="name"
+           placeholder="Name"
+           required>
 
-    <p>
-   If you are still unsure about answering certain questions, they can be clarified in a free initial consultation.
-    </p>
-</div>
-   
-   <form class="commission-form" action="https://formspree.io/f/xbdvpalz"method="POST">
+    <input type="email"
+           name="email"
+           placeholder="E-mail address"
+           required>
 
-        <input type="text" placeholder="Name" required>
+    <input type="tel"
+           name="phone"
+           placeholder="Phone number"
+           required>
 
-        <input type="email" placeholder="E-mail address" required>
+    <textarea
+        name="size"
+        placeholder="What size/format do you have in mind?"
+        rows="10"
+        required></textarea>
 
-        <input type="tel" placeholder="Phone number" required>
+    <textarea
+        name="deadline"
+        placeholder="Until when do you want to receive your piece?"
+        rows="10"
+        required></textarea>
 
-        <textarea placeholder="What size/format do you have in mind?"
-                  rows="10"
-                  required></textarea>
+    <textarea
+        name="idea"
+        placeholder="What idea / subject / theme do you have in mind?"
+        rows="10"
+        required></textarea>
 
-        <textarea placeholder="Until when do you want to receive your piece?"
-                  rows="10"
-                  required></textarea>
-
-       <textarea placeholder="What idea / subject / theme do you have in mind?"
-                  rows="10"
-                  required></textarea>
-       
-   <textarea placeholder="Anything else I should consider?
+    <textarea
+        name="additional_information"
+        placeholder="Anything else I should consider?
 
 (Feel free to attach pictures/links)"
-          rows="10"></textarea>
-      
-<label for="file-upload" class="upload-btn">
-    Attach Files
-</label>
+        rows="10"></textarea>
 
-<input id="file-upload" type="file" name="attachments" multiple hidden>
+    <label for="file-upload" class="upload-btn">
+        Attach Files
+    </label>
 
-<span id="file-status">No files selected</span>
+    <input
+        id="file-upload"
+        type="file"
+        name="attachments"
+        multiple
+        hidden>
 
-        <button type="submit">
-            Submit Commission Request
-        </button>
+    <span id="file-status">No files selected</span>
 
-    </form>
+    <button type="submit">
+        Submit Commission Request
+    </button>
 
-</div>
-</div>
+</form>
 
+   
 <!-- ABOUT -->
 <div id="about" class="page">
   <div class="title">ABOUT ME</div>

@@ -2440,70 +2440,89 @@ body {
 </div>
 
 
-   <!-- COMMISSIONS PAGE -->
-<form class="commission-form"
-      action="https://formspree.io/f/xbdvpalz"
-      method="POST"
-      enctype="multipart/form-data">
+<!-- COMMISSIONS PAGE -->
+<div id="commission" class="page">
 
-    <input type="text"
-           name="name"
-           placeholder="Name"
-           required>
+    <div class="title">Commissions</div>
 
-    <input type="email"
-           name="email"
-           placeholder="E-mail address"
-           required>
+    <div class="commission-intro-card">
+        <p>
+            In order for Pradeep Krishna to design a unique work of art for you,
+            which is fully tailored to your ideas, I would first like to learn
+            more about your wishes.
+        </p>
 
-    <input type="tel"
-           name="phone"
-           placeholder="Phone number"
-           required>
+        <p>
+            If you are unsure about any of the questions below, we can discuss
+            them during a free initial consultation.
+        </p>
+    </div>
 
-    <textarea
-        name="size"
-        placeholder="What size/format do you have in mind?"
-        rows="10"
-        required></textarea>
+    <form class="commission-form"
+          action="https://formspree.io/f/xbdvpalz"
+          method="POST"
+          enctype="multipart/form-data">
 
-    <textarea
-        name="deadline"
-        placeholder="Until when do you want to receive your piece?"
-        rows="10"
-        required></textarea>
+        <input type="text"
+               name="name"
+               placeholder="Name"
+               required>
 
-    <textarea
-        name="idea"
-        placeholder="What idea / subject / theme do you have in mind?"
-        rows="10"
-        required></textarea>
+        <input type="email"
+               name="email"
+               placeholder="E-mail address"
+               required>
 
-    <textarea
-        name="additional_information"
-        placeholder="Anything else I should consider?
+        <input type="tel"
+               name="phone"
+               placeholder="Phone number"
+               required>
 
-(Feel free to attach pictures/links)"
-        rows="10"></textarea>
+        <textarea
+            name="size"
+            placeholder="What size/format do you have in mind?"
+            rows="6"
+            required></textarea>
 
-    <label for="file-upload" class="upload-btn">
-        Attach Files
-    </label>
+        <textarea
+            name="deadline"
+            placeholder="Until when do you want to receive your piece?"
+            rows="6"
+            required></textarea>
 
-    <input
-        id="file-upload"
-        type="file"
-        name="attachments"
-        multiple
-        hidden>
+        <textarea
+            name="idea"
+            placeholder="What idea / subject / theme do you have in mind?"
+            rows="6"
+            required></textarea>
 
-    <span id="file-status">No files selected</span>
+        <textarea
+            name="additional_information"
+            placeholder="Anything else I should consider?
 
-    <button type="submit">
-        Submit Commission Request
-    </button>
+(Feel free to attach pictures or links)"
+            rows="6"></textarea>
 
-</form>
+        <label for="file-upload" class="upload-btn">
+            Attach Files
+        </label>
+
+        <input
+            id="file-upload"
+            type="file"
+            name="attachments"
+            multiple
+            hidden>
+
+        <span id="file-status">No files selected</span>
+
+        <button type="submit">
+            Submit Commission Request
+        </button>
+
+    </form>
+
+</div>
 
    
 <!-- ABOUT -->

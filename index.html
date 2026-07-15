@@ -2027,6 +2027,69 @@ body {
   color: white;
   text-decoration: none;
 }
+
+
+    /* Default: large screens / monitors */
+#home.page.active {
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.home-top {
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
+
+.home-center {
+  gap: 12px;
+}
+
+.social {
+  padding-top: 80px;
+}
+
+
+/* Laptop screens: shorter height */
+@media (max-height: 900px) {
+
+  #home.page.active {
+    justify-content: flex-start;
+    padding-top: 30px;
+  }
+
+  .home-top {
+    margin-top: 10px;
+    margin-bottom: 35px;
+  }
+
+  .home-center {
+    gap: 8px;
+  }
+
+  .social {
+    padding-top: 35px;
+    padding-bottom: 20px;
+  }
+
+}
+
+
+/* Smaller laptop screens */
+@media (max-height: 750px) {
+
+  .home-top {
+    margin-bottom: 20px;
+  }
+
+  .body-line {
+    line-height: 1.3;
+  }
+
+  .social {
+    padding-top: 20px;
+  }
+
+}
   
     
   </style>

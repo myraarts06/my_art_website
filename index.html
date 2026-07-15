@@ -1991,39 +1991,46 @@ body {
   text-decoration: none;
 }
 
-
-     /* HOME PAGE ABSTRACT COLOUR FIELD */
+/* HOME COLOUR FIELD */
 
 #home {
   position: relative;
   overflow: hidden;
+  background: black;
 }
 
+
+/* soft coloured glow */
 
 .home-color-field {
   position: absolute;
-  width: 45vw;
-  height: 45vw;
+
+  width: 500px;
+  height: 500px;
+
   border-radius: 50%;
-  
+
   background: blue;
-  opacity: 0;
 
-  filter: blur(50px);
+  opacity: 0.18;
 
-  z-index: 0;
+  filter: blur(80px);
 
-  animation: colourFlow 48s infinite;
+  z-index: 1;
+
+  pointer-events: none;
+
+  animation: colourFlow 36s infinite ease-in-out;
 }
 
 
-/* Keep homepage content above the effect */
+/* Keep content above */
 
 .home-top,
 .home-center,
 .social {
   position: relative;
-  z-index: 2;
+  z-index: 5;
 }
 
 
@@ -2031,94 +2038,77 @@ body {
 @keyframes colourFlow {
 
   0% {
-    opacity: 0;
     background: blue;
-    left: 5%;
-    top: 10%;
+    left: 0%;
+    top: 5%;
+    opacity: 0;
   }
 
   10% {
-    opacity: 0.12;
+    opacity: 0.18;
   }
-
-  18% {
-    opacity: 0;
-  }
-
 
   20% {
-    background: red;
-    left: 55%;
-    top: 55%;
-  }
-
-  30% {
-    opacity: 0.12;
-  }
-
-  38% {
     opacity: 0;
   }
 
 
-  40% {
-    background: green;
-    left: 15%;
+  25% {
+    background: red;
+    left: 60%;
     top: 55%;
   }
+
+  35% {
+    opacity: 0.18;
+  }
+
+  45% {
+    opacity: 0;
+  }
+
 
   50% {
-    opacity: 0.12;
+    background: green;
+    left: 10%;
+    top: 55%;
   }
-
-  58% {
-    opacity: 0;
-  }
-
 
   60% {
-    background: yellow;
-    left: 60%;
-    top: 15%;
+    opacity: 0.18;
   }
 
   70% {
-    opacity: 0.12;
-  }
-
-  78% {
     opacity: 0;
   }
 
 
-  80% {
-    background: pink;
-    left: 40%;
-    top: 65%;
+  75% {
+    background: yellow;
+    left: 55%;
+    top: 10%;
   }
 
-  88% {
-    opacity: 0.12;
+  85% {
+    opacity: 0.18;
   }
 
-  92% {
+  95% {
     opacity: 0;
   }
 
-
-  94% {
-    background: purple;
-    left: 30%;
-    top: 20%;
-  }
 
   100% {
+    background: purple;
+    left: 30%;
+    top: 30%;
     opacity: 0;
   }
 
 }
-  
-    
+     
+
+   
   </style>
 </head>
 

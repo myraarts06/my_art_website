@@ -1990,119 +1990,6 @@ body {
   color: white;
   text-decoration: none;
 }
-
-/* ===== HOME ABSTRACT COLOUR FIELD ===== */
-
-#home {
-  position: relative;
-  isolation: isolate;
-}
-
-
-/* soft moving colour */
-
-.home-color-field {
-  position: absolute;
-
-  width: 450px;
-  height: 450px;
-
-  border-radius: 50%;
-
-  opacity: 0;
-
-  filter: blur(90px);
-
-  z-index: 1;
-
-  pointer-events: none;
-
-  animation: colourField 6s infinite ease-in-out;
-}
-
-/* Keep all homepage content visible */
-
-#home .home-top,
-#home .home-center,
-#home .social {
-  position: relative;
-  z-index: 5;
-}
-
-
-
-@keyframes colourField {
-
-  0% {
-    background: blue;
-    left: 5%;
-    top: 10%;
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 0.45;
-  }
-
-  18% {
-    opacity: 0;
-  }
-
-
-  25% {
-    background: red;
-    left: 55%;
-    top: 55%;
-  }
-
-  35% {
-    opacity: 0.45;
-  }
-
-  43% {
-    opacity: 0;
-  }
-
-
-  50% {
-    background: green;
-    left: 15%;
-    top: 55%;
-  }
-
-  60% {
-    opacity: 0.45;
-  }
-
-  68% {
-    opacity: 0;
-  }
-
-
-  75% {
-    background: yellow;
-    left: 60%;
-    top: 15%;
-  }
-
-  85% {
-    opacity: 0.45;
-  }
-
-  93% {
-    opacity: 0;
-  }
-
-
-  100% {
-    background: purple;
-    left: 30%;
-    top: 30%;
-    opacity: 0;
-  }
-
-}    
-
    
   </style>
 </head>
@@ -2171,9 +2058,6 @@ body {
 <!-- HOME -->
    
 <div id="home" class="page active">
-
-   <!-- Animated background tile -->
-    <div class="home-color-field"></div>
 
     <!-- TOP -->
   <div class="home-top">

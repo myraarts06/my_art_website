@@ -3297,9 +3297,11 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-  function trackPageView() {
+function trackPageView() {
 
-  const page = window.location.pathname + window.location.hash;
+  const page = window.location.hash 
+    ? window.location.hash.replace("#", "/")
+    : "/";
 
   gtag('event', 'page_view', {
     page_title: document.title,

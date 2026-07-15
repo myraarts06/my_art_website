@@ -1990,6 +1990,133 @@ body {
   color: white;
   text-decoration: none;
 }
+
+
+     /* HOME PAGE ABSTRACT COLOUR FIELD */
+
+#home {
+  position: relative;
+  overflow: hidden;
+}
+
+
+.home-color-field {
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  border-radius: 50%;
+  
+  background: blue;
+  opacity: 0;
+
+  filter: blur(50px);
+
+  z-index: 0;
+
+  animation: colourFlow 48s infinite;
+}
+
+
+/* Keep homepage content above the effect */
+
+.home-top,
+.home-center,
+.social {
+  position: relative;
+  z-index: 2;
+}
+
+
+
+@keyframes colourFlow {
+
+  0% {
+    opacity: 0;
+    background: blue;
+    left: 5%;
+    top: 10%;
+  }
+
+  10% {
+    opacity: 0.12;
+  }
+
+  18% {
+    opacity: 0;
+  }
+
+
+  20% {
+    background: red;
+    left: 55%;
+    top: 55%;
+  }
+
+  30% {
+    opacity: 0.12;
+  }
+
+  38% {
+    opacity: 0;
+  }
+
+
+  40% {
+    background: green;
+    left: 15%;
+    top: 55%;
+  }
+
+  50% {
+    opacity: 0.12;
+  }
+
+  58% {
+    opacity: 0;
+  }
+
+
+  60% {
+    background: yellow;
+    left: 60%;
+    top: 15%;
+  }
+
+  70% {
+    opacity: 0.12;
+  }
+
+  78% {
+    opacity: 0;
+  }
+
+
+  80% {
+    background: pink;
+    left: 40%;
+    top: 65%;
+  }
+
+  88% {
+    opacity: 0.12;
+  }
+
+  92% {
+    opacity: 0;
+  }
+
+
+  94% {
+    background: purple;
+    left: 30%;
+    top: 20%;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}
   
     
   </style>
@@ -2059,6 +2186,9 @@ body {
 <!-- HOME -->
    
 <div id="home" class="page active">
+
+   <!-- Animated background tile -->
+    <div class="home-color-field"></div>
 
     <!-- TOP -->
   <div class="home-top">

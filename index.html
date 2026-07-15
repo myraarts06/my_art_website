@@ -3291,11 +3291,14 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
- function trackPageView() {
+function trackPageView() {
 
-  gtag("event", "page_view", {
+  const virtualPage = window.location.pathname + window.location.hash;
+
+  gtag('config', 'G-J7P5R2W9CX', {
     page_title: document.title,
-    page_location: window.location.href
+    page_location: window.location.href,
+    page_path: virtualPage
   });
 
 }

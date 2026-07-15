@@ -3291,14 +3291,14 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-   function trackPageView() {
-  if (typeof gtag === "function") {
-    gtag("event", "page_view", {
-      page_title: document.title,
-      page_location: window.location.href,
-      page_path: window.location.pathname + window.location.hash
-    });
-  }
+ function trackPageView() {
+
+  gtag('event', 'page_view', {
+    page_title: document.title,
+    page_location: window.location.href,
+    page_path: window.location.pathname + window.location.hash
+  });
+
 }
 
 function openPage(id, addHistory = true) {
@@ -3336,7 +3336,7 @@ if (id === "portfolio") {
   if (addHistory) {
     history.pushState({ page: id }, "", "#" + id);
   }
-
+console.log("GA4 tracking:", window.location.hash);
    trackPageView();
 
   if (id === "home") {

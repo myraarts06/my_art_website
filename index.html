@@ -1991,109 +1991,106 @@ body {
   text-decoration: none;
 }
 
-/* HOME COLOUR FIELD */
+/* ===== HOME ABSTRACT COLOUR FIELD ===== */
 
 #home {
   position: relative;
-  overflow: hidden;
-  background: black;
+  isolation: isolate;
 }
 
 
-/* soft coloured glow */
+/* soft moving colour */
 
 .home-color-field {
   position: absolute;
 
-  width: 500px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
 
   border-radius: 50%;
 
-  background: blue;
+  opacity: 0;
 
-  opacity: 0.18;
+  filter: blur(90px);
 
-  filter: blur(80px);
-
-  z-index: 1;
+  z-index: -1;
 
   pointer-events: none;
 
-  animation: colourFlow 36s infinite ease-in-out;
+  animation: colourField 36s infinite ease-in-out;
 }
 
 
-/* Keep content above */
+/* Keep all homepage content visible */
 
-.home-top,
-.home-center,
-.social {
+#home .home-top,
+#home .home-center,
+#home .social {
   position: relative;
-  z-index: 5;
+  z-index: 2;
 }
 
 
 
-@keyframes colourFlow {
+@keyframes colourField {
 
   0% {
     background: blue;
-    left: 0%;
-    top: 5%;
+    left: 5%;
+    top: 10%;
     opacity: 0;
   }
 
   10% {
-    opacity: 0.18;
+    opacity: 0.25;
   }
 
-  20% {
+  18% {
     opacity: 0;
   }
 
 
   25% {
     background: red;
-    left: 60%;
+    left: 55%;
     top: 55%;
   }
 
   35% {
-    opacity: 0.18;
+    opacity: 0.25;
   }
 
-  45% {
+  43% {
     opacity: 0;
   }
 
 
   50% {
     background: green;
-    left: 10%;
+    left: 15%;
     top: 55%;
   }
 
   60% {
-    opacity: 0.18;
+    opacity: 0.25;
   }
 
-  70% {
+  68% {
     opacity: 0;
   }
 
 
   75% {
     background: yellow;
-    left: 55%;
-    top: 10%;
+    left: 60%;
+    top: 15%;
   }
 
   85% {
-    opacity: 0.18;
+    opacity: 0.25;
   }
 
-  95% {
+  93% {
     opacity: 0;
   }
 
@@ -2105,8 +2102,7 @@ body {
     opacity: 0;
   }
 
-}
-     
+}    
 
    
   </style>

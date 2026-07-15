@@ -3338,7 +3338,7 @@ if (id === "portfolio") {
   if (addHistory) {
     history.pushState({ page: id }, "", "#" + id);
   }
-console.log("GA4 tracking:", window.location.hash);
+alert("Tracking page: " + window.location.hash);
    trackPageView();
 
   if (id === "home") {

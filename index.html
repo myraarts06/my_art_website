@@ -2,7 +2,7 @@
 <html>
 <head>
 
-   <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J7P5R2W9CX"></script>
 
 <script>
@@ -18,11 +18,17 @@
     send_page_view: false
   });
 
-  gtag('event', 'virtual_page_view', {
-    page_title: document.title,
-    page_location: window.location.href,
-    page_path: window.location.pathname + window.location.hash
+  window.addEventListener("load", function () {
+
+    gtag('event', 'virtual_page_view', {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: window.location.pathname + window.location.hash
+    });
+
   });
+
+</script>
 
 </script>
    
@@ -3304,17 +3310,6 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
-function trackPageView() {
-
-  const page = window.location.pathname + window.location.hash;
-
-  gtag('event', 'virtual_page_view', {
-    page_title: document.title,
-    page_location: window.location.href,
-    page_path: page
-  });
-
-}
 
 function openPage(id, addHistory = true) {
 
@@ -3351,7 +3346,6 @@ if (id === "portfolio") {
   if (addHistory) {
     history.pushState({ page: id }, "", "#" + id);
   }
-   trackPageView();
 
   if (id === "home") {
     const title = document.querySelector("#home .title");
@@ -3379,7 +3373,6 @@ if (id === "portfolio") {
   }
 
   updateCartVisibility(id);
-  trackPageView();
 });
 
   window.addEventListener("load", () => {
@@ -3399,7 +3392,6 @@ if (id === "portfolio") {
   history.replaceState({ page: id }, "", "#" + id);
 
   updateCartVisibility(id);
-  trackPageView();
 });
 
 function showPortfolio(id) {

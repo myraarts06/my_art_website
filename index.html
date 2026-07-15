@@ -2029,15 +2029,13 @@ body {
 }
 
 
-    /* Default: large screens / monitors */
+/* LARGE SCREENS / MONITORS */
 #home.page.active {
-  justify-content: center;
-  padding-top: 60px;
+  justify-content: space-between;
 }
 
 .home-top {
-  margin-top: 40px;
-  margin-bottom: 80px;
+  margin-top: 70px;
 }
 
 .home-center {
@@ -2045,11 +2043,11 @@ body {
 }
 
 .social {
-  padding-top: 80px;
+  padding-bottom: 50px;
 }
 
 
-/* Laptop screens: shorter height */
+/* LAPTOPS - shorter screens */
 @media (max-height: 900px) {
 
   #home.page.active {
@@ -2058,27 +2056,32 @@ body {
   }
 
   .home-top {
-    margin-top: 10px;
-    margin-bottom: 35px;
+    margin-top: 20px;
+    margin-bottom: 50px;
   }
 
   .home-center {
+    flex: 0 0 auto;
     gap: 8px;
   }
 
   .social {
-    padding-top: 35px;
+    margin-top: 60px;
     padding-bottom: 20px;
   }
 
 }
 
 
-/* Smaller laptop screens */
+/* SMALL LAPTOPS */
 @media (max-height: 750px) {
 
+  #home.page.active {
+    padding-top: 15px;
+  }
+
   .home-top {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
 
   .body-line {
@@ -2086,7 +2089,7 @@ body {
   }
 
   .social {
-    padding-top: 20px;
+    margin-top: 30px;
   }
 
 }

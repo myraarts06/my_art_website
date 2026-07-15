@@ -3288,6 +3288,16 @@ function toggleMenu() {
   document.getElementById("menu").classList.toggle("open");
 }
 
+   function trackPageView() {
+  if (typeof gtag === "function") {
+    gtag("event", "page_view", {
+      page_title: document.title,
+      page_location: window.location.href,
+      page_path: window.location.pathname + window.location.hash
+    });
+  }
+}
+
 function openPage(id, addHistory = true) {
 
   document.querySelectorAll(".page").forEach(p => {
@@ -3324,6 +3334,8 @@ if (id === "portfolio") {
     history.pushState({ page: id }, "", "#" + id);
   }
 
+   trackPageView();
+
   if (id === "home") {
     const title = document.querySelector("#home .title");
     const subtitle = document.getElementById("subtitle");
@@ -3350,6 +3362,7 @@ if (id === "portfolio") {
   }
 
   updateCartVisibility(id);
+  trackPageView();
 });
 
   window.addEventListener("load", () => {
@@ -3369,6 +3382,7 @@ if (id === "portfolio") {
   history.replaceState({ page: id }, "", "#" + id);
 
   updateCartVisibility(id);
+  trackPageView();
 });
 
 function showPortfolio(id) {

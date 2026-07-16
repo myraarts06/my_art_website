@@ -456,6 +456,70 @@ html, body {
   word-wrap: break-word;
 }
 
+/* LinkedIn tooltip */
+
+.linkedin-link {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkedin-link::after {
+  content: "Connect on LinkedIn";
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.linkedin-link:hover::after {
+  opacity: 1;
+}
+
+
+/* Substack tooltip */
+
+.substack-link {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.substack-link::after {
+  content: "Read on Substack";
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.substack-link:hover::after {
+  opacity: 1;
+}
     
     /* ===== MENU ===== */
     .hamburger {
